@@ -12,3 +12,6 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
 export const Thing: FC<Props> = ({ children }) => {
   return <div className="text-center">{children || `the snozzberries taste like snozzberries`}</div>;
 };
+
+export { default as Btn } from './Btn';
+export { default as SimpleInput } from './SimpleInput';
