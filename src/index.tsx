@@ -1,17 +1,11 @@
-import React, { FC, HTMLAttributes, ReactChild } from 'react';
-export interface Props extends HTMLAttributes<HTMLDivElement> {
-  /** custom content, defaults to 'the snozzberries taste like snozzberries' */
-  children?: ReactChild;
-}
-
-// Please do not use types off of a default export module or else Storybook Docs will suffer.
-// see: https://github.com/storybookjs/storybook/issues/9556
-/**
- * A custom Thing component. Neat!
- */
-export const Thing: FC<Props> = ({ children }) => {
-  return <div className="text-center">{children || `the snozzberries taste like snozzberries`}</div>;
-};
-
 export { default as Btn } from './Btn';
 export { default as SimpleInput } from './SimpleInput';
+export { default as Container } from './Container';
+export { default as Divider } from './Divider';
+export { default as DokanIcon } from './DokanIcon';
+export { default as GoogleIcon } from './GoogleIcon';
+export { default as FancyCheckbox } from './FancyCheckbox';
+export { default as SimpleCheckbox } from './SimpleCheckbox';
+export { default as SimpleHeader } from './SimpleHeader';
+export { default as SimpleSelect } from './SimpleSelect';
+export { default as TrailingBtnInput } from './TrailingBtnInput';

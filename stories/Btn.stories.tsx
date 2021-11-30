@@ -1,31 +1,47 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import Btn, { BtnProps } from '../src/Btn';
-
+import { Download } from 'react-feather';
 const meta: Meta = {
     title: 'Button',
     component: Btn,
-    // argTypes: {
-    //     children: {
-    //         control: {
-    //             type: 'text',
-    //         },
-    //     },
-    // },
-    // parameters: {
-    //     controls: { expanded: true },
-    // },
 };
 
 export default meta;
 
 const Template: Story<BtnProps> = args => <Btn {...args} />;
 
-// By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
-// https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
+export const Icon = Template.bind({});
+export const Disabled = Template.bind({});
+export const Loading = Template.bind({});
+export const Block = Template.bind({});
 
 Default.args = {
     color: 'indigo',
-    label: 'Btn'
+    label: 'Download'
+};
+
+Icon.args = {
+    color: 'indigo',
+    label: 'Download',
+    icon: Download,
+};
+
+Disabled.args = {
+    disabled: true,
+    ...Default.args
+};
+
+Loading.args = {
+    loading: true,
+    ...Disabled.args,
+    label: 'Downloading',
+};
+
+Block.args = {
+    icon: Download,
+    block: true,
+    color: 'indigo',
+    label: 'Download'
 };
