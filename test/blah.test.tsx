@@ -1,11 +1,11 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Default as Thing } from '../stories/Thing.stories';
+import { Default as Divider } from '../stories/Divider.stories';
 
-describe('Thing', () => {
+describe('Divider', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Thing />, div);
+    ReactDOM.render(<Divider label="Or continue with" />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
