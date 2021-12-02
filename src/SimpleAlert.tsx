@@ -1,9 +1,9 @@
 import { CheckCircleIcon, ExclamationIcon, InformationCircleIcon, XCircleIcon, XIcon } from '@heroicons/react/solid';
 import React, { FC, useState } from 'react';
-export interface AlertProps {
+export interface SimpleAlertProps {
     type: "success" | "danger" | "warning" | "info",
     label: string,
-    dismissable: boolean
+    dismissable?: boolean
 }
 
 enum Colors {
@@ -13,7 +13,7 @@ enum Colors {
     info = 'indigo'
 }
 
-const SimpleAlert: FC<AlertProps> = (props) => {
+const SimpleAlert: FC<SimpleAlertProps> = (props) => {
     const [visible, setVisible] = useState(true);
 
     const getIconClasses = () => {
