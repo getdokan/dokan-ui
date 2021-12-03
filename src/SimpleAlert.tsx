@@ -1,9 +1,12 @@
 import { CheckCircleIcon, ExclamationIcon, InformationCircleIcon, XCircleIcon, XIcon } from '@heroicons/react/solid';
-import React, { FC, useState } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 export interface SimpleAlertProps {
+    className?: string,
     type: "success" | "danger" | "warning" | "info",
     label: string,
     dismissable?: boolean
+    centered?: boolean
+    onDismiss?: MouseEventHandler<HTMLButtonElement>
 }
 
 enum Colors {
@@ -14,8 +17,6 @@ enum Colors {
 }
 
 const SimpleAlert: FC<SimpleAlertProps> = (props) => {
-    const [visible, setVisible] = useState(true);
-
     const getIconClasses = () => {
         return `h-5 w-5 text-${Colors[props.type as keyof typeof Colors]}-400`;
     };
@@ -25,8 +26,8 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
         return `inline-flex bg-${color}-50 rounded-md p-1.5 text-${color}-500 hover:bg-${color}-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-${color}-50 focus:ring-${color}-600`;
     };
     return (<>
-        {visible && <div className={`rounded-md bg-${Colors[props.type as keyof typeof Colors]}-50 p-4`}>
-            <div className="flex">
+        <div className={`rounded-md bg-${Colors[props.type as keyof typeof Colors]}-50 p-4`}>
+            <div className={`flex ${props.centered ? 'justify-center' : ''}`}>
                 <div className="flex-shrink-0">
                     {props.type == 'success' && <CheckCircleIcon className={getIconClasses()} aria-hidden="true" />}
                     {props.type == 'warning' && <ExclamationIcon className={getIconClasses()} aria-hidden="true" />}
@@ -39,7 +40,7 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
                 {props.dismissable && <div className="ml-auto pl-3">
                     <div className="-mx-1.5 -my-1.5">
                         <button
-                            onClick={() => setVisible(false)}
+                            onClick={props.onDismiss}
                             type="button"
                             className={getDismissClasses()}
                         >
@@ -49,7 +50,7 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
                     </div>
                 </div>}
             </div>
-        </div>}
+        </div>
     </>);
 }
 
