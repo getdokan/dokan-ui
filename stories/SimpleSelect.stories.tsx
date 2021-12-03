@@ -12,8 +12,21 @@ export default meta;
 const Template: Story<SimpleSelectProps> = args => <SimpleSelect {...args} />;
 
 export const Default = Template.bind({});
+export const WithError = Template.bind({});
 
 Default.args = {
+    label: 'Fruits',
+    labelKey: 'name',
+    valueKey: 'id',
+    options: [
+        { id: 1, name: 'Apple' },
+        { id: 2, name: 'Orange' },
+        { id: 3, name: 'Banana' },
+    ]
+};
+
+WithError.args = {
+    error: "The fruits field is required",
     label: 'Fruits',
     labelKey: 'name',
     valueKey: 'id',
