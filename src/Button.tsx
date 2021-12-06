@@ -1,5 +1,5 @@
 import React, { FC, MouseEventHandler } from 'react';
-export interface BtnProps {
+export interface ButtonProps {
     className?: string,
     loading?: boolean,
     disabled?: boolean,
@@ -10,7 +10,7 @@ export interface BtnProps {
     onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-const Btn: FC<BtnProps> = (props) => {
+const Button: FC<ButtonProps> = (props) => {
     const Icon = props.icon;
     return (
         <>
@@ -31,8 +31,8 @@ const Btn: FC<BtnProps> = (props) => {
     );
 }
 
-Btn.propTypes = {
+Button.propTypes = {
 
 }
 
-export default Btn;
+export default Button;
