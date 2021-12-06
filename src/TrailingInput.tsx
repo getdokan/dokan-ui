@@ -2,14 +2,14 @@ import React, { MouseEventHandler } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
 import { SimpleInputProps } from './SimpleInput';
 
-export interface TrailingBtnInputProps extends SimpleInputProps {
+export interface TrailingInputProps extends SimpleInputProps {
     icon?: any,
     btnIcon?: any,
     btnLabel?: any,
     onBtnClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-const TrailingBtnInput: React.FC<TrailingBtnInputProps> = (props) => {
+const TrailingInput: React.FC<TrailingInputProps> = (props) => {
     const Icon = props.icon;
     const BtnIcon = props.btnIcon;
     let validClasses = `focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l ${props.icon && 'pl-10'} sm:text-sm border-gray-300 placeholder-gray-400`;
@@ -51,4 +51,4 @@ const TrailingBtnInput: React.FC<TrailingBtnInputProps> = (props) => {
     );
 }
 
-export default TrailingBtnInput;
+export default TrailingInput;

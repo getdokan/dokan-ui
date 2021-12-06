@@ -8,5 +8,5 @@ export { default as FancyCheckbox } from './FancyCheckbox';
 export { default as SimpleCheckbox } from './SimpleCheckbox';
 export { default as SimpleHeader } from './SimpleHeader';
 export { default as SimpleSelect } from './SimpleSelect';
-export { default as TrailingBtnInput } from './TrailingBtnInput';
+export { default as TrailingInput } from './TrailingInput';
 export { default as SimpleAlert } from './SimpleAlert';
