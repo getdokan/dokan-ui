@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import Button, { BtnProps } from '../src/Button';
+import Button, { ButtonProps } from '../src/Button';
 import { Download } from 'react-feather';
 const meta: Meta = {
     title: 'Button',
@@ -9,7 +9,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<BtnProps> = args => <Button {...args} />;
+const Template: Story<ButtonProps> = args => <Button {...args} />;
 
 export const Default = Template.bind({});
 export const Icon = Template.bind({});
