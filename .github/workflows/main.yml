@@ -1,5 +1,12 @@
 name: CI
-on: [push]
+on:
+  push:
+    branches:
+      - "develop"
+      - "master"
+  pull_request:
+    branches:
+      - "develop"
 jobs:
   build:
     name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
@@ -8,7 +15,7 @@ jobs:
     strategy:
       matrix:
         node: ["12.x", "14.x", "16.x"]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest]
 
     steps:
       - name: Checkout repo
