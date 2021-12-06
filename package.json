@@ -1,5 +1,4 @@
 {
-  "private": true,
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -36,8 +35,8 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "dokan-ui",
-  "author": "Tanmay Mishu",
+  "name": "@getdokan/dokan-ui",
+  "author": "weDevs",
   "module": "dist/dokan-ui.esm.js",
   "size-limit": [
     {
@@ -77,5 +76,11 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
     "typescript": "^4.5.2"
+  },
+  "repository": {
+    "url": "git://github.com/getdokan/dokan-ui.git"
+  },
+  "publishConfig": {
+    "@getdokan:registry": "https://npm.pkg.github.com"
   }
 }
