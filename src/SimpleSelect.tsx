@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler, FunctionComponent } from 'react';
 export interface SimpleSelectProps {
+    className?: string,
     error?: string,
     label: string,
     valueKey: string,
@@ -43,7 +44,7 @@ const SimpleSelect: FunctionComponent<SimpleSelectProps> = (props) => {
                 onChange={props.onChange}
                 id={`${slugify(props.label)}-simple-select`}
                 name={`${slugify(props.label)}-simple-select`}
-                className={props.error ? errorClasses : validClasses}
+                className={`${props.error ? errorClasses : validClasses} ${props.className}`}
             >
                 <option disabled value=''>{`${props.defaultOption ? props.defaultOption : 'Select an option'}`}</option>
                 {props.options.map((option) => <option key={option[props.valueKey]} value={option[props.valueKey]}>{option[props.labelKey]}</option>)}
