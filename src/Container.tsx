@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 export interface ContainerProps {
-    className?: string
+    className?: string;
 }
 
 const Container: FC<ContainerProps> = (props) => {

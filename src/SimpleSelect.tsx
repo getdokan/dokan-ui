@@ -1,15 +1,15 @@
 import React, { ChangeEventHandler, FunctionComponent } from 'react';
 export interface SimpleSelectProps {
-    className?: string,
-    error?: string,
-    label: string,
-    valueKey: string,
-    labelKey: string,
+    className?: string;
+    error?: string;
+    label: string;
+    valueKey: string;
+    labelKey: string;
     options: Array<{
         [key: string]: any
-    }>,
-    defaultOption?: string,
-    onChange?: ChangeEventHandler<HTMLSelectElement>
+    }>;
+    defaultOption?: string;
+    onChange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
 const SimpleSelect: FunctionComponent<SimpleSelectProps> = (props) => {

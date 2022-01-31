@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { SimpleInputProps } from './SimpleInput';
 
 export interface SimpleCheckboxProps extends SimpleInputProps {
-    checked?: boolean,
+    checked?: boolean;
 }
 
 const SimpleCheckbox: FC<SimpleCheckboxProps> = (props) => {
