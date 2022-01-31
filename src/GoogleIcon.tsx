@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
 export interface GoogleIconProps {
-    className?: string,
-    width?: number,
-    height?: number
+    className?: string;
+    width?: number;
+    height?: number;
 }
 
 const GoogleIcon: FC<GoogleIconProps> = (props: GoogleIconProps) => {

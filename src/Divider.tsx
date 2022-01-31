@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 export interface DividerProps {
-    label: string,
+    label: string;
 }
 
 const Divider: FunctionComponent<DividerProps> = (props) => {

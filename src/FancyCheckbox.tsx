@@ -1,14 +1,14 @@
 import React, { ChangeEventHandler, FC } from 'react';
 
 export interface FancyCheckboxProps {
-    checked?: boolean,
-    label: string,
+    checked?: boolean;
+    label: string;
     inputs: Array<{
-        label: string,
-        description: string,
-        [key: string]: any,
-    }>,
-    onChange?: ChangeEventHandler<HTMLInputElement>
+        label: string;
+        description: string;
+        [key: string]: any;
+    }>;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const FancyCheckbox: FC<FancyCheckboxProps> = (props) => {

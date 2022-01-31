@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 export interface DokanIconProps {
-    width?: number,
-    height?: number
+    width?: number;
+    height?: number;
 }
 const DokanIcon: FC<DokanIconProps> = (props) => {
     return (
