@@ -15,5 +15,6 @@ export const Default = Template.bind({});
 
 Default.args = {
     label: 'Successfully Created',
-    type: "info",
+    type: "success",
+    color: 'green'
 };

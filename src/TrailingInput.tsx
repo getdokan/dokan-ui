@@ -3,10 +3,10 @@ import { ExclamationCircleIcon } from '@heroicons/react/solid'
 import { SimpleInputProps } from './SimpleInput';
 
 export interface TrailingInputProps extends SimpleInputProps {
-    icon?: any,
-    btnIcon?: any,
-    btnLabel?: any,
-    onBtnClick?: MouseEventHandler<HTMLButtonElement>
+    icon?: any;
+    btnIcon?: any;
+    btnLabel?: any;
+    onBtnClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const TrailingInput: React.FC<TrailingInputProps> = (props) => {

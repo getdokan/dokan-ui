@@ -3,14 +3,14 @@ import { ExclamationCircleIcon } from '@heroicons/react/solid'
 // import { Info } from 'react-feather';
 
 export interface SimpleInputProps {
-    className?: string,
-    icon?: any,
-    label: string,
-    error?: string,
+    className?: string;
+    icon?: any;
+    label: string;
+    error?: string;
     input: {
-        [key: string]: any,
-    },
-    onChange?: ChangeEventHandler<HTMLInputElement>
+        [key: string]: any;
+    };
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const SimpleInput: React.FC<SimpleInputProps> = (props) => {

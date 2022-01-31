@@ -9,8 +9,8 @@
 `yarn install`
 
 ### Usage:
-```js
-import { Btn, SimpleInput, TrailingBtnInput, SimpleCheckbox } from 'dokan-ui';
+```ts
+import { Button, SimpleInput, TrailingInput, SimpleCheckbox } from 'dokan-ui';
 ```
 ### Watch files for changes:
 `yarn start`
