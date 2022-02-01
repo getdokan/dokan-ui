@@ -19,7 +19,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
             <label htmlFor={props.input.id} className="block text-sm font-medium text-gray-700">
                 {props.label}
             </label>
-            <div className="mt-1 flex rounded shadow-sm">
+            <div className={`flex rounded shadow-sm ${props.className}`}>
                 <div className="relative flex items-stretch flex-grow focus-within:z-10">
                     {props.icon && <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <Icon className={`h-5 w-5 text-gray-400 ${props.error && 'text-red-400'}`} aria-hidden="true" />
@@ -27,7 +27,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
                     <input
                         {...props.input}
                         id={props.input.id}
-                        className={`${props.error ? errorClasses : validClasses} ${props.className}`}
+                        className={`${props.error ? errorClasses : validClasses}`}
                         onChange={props.onChange}
                         aria-invalid={props.error ? 'true' : 'false'}
                         aria-describedby={`${props.input.id}-error`}
@@ -39,7 +39,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
                 <button
                     onClick={props.onBtnClick && props.onBtnClick}
                     type="button"
-                    className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                    className={`-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500`}
                 >
                     <BtnIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />{props.btnLabel && <span>{props.btnLabel}</span>}
                 </button>
