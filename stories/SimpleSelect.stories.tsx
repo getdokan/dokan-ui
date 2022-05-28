@@ -26,7 +26,7 @@ Default.args = {
 };
 
 WithError.args = {
-    error: "The fruits field is required",
+    errors: ["The fruits field is required"],
     label: 'Fruits',
     labelKey: 'name',
     valueKey: 'id',

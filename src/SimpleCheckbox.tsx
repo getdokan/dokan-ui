@@ -14,7 +14,7 @@ const SimpleCheckbox: FC<SimpleCheckboxProps> = (props) => {
                     checked={props.checked}
                     {...props.input}
                     id={props.input.id}
-                    className={"h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" + ` ${props.className}`}
+                    className={"h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded" + ` ${props.className}`}
                     onChange={props.onChange}
                 />
                 <label htmlFor={props.input.id} className={"ml-2 block text-sm font-medium text-gray-700"}>{props.label}</label>

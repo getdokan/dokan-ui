@@ -44,7 +44,7 @@ SimpleIcon.args = {
 
 SimpleError.args = {
     icon: MailIcon,
-    error: 'Email address field is required',
+    errors: ['Email address field is required'],
     label: 'Email Address',
     className: 'mt-1',
     input: {

@@ -12,18 +12,25 @@ export default meta;
 const Template: Story<ButtonProps> = args => <Button {...args} />;
 
 export const Default = Template.bind({});
+export const Outlined = Template.bind({});
 export const Icon = Template.bind({});
 export const Disabled = Template.bind({});
 export const Loading = Template.bind({});
 export const Block = Template.bind({});
 
 Default.args = {
-    color: 'indigo',
+    color: 'primary',
     label: 'Download'
 };
 
+Outlined.args = {
+    color: 'primary',
+    label: 'Download',
+    outlined: true
+};
+
 Icon.args = {
-    color: 'indigo',
+    color: 'primary',
     label: 'Download',
     icon: Download,
 };
@@ -42,6 +49,6 @@ Loading.args = {
 Block.args = {
     icon: Download,
     block: true,
-    color: 'indigo',
+    color: 'primary',
     label: 'Download'
 };
