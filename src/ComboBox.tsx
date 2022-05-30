@@ -41,7 +41,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
   const inputField = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (inputHasFocus) {
+    if (inputHasFocus && props.multiple) {
       inputField.current && inputField.current.focus();
     }
   }, [inputHasFocus]);
@@ -62,7 +62,13 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
       <Combobox.Label className="block text-sm font-medium text-gray-700">{props.label || 'Search and Select'}</Combobox.Label>
       <div className="relative mt-1">
         {(inputHasFocus && selectedItems.length > 0) && <span onClick={() => setInputHasFocus(false)} className="hover:cursor-pointer bg-primary-600 text-white rounded-3xl px-1.5 py-0.5 text-xs absolute top-2.5 right-8">+{selectedItems.length}</span>}
-        {(selectedItems.length < 1 || inputHasFocus) && <Combobox.Input
+        {!props.multiple && <Combobox.Input
+          placeholder="Search"
+          className={`w-full rounded border border-gray-300 bg-white pl-3 pr-10 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm ${props.inputClasses}`}
+          onChange={(event) => setQuery(event.target.value)}
+          displayValue={(item: any) => item[props.valueFrom]}
+        />}
+        {props.multiple && (selectedItems.length < 1 || inputHasFocus) && <Combobox.Input
           ref={inputField}
           onFocus={() => setInputHasFocus(true)}
           onBlur={() => setInputHasFocus(false)}
@@ -71,7 +77,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(item: any) => item[props.valueFrom]}
         />}
-        {(!inputHasFocus && selectedItems.length > 0) && 
+        {(props.multiple && !inputHasFocus && selectedItems.length > 0) && 
         <section
           onClick={() => setInputHasFocus(true)}
           className="hover:cursor-text mt-1 p-2 w-full rounded border border-gray-300 bg-white pl-3 pr-10 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm">
