@@ -26,6 +26,8 @@ Default.args = {
   onChange: (item) => {
     console.log(item);
   },
+  helpText: '',
+  error: [],
 };
 
 Multiple.args = {

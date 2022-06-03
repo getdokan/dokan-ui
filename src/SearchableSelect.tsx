@@ -73,6 +73,19 @@ const SearchableSelect = <
         })}
         components={{ ValueContainer, Option, Input }}
         styles={{
+          control: (base) => ({
+            ...base,
+            border:
+              props.error && props.error.length > 0
+                ? '1px solid var(--danger-500)'
+                : base.border,
+            ':hover': {
+              border:
+                props.error && props.error.length > 0
+                  ? '1px solid var(--danger-500)'
+                  : base.border,
+            },
+          }),
           multiValue: (base) => ({
             ...base,
             background: 'var(--primary-50)',

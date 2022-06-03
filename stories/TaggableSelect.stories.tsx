@@ -22,9 +22,11 @@ Default.args = {
     { label: 'Sri Lanka', value: 'SL' },
   ],
   label: 'Countries',
+  placeholder: 'Search...',
   isMulti: true,
   onChange: (items) => {
     console.log(items);
   },
   helpText: '',
+  error: [],
 };
