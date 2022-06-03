@@ -99,7 +99,7 @@ const Button: FC<ButtonProps> = (props) => {
       href={props.href}
       type={props.type || 'submit'}
       onClick={props.onClick as MouseEventHandler<HTMLAnchorElement>}
-      className={`${props.block ? 'w-full' : ''} ${props.disabled ? 'opacity-50 cursor-not-allowed' : ''} ${props.underline ? 'underline decoration-2' : ''} ${props.underlineOnHover ? 'hover:underline decoration-2' : ''} hover:cursor-pointer rounded text-sm font-medium ${linkColors[props.color]} ${props.className || ''}`}
+      className={`${props.block ? 'w-full' : ''} ${props.disabled ? 'opacity-50 cursor-not-allowed' : ''} ${props.underline ? 'underline decoration-2' : ''} ${props.underlineOnHover ? 'hover:underline decoration-2' : ''} hover:cursor-pointer rounded my-2 mx-4 text-sm font-medium ${linkColors[props.color]} ${props.className || ''}`}
     >
       {props.label && <span>{props.label}</span>}
       {props.children}
