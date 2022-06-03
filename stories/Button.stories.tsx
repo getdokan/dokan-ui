@@ -17,10 +17,24 @@ export const Icon = Template.bind({});
 export const Disabled = Template.bind({});
 export const Loading = Template.bind({});
 export const Block = Template.bind({});
+export const Link = Template.bind({});
 
 Default.args = {
     color: 'primary',
     label: 'Download'
+};
+
+Link.args = {
+    color: 'purple',
+    label: 'Download',
+    link: true,
+    href: "http://google.com",
+    target: "_blank",
+    underline: true,
+    underlineOnHover: false,
+    onClick: (e) => {
+        alert("Clicked. e.preventDefault() is not called.");
+    }
 };
 
 Outlined.args = {
