@@ -42,6 +42,6 @@ TrailingInputText.args = {
 };
 
 TrailingInputError.args = {
-    error: 'Password must be at least 8 characters.',
+    errors: ['Password must be at least 8 characters.'],
     ...TrailingInputIcon.args
 };

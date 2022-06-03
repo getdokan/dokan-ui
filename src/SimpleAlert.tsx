@@ -3,7 +3,7 @@ import React, { FC, MouseEventHandler } from 'react';
 export interface SimpleAlertProps {
     className?: string;
     type: 'success' | 'danger' | 'warning' | 'info';
-    color: 'amber' | 'blue' | 'cyan' | 'emerald' | 'fuchsia' | 'green' | 'gray' | 'indigo' | 'lime' | 'orange' | 'pink' | 'purple' | 'red' | 'rose' | 'sky' | 'teal' | 'violet' | 'yellow';
+    color: 'primary' | 'amber' | 'blue' | 'cyan' | 'emerald' | 'fuchsia' | 'green' | 'gray' | 'indigo' | 'lime' | 'orange' | 'pink' | 'purple' | 'red' | 'rose' | 'sky' | 'teal' | 'violet' | 'yellow';
     label: string;
     dismissable?: boolean;
     centered?: boolean;
@@ -11,6 +11,7 @@ export interface SimpleAlertProps {
 }
 
 const textColors400 = {
+    primary: `text-primary-400`,
     amber: `text-amber-400`,
     blue: `text-blue-400`,
     cyan: `text-cyan-400`,
@@ -32,6 +33,7 @@ const textColors400 = {
 };
 
 const textColors800 = {
+    primary: `text-primary-800`,
     amber: `text-amber-800`,
     blue: `text-blue-800`,
     cyan: `text-cyan-800`,
@@ -53,6 +55,7 @@ const textColors800 = {
 };
 
 const bgColors = {
+    primary: `bg-primary-50`,
     amber: `bg-amber-50`,
     blue: `bg-blue-50`,
     cyan: `bg-cyan-50`,
@@ -74,6 +77,7 @@ const bgColors = {
 };
 
 const dismissClasses = {
+    primary: `bg-primary-50 text-primary-500 hover:bg-primary-100 focus:ring-offset-primary-50 focus-ring-primary-600`,
     amber: `bg-amber-50 text-amber-500 hover:bg-amber-100 focus:ring-offset-amber-50 focus-ring-amber-600`,
     blue: `bg-blue-50 text-blue-500 hover:bg-blue-100 focus:ring-offset-blue-50 focus-ring-blue-600`,
     cyan: `bg-cyan-50 text-cyan-500 hover:bg-cyan-100 focus:ring-offset-cyan-50 focus-ring-cyan-600`,
