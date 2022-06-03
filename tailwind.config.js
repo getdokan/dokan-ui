@@ -30,9 +30,6 @@ module.exports = {
           "700": "var(--danger-700)",
           "800": "var(--danger-800)",
           "900": "var(--danger-900)"
-        },
-        gray: {
-          "300": "var(--gray-300)",
         }
       },
       variables: {
