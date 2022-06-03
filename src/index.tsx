@@ -9,4 +9,7 @@ export { default as SimpleCheckbox } from './SimpleCheckbox';
 export { default as SimpleHeader } from './SimpleHeader';
 export { default as SimpleSelect } from './SimpleSelect';
 export { default as TrailingInput } from './TrailingInput';
-export { default as SimpleAlert } from './SimpleAlert';
+export { default as MultipleTextInput } from './MultipleTextInput';
+export { default as TaggableSelect } from './TaggableSelect';
+export { default as SearchableSelect } from './SearchableSelect';
+export { default as ComboBox } from './ComboBox';
