@@ -30,8 +30,8 @@ Link.args = {
     link: true,
     href: "http://google.com",
     target: "_blank",
-    underline: true,
-    underlineOnHover: false,
+    underline: false,
+    underlineOnHover: true,
     onClick: (e) => {
         alert("Clicked. e.preventDefault() is not called.");
     }
