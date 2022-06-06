@@ -1,12 +1,5 @@
 import React from 'react';
-import Select, {
-  GroupBase,
-  Props,
-  components,
-  ValueContainerProps,
-  OptionProps,
-  InputProps,
-} from 'react-select';
+import Select, { GroupBase, Props, components, ValueContainerProps, OptionProps, InputProps } from 'react-select';
 
 export type SearchableSelectProps<
   Option,
@@ -20,28 +13,19 @@ export type SearchableSelectProps<
   helpText?: string;
 };
 
-const SearchableSelect = <
-  Option,
-  IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>
->(
+const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(
   props: SearchableSelectProps<Option, IsMulti, Group>
 ) => {
   const id = props.id || Math.random().toString();
 
-  const ValueContainer = ({
-    children,
-    ...props
-  }: ValueContainerProps<Option, IsMulti, Group>) => (
+  const ValueContainer = ({ children, ...props }: ValueContainerProps<Option, IsMulti, Group>) => (
     <components.ValueContainer {...props} className="text-sm">
       {children}
     </components.ValueContainer>
   );
 
   const Option = (props: OptionProps<Option, IsMulti, Group>) => {
-    return (
-      <components.Option {...props} className="text-sm hover:bg-primary-50" />
-    );
+    return <components.Option {...props} className="text-sm" />;
   };
 
   const Input = (props: InputProps<Option, IsMulti, Group>) => {
@@ -57,33 +41,27 @@ const SearchableSelect = <
       )}
       <Select
         {...props}
-        className={props.className}
-        placeholder={
-          <div className="text-sm">{props.placeholder || 'Search...'}</div>
-        }
+        className={`${props.className} shadow-sm`}
+        placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search...'}</div>}
         theme={(theme) => ({
           ...theme,
           colors: {
             ...theme.colors,
-            primary:
-              props.errors && props.errors.length > 0
-                ? 'var(--danger-500)'
-                : 'var(--primary-500)',
+            primary: props.errors && props.errors.length > 0 ? 'var(--danger-500)' : 'var(--primary-500)',
+            primary75: 'var(--primary-200)',
+            primary50: 'var(--primary-100)',
+            primary25: 'var(--primary-50)',
+            neutral20: 'var(--gray-300)',
+            neutral30: 'var(--gray-300)',
           },
         })}
         components={{ ValueContainer, Option, Input }}
         styles={{
           control: (base) => ({
             ...base,
-            border:
-              props.errors && props.errors.length > 0
-                ? '1px solid var(--danger-500)'
-                : base.border,
+            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
-              border:
-                props.errors && props.errors.length > 0
-                  ? '1px solid var(--danger-500)'
-                  : base.border,
+              border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             },
           }),
           multiValue: (base) => ({
@@ -109,9 +87,7 @@ const SearchableSelect = <
           {props.errors.join(', ')}
         </p>
       )}
-      {props.helpText && (
-        <span className="text-xs text-gray-600">{props.helpText}</span>
-      )}
+      {props.helpText && <span className="text-xs text-gray-600">{props.helpText}</span>}
     </div>
   );
 };
