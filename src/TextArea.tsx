@@ -34,7 +34,7 @@ const TextArea: React.FC<TextAreaProps> = ({ input, label, className, errors, on
           aria-describedby={`${input.id}-error`}
         ></textarea>
         {errors && (
-          <div className="absolute top-3 right-0 pe-3 flex items-center pointer-events-none">
+          <div className="absolute bottom-1 right-1 pe-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400" aria-hidden="true" />
           </div>
         )}
