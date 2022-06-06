@@ -17,7 +17,7 @@ type CreatableProps<
   CreatableAdditionalProps<Option, Group> & {
     label?: string;
     id?: string;
-    error?: string[];
+    errors?: string[];
     helpText?: string;
   };
 
@@ -59,12 +59,12 @@ const TaggableSelect = <
           control: (base) => ({
             ...base,
             border:
-              props.error && props.error.length > 0
+              props.errors && props.errors.length > 0
                 ? '1px solid var(--danger-500)'
                 : base.border,
             ':hover': {
               border:
-                props.error && props.error.length > 0
+                props.errors && props.errors.length > 0
                   ? '1px solid var(--danger-500)'
                   : base.border,
             },
@@ -91,15 +91,15 @@ const TaggableSelect = <
           colors: {
             ...theme.colors,
             primary:
-              props.error && props.error.length > 0
+              props.errors && props.errors.length > 0
                 ? 'var(--danger-500)'
                 : 'var(--primary-500)',
           },
         })}
       />
 
-      {props.error && props.error.length > 0 && (
-        <p className="text-xs text-red-600">{props.error.join(', ')}</p>
+      {props.errors && props.errors.length > 0 && (
+        <p className="text-xs text-red-600">{props.errors.join(', ')}</p>
       )}
       {props.helpText && (
         <span className="text-xs text-gray-600">{props.helpText}</span>

@@ -18,5 +18,7 @@ Default.args = {
   value: ['US', 'UK', 'Canada'],
   label: 'Countries',
   setValue: () => { },
+  helpText: '',
+  errors: [],
 };
 
