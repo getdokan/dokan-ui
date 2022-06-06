@@ -16,7 +16,7 @@ export type SearchableSelectProps<
   label?: string;
   id?: string;
   className?: string;
-  error?: string[];
+  errors?: string[];
   helpText?: string;
 };
 
@@ -66,7 +66,7 @@ const SearchableSelect = <
           colors: {
             ...theme.colors,
             primary:
-              props.error && props.error.length > 0
+              props.errors && props.errors.length > 0
                 ? 'var(--danger-500)'
                 : 'var(--primary-500)',
           },
@@ -76,12 +76,12 @@ const SearchableSelect = <
           control: (base) => ({
             ...base,
             border:
-              props.error && props.error.length > 0
+              props.errors && props.errors.length > 0
                 ? '1px solid var(--danger-500)'
                 : base.border,
             ':hover': {
               border:
-                props.error && props.error.length > 0
+                props.errors && props.errors.length > 0
                   ? '1px solid var(--danger-500)'
                   : base.border,
             },
@@ -104,9 +104,9 @@ const SearchableSelect = <
           }),
         }}
       />
-      {props.error && props.error.length > 0 && (
+      {props.errors && props.errors.length > 0 && (
         <p className="text-xs text-red-600" id={`${id}-error`}>
-          {props.error.join(', ')}
+          {props.errors.join(', ')}
         </p>
       )}
       {props.helpText && (

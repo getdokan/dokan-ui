@@ -27,7 +27,7 @@ Default.args = {
     console.log(item);
   },
   helpText: '',
-  error: [],
+  errors: [],
 };
 
 Multiple.args = {
@@ -44,5 +44,5 @@ Multiple.args = {
     console.log(items);
   },
   helpText: '',
-  error: [],
+  errors: [],
 };

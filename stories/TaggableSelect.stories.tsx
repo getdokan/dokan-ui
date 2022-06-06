@@ -28,5 +28,5 @@ Default.args = {
     console.log(items);
   },
   helpText: '',
-  error: [],
+  errors: [],
 };
