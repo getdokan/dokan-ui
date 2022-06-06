@@ -1,10 +1,6 @@
 import { Switch } from '@headlessui/react';
 import React, { ReactElement } from 'react';
 
-interface AnyObject {
-  [key: string]: any;
-}
-
 export interface ToggleSwitchProps {
   checked: boolean;
   onChange: (value: boolean) => void;
@@ -13,7 +9,7 @@ export interface ToggleSwitchProps {
   children?: ReactElement;
 }
 
-const bgClasses: AnyObject = {
+const bgClasses: Record<string, string> = {
   amber: `bg-amber-500`,
   blue: `bg-blue-500`,
   cyan: `bg-cyan-500`,
@@ -49,9 +45,8 @@ const ToggleSwitch = ({ checked, onChange, color = 'primary', children, label }:
       >
         <span
           style={{ height: '14px', width: '14px', minWidth: '14px' }}
-          className={`${
-            checked ? 'translate-x-6' : 'translate-x-1'
-          } inline-block transform transition ease-in-out duration-200 bg-white rounded-full`}
+          className={`${checked ? 'translate-x-6' : 'translate-x-1'
+            } inline-block transform transition ease-in-out duration-200 bg-white rounded-full`}
         />
       </Switch>
       {children || (label && <p className="text-sm ms-2">{label}</p>)}

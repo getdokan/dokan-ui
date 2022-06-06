@@ -6,13 +6,14 @@ export interface MultipleTextInputProps {
   id?: string;
   className?: string;
   label?: string;
-  error?: string[];
+  errors?: string[];
   placeholder?: string;
   value: string[];
   setValue: (values: string[]) => void;
+  helpText?: string;
 };
 
-const MultipleTextInput = ({ id, className, label, error, placeholder, value, setValue }: MultipleTextInputProps) => {
+const MultipleTextInput = ({ id, className, label, errors, placeholder, value, setValue, helpText }: MultipleTextInputProps) => {
   const [inputValue, setInputValue] = useState('');
 
   // Set only uniquer value
@@ -73,7 +74,7 @@ const MultipleTextInput = ({ id, className, label, error, placeholder, value, se
       <div
         className={classNames(
           'flex items-center flex-wrap gap-1 w-full px-3 py-2 rounded shadow-sm relative',
-          error ? errorClasses : validClasses,
+          errors ? errorClasses : validClasses,
           className
         )}
       >
@@ -95,16 +96,19 @@ const MultipleTextInput = ({ id, className, label, error, placeholder, value, se
           className="flex-grow outline-none text-sm"
           placeholder={placeholder}
         />
-        {error && (
+        {errors && (
           <div className="absolute right-0 pe-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400" aria-hidden="true" />
           </div>
         )}
       </div>
-      {error && (
-        <p className="text-xs text-red-600" id={`${componentId}-error`}>
-          {error.join(', ')}
+      {errors && (
+        <p className="text-xs text-red-600" id={`${componentId}-errors`}>
+          {errors.join(', ')}
         </p>
+      )}
+      {helpText && (
+        <span className="text-xs text-gray-600">{helpText}</span>
       )}
     </>
   );
