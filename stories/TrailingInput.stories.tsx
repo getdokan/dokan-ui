@@ -28,7 +28,8 @@ TrailingInputDefault.args = {
         type: 'password',
         autoComplete: 'off',
         required: true,
-    }
+    },
+    helpText: ""
 };
 
 TrailingInputIcon.args = {
