@@ -29,7 +29,8 @@ TrailingInputDefault.args = {
         autoComplete: 'off',
         required: true,
     },
-    helpText: ""
+    helpText: "",
+    errors: []
 };
 
 TrailingInputIcon.args = {
@@ -43,6 +44,6 @@ TrailingInputText.args = {
 };
 
 TrailingInputError.args = {
-    errors: ['Password must be at least 8 characters.'],
-    ...TrailingInputIcon.args
+    ...TrailingInputIcon.args,
+    errors: ['Password must be at least 8 characters.']
 };

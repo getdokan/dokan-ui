@@ -4,7 +4,7 @@ import { SimpleInputProps } from './SimpleInput';
 
 export interface TrailingInputProps extends SimpleInputProps {
     icon?: any;
-    error?: string[];
+    errors?: string[];
     btnIcon?: any;
     btnLabel?: any;
     onBtnClick?: MouseEventHandler<HTMLButtonElement>;
@@ -27,18 +27,18 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
                 <div className="relative flex items-stretch flex-grow focus-within:z-10">
                     {props.icon && (
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Icon className={`h-5 w-5 text-gray-400 ${props.error && 'text-red-400'}`} aria-hidden="true" />
+                            <Icon className={`h-5 w-5 text-gray-400 ${props.errors && 'text-red-400'}`} aria-hidden="true" />
                         </div>
                     )}
                     <input
                         {...props.input}
                         id={props.input.id}
-                        className={`${props.error ? errorClasses : validClasses}`}
+                        className={`${props.errors ? errorClasses : validClasses}`}
                         onChange={props.onChange}
-                        aria-invalid={props.error ? 'true' : 'false'}
-                        aria-describedby={`${props.input.id}-error`}
+                        aria-invalid={props.errors ? 'true' : 'false'}
+                        aria-describedby={`${props.input.id}-errors`}
                     />
-                    {props.error && (
+                    {props.errors && (
                         <div className="absolute top-3 right-0 pr-3 flex items-center pointer-events-none">
                             <ExclamationCircleIcon className="h-5 w-5 sm:h-4 sm:w-4 text-red-400" aria-hidden="true" />
                         </div>
@@ -53,9 +53,9 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
                     {props.btnLabel && <span>{props.btnLabel}</span>}
                 </button>
             </div>
-            {props.error && (
-                <p className="text-xs text-red-600" id={`${props.input.id}-error`}>
-                    {props.error.join(', ')}
+            {props.errors && (
+                <p className="text-xs text-red-600" id={`${props.input.id}-errors`}>
+                    {props.errors.join(', ')}
                 </p>
             )}
 
