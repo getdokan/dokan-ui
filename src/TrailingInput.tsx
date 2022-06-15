@@ -8,7 +8,7 @@ export interface TrailingInputProps extends SimpleInputProps {
     btnIcon?: any;
     btnLabel?: any;
     onBtnClick?: MouseEventHandler<HTMLButtonElement>;
-    helpText: string;
+    helpText?: string;
 }
 
 const TrailingInput: React.FC<TrailingInputProps> = (props) => {
