@@ -10,6 +10,7 @@ export interface TextAreaProps {
     [key: string]: any;
   };
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
+  helpText?: string;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -19,6 +20,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   errors,
   value,
   onChange,
+  helpText,
 }) => {
   let validClasses =
     'appearance-none block w-full px-3 py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm';
@@ -58,6 +60,7 @@ const TextArea: React.FC<TextAreaProps> = ({
           {errors.join(', ')}
         </p>
       )}
+       {helpText && <span className="text-xs text-gray-600">{helpText}</span>}
     </>
   );
 };
