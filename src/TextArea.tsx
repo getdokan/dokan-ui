@@ -12,7 +12,14 @@ export interface TextAreaProps {
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ input, label, className, errors, onChange }) => {
+const TextArea: React.FC<TextAreaProps> = ({
+  input,
+  label,
+  className,
+  errors,
+  value,
+  onChange,
+}) => {
   let validClasses =
     'appearance-none block w-full px-3 py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm';
   let errorClasses =
@@ -20,7 +27,10 @@ const TextArea: React.FC<TextAreaProps> = ({ input, label, className, errors, on
   return (
     <>
       {label && (
-        <label htmlFor={input.id} className={'block text-sm font-medium text-gray-700'}>
+        <label
+          htmlFor={input.id}
+          className={'block text-sm font-medium text-gray-700'}
+        >
           {label}
         </label>
       )}
@@ -32,10 +42,14 @@ const TextArea: React.FC<TextAreaProps> = ({ input, label, className, errors, on
           onChange={onChange}
           aria-invalid={errors ? 'true' : 'false'}
           aria-describedby={`${input.id}-error`}
+          defaultValue={value}
         ></textarea>
         {errors && (
           <div className="absolute bottom-1 right-1 pe-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400" aria-hidden="true" />
+            <ExclamationCircleIcon
+              className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400"
+              aria-hidden="true"
+            />
           </div>
         )}
       </div>
