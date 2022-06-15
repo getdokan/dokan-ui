@@ -1,38 +1,28 @@
 import React from 'react';
-import {
-  GroupBase,
-  components,
-  MultiValueRemoveProps,
-  InputProps,
-} from 'react-select';
+import { GroupBase, components, MultiValueRemoveProps, InputProps } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { CreatableAdditionalProps } from 'react-select/dist/declarations/src/useCreatable';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 
-type CreatableProps<
+type CreatableProps<Option, IsMulti extends boolean, Group extends GroupBase<Option>> = StateManagerProps<
   Option,
-  IsMulti extends boolean,
-  Group extends GroupBase<Option>
-> = StateManagerProps<Option, IsMulti, Group> &
+  IsMulti,
+  Group
+> &
   CreatableAdditionalProps<Option, Group> & {
     label?: string;
     id?: string;
+    className?: string;
     errors?: string[];
     helpText?: string;
   };
 
-const TaggableSelect = <
-  Option,
-  IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>
->(
+const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(
   props: CreatableProps<Option, IsMulti, Group>
 ) => {
   const id = props.id || Math.random().toString();
 
-  const MultiValueRemove = (
-    props: MultiValueRemoveProps<Option, IsMulti, Group>
-  ) => {
+  const MultiValueRemove = (props: MultiValueRemoveProps<Option, IsMulti, Group>) => {
     return (
       <components.MultiValueRemove {...props}>
         <span className="text-primary-600">&times;</span>
@@ -53,20 +43,15 @@ const TaggableSelect = <
       )}
       <CreatableSelect
         {...props}
+        className={`${props.className} shadow-sm`}
         placeholder={<div className="text-sm">{props.placeholder}</div>}
         components={{ MultiValueRemove, Input }}
         styles={{
           control: (base) => ({
             ...base,
-            border:
-              props.errors && props.errors.length > 0
-                ? '1px solid var(--danger-500)'
-                : base.border,
+            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
-              border:
-                props.errors && props.errors.length > 0
-                  ? '1px solid var(--danger-500)'
-                  : base.border,
+              border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             },
           }),
           multiValue: (base) => ({
@@ -90,20 +75,18 @@ const TaggableSelect = <
           ...theme,
           colors: {
             ...theme.colors,
-            primary:
-              props.errors && props.errors.length > 0
-                ? 'var(--danger-500)'
-                : 'var(--primary-500)',
+            primary: props.errors && props.errors.length > 0 ? 'var(--danger-500)' : 'var(--primary-500)',
+            primary75: 'var(--primary-200)',
+            primary50: 'var(--primary-100)',
+            primary25: 'var(--primary-50)',
+            neutral20: 'var(--gray-300)',
+            neutral30: 'var(--gray-300)',
           },
         })}
       />
 
-      {props.errors && props.errors.length > 0 && (
-        <p className="text-xs text-red-600">{props.errors.join(', ')}</p>
-      )}
-      {props.helpText && (
-        <span className="text-xs text-gray-600">{props.helpText}</span>
-      )}
+      {props.errors && props.errors.length > 0 && <p className="text-xs text-red-600">{props.errors.join(', ')}</p>}
+      {props.helpText && <span className="text-xs text-gray-600">{props.helpText}</span>}
     </div>
   );
 };

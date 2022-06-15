@@ -1,17 +1,5 @@
 import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
-// import { Info } from 'react-feather';
-
-// export interface SimpleInputProps {
-//     className?: string;
-//     icon?: any;
-//     label: string;
-//     error?: string;
-//     input: {
-//         [key: string]: any;
-//     };
-//     onChange?: ChangeEventHandler<HTMLInputElement>;
-// }
 
 export interface SimpleInputProps {
     defaultValue?: string;
