@@ -14,7 +14,7 @@
   }
   ```
 */
-import React, { Key, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
 
@@ -31,7 +31,6 @@ export interface ComboBoxProps<TItem> {
   vertical?: boolean;
   label?: string;
   valueFrom: keyof TItem;
-  keyFrom: keyof TItem;
   items: TItem[];
   onChange: (items: TItem[]) => void;
 }
@@ -57,12 +56,11 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
             .includes(query.toLowerCase());
         });
 
-  function removeItem(selectedItem: TItem) {
-    setSelectedItems(
-      selectedItems.filter(
-        (item) => item[props.keyFrom] != selectedItem[props.keyFrom]
-      )
-    );
+  function removeItem(index: number) {
+    selectedItems.splice(index, 1);
+    setSelectedItems((prevItems) => {
+      return [...prevItems];
+    });
   }
 
   return (
@@ -114,19 +112,16 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
           >
             {props.multiple &&
               !inputHasFocus &&
-              selectedItems.map((selectedItem) => {
+              selectedItems.map((selectedItem, index) => {
                 return (
-                  <>
-                    <span
-                      key={selectedItem[props.keyFrom]}
-                      className="mr-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-primary-800"
-                    >
+                  <span key={index}>
+                    <span className="mr-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-primary-800">
                       {selectedItem[props.valueFrom]}
                       <button
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          removeItem(selectedItem);
+                          removeItem(index);
                         }}
                         className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
                       >
@@ -148,7 +143,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
                       </button>
                     </span>
                     {props.vertical && <br />}
-                  </>
+                  </span>
                 );
               })}
           </section>
@@ -163,9 +158,9 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
           <Combobox.Options
             className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm ${props.optionsClasses}`}
           >
-            {filteredItems.map((item) => (
+            {filteredItems.map((item, index) => (
               <Combobox.Option
-                key={item[props.keyFrom] as unknown as Key | null | undefined}
+                key={index}
                 value={item}
                 className={({ active }) =>
                   classNames(
