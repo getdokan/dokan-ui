@@ -16,14 +16,24 @@ export interface ModalProps {
   onClose: () => void;
 }
 
-const Modal = ({ children, showXButton, className, isOpen, onClose }: ModalProps) => {
+const Modal = ({
+  children,
+  showXButton,
+  className,
+  isOpen,
+  onClose,
+}: ModalProps) => {
   const title = children.find((el) => el.type === Title);
   const content = children.find((el) => el.type === Content);
 
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-visible" onClose={onClose}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-10 overflow-visible"
+          onClose={onClose}
+        >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -38,7 +48,10 @@ const Modal = ({ children, showXButton, className, isOpen, onClose }: ModalProps
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
-            <span className="inline-block h-screen align-middle" aria-hidden="true">
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
               &#8203;
             </span>
             <Transition.Child
@@ -53,16 +66,27 @@ const Modal = ({ children, showXButton, className, isOpen, onClose }: ModalProps
               <div
                 className={classNames(
                   className,
-                  'inline-block w-full p-6 my-8 overflow-visible text-left transition-all transform bg-white shadow-xl',
+                  'inline-block w-full p-6 my-8 overflow-visible text-left transition-all transform bg-white shadow-xl'
                 )}
               >
-                <Dialog.Title as="div" className={`p-0 flex items-center ${title?.props.className}`}>
+                <Dialog.Title
+                  as="div"
+                  className={`p-0 flex items-center ${title?.props.className}`}
+                >
                   {title ? title.props.children : null}
-                  {showXButton && <button type="button" onClick={onClose} className="absolute top-0 right-0 p-4 ms-auto text-gray-600">
-                    &#10005;
-                  </button>}
+                  {showXButton && (
+                    <button
+                      type="button"
+                      onClick={onClose}
+                      className="absolute top-0 right-0 p-4 ms-auto text-gray-600"
+                    >
+                      &#10005;
+                    </button>
+                  )}
                 </Dialog.Title>
-                <div className="mt-4">{content ? content.props.children : null}</div>
+                <div className="mt-4">
+                  {content ? content.props.children : null}
+                </div>
               </div>
             </Transition.Child>
           </div>
