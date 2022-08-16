@@ -67,7 +67,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
   function removeItem(index: number) {
     selectedItems.splice(index, 1);
     setSelectedItems((prevItems) => {
-      return [...selectedItems];
+      return [...prevItems];
     });
     props.onChange(selectedItems);
   }
