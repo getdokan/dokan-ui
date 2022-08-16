@@ -33,11 +33,15 @@ export interface ComboBoxProps<TItem> {
   valueFrom: keyof TItem;
   items: TItem[];
   onChange: (items: TItem[]) => void;
+  selected: TItem[];
+  errors?: string[];
+  helpText?: string;
 }
-
+const validClasses = `w-full rounded border border-gray-300 bg-white pl-3 pr-10 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm`;
+const errorClasses = `block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
 const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
   const [query, setQuery] = useState('');
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState(props.selected);
   const [inputHasFocus, setInputHasFocus] = useState(false);
   const inputField = useRef<HTMLInputElement>(null);
 
@@ -46,6 +50,10 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
       inputField.current && inputField.current.focus();
     }
   }, [inputHasFocus]);
+
+  useEffect(() => {
+    setSelectedItems(props.selected);
+  }, [props.selected]);
 
   const filteredItems =
     query === ''
@@ -59,8 +67,9 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
   function removeItem(index: number) {
     selectedItems.splice(index, 1);
     setSelectedItems((prevItems) => {
-      return [...prevItems];
+      return [...selectedItems];
     });
+    props.onChange(selectedItems);
   }
 
   return (
@@ -87,7 +96,9 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
         {!props.multiple && (
           <Combobox.Input
             placeholder="Search..."
-            className={`w-full rounded border border-gray-300 bg-white pl-3 pr-10 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm ${props.inputClasses}`}
+            className={`${props.errors ? errorClasses : validClasses} ${
+              props.inputClasses
+            }`}
             onChange={(event) => setQuery(event.target.value)}
             displayValue={(item: any) => item[props.valueFrom]}
           />
@@ -100,7 +111,9 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
             placeholder={
               selectedItems.length < 1 || inputHasFocus ? 'Search...' : ''
             }
-            className={`w-full rounded border border-gray-300 bg-white pl-3 pr-10 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm ${props.inputClasses}`}
+            className={`${props.errors ? errorClasses : validClasses} ${
+              props.inputClasses
+            }`}
             onChange={(event) => setQuery(event.target.value)}
             displayValue={(item: any) => item[props.valueFrom]}
           />
@@ -108,7 +121,11 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
         {props.multiple && !inputHasFocus && selectedItems.length > 0 && (
           <section
             onClick={() => setInputHasFocus(true)}
-            className="hover:cursor-text mt-1 p-2 w-full rounded border border-gray-300 bg-white pl-3 pr-10 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm"
+            className={`hover:cursor-text mt-1 p-2 ${
+              props.errors && selectedItems.length < 0
+                ? errorClasses
+                : validClasses
+            }`}
           >
             {props.multiple &&
               !inputHasFocus &&
@@ -153,7 +170,6 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
         >
           <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
         </Combobox.Button>
-
         {filteredItems.length > 0 && (
           <Combobox.Options
             className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm ${props.optionsClasses}`}
@@ -196,6 +212,14 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
               </Combobox.Option>
             ))}
           </Combobox.Options>
+        )}
+        {props.errors && props.selected.length == 0 && (
+          <span className="text-xs absolute text-red-600">
+            {props.errors.join(', ')}
+          </span>
+        )}
+        {props.helpText && (
+          <span className="text-xs text-gray-600">{props.helpText}</span>
         )}
       </div>
       {/* {(!viewSelectedItems && selectedItems.length) > 0 && <span className="text-xs text-gray-600">{selectedItems.length} {selectedItems.length == 1 ? 'Item' : 'Items'} selected. <p onClick={() => setViewSelectedItems(true)} className="inline-flex underline cursor-pointer">View</p> <p onClick={() => setSelectedItems([])} className="inline-flex underline cursor-pointer">Clear</p></span>}
