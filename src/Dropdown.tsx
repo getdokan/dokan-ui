@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useLayer } from 'react-laag';
 import { ReactElement, useState } from 'react';
-import classNames from 'classnames';
 import { PlacementType } from 'react-laag/dist/PlacementType';
 
 export interface DropdownProps {
