@@ -1,19 +1,3 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
