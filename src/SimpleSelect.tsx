@@ -1,31 +1,23 @@
 import React, { ChangeEventHandler, FunctionComponent } from 'react';
+
+interface Option {
+  label: string;
+  value: unknown;
+}
+
 export interface SimpleSelectProps {
   className?: string;
   errors?: string[];
   label: string;
-  valueKey: string;
-  labelKey: string;
-  options: Array<{
-    [key: string]: any;
-  }>;
+  value?: unknown;
+  options: Option[];
   placeholder?: string;
   defaultValue?: string | number;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   helpText?: string;
 }
 
-const SimpleSelect: FunctionComponent<SimpleSelectProps> = ({
-  label,
-  errors,
-  className,
-  placeholder,
-  onChange,
-  options,
-  valueKey,
-  labelKey,
-  defaultValue = '',
-  helpText,
-}) => {
+const SimpleSelect = (props: SimpleSelectProps) => {
   function slugify(sluggable: string) {
     sluggable = sluggable.replace(/^\s+|\s+$/g, ''); // trim
     sluggable = sluggable.toLowerCase();
@@ -53,49 +45,78 @@ const SimpleSelect: FunctionComponent<SimpleSelectProps> = ({
   return (
     <>
       <label
-        htmlFor={`${slugify(label)}-simple-select`}
+        htmlFor={`${slugify(props.label)}-simple-select`}
         className="block text-sm font-medium text-gray-700 hover:cursor-pointer"
       >
-        {label}
+        {props.label}
       </label>
       <select
-        onChange={onChange}
-        id={`${slugify(label)}-simple-select`}
-        name={`${slugify(label)}-simple-select`}
-        value={defaultValue}
-        className={`${errors ? errorClasses : validClasses} ${className}`}
+        onChange={props.onChange}
+        id={`${slugify(props.label)}-simple-select`}
+        name={`${slugify(props.label)}-simple-select`}
+        className={`${props.errors ? errorClasses : validClasses} ${
+          props.className
+        }`}
         style={{ fontSize: '14px' }}
       >
-        {placeholder && (
+        {props.placeholder && (
           <option disabled value="">
-            {placeholder}
+            {props.placeholder}
           </option>
         )}
-        {options.map((option, index) =>
-          typeof option[valueKey] == 'object' ? (
-            <optgroup label={option[labelKey]} key={index}>
-              {option[valueKey].map((optgroup: any, optIndex: any) => (
-                <option key={optIndex} value={optgroup[valueKey]}>
-                  {optgroup[labelKey]}
-                </option>
-              ))}
-            </optgroup>
-          ) : (
-            <option key={index} value={option[valueKey]}>
-              {option[labelKey]}
-            </option>
-          )
-        )}
+        {props.options.map((option: Option, index) => {
+          if (Array.isArray(option.value)) {
+            return (
+              <optgroup label={option.label} key={index}>
+                {option.value.map((optgroup: any, optIndex: any) => (
+                  <option
+                    key={optIndex}
+                    value={
+                      typeof props.value == 'object'
+                        ? props?.value?.toString()
+                        : optgroup.value
+                    }
+                  >
+                    {optgroup.label}
+                  </option>
+                ))}
+              </optgroup>
+            );
+          }
+          if (typeof option.value === 'string') {
+            return (
+              <option
+                key={index}
+                value={(props.value as string) || (option.value as string)}
+              >
+                {option.label}
+              </option>
+            );
+          }
+          if (typeof option.value === 'number') {
+            return (
+              <option
+                key={index}
+                value={(props.value as number) || (option.value as number)}
+              >
+                {option.label}
+              </option>
+            );
+          }
+          return null;
+        })}
       </select>
-      {errors && (
+      {props.errors && (
         <p
           className="text-xs text-red-600"
-          id={`${slugify(label)}-simple-select-error`}
+          id={`${slugify(props.label)}-simple-select-error`}
         >
-          {errors.join(', ')}
+          {props.errors.join(', ')}
         </p>
       )}
-      {helpText && <span className="text-xs text-gray-600">{helpText}</span>}
+      {props.helpText && (
+        <span className="text-xs text-gray-600">{props.helpText}</span>
+      )}
     </>
   );
 };
