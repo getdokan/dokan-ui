@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FunctionComponent } from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 interface Option {
   label: string;
