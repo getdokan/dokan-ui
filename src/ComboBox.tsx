@@ -1,19 +1,3 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
@@ -41,7 +25,7 @@ const validClasses = `w-full rounded border border-gray-300 bg-white pl-3 pr-10 
 const errorClasses = `block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
 const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
   const [query, setQuery] = useState('');
-  const [selectedItems, setSelectedItems] = useState(props.selected);
+  const [selectedItems, setSelectedItems] = useState(props.selected || []);
   const [inputHasFocus, setInputHasFocus] = useState(false);
   const inputField = useRef<HTMLInputElement>(null);
 
@@ -52,7 +36,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
   }, [inputHasFocus]);
 
   useEffect(() => {
-    setSelectedItems(props.selected);
+    setSelectedItems(props.selected || []);
   }, [props.selected]);
 
   const filteredItems =
@@ -100,7 +84,9 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
               props.inputClasses
             }`}
             onChange={(event) => setQuery(event.target.value)}
-            displayValue={(item: any) => item[props.valueFrom]}
+            displayValue={(item: TItem) =>
+              item[props.valueFrom] as unknown as string
+            }
           />
         )}
         {props.multiple && (selectedItems.length < 1 || inputHasFocus) && (
