@@ -41,7 +41,7 @@ const SearchableSelect = <
   );
 
   const Option = (props: OptionProps<Option, IsMulti, Group>) => {
-    return <components.Option {...props} className="text-sm" />;
+    return <components.Option {...props} />;
   };
 
   const Input = (props: InputProps<Option, IsMulti, Group>) => {
