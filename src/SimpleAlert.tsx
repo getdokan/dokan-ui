@@ -158,6 +158,7 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
             <p className={`text-sm font-medium ${textColors800[props.color]}`}>
               {props.label}
             </p>
+            {props.children}
           </div>
           {props.dismissable && (
             <div className="ml-auto pl-3">
