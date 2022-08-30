@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import Button, { ButtonProps } from '../src/Button';
-import { Download } from 'react-feather';
+import { ArrowDown, Download } from 'react-feather';
 const meta: Meta = {
   title: 'Button',
   component: Button,
@@ -70,5 +70,9 @@ Block.args = {
 
 WithChildren.args = {
   color: 'primary',
-  children: <div className="">Children</div>,
+  children: (
+    <div className="inline-flex items-center gap-2">
+      Download <ArrowDown className="h-4 animate-bounce" />
+    </div>
+  ),
 };
