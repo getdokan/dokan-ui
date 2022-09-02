@@ -9,7 +9,6 @@ export interface SimpleRadioProps {
     label: string;
   }>;
   defaultValue?: string;
-  className?: string;
   errors?: string[];
   input?: {
     [key: string]: any;
@@ -48,13 +47,12 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
                 props.onChange && props.onChange(e);
               }}
             />
-
             <span className="ml-3">{option.label}</span>
           </label>
         ))}
       </div>
       {props.errors && (
-        <p className="text-xs text-red-600" id={`${props.input?.id}-error`}>
+        <p className="mt-1.5 text-xs text-red-600" id={`${props.input?.id}-error`}>
           {props.errors.join(', ')}
         </p>
       )}

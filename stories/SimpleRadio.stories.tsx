@@ -13,8 +13,9 @@ const Template: Story<SimpleRadioProps> = (args) => <SimpleRadio {...args} />;
 
 export const SimpleRadioGroup = Template.bind({});
 export const SimpleRadioGroupWithLabel = Template.bind({});
+export const SimpleRadioGroupWithLabelAndError = Template.bind({});
 
-SimpleRadioGroup.args = {
+const commonArgs = {
   name: 'tax-class-re-assign',
   options: [
     { label: 'Standard Rate', value: 'standard' },
@@ -23,13 +24,17 @@ SimpleRadioGroup.args = {
   ],
 };
 
+SimpleRadioGroup.args = commonArgs;
+
 SimpleRadioGroupWithLabel.args = {
   label: 'Assign another tax class',
-  name: 'tax-class-re-assign',
   helpText: 'You should assign another class before deleting a class.',
-  options: [
-    { label: 'Standard Rate', value: 'standard' },
-    { label: 'Reduced Rate', value: 'reduced' },
-    { label: 'Zero Rate', value: 'zero' },
-  ],
+  ...commonArgs,
+};
+
+SimpleRadioGroupWithLabelAndError.args = {
+  label: 'Assign another tax class',
+  helpText: 'You should assign another class before deleting a class.',
+  ...commonArgs,
+  errors: ['You must choose one from the above list.'],
 };
