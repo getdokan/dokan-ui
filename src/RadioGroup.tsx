@@ -10,6 +10,7 @@ interface Option {
 }
 export interface RadioGroupProps {
   options: Option[];
+  allowDeselect?: boolean;
   className?: string;
   onChange?: (selected: string) => void;
 }
@@ -43,8 +44,14 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
               setItems((prevItems) => {
                 return prevItems.map((current, itemIndex) => {
                   if (index == itemIndex) {
-                    current.selected = !current.selected;
-                    props.onChange && props.onChange(current.value);
+                    if (props.allowDeselect) {
+                      current.selected = !current.selected;
+                      props.onChange &&
+                        props.onChange(current.selected ? current.value : '');
+                    } else {
+                      current.selected = true;
+                      props.onChange && props.onChange(current.value);
+                    }
                   } else {
                     current.selected = false;
                   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import RadioGroup, { RadioGroupProps } from '../src/RadioGroup';
 import { Box, Settings, ShoppingBag, ShoppingCart, Truck } from 'react-feather';
@@ -10,13 +10,23 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<RadioGroupProps> = (args) => (
-  <RadioGroup {...args}></RadioGroup>
-);
+const Template: Story<RadioGroupProps> = (args) => {
+  const [selected, setSelected] = useState('');
+  return (
+    <>
+      <RadioGroup
+        {...args}
+        onChange={(selectedValue: string) => setSelected(selectedValue)}
+      ></RadioGroup>
+      <p className="text-gray-600 text-sm">Current Value: {selected}</p>
+    </>
+  );
+};
 
 export const Default = Template.bind({});
 
 Default.args = {
+  allowDeselect: true,
   className: 'w-80',
   options: [
     {
@@ -33,5 +43,4 @@ Default.args = {
       icon: <Truck />,
     },
   ],
-  onChange: (selectedValue: string) => alert(selectedValue),
 };
