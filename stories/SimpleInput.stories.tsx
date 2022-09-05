@@ -15,6 +15,9 @@ const Template: Story<SimpleInputProps> = args => <SimpleInput {...args} />;
 export const SimpleDefault = Template.bind({});
 export const SimpleIcon = Template.bind({});
 export const SimpleError = Template.bind({});
+export const SimpleCounter = Template.bind({});
+export const SimpleIconWithCounter = Template.bind({});
+export const SimpleErrorWithCounter = Template.bind({});
 
 SimpleDefault.args = {
     label: 'Email Address',
@@ -24,6 +27,7 @@ SimpleDefault.args = {
         name: 'email',
         type: 'email',
         autoComplete: 'off',
+        placeholder: 'yourname@email.com',
         required: true,
     }
 };
@@ -54,5 +58,32 @@ SimpleError.args = {
         type: 'email',
         autoComplete: 'off',
         required: true,
+    }
+};
+
+SimpleCounter.args = {
+    ...SimpleDefault.args,
+    counter: true,
+    input: {
+        ...SimpleDefault.args.input,
+        maxLength: 64,
+    }
+};
+
+SimpleIconWithCounter.args = {
+    ...SimpleIcon.args,
+    counter: true,
+    input: {
+        ...SimpleIcon.args.input,
+        maxLength: 64,
+    }
+};
+
+SimpleErrorWithCounter.args = {
+    ...SimpleError.args,
+    counter: true,
+    input: {
+        ...SimpleError.args.input,
+        maxLength: 64,
     }
 };
