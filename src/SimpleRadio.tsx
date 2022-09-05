@@ -29,14 +29,14 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
       )}
       {props.helpText && <p className="text-xs mb-2 leading-5 text-gray-600">{props.helpText}</p>}
       <div className="space-y-0">
-        {props.options.map((option) => (
+        {props.options.map((option, optionIndex) => (
           <label
-            key={option.value}
-            htmlFor={`tax-class-re-assign-${option.value}`}
+            key={optionIndex}
+            htmlFor={`sr-${option.value}-${optionIndex}`}
             className={`flex items-center py-2 px-4 rounded-md block w-full text-sm font-medium text-gray-700 ${option.value === selected ? 'bg-blue-100' : ''}`}
           >
             <input
-              id={`tax-class-re-assign-${option.value}`}
+              id={`sr-${option.value}-${optionIndex}`}
               type="radio"
               name={props.name}
               value={option.value}
