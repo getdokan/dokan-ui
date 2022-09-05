@@ -22,8 +22,8 @@ export interface SimpleInputProps {
 const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     const [length, setLength] = useState(0);
     const Icon = props.icon;
-    let validClasses = `${props.icon && 'pl-10'} appearance-none block w-full px-3 py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
-    let errorClasses = `${props.icon && 'pl-10'} block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
+    let validClasses = `${props.icon && 'pl-10'} appearance-none block w-full pl-3 ${props.counter ? 'pr-20' : 'pr-3'} py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
+    let errorClasses = `${props.icon && 'pl-10'} block w-full ${props.counter ? 'pr-24' : 'pr-10'} border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
     return (
         <>
             <label htmlFor={props.input.id} className={"block text-sm font-medium text-gray-700"}>
@@ -50,13 +50,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
                     aria-describedby={`${props.input.id}-error`}
                 />
                 {props.counter && (
-                  <div
-                    className={`pointer-events-none absolute inset-y-0 right-0 flex items-center ${
-                      props.errors?.length ? 'pr-8' : 'pr-3'
-                    }`}
-                  >
-                      <span className="text-gray-500 sm:text-sm">| {length}/{props.input?.maxLength ?? '&infin;'}</span>
-                  </div>
+                    <div
+                        className={`absolute inset-y-0 right-0 flex items-center ${props.errors?.length ? 'pr-8' : 'pr-3'}`}
+                    >
+                        <span className="text-gray-400 border-l-2 pl-2 sm:text-sm">
+                          {length}/{props.input?.maxLength ?? '∞'}
+                        </span>
+                    </div>
                 )}
                 {props.errors && <div className="absolute top-3 right-0 pr-3 flex items-center pointer-events-none">
                     <ExclamationCircleIcon className="h-5 w-5 sm:h-4 sm:w-4 text-red-400" aria-hidden="true" />
