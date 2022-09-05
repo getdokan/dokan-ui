@@ -37,7 +37,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
                     {...props.input}
                     id={props.input.id}
                     defaultValue={props.defaultValue}
-                    className={`${props.errors ? errorClasses : validClasses} ${props.className}`}
+                    className={`${props.errors?.length ? errorClasses : validClasses} ${props.className}`}
                     onChange={(e) => {
                         setLength(e.target.value.length);
                         props.onChange && props.onChange(e);
