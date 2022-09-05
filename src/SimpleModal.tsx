@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 export interface SimpleModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  className?: string;
   heightClass?: string;
   widthClass?: string;
   children: ReactElement[];
@@ -27,7 +28,9 @@ const SimpleModal = (props: SimpleModalProps) => {
         open={props.isOpen}
         onClose={closeModal}
       >
-        <div className="min-h-screen h-full px-4 text-center">
+        <div
+          className={`min-h-screen h-full px-4 text-center ${props.className}`}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
