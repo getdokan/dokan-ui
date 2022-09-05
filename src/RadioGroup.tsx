@@ -37,7 +37,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
             aria-labelledby={item.label}
             className={`${
               item.selected ? 'border border-primary-400' : 'border'
-            } rounded-md p-4 inline-flex mr-1 cursor-pointer ${
+            } rounded-md px-3 py-2 space-y-1 inline-flex mr-1 cursor-pointer ${
               props.className
             }`}
             onClick={() => {
@@ -77,9 +77,9 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
                 )}
               </section>
               <section className="flex flex-col justify-center">
-                <div className="flex justify-between space-x-2">
+                <div className="flex justify-between mb-1">
                   <section>
-                    <label className="text-md mb-2 cursor-pointer">
+                    <label className="text-md my-2 cursor-pointer">
                       {item.label}
                     </label>
                   </section>
@@ -99,8 +99,10 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
                   </section>
                 </div>
                 {item.description && (
-                  <div className="">
-                    <p className="text-xs text-gray-500">{item.description}</p>
+                  <div className="mt-1 mb-1">
+                    <p className="text-xs leading-4 text-gray-500">
+                      {item.description}
+                    </p>
                   </div>
                 )}
               </section>
