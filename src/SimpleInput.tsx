@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useState} from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
 export interface SimpleInputProps {

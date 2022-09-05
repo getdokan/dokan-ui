@@ -18,7 +18,6 @@ export const TrailingInputText = Template.bind({});
 export const TrailingInputError = Template.bind({});
 
 TrailingInputDefault.args = {
-    block: true,
     btnIcon: EyeIcon,
     label: 'Password',
     input: {
