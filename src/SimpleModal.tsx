@@ -89,7 +89,7 @@ const SimpleModal = (props: SimpleModalProps) => {
               </Dialog.Title>
 
               {/* Body */}
-              <div className="mt-2 flex-grow overflow-y-auto h-100">
+              <div className="flex-grow overflow-y-auto h-100">
                 {body ? (
                   body.props.children
                 ) : (
@@ -98,7 +98,7 @@ const SimpleModal = (props: SimpleModalProps) => {
               </div>
 
               {/* Footer */}
-              <div className="mt-4">
+              <div className="">
                 {footer ? (
                   footer.props.children
                 ) : (

@@ -22,7 +22,10 @@ const Template: Story<SimpleModalProps> = (args) => {
       <SimpleModal {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
         <SimpleModal.Header>
           <span>This is a Header</span>
-          <div className="border-b min-w-full -ml-96 -mr-96 py-2"></div>
+          <div
+            className="border-b min-w-full py-2"
+            style={{ marginLeft: '-9999px', marginRight: '-9999px' }}
+          ></div>
         </SimpleModal.Header>
         <SimpleModal.Body>
           This is a Body Lorem ipsum dolor sit amet consectetur adipisicing
@@ -145,8 +148,11 @@ const Template: Story<SimpleModalProps> = (args) => {
           voluptatum, ex dolorum aliquam? Corporis quod iusto aperiam!
         </SimpleModal.Body>
         <SimpleModal.Footer>
-          <div className="border-t min-w-full -ml-96 -mr-96 py-2"></div>This is
-          a Footer
+          <div
+            className="border-t min-w-full py-2"
+            style={{ marginLeft: '-9999px', marginRight: '-9999px' }}
+          ></div>
+          This is a Footer
         </SimpleModal.Footer>
       </SimpleModal>
     </section>
@@ -155,6 +161,6 @@ const Template: Story<SimpleModalProps> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  widthClass: 'w-4/12',
+  widthClass: 'w-6/12',
   heightClass: '80vh',
 };
