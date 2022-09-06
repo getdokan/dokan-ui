@@ -16,6 +16,9 @@ export interface ModalProps {
   onClose: () => void;
 }
 
+/**
+ * @deprecated
+ */
 const Modal = ({
   children,
   showXButton,
