@@ -1,28 +1,14 @@
 import React, { Fragment, FunctionComponent, ReactElement } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
+type CSSUnit = `${number}${'px' | 'rem' | 'em' | 'vh' | 'vw' | '%'}`;
+
 export interface SimpleModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   className?: string;
-  height?: `${number}${
-    | 'px'
-    | '%'
-    | 'em'
-    | 'rem'
-    | 'vh'
-    | 'vw'
-    | 'vmin'
-    | 'vmax'}`;
-  width?: `${number}${
-    | 'px'
-    | '%'
-    | 'em'
-    | 'rem'
-    | 'vh'
-    | 'vw'
-    | 'vmin'
-    | 'vmax'}`;
+  height?: CSSUnit;
+  width?: CSSUnit;
   children: ReactElement[];
 }
 
