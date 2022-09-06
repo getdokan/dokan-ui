@@ -17,7 +17,7 @@ export interface ComboBoxProps<TItem> {
   valueFrom: keyof TItem;
   items: TItem[];
   onChange: (items: TItem[]) => void;
-  selected: TItem[];
+  selected?: TItem[];
   errors?: string[];
   helpText?: string;
 }
@@ -199,7 +199,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
             ))}
           </Combobox.Options>
         )}
-        {props.errors && props.selected.length == 0 && (
+        {props.errors && props.selected?.length == 0 && (
           <span className="text-xs absolute text-red-600">
             {props.errors.join(', ')}
           </span>

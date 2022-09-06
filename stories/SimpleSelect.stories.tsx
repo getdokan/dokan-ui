@@ -16,23 +16,19 @@ export const WithError = Template.bind({});
 
 Default.args = {
   label: 'Fruits',
-  labelKey: 'name',
-  valueKey: 'id',
   options: [
-    { id: 1, name: 'Apple' },
-    { id: 2, name: 'Orange' },
-    { id: 3, name: 'Banana' },
+    { value: 1, label: 'Apple' },
+    { value: 2, label: 'Orange' },
+    { value: 3, label: 'Banana' },
   ],
 };
 
 WithError.args = {
   errors: ['The fruits field is required'],
   label: 'Fruits',
-  labelKey: 'name',
-  valueKey: 'id',
   options: [
-    { id: 1, name: 'Apple' },
-    { id: 2, name: 'Orange' },
-    { id: 3, name: 'Banana' },
+    { value: 1, label: 'Apple' },
+    { value: 2, label: 'Orange' },
+    { value: 3, label: 'Banana' },
   ],
 };
