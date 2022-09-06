@@ -5,8 +5,24 @@ export interface SimpleModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   className?: string;
-  heightClass?: string;
-  widthClass?: string;
+  height?: `${number}${
+    | 'px'
+    | '%'
+    | 'em'
+    | 'rem'
+    | 'vh'
+    | 'vw'
+    | 'vmin'
+    | 'vmax'}`;
+  width?: `${number}${
+    | 'px'
+    | '%'
+    | 'em'
+    | 'rem'
+    | 'vh'
+    | 'vw'
+    | 'vmin'
+    | 'vmax'}`;
   children: ReactElement[];
 }
 
@@ -60,12 +76,12 @@ const SimpleModal = (props: SimpleModalProps) => {
             leaveTo="opacity-0 scale-95"
           >
             <div
-              className={`inline-flex flex-col ${
-                props.widthClass || `w-full`
-              } max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded`}
+              className={`inline-flex flex-col max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded`}
               style={{
-                maxHeight: `${props.heightClass || `50vh`}`,
-                height: `${props.heightClass || `50vh`}`,
+                width: `${props.width || '100%'}`,
+                minWidth: `${props.width || '100%'}`,
+                maxHeight: `${props.height || `50vh`}`,
+                height: `${props.height || `50vh`}`,
               }}
             >
               {/* Title */}

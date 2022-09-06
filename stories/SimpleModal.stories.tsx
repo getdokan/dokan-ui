@@ -122,30 +122,7 @@ const Template: Story<SimpleModalProps> = (args) => {
           repudiandae a. Quo, qui labore, consectetur maxime assumenda rerum
           harum ipsum laborum voluptatem quas voluptatibus corrupti. Id iure
           explicabo nobis commodi accusantium quisquam expedita non ducimus
-          saepe dignissimos, quos nesciunt atque ea eveniet maxime. Nemo,
-          officiis accusantium. Saepe tempora facilis odit doloribus dolore
-          sequi, fugiat quam deserunt consequuntur quibusdam tenetur cum
-          impedit, qui reiciendis corrupti magnam consequatur fuga iure soluta
-          architecto voluptates labore dolorem. Sequi, aperiam earum maiores
-          commodi, facilis aliquam at voluptas blanditiis porro culpa enim, est
-          in minima similique ipsam quasi quisquam? Ad ullam veritatis eveniet
-          ab, possimus saepe dolore cupiditate aperiam asperiores ex vel, minus
-          eum? Nemo quae sed repellat officia consequuntur esse, aliquam
-          perferendis facere consectetur sapiente delectus labore totam
-          consequatur, recusandae distinctio temporibus accusamus obcaecati
-          voluptatum! Eaque corrupti, quaerat rem amet debitis nihil a unde
-          dicta quisquam deleniti eius, repudiandae maxime, quam libero
-          laboriosam quibusdam repellat? Distinctio molestiae facere nulla nemo
-          iure, vitae optio illo repellendus modi repellat! Vitae facere a
-          cupiditate quidem fuga! Quibusdam hic, suscipit incidunt sit quae et
-          in excepturi sapiente ad vitae facilis cupiditate nostrum! Qui,
-          dolorum delectus. Pariatur maiores, perferendis minima voluptatem
-          minus corporis nam voluptatibus enim! Fugiat molestiae harum quisquam
-          minima, doloremque sequi corporis exercitationem quis commodi sint
-          officia est cumque aut a veniam dolores at odio culpa asperiores
-          mollitia adipisci ab deserunt blanditiis earum. Architecto maxime
-          ratione deserunt laudantium, consectetur sapiente distinctio animi
-          voluptatum, ex dolorum aliquam? Corporis quod iusto aperiam!
+          saepe dignissimos, quos nesciunt atque ea eveniet maxime.
         </SimpleModal.Body>
         <SimpleModal.Footer>
           <div
@@ -161,6 +138,6 @@ const Template: Story<SimpleModalProps> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  widthClass: 'w-6/12',
-  heightClass: '80vh',
+  width: '800px',
+  height: '80vh',
 };
