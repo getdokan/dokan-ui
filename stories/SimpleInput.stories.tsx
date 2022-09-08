@@ -188,6 +188,8 @@ const TemplateMask: Story<SimpleInputProps> = (args) => {
 };
 
 export const SimpleDefault = Template.bind({});
+export const SimpleLeftAddon = Template.bind({});
+export const SimpleRightAddon = Template.bind({});
 export const SimpleWithMask = TemplateMask.bind({});
 export const SimpleIcon = Template.bind({});
 export const SimpleError = Template.bind({});
@@ -204,6 +206,33 @@ SimpleDefault.args = {
     type: 'email',
     autoComplete: 'off',
     placeholder: 'yourname@email.com',
+    required: true,
+  },
+};
+
+SimpleLeftAddon.args = {
+  addOnLeft: 'http://',
+  label: 'Web Address',
+  className: 'mt-1',
+  input: {
+    id: 'login-web',
+    name: 'web',
+    type: 'text',
+    autoComplete: 'off',
+    placeholder: 'google.com',
+    required: true,
+  },
+};
+SimpleRightAddon.args = {
+  addOnRight: '.dokan.cloud',
+  label: 'Store Name',
+  className: 'mt-1',
+  input: {
+    id: 'login-storename',
+    name: 'storename',
+    type: 'text',
+    autoComplete: 'off',
+    placeholder: 'daraz',
     required: true,
   },
 };
