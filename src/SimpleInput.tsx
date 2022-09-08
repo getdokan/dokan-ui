@@ -2,10 +2,14 @@ import React, {
   ChangeEventHandler,
   FocusEventHandler,
   KeyboardEventHandler,
+  useEffect,
+  useRef,
   useState,
 } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
-
+import Cleave from 'cleave.js';
+import { CleaveOptions } from 'cleave.js/options';
+import 'cleave.js/dist/addons/cleave-phone.bd';
 export interface SimpleInputProps {
   value?: string;
   defaultValue?: string;
@@ -18,6 +22,7 @@ export interface SimpleInputProps {
   input: {
     [key: string]: any;
   };
+  maskRule?: CleaveOptions;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
@@ -28,6 +33,14 @@ export interface SimpleInputProps {
 const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   const [length, setLength] = useState(0);
   const Icon = props.icon;
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (props.maskRule) {
+      new Cleave(inputRef.current as HTMLInputElement, props.maskRule);
+    }
+  }, [props.maskRule]);
+
   let validClasses = `${
     props.icon && 'pl-10'
   } appearance-none block w-full pl-3 ${
@@ -57,6 +70,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         <input
           {...props.input}
+          ref={inputRef}
           value={props.value}
           id={props.input.id}
           defaultValue={props.defaultValue}
