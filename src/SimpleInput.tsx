@@ -11,6 +11,8 @@ import Cleave from 'cleave.js';
 import { CleaveOptions } from 'cleave.js/options';
 import 'cleave.js/dist/addons/cleave-phone.bd';
 export interface SimpleInputProps {
+  addOnLeft?: string;
+  addOnRight?: string;
   value?: string;
   defaultValue?: string;
   className?: string;
@@ -45,7 +47,11 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     props.icon && 'pl-10'
   } appearance-none block w-full pl-3 ${
     props.counter ? 'pr-20' : 'pr-3'
-  } py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
+  } py-2 border border-gray-300 rounded ${
+    props.addOnLeft && `rounded-l-none`
+  } ${
+    props.addOnRight && `rounded-r-none`
+  } shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
   let errorClasses = `${props.icon && 'pl-10'} block w-full ${
     props.counter ? 'pr-24' : 'pr-10'
   } border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
@@ -57,7 +63,14 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
       >
         {props.label}
       </label>
-      <div className="relative">
+      <div className="relative flex">
+        {props.addOnLeft && (
+          <>
+            <span className="mt-1 inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+              {props.addOnLeft}
+            </span>
+          </>
+        )}
         {props.icon && (
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Icon
@@ -74,9 +87,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           value={props.value}
           id={props.input.id}
           defaultValue={props.defaultValue}
-          className={`${props.errors?.length ? errorClasses : validClasses} ${
-            props.className
-          }`}
+          className={`${
+            props.errors?.length ? errorClasses : validClasses
+          } {} ${props.className}`}
           onChange={(e) => {
             setLength(e.target.value.length);
             props.onChange && props.onChange(e);
@@ -98,6 +111,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
               {length}/{props.input?.maxLength ?? '∞'}
             </span>
           </div>
+        )}
+        {props.addOnRight && (
+          <>
+            <span className="mt-1 -z-10 -ml-px relative inline-flex items-center rounded-r border border-l-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+              {props.addOnRight}
+            </span>
+          </>
         )}
         {props.errors && (
           <div className="absolute top-3 right-0 pr-3 flex items-center pointer-events-none">
