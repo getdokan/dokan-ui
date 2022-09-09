@@ -2,14 +2,11 @@ import React, {
   ChangeEventHandler,
   FocusEventHandler,
   KeyboardEventHandler,
-  useEffect,
-  useRef,
   useState,
 } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
-import Cleave from 'cleave.js';
+import Cleave from 'cleave.js/react';
 import { CleaveOptions } from 'cleave.js/options';
-import 'cleave.js/dist/addons/cleave-phone.bd';
 export interface SimpleInputProps {
   addOnLeft?: string;
   addOnRight?: string;
@@ -35,13 +32,6 @@ export interface SimpleInputProps {
 const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   const [length, setLength] = useState(0);
   const Icon = props.icon;
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (props.maskRule) {
-      new Cleave(inputRef.current as HTMLInputElement, props.maskRule);
-    }
-  }, [props.maskRule]);
 
   let validClasses = `${
     props.icon && 'pl-10'
@@ -54,6 +44,8 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   } shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
   let errorClasses = `${props.icon && 'pl-10'} block w-full ${
     props.counter ? 'pr-24' : 'pr-10'
+  } ${props.addOnLeft && `rounded-l-none`} ${
+    props.addOnRight && `rounded-r-none`
   } border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
   return (
     <>
@@ -81,9 +73,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
             />
           </div>
         )}
-        <input
+        <Cleave
           {...props.input}
-          ref={inputRef}
+          options={props.maskRule || {}}
           value={props.value}
           id={props.input.id}
           defaultValue={props.defaultValue}
@@ -120,7 +112,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           </>
         )}
         {props.errors && (
-          <div className="absolute top-3 right-0 pr-3 flex items-center pointer-events-none">
+          <div className="absolute top-4 right-0 pr-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon
               className="h-5 w-5 sm:h-4 sm:w-4 text-red-400"
               aria-hidden="true"
