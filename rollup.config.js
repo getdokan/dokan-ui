@@ -2,6 +2,7 @@ import typescript from 'rollup-plugin-typescript2'
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss'
 
 
 import pkg from './package.json'
@@ -25,6 +26,9 @@ export default {
             entries: [
                 { find: '@', replacement: '.' },
             ]
+        }),
+        postcss({
+            config: "./postcss.config.js"
         }),
         commonjs(),
         nodeResolve()
