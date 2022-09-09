@@ -256,7 +256,8 @@ SimpleIcon.args = {
 };
 
 SimpleError.args = {
-  icon: MailIcon,
+  // icon: MailIcon,
+  addOnLeft: '@',
   errors: ['Email address field is required'],
   label: 'Email Address',
   className: 'mt-1',
