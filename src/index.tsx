@@ -2,6 +2,8 @@
  * Please add export statements on ascending order of the file name
  */
 
+import './styles/app.css'
+
 export { default as Badge } from './Badge';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
