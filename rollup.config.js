@@ -28,6 +28,7 @@ export default {
             ]
         }),
         postcss({
+            extract: "dokan-ui.css",
             config: "./postcss.config.js"
         }),
         commonjs(),
