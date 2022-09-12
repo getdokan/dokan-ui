@@ -15,6 +15,7 @@ export interface SimpleSelectProps {
   defaultValue?: string | number;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   helpText?: string;
+  disabled?: boolean;
 }
 
 const SimpleSelect = (props: SimpleSelectProps) => {
@@ -51,6 +52,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         {props.label}
       </label>
       <select
+        defaultValue={(props.value as string) || ''}
         onChange={props.onChange}
         id={`${slugify(props.label)}-simple-select`}
         name={`${slugify(props.label)}-simple-select`}
@@ -58,6 +60,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
           props.className
         }`}
         style={{ fontSize: '14px' }}
+        disabled={props.disabled}
       >
         {props.placeholder && (
           <option disabled value="">
@@ -85,20 +88,14 @@ const SimpleSelect = (props: SimpleSelectProps) => {
           }
           if (typeof option.value === 'string') {
             return (
-              <option
-                key={index}
-                value={(props.value as string) || (option.value as string)}
-              >
+              <option key={index} value={option.value as string}>
                 {option.label}
               </option>
             );
           }
           if (typeof option.value === 'number') {
             return (
-              <option
-                key={index}
-                value={(props.value as number) || (option.value as number)}
-              >
+              <option key={index} value={option.value as number}>
                 {option.label}
               </option>
             );
