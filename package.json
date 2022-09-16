@@ -61,7 +61,6 @@
     "@storybook/addon-essentials": "^6.4.17",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.4.17",
-    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addons": "^6.4.17",
     "@storybook/react": "^6.4.17",
     "@tailwindcss/forms": "^0.4.0",
