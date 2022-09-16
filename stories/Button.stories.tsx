@@ -1,10 +1,47 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import Button, { ButtonProps } from '../src/Button';
-import { ArrowDown, Download } from 'react-feather';
+import { ArrowDown, ChevronDown, Download, Menu } from 'react-feather';
 const meta: Meta = {
   title: 'Button',
   component: Button,
+  argTypes: {
+    color: {
+      control: {
+        type: 'select',
+        options: [
+          'amber',
+          'blue',
+          'cyan',
+          'emerald',
+          'fuchsia',
+          'green',
+          'gray',
+          'indigo',
+          'lime',
+          'orange',
+          'pink',
+          'purple',
+          'red',
+          'rose',
+          'sky',
+          'teal',
+          'violet',
+          'yellow',
+          'primary',
+          'secondary',
+          'danger',
+          'white',
+        ],
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['lg', 'md', 'sm'],
+      },
+    },
+  },
 };
 
 export default meta;
@@ -12,6 +49,9 @@ export default meta;
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
+export const Large = Template.bind({});
+export const Medium = Template.bind({});
+export const Small = Template.bind({});
 export const Outlined = Template.bind({});
 export const Icon = Template.bind({});
 export const Disabled = Template.bind({});
@@ -23,6 +63,24 @@ export const WithChildren = Template.bind({});
 Default.args = {
   color: 'primary',
   label: 'Download',
+};
+
+Large.args = {
+  color: 'primary',
+  label: 'Download',
+  size: 'lg',
+};
+
+Medium.args = {
+  color: 'primary',
+  label: 'Download',
+  size: 'md',
+};
+
+Small.args = {
+  color: 'primary',
+  label: 'Download',
+  size: 'sm',
 };
 
 Link.args = {
@@ -71,8 +129,10 @@ Block.args = {
 WithChildren.args = {
   color: 'primary',
   children: (
-    <div className="inline-flex items-center gap-2">
-      Download <ArrowDown className="h-4 animate-bounce" />
-    </div>
+    <p className="inline-flex items-center gap-2">
+      <Menu size={16} />
+      <span className="text-sm">Button</span>
+      <ChevronDown size={16} />
+    </p>
   ),
 };

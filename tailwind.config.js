@@ -1,7 +1,14 @@
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './stories/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    './stories/**/*.{js,jsx,ts,tsx}',
+    './src/styles/**/*.scss',
+  ],
   theme: {
     extend: {
+      borderRadius: {
+        DEFAULT: '5px',
+      },
       colors: {
         primary: {
           "50": "var(--primary-50)",

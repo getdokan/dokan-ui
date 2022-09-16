@@ -3,6 +3,7 @@ import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss'
+import sass from 'rollup-plugin-sass'
 
 
 import pkg from './package.json'
@@ -31,6 +32,7 @@ export default {
             extract: "dokan-ui.css",
             config: "./postcss.config.js"
         }),
+        sass(),
         commonjs(),
         nodeResolve()
     ],

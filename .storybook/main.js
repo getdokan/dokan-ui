@@ -3,12 +3,21 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    // {
+    //   name: '@storybook/addon-postcss',
+    //   options: {
+    //     postcssLoaderOptions: {
+    //       implementation: require('postcss'),
+    //     },
+    //   },
+    // },
     {
-      name: '@storybook/addon-postcss',
+      name: 'storybook-addon-sass-postcss',
       options: {
         postcssLoaderOptions: {
           implementation: require('postcss'),
         },
+        loadSassAfterPostCSS: true,
       },
     },
   ],
