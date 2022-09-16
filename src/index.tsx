@@ -31,3 +31,4 @@ export { default as ToggleSwitch } from './ToggleSwitch';
 export { default as TrailingInput } from './TrailingInput';
 export { default as RadioGroup } from './RadioGroup';
 export { default as SimpleModal } from './SimpleModal';
+export { default as Tooltip } from './Tooltip';

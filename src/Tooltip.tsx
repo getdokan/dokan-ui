@@ -2,12 +2,12 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 import { TriggerProps, useLayer } from 'react-laag';
 
-type TooltipTriggerProps = {
+export type TooltipTriggerProps = {
   onMouseOver: () => void;
   onMouseLeave: () => void;
 } & TriggerProps;
 
-type Direction = 'top' | 'bottom' | 'left' | 'right';
+export type Direction = 'top' | 'bottom' | 'left' | 'right';
 
 export type TooltipProps = {
   content: React.ReactNode;
