@@ -1,4 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import classNames from 'classnames';
 import React from 'react';
 import {
   GroupBase,
@@ -22,6 +23,8 @@ type CreatableProps<
     className?: string;
     errors?: string[];
     helpText?: string;
+    disabled?: boolean;
+    placeholder?: string;
   };
 
 const TaggableSelect = <
@@ -70,8 +73,17 @@ const TaggableSelect = <
       )}
       <CreatableSelect
         {...props}
-        className={`${props.className} shadow-sm`}
-        placeholder={<div className="text-sm">{props.placeholder}</div>}
+        isDisabled={props.disabled}
+        className={classNames(
+          'shadow-sm',
+          props.className,
+          props.disabled && 'border rounded'
+        )}
+        placeholder={
+          <div className="text-sm text-gray-400">
+            {props.placeholder || 'Search...'}
+          </div>
+        }
         components={{
           MultiValueRemove,
           Input,
@@ -124,8 +136,16 @@ const TaggableSelect = <
             primary75: 'var(--primary-200)',
             primary50: 'var(--primary-100)',
             primary25: 'var(--primary-50)',
-            neutral20: 'var(--gray-300)',
+            neutral5: 'var(--gray-100)',
+            neutral10: 'var(--gray-100)',
+            neutral20: 'var(--gray-200)',
             neutral30: 'var(--gray-300)',
+            neutral40: 'var(--gray-400)',
+            neutral50: 'var(--gray-500)',
+            neutral60: 'var(--gray-600)',
+            neutral70: 'var(--gray-700)',
+            neutral80: 'var(--gray-800)',
+            neutral90: 'var(--gray-900)',
           },
         })}
       />

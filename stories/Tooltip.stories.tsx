@@ -35,3 +35,20 @@ Default.args = {
   content: 'Tooltip Content',
   direction: 'top',
 };
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `<Tooltip content="Tooltip Content" direction="top">
+    {(toolTipTriggerProps) => (
+        <div
+            {...toolTipTriggerProps}
+            className="inline-flex px-6 py-2 text-sm border border-gray-300 rounded text-gray-600 hover:text-gray-800 cursor-pointer"
+        >
+            Hover Me
+        </div>
+    )}
+</Tooltip>`,
+    },
+  },
+};
