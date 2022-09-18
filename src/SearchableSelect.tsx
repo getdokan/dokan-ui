@@ -1,4 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import classNames from 'classnames';
 import React from 'react';
 import Select, {
   components,
@@ -20,6 +21,7 @@ export type SearchableSelectProps<
   className?: string;
   errors?: string[];
   helpText?: string;
+  disabled?: boolean;
 };
 
 const SearchableSelect = <
@@ -63,7 +65,7 @@ const SearchableSelect = <
   const IndicatorSeparator = () => null;
 
   return (
-    <div className="react-select">
+    <div className={'react-select'}>
       {props.label && (
         <label htmlFor={id} className="block text-sm font-medium">
           {props.label}
@@ -71,7 +73,12 @@ const SearchableSelect = <
       )}
       <Select
         {...props}
-        className={`${props.className} shadow-sm`}
+        isDisabled={props.disabled}
+        className={classNames(
+          'shadow-sm',
+          props.className,
+          props.disabled && 'border rounded'
+        )}
         placeholder={
           <div className="text-sm text-gray-400">
             {props.placeholder || 'Search...'}
@@ -88,8 +95,16 @@ const SearchableSelect = <
             primary75: 'var(--primary-200)',
             primary50: 'var(--primary-100)',
             primary25: 'var(--primary-50)',
-            neutral20: 'var(--gray-300)',
+            neutral5: 'var(--gray-100)',
+            neutral10: 'var(--gray-100)',
+            neutral20: 'var(--gray-200)',
             neutral30: 'var(--gray-300)',
+            neutral40: 'var(--gray-400)',
+            neutral50: 'var(--gray-500)',
+            neutral60: 'var(--gray-600)',
+            neutral70: 'var(--gray-700)',
+            neutral80: 'var(--gray-800)',
+            neutral90: 'var(--gray-900)',
           },
         })}
         components={{
