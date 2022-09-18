@@ -11,6 +11,7 @@ export interface ButtonProps {
   href?: string;
   target?: string;
   icon?: any;
+  size?: 'lg' | 'md' | 'sm';
   color:
     | 'amber'
     | 'blue'
@@ -169,7 +170,7 @@ const Button: FC<ButtonProps> = (props) => {
     secondary: `${
       props.outlined
         ? 'border border-secondary-500 text-secondary-500 hover:bg-secondary-100'
-        : 'text-white bg-secondary-600 hover:bg-secondary-700'
+        : 'text-gray-600 bg-secondary-600 hover:bg-secondary-700'
     } focus:ring-secondary-500`,
     danger: `${
       props.outlined
@@ -177,6 +178,12 @@ const Button: FC<ButtonProps> = (props) => {
         : 'text-white bg-danger-600 hover:bg-danger-700'
     } focus:ring-danger-500`,
     white: `bg-transparent text-gray-600 hover:bg-gray-100`,
+  };
+
+  const sizes = {
+    lg: 'px-6 py-2.5 text-sm',
+    md: 'px-5 py-2 text-sm',
+    sm: 'px-4 py-1.5 text-xs',
   };
 
   if (props.link) {
@@ -209,8 +216,9 @@ const Button: FC<ButtonProps> = (props) => {
         className={classNames(
           props.block ? 'w-full' : '',
           props.disabled ? 'opacity-50 cursor-not-allowed' : '',
-          'inline-flex gap-2 justify-center py-2 px-4 border rounded shadow-sm text-sm font-medium',
+          'inline-flex gap-2 justify-center border rounded shadow-sm font-medium',
           colors[props.color],
+          props.size ? sizes[props.size] : sizes['md'],
           'focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-300',
           props.className || ''
         )}

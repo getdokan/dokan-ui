@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'components/button';
+@import 'components/tooltip';
+
+.disabled {
+  @apply bg-gray-100 cursor-not-allowed;
+}

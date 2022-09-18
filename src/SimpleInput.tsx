@@ -7,6 +7,7 @@ import React, {
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import Cleave from 'cleave.js/react';
 import { CleaveOptions } from 'cleave.js/options';
+import classNames from 'classnames';
 export interface SimpleInputProps {
   addOnLeft?: string;
   addOnRight?: string;
@@ -15,6 +16,7 @@ export interface SimpleInputProps {
   className?: string;
   icon?: any;
   label?: string;
+  disabled?: boolean;
   helpText?: string;
   errors?: string[];
   counter?: boolean;
@@ -76,12 +78,15 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         <Cleave
           {...props.input}
           options={props.maskRule || {}}
+          disabled={props.disabled}
           value={props.value}
           id={props.input.id}
           defaultValue={props.defaultValue}
-          className={`${
-            props.errors?.length ? errorClasses : validClasses
-          } {} ${props.className}`}
+          className={classNames(
+            props.errors?.length ? errorClasses : validClasses,
+            props.className,
+            props.disabled && 'disabled'
+          )}
           onChange={(e) => {
             setLength(e.target.value.length);
             props.onChange && props.onChange(e);

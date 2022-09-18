@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
+import classNames from 'classnames';
 
 export interface TextAreaProps {
   className?: string;
@@ -11,6 +12,7 @@ export interface TextAreaProps {
   };
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
   helpText?: string;
+  disabled?: boolean;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -21,6 +23,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   value,
   onChange,
   helpText,
+  disabled,
 }) => {
   let validClasses =
     'appearance-none block w-full px-3 py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm';
@@ -40,11 +43,16 @@ const TextArea: React.FC<TextAreaProps> = ({
         <textarea
           {...input}
           id={input.id}
-          className={`${errors ? errorClasses : validClasses} ${className}`}
+          className={classNames(
+            errors?.length ? errorClasses : validClasses,
+            className,
+            disabled && 'disabled'
+          )}
           onChange={onChange}
           aria-invalid={errors ? 'true' : 'false'}
           aria-describedby={`${input.id}-error`}
           defaultValue={value}
+          disabled={disabled}
         ></textarea>
         {errors && (
           <div className="absolute bottom-1 right-1 pe-3 flex items-center pointer-events-none">
@@ -60,7 +68,7 @@ const TextArea: React.FC<TextAreaProps> = ({
           {errors.join(', ')}
         </p>
       )}
-       {helpText && <span className="text-xs text-gray-600">{helpText}</span>}
+      {helpText && <span className="text-xs text-gray-600">{helpText}</span>}
     </>
   );
 };

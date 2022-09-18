@@ -2,7 +2,7 @@
  * Please add export statements on ascending order of the file name
  */
 
-import './styles/app.css'
+import './styles/app.scss';
 
 export { default as Badge } from './Badge';
 export { default as Box } from './Box';
@@ -31,3 +31,4 @@ export { default as ToggleSwitch } from './ToggleSwitch';
 export { default as TrailingInput } from './TrailingInput';
 export { default as RadioGroup } from './RadioGroup';
 export { default as SimpleModal } from './SimpleModal';
+export { default as Tooltip } from './Tooltip';
