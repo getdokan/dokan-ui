@@ -45,7 +45,7 @@ const MaskedInput: React.FC<MaskedInputProps> = (props) => {
         )}
         <Cleave
           {...props.input}
-          options={props.maskRule}
+          options={props.maskRule || {}}
           value={props.value}
           id={props?.input?.id || false}
           defaultValue={props.defaultValue}

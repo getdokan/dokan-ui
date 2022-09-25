@@ -5,8 +5,6 @@ import React, {
   useState,
 } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
-import Cleave from 'cleave.js/react';
-import { CleaveOptions } from 'cleave.js/options';
 import classNames from 'classnames';
 export interface SimpleInputProps {
   addOnLeft?: string;
@@ -23,7 +21,6 @@ export interface SimpleInputProps {
   input: {
     [key: string]: any;
   };
-  maskRule?: CleaveOptions;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
@@ -35,7 +32,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   const [length, setLength] = useState(0);
   const Icon = props.icon;
 
-  let validClasses = `${
+  const validClasses = `${
     props.icon && 'pl-10'
   } appearance-none block w-full pl-3 ${
     props.counter ? 'pr-20' : 'pr-3'
@@ -44,7 +41,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   } ${
     props.addOnRight && `rounded-r-none`
   } shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
-  let errorClasses = `${props.icon && 'pl-10'} block w-full ${
+  const errorClasses = `${props.icon && 'pl-10'} block w-full ${
     props.counter ? 'pr-24' : 'pr-10'
   } ${props.addOnLeft && `rounded-l-none`} ${
     props.addOnRight && `rounded-r-none`
@@ -53,14 +50,14 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     <>
       <label
         htmlFor={props.input.id}
-        className={'block text-sm font-medium text-gray-700'}
+        className={'block text-sm font-medium text-gray-700 mb-1'}
       >
         {props.label}
       </label>
       <div className="relative flex">
         {props.addOnLeft && (
           <>
-            <span className="mt-1 inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+            <span className="inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
               {props.addOnLeft}
             </span>
           </>
@@ -75,9 +72,8 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
             />
           </div>
         )}
-        <Cleave
+        <input
           {...props.input}
-          options={props.maskRule || {}}
           disabled={props.disabled}
           value={props.value}
           id={props.input.id}
@@ -111,13 +107,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {props.addOnRight && (
           <>
-            <span className="mt-1 -z-10 -ml-px relative inline-flex items-center rounded-r border border-l-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+            <span className="-ml-px relative inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
               {props.addOnRight}
             </span>
           </>
         )}
         {props.errors && (
-          <div className="absolute top-4 right-0 pr-3 flex items-center pointer-events-none">
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon
               className="h-5 w-5 sm:h-4 sm:w-4 text-red-400"
               aria-hidden="true"
