@@ -25,7 +25,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
 
   useEffect(() => {
     if (items.length == 0 || props.value != undefined) {
-      setItems((items) => {
+      setItems(() => {
         return props.options.map((i) => ({
           ...i,
           selected: props.value == i.value ? true : false,
