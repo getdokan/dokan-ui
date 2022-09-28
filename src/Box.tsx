@@ -10,7 +10,7 @@ const Box: FunctionComponent<BoxProps> = (props) => {
     <>
       <div
         className={`${props.className} bg-white overflow-hidden ${
-          props.shadow ?? 'shadow'
+          props.shadow ? 'shadow' : ''
         } border rounded-sm p-4`}
       >
         {props.children}
