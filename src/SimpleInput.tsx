@@ -7,7 +7,6 @@ import React, {
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import Cleave from 'cleave.js/react';
 import { CleaveOptions } from 'cleave.js/options';
-import classNames from 'classnames';
 export interface SimpleInputProps {
   addOnLeft?: string;
   addOnRight?: string;
@@ -16,7 +15,6 @@ export interface SimpleInputProps {
   className?: string;
   icon?: any;
   label?: string;
-  disabled?: boolean;
   helpText?: string;
   errors?: string[];
   counter?: boolean;
@@ -66,7 +64,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           </>
         )}
         {props.icon && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <Icon
               className={`h-5 w-5 text-gray-400 ${
                 props.errors && 'text-red-400'
@@ -78,15 +76,12 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         <Cleave
           {...props.input}
           options={props.maskRule || {}}
-          disabled={props.disabled}
           value={props.value}
           id={props.input.id}
           defaultValue={props.defaultValue}
-          className={classNames(
-            props.errors?.length ? errorClasses : validClasses,
-            props.className,
-            props.disabled && 'disabled'
-          )}
+          className={`${
+            props.errors?.length ? errorClasses : validClasses
+          } {} ${props.className}`}
           onChange={(e) => {
             setLength(e.target.value.length);
             props.onChange && props.onChange(e);
@@ -104,22 +99,22 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
               props.errors?.length ? 'pr-8' : 'pr-3'
             }`}
           >
-            <span className="text-gray-400 border-l-2 pl-2 sm:text-sm">
+            <span className="border-l-2 pl-2 text-gray-400 sm:text-sm">
               {length}/{props.input?.maxLength ?? '∞'}
             </span>
           </div>
         )}
         {props.addOnRight && (
           <>
-            <span className="mt-1 -z-10 -ml-px relative inline-flex items-center rounded-r border border-l-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+            <span className="relative -z-10 mt-1 -ml-px inline-flex items-center rounded-r border border-l-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
               {props.addOnRight}
             </span>
           </>
         )}
         {props.errors && (
-          <div className="absolute top-4 right-0 pr-3 flex items-center pointer-events-none">
+          <div className="pointer-events-none absolute top-4 right-0 flex items-center pr-3">
             <ExclamationCircleIcon
-              className="h-5 w-5 sm:h-4 sm:w-4 text-red-400"
+              className="h-5 w-5 text-red-400 sm:h-4 sm:w-4"
               aria-hidden="true"
             />
           </div>
