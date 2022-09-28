@@ -2,12 +2,19 @@ import React, { FunctionComponent } from 'react';
 
 export interface BoxProps {
   className?: string;
+  shadow?: boolean;
 }
 
 const Box: FunctionComponent<BoxProps> = (props) => {
   return (
     <>
-      <div className={`${props.className} bg-white overflow-hidden shadow border rounded-sm p-4`}>{props.children}</div>
+      <div
+        className={`${props.className} bg-white overflow-hidden ${
+          props.shadow ? 'shadow' : ''
+        } border rounded-sm p-4`}
+      >
+        {props.children}
+      </div>
     </>
   );
 };
