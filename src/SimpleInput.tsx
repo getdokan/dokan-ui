@@ -63,7 +63,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           </>
         )}
         {props.icon && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <Icon
               className={`h-5 w-5 text-gray-400 ${
                 props.errors && 'text-red-400'
@@ -100,7 +100,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
               props.errors?.length ? 'pr-8' : 'pr-3'
             }`}
           >
-            <span className="text-gray-400 border-l-2 pl-2 sm:text-sm">
+            <span className="border-l-2 pl-2 text-gray-400 sm:text-sm">
               {length}/{props.input?.maxLength ?? '∞'}
             </span>
           </div>
@@ -115,7 +115,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         {props.errors && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon
-              className="h-5 w-5 sm:h-4 sm:w-4 text-red-400"
+              className="h-5 w-5 text-red-400 sm:h-4 sm:w-4"
               aria-hidden="true"
             />
           </div>

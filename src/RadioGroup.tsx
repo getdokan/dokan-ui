@@ -8,7 +8,12 @@ interface Option {
   description?: string;
   value: string;
 }
+interface CustomOption extends Option {
+  selected: boolean;
+}
 export interface RadioGroupProps {
+  errors?: string[];
+  value?: string;
   options: Option[];
   allowDeselect?: boolean;
   className?: string;
@@ -16,20 +21,28 @@ export interface RadioGroupProps {
 }
 
 const RadioGroup: React.FC<RadioGroupProps> = (props) => {
-  const [items, setItems] = useState(
-    props.options.map((o) => ({ ...o, selected: false }))
-  );
+  const [items, setItems] = useState<CustomOption[]>([]);
 
   useEffect(() => {
-    setItems((items) => {
-      return items.map((i) => ({ ...i, selected: false }));
-    });
-  }, [props.options]);
+    if (items.length == 0 || props.value != undefined) {
+      setItems(() => {
+        return props.options.map((i) => ({
+          ...i,
+          selected: props.value == i.value ? true : false,
+        }));
+      });
+    }
+  }, [props.options, props.value]);
+
+  useEffect(() => {
+    props.onChange &&
+      props.onChange(items.filter((item) => item.selected)[0]?.value);
+  }, [items]);
 
   return (
-    <>
-      {items.map((item, index) => (
-        <>
+    <div className="flex flex-col">
+      <section className="flex">
+        {items.map((item, index) => (
           <section
             key={index}
             role="radio"
@@ -37,7 +50,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
             aria-labelledby={item.label}
             className={`${
               item.selected ? 'border border-primary-400' : 'border'
-            } rounded-md px-3 py-2 space-y-1 inline-flex mr-1 cursor-pointer ${
+            } mr-1 inline-flex cursor-pointer space-y-1 rounded-md px-3 py-2 ${
               props.className
             }`}
             onClick={() => {
@@ -46,11 +59,14 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
                   if (index == itemIndex) {
                     if (props.allowDeselect) {
                       current.selected = !current.selected;
-                      props.onChange &&
-                        props.onChange(current.selected ? current.value : '');
+                      // Don't do this:
+                      // props.onChange && props.onChange(current.selected ? current.value : '');
+                      // Instead watch/trigger the onChange from useEffect
                     } else {
                       current.selected = true;
-                      props.onChange && props.onChange(current.value);
+                      // Don't do this:
+                      // props.onChange && props.onChange(current.value);
+                      // Instead watch/trigger the onChange from useEffect
                     }
                   } else {
                     current.selected = false;
@@ -60,9 +76,9 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
               });
             }}
           >
-            <div className="flex justify-center">
+            <div className="flex w-full">
               <section
-                className={`pr-2 mt-1 ${
+                className={`pr-2 ${
                   item.selected ? 'text-primary-500' : 'text-gray-500'
                 }`}
               >
@@ -77,25 +93,11 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
                 )}
               </section>
               <section className="flex flex-col justify-center">
-                <div className="flex justify-between mb-1">
-                  <section>
+                <div className="flex">
+                  <section className="flex-1">
                     <label className="text-md my-2 cursor-pointer">
                       {item.label}
                     </label>
-                  </section>
-                  {/* <input
-                  name="foo"
-                  type={item.selected ? 'hidden' : 'radio'}
-                  value={item.value}
-                  className={item.selected ? 'visibility-hidden' : 'visible'}
-                /> */}
-                  <section className="mt-1">
-                    {!item.selected && (
-                      <Circle className="w-5 h-5 text-gray-400"></Circle>
-                    )}
-                    {item.selected && (
-                      <CheckCircleIcon className="w-5 h-5 text-primary-500" />
-                    )}
                   </section>
                 </div>
                 {item.description && (
@@ -107,10 +109,21 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
                 )}
               </section>
             </div>
+            <section className="flex-none">
+              {!item.selected && (
+                <Circle className="h-5 w-5 text-gray-400"></Circle>
+              )}
+              {item.selected && (
+                <CheckCircleIcon className="h-5 w-5 text-primary-500" />
+              )}
+            </section>
           </section>
-        </>
-      ))}
-    </>
+        ))}
+      </section>
+      {props.errors && (
+        <p className="text-xs text-red-600">{props.errors.join(' | ')}</p>
+      )}
+    </div>
   );
 };
 export default RadioGroup;
