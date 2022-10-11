@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import SimpleCheckbox from './SimpleCheckbox';
 
 export interface SimpleCheckboxGroupProps {
+  name?: string;
   label?: string;
   helpText?: string;
   className?: string;
   options: Array<{
     value: string | number;
     label: string;
+    indeterminate?: boolean;
   }>;
   defaultValue?: Array<string | number>;
   errors?: string[];
@@ -37,8 +39,11 @@ const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
               input={{
                 id: `simple-checkbox-group-${option.value}`,
                 type: 'checkbox',
+                name: props.name,
+                value: option.value,
               }}
               checked={!!checkedList.find((val) => val === option.value)}
+              indeterminate={option.indeterminate}
               onChange={(e) => {
                 if (e.target.checked) {
                   setCheckedList((list) => [...list, option.value]);

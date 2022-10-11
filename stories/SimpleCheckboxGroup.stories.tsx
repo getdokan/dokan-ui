@@ -25,6 +25,7 @@ export const SimpleCheckboxGroupWithLabel = Template.bind({});
 export const SimpleCheckboxGroupWithLabelAndError = Template.bind({});
 
 const commonArgs = {
+  name: 'taxClasses',
   options: [
     { label: 'Standard Rate', value: 'standard' },
     { label: 'Reduced Rate', value: 'reduced' },
