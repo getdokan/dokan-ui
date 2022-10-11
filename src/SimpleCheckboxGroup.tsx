@@ -6,16 +6,16 @@ export interface SimpleCheckboxGroupProps {
   helpText?: string;
   className?: string;
   options: Array<{
-    value: string;
+    value: string | number;
     label: string;
   }>;
-  defaultValue?: string[];
+  defaultValue?: Array<string | number>;
   errors?: string[];
-  onChange?: (checkedList: string[]) => void;
+  onChange?: (checkedList: Array<string | number>) => void;
 }
 
 const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
-  const [checkedList, setCheckedList] = useState<string[]>(props.defaultValue ?? []);
+  const [checkedList, setCheckedList] = useState<Array<string | number>>(props.defaultValue ?? []);
 
   useEffect(() => props.onChange && props.onChange(checkedList), [checkedList]);
 

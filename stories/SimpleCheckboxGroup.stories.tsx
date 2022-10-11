@@ -10,7 +10,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story<SimpleCheckboxGroupProps> = (args) => {
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<Array<string | number>>([]);
 
   return (
     <>
