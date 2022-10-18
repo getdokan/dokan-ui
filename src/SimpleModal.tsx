@@ -1,5 +1,6 @@
 import React, { Fragment, FunctionComponent, ReactElement } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import classNames from 'classnames';
 
 type CSSUnit = `${number}${'px' | 'rem' | 'em' | 'vh' | 'vw' | '%'}`;
 
@@ -31,7 +32,10 @@ const SimpleModal = (props: SimpleModalProps) => {
         onClose={closeModal}
       >
         <div
-          className={`min-h-screen h-full px-4 text-center ${props.className}`}
+          className={classNames(
+            'min-h-screen h-full px-4 text-center',
+            props?.className && props.className
+          )}
         >
           <Transition.Child
             as={Fragment}
@@ -45,13 +49,6 @@ const SimpleModal = (props: SimpleModalProps) => {
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-50" />
           </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
-          <span
-            className="inline-block h-screen align-middle"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -73,7 +70,10 @@ const SimpleModal = (props: SimpleModalProps) => {
               {/* Title */}
               <Dialog.Title
                 as="h3"
-                className="text-lg font-medium leading-6 text-gray-900"
+                className={classNames(
+                  'text-lg font-medium leading-6 text-gray-900',
+                  header && header.props?.className && header.props.className
+                )}
               >
                 <div className="flex justify-between">
                   <section>
@@ -91,7 +91,12 @@ const SimpleModal = (props: SimpleModalProps) => {
               </Dialog.Title>
 
               {/* Body */}
-              <div className="flex-grow overflow-y-auto h-100">
+              <div
+                className={classNames(
+                  'flex-grow overflow-y-auto h-100 py-4',
+                  body && body.props?.className && body.props.className
+                )}
+              >
                 {body ? (
                   body.props.children
                 ) : (
@@ -100,7 +105,11 @@ const SimpleModal = (props: SimpleModalProps) => {
               </div>
 
               {/* Footer */}
-              <div className="">
+              <div
+                className={classNames(
+                  footer && footer.props?.className && footer.props.className
+                )}
+              >
                 {footer ? (
                   footer.props.children
                 ) : (
