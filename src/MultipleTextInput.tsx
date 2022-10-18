@@ -1,24 +1,42 @@
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
-import React, { ChangeEventHandler, KeyboardEventHandler, useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  KeyboardEventHandler,
+  useMemo,
+  useState,
+} from 'react';
 
 export interface MultipleTextInputProps {
   id?: string;
   className?: string;
   label?: string;
-  errors?: string[];
+  errors?: string[] | undefined;
   placeholder?: string;
   value: string[];
   setValue: (values: string[]) => void;
   helpText?: string;
-};
+}
 
-const MultipleTextInput = ({ id, className, label, errors, placeholder, value, setValue, helpText }: MultipleTextInputProps) => {
+const MultipleTextInput = ({
+  id,
+  className,
+  label,
+  errors,
+  placeholder,
+  value,
+  setValue,
+  helpText,
+}: MultipleTextInputProps) => {
   const [inputValue, setInputValue] = useState('');
 
   // Set only uniquer value
   const setNewValue = (newValue: string) => {
-    const uniqueValues = [...value, newValue].filter(function (elem, index, self) {
+    const uniqueValues = [...value, newValue].filter(function (
+      elem,
+      index,
+      self
+    ) {
       return index === self.indexOf(elem);
     });
     setValue(uniqueValues);
@@ -33,10 +51,12 @@ const MultipleTextInput = ({ id, className, label, errors, placeholder, value, s
   const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     if (event.key == 'Backspace' && inputValue == '') {
       const values = [...value];
-      setValue(values.filter((item, i) => {
-        item;
-        i !== values.length - 1;
-      }));
+      setValue(
+        values.filter((item, i) => {
+          item;
+          i !== values.length - 1;
+        })
+      );
       event.preventDefault();
       return;
     }
@@ -52,11 +72,11 @@ const MultipleTextInput = ({ id, className, label, errors, placeholder, value, s
   // Remove text
   const remove = (index: number) => {
     const values = [...value];
-    setValue(values.filter((item, i) => {
-      item;
-      i !== index;
-    }));
+    const newValues = values.filter((_, i) => i !== index);
+    setValue(newValues);
   };
+
+  const hasError = useMemo(() => !!errors && errors.length > 0, [errors]);
 
   const componentId = id || Math.random().toString();
   let validClasses =
@@ -67,22 +87,32 @@ const MultipleTextInput = ({ id, className, label, errors, placeholder, value, s
   return (
     <>
       {label && (
-        <label htmlFor={componentId} className={'block text-sm font-medium text-gray-700'}>
+        <label
+          htmlFor={componentId}
+          className={'block text-sm font-medium text-gray-700'}
+        >
           {label}
         </label>
       )}
       <div
         className={classNames(
           'flex items-center flex-wrap gap-1 w-full px-3 py-2 rounded shadow-sm relative',
-          errors ? errorClasses : validClasses,
+          hasError ? errorClasses : validClasses,
           className
         )}
       >
         {value.map((item, index) => {
           return (
-            <div className="text-gray-600 bg-gray-200 rounded-md px-2 py-1 text-xs" key={index}>
-              <span className="mr-1">{item}</span>
-              <button type="button" onClick={() => remove(index)} className="text-gray-400 hover:text-gray-600">
+            <div
+              className="flex items-center bg-primary-50 text-xs rounded overflow-hidden text-primary-500"
+              key={index}
+            >
+              <span className="inline-block px-1.5">{item}</span>
+              <button
+                type="button"
+                className="hover:bg-primary-100 font-semibold inline-block h-full p-1 transition-colors duration-200 focus:outline-none"
+                onClick={() => remove(index)}
+              >
                 &#10005;
               </button>
             </div>
@@ -96,20 +126,21 @@ const MultipleTextInput = ({ id, className, label, errors, placeholder, value, s
           className="flex-grow outline-none text-sm"
           placeholder={placeholder}
         />
-        {errors && (
+        {hasError && (
           <div className="absolute right-0 pe-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400" aria-hidden="true" />
+            <ExclamationCircleIcon
+              className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400"
+              aria-hidden="true"
+            />
           </div>
         )}
       </div>
-      {errors && (
+      {hasError && (
         <p className="text-xs text-red-600" id={`${componentId}-errors`}>
-          {errors.join(', ')}
+          {errors?.join(', ')}
         </p>
       )}
-      {helpText && (
-        <span className="text-xs text-gray-600">{helpText}</span>
-      )}
+      {helpText && <span className="text-xs text-gray-600">{helpText}</span>}
     </>
   );
 };
