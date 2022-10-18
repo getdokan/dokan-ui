@@ -1,6 +1,9 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MultipleTextInput, { MultipleTextInputProps } from '../src/MultipleTextInput';
+import MultipleTextInput, {
+  MultipleTextInputProps,
+} from '../src/MultipleTextInput';
+import { useArgs } from '@storybook/client-api';
 
 const meta: Meta = {
   title: 'MultipleTextInput',
@@ -9,16 +12,21 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<MultipleTextInputProps> = args => <MultipleTextInput {...args} />;
+const Template: Story<MultipleTextInputProps> = (args) => {
+  const [_, updateArgs] = useArgs();
+  return (
+    <MultipleTextInput
+      {...args}
+      setValue={(value) => updateArgs({ ...args, value: value })}
+    />
+  );
+};
 
 export const Default = Template.bind({});
 
 Default.args = {
   className: 'mt-2',
-  value: ['US', 'UK', 'Canada'],
+  value: ['Bangladesh', 'Afghanistan', 'Saudi Arabia'],
   label: 'Countries',
-  setValue: () => { },
   helpText: '',
-  errors: [],
 };
-
