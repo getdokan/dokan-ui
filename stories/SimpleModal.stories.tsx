@@ -20,8 +20,8 @@ const Template: Story<SimpleModalProps> = (args) => {
         Open Modal
       </button>
       <SimpleModal {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
-        <SimpleModal.Header className="pb-5 border-b">
-          <span>This is a Header</span>
+        <SimpleModal.Header>
+          <div className="p-5 border-b">This is a Header</div>
         </SimpleModal.Header>
         <SimpleModal.Body>
           This is a Body Lorem ipsum dolor sit amet consectetur adipisicing
@@ -120,8 +120,8 @@ const Template: Story<SimpleModalProps> = (args) => {
           explicabo nobis commodi accusantium quisquam expedita non ducimus
           saepe dignissimos, quos nesciunt atque ea eveniet maxime.
         </SimpleModal.Body>
-        <SimpleModal.Footer className="pt-5 border-t">
-          This is a Footer
+        <SimpleModal.Footer>
+          <div className="p-5 border-t">This is a Footer</div>
         </SimpleModal.Footer>
       </SimpleModal>
     </section>
