@@ -1,9 +1,16 @@
+import classNames from 'classnames';
 import React, { FC, useEffect, useRef } from 'react';
-import { SimpleInputProps } from './SimpleInput';
 
-export interface SimpleCheckboxProps extends SimpleInputProps {
+export interface SimpleCheckboxProps {
   checked?: boolean;
   indeterminate?: boolean;
+  input: {
+    [key: string]: any;
+  };
+  label?: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const SimpleCheckbox: FC<SimpleCheckboxProps> = (props) => {
@@ -28,15 +35,20 @@ const SimpleCheckbox: FC<SimpleCheckboxProps> = (props) => {
           checked={props.checked}
           {...props.input}
           id={props.input.id}
-          className={
-            'h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded' +
-            ` ${props.className}`
-          }
+          className={classNames(
+            'h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded',
+            props.className && props.className,
+            props.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+          )}
           onChange={props.onChange}
+          disabled={props.disabled}
         />
         <label
           htmlFor={props.input.id}
-          className={'ml-2 block text-sm font-medium text-gray-700'}
+          className={classNames(
+            'ml-2 block text-sm font-medium text-gray-700',
+            props.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+          )}
         >
           {props.label}
         </label>
