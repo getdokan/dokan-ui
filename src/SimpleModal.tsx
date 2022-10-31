@@ -2,7 +2,7 @@ import React, { Fragment, FunctionComponent, ReactElement } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 
-type CSSUnit = `${number}${'px' | 'rem' | 'em' | 'vh' | 'vw' | '%'}`;
+type CSSUnit = `${number}${'px' | 'rem' | 'em' | 'vh' | 'vw' | '%'}` | 'auto';
 
 export interface SimpleModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ const SimpleModal = (props: SimpleModalProps) => {
   }
 
   return (
-    <Transition show={props.isOpen} as={Fragment}>
+    <Transition appear show={props.isOpen} as={Fragment}>
       <Dialog
         as="div"
         className={`fixed inset-0 z-10 overflow-y-auto`}
@@ -46,7 +46,7 @@ const SimpleModal = (props: SimpleModalProps) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-50" />
+            <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
           <Transition.Child
@@ -59,11 +59,10 @@ const SimpleModal = (props: SimpleModalProps) => {
             leaveTo="opacity-0 scale-95"
           >
             <div
-              className={`inline-flex flex-col max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded`}
+              className={`inline-flex flex-col max-w-2xl my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded`}
               style={{
                 width: `${props.width || '100%'}`,
                 minWidth: `${props.width || '100%'}`,
-                maxHeight: `${props.height || `50vh`}`,
                 height: `${props.height || `50vh`}`,
               }}
             >
@@ -75,25 +74,27 @@ const SimpleModal = (props: SimpleModalProps) => {
                   header && header.props?.className && header.props.className
                 )}
               >
-                <div className="flex justify-between">
+                <div className="relative">
                   <section>
-                    {header ? header.props.children : <>Title</>}
+                    {header ? (
+                      header.props.children
+                    ) : (
+                      <div className="p-5 border-b">Title</div>
+                    )}
                   </section>
-                  <section>
-                    <p
-                      className="text-2xl -mt-2 text-gray-500 hover:cursor-pointer"
-                      onClick={closeModal}
-                    >
-                      &times;
-                    </p>
-                  </section>
+                  <p
+                    className="absolute top-1/2 right-5 -translate-y-1/2 text-2xl text-gray-500 hover:cursor-pointer"
+                    onClick={closeModal}
+                  >
+                    &times;
+                  </p>
                 </div>
               </Dialog.Title>
 
               {/* Body */}
               <div
                 className={classNames(
-                  'flex-grow overflow-y-auto h-100 py-4',
+                  'flex-grow overflow-y-auto h-100 p-5',
                   body && body.props?.className && body.props.className
                 )}
               >
@@ -113,13 +114,15 @@ const SimpleModal = (props: SimpleModalProps) => {
                 {footer ? (
                   footer.props.children
                 ) : (
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
-                  >
-                    Ok
-                  </button>
+                  <div className="flex justify-end p-5 border-t">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      onClick={closeModal}
+                    >
+                      Ok
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
