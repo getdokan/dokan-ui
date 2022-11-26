@@ -22,7 +22,7 @@ const Tooltip = ({
   className,
   direction = 'top',
 }: TooltipProps) => {
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
 
   // helper function to close the menu
   const open = () => {
