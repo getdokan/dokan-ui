@@ -89,7 +89,7 @@ const Title: React.FunctionComponent<TitleProps> = ({
   ...rest
 }) => {
   return (
-    <div className={twMerge('p-4 border-b font-semibold', className)} {...rest}>
+    <div className={twMerge('p-4 font-semibold', className)} {...rest}>
       {children}
     </div>
   );
@@ -105,7 +105,7 @@ const Content: React.FunctionComponent<ContentProps> = ({
   ...rest
 }) => {
   return (
-    <div className={twMerge('p-4', className)} {...rest}>
+    <div className={twMerge('px-4', className)} {...rest}>
       {children}
     </div>
   );
@@ -121,7 +121,7 @@ const Footer: React.FunctionComponent<FooterProps> = ({
   ...rest
 }) => {
   return (
-    <div className={twMerge('p-4 border-t', className)} {...rest}>
+    <div className={twMerge('p-4', className)} {...rest}>
       {children}
     </div>
   );
