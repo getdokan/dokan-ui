@@ -26,7 +26,7 @@ const Template: Story<ModalProps> = (args) => {
         onClick={() => updateArgs({ ...args, isOpen: true })}
       ></Button>
       <Modal {...args} onClose={() => updateArgs({ ...args, isOpen: false })}>
-        <Modal.Title>Modal Title</Modal.Title>
+        <Modal.Title className="border-b">Modal Title</Modal.Title>
         <Modal.Content>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
           quasi quos! Reprehenderit, cum! Mollitia quod maxime omnis molestiae
@@ -35,7 +35,7 @@ const Template: Story<ModalProps> = (args) => {
           officia consectetur adipisci magni nulla molestiae voluptates
           voluptate omnis soluta quisquam temporibus, dolore quaerat dolores.
         </Modal.Content>
-        <Modal.Footer>
+        <Modal.Footer className="border-t">
           <Button
             color="red"
             label="Close Modal"

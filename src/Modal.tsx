@@ -105,7 +105,7 @@ const Content: React.FunctionComponent<ContentProps> = ({
   ...rest
 }) => {
   return (
-    <div className={twMerge('px-4', className)} {...rest}>
+    <div className={twMerge('p-4', className)} {...rest}>
       {children}
     </div>
   );

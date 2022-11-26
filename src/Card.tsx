@@ -7,7 +7,9 @@ interface HeaderProps {
 const Header: FunctionComponent<HeaderProps> = (props) => {
   return (
     <>
-      <div className="border-b border-gray-200 px-4 py-5 sm:px-6">{props.children}</div>
+      <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
+        {props.children}
+      </div>
     </>
   );
 };
@@ -34,7 +36,9 @@ interface FooterProps {
 const Footer: FunctionComponent<FooterProps> = (props) => {
   return (
     <>
-      <div className={`${props.colorClass || 'bg-gray-50'} px-4 py-4 sm:px-6`}>{props.children}</div>
+      <div className={`${props.colorClass || 'bg-gray-50'} px-4 py-4 sm:px-6`}>
+        {props.children}
+      </div>
     </>
   );
 };
@@ -45,7 +49,9 @@ export interface CardProps {
   className?: string;
 }
 
-const Card: FunctionComponent<CardProps> & { Header: FunctionComponent<HeaderProps> } & {
+const Card: FunctionComponent<CardProps> & {
+  Header: FunctionComponent<HeaderProps>;
+} & {
   Body: FunctionComponent<BodyProps>;
 } & {
   Footer: FunctionComponent<FooterProps>;
@@ -57,7 +63,9 @@ const Card: FunctionComponent<CardProps> & { Header: FunctionComponent<HeaderPro
           {props.title && (
             <div className="border-b border-gray-200 px-4 py-5 sm:px-11">
               {props.title}
-              {props.subTitle && <p className="text-xs text-gray-500 mt-1">{props.subTitle}</p>}
+              {props.subTitle && (
+                <p className="text-xs text-gray-500 mt-1">{props.subTitle}</p>
+              )}
             </div>
           )}
           {props.children}

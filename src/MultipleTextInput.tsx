@@ -79,9 +79,9 @@ const MultipleTextInput = ({
   const hasError = useMemo(() => !!errors && errors.length > 0, [errors]);
 
   const componentId = id || Math.random().toString();
-  let validClasses =
+  const validClasses =
     'border border-gray-300 placeholder-gray-400 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500';
-  let errorClasses =
+  const errorClasses =
     'border border-red-300 text-red-900 placeholder-red-300 focus-within:ring-1 focus-within:ring-danger-500 focus-within:border-danger-500';
 
   return (
