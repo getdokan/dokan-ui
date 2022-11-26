@@ -1,40 +1,28 @@
 import { Dialog, Transition } from '@headlessui/react';
-import classNames from 'classnames';
-import React, { Fragment, ReactElement } from 'react';
+import React, { Fragment, HTMLAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-interface ContentProps {
-  className?: string;
-}
-interface TitleProps {
-  className?: string;
-}
-export interface ModalProps {
-  children: ReactElement[];
+export type ModalProps = {
+  children: React.ReactNode;
   className?: string;
   isOpen: boolean;
-  showXButton: boolean;
+  showXButton?: boolean;
   onClose: () => void;
-}
+} & HTMLAttributes<HTMLDivElement>;
 
-/**
- * @deprecated
- */
 const Modal = ({
   children,
-  showXButton,
+  showXButton = true,
   className,
   isOpen,
   onClose,
 }: ModalProps) => {
-  const title = children.find((el) => el.type === Title);
-  const content = children.find((el) => el.type === Content);
-
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-visible"
+          className="fixed inset-0 z-10 overflow-auto"
           onClose={onClose}
         >
           <div className="min-h-screen px-4 text-center">
@@ -67,29 +55,21 @@ const Modal = ({
               leaveTo="opacity-0 scale-95"
             >
               <div
-                className={classNames(
-                  className,
-                  'inline-block w-full p-6 my-8 overflow-visible text-left transition-all transform bg-white shadow-xl'
+                className={twMerge(
+                  'relative inline-block text-left w-full rounded transition-all transform bg-white shadow-xl',
+                  className
                 )}
               >
-                <Dialog.Title
-                  as="div"
-                  className={`p-0 flex items-center ${title?.props.className}`}
-                >
-                  {title ? title.props.children : null}
-                  {showXButton && (
-                    <button
-                      type="button"
-                      onClick={onClose}
-                      className="absolute top-0 right-0 p-4 ms-auto text-gray-600"
-                    >
-                      &#10005;
-                    </button>
-                  )}
-                </Dialog.Title>
-                <div className="mt-4">
-                  {content ? content.props.children : null}
-                </div>
+                {children}
+                {showXButton && (
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="absolute right-2 top-2 rounded-primary p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 outline-none focus:outline-none"
+                  >
+                    &#10005;
+                  </button>
+                )}
               </div>
             </Transition.Child>
           </div>
@@ -99,15 +79,56 @@ const Modal = ({
   );
 };
 
-const Title: React.FunctionComponent<TitleProps> = ({ children }) => {
-  return <>{children}</>;
+export type TitleProps = {
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;
+
+const Title: React.FunctionComponent<TitleProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  return (
+    <div className={twMerge('p-4 border-b font-semibold', className)} {...rest}>
+      {children}
+    </div>
+  );
 };
 
-const Content: React.FunctionComponent<ContentProps> = ({ children }) => {
-  return <>{children}</>;
+export type ContentProps = {
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;
+
+const Content: React.FunctionComponent<ContentProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  return (
+    <div className={twMerge('p-4', className)} {...rest}>
+      {children}
+    </div>
+  );
+};
+
+export type FooterProps = {
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;
+
+const Footer: React.FunctionComponent<FooterProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  return (
+    <div className={twMerge('p-4 border-t', className)} {...rest}>
+      {children}
+    </div>
+  );
 };
 
 Modal.Title = Title;
 Modal.Content = Content;
+Modal.Footer = Footer;
 
 export default Modal;
