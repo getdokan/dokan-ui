@@ -25,9 +25,9 @@ const TextArea: React.FC<TextAreaProps> = ({
   helpText,
   disabled,
 }) => {
-  let validClasses =
+  const validClasses =
     'appearance-none block w-full px-3 py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm';
-  let errorClasses =
+  const errorClasses =
     'block w-full pe-10 border border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-danger-500 focus:border-danger-500 sm:text-sm rounded';
   return (
     <>

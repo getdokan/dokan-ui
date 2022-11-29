@@ -24,9 +24,9 @@ const SimpleSelect = (props: SimpleSelectProps) => {
     sluggable = sluggable.toLowerCase();
 
     // remove accents, swap ñ for n, etc
-    var from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
-    var to = 'aaaaeeeeiiiioooouuuunc------';
-    for (var i = 0, l = from.length; i < l; i++) {
+    const from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
+    const to = 'aaaaeeeeiiiioooouuuunc------';
+    for (let i = 0, l = from.length; i < l; i++) {
       sluggable = sluggable.replace(
         new RegExp(from.charAt(i), 'g'),
         to.charAt(i)

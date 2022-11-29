@@ -34,19 +34,28 @@ const bgClasses: Record<string, string> = {
   white: `bg-white`,
 };
 
-const ToggleSwitch = ({ checked, onChange, color = 'primary', children, label }: ToggleSwitchProps) => {
+const ToggleSwitch = ({
+  checked,
+  onChange,
+  color = 'primary',
+  children,
+  label,
+}: ToggleSwitchProps) => {
   return (
     <div className="flex items-center">
       <Switch
         checked={checked}
         onChange={onChange}
         style={{ width: '42px', minWidth: '42px' }}
-        className={`${checked ? bgClasses[color] : 'bg-gray-200'} relative inline-flex items-center h-5 rounded-full`}
+        className={`${
+          checked ? bgClasses[color] : 'bg-gray-200'
+        } relative inline-flex items-center h-5 rounded-full`}
       >
         <span
           style={{ height: '14px', width: '14px', minWidth: '14px' }}
-          className={`${checked ? 'translate-x-6' : 'translate-x-1'
-            } inline-block transform transition ease-in-out duration-200 bg-white rounded-full`}
+          className={`${
+            checked ? 'translate-x-6' : 'translate-x-1'
+          } inline-block transform transition ease-in-out duration-200 bg-white rounded-full`}
         />
       </Switch>
       {children || (label && <p className="text-sm ms-2">{label}</p>)}

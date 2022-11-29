@@ -26,13 +26,22 @@ const Template: Story<ModalProps> = (args) => {
         onClick={() => updateArgs({ ...args, isOpen: true })}
       ></Button>
       <Modal {...args} onClose={() => updateArgs({ ...args, isOpen: false })}>
-        <Modal.Title>Modal Title</Modal.Title>
+        <Modal.Title className="border-b">Modal Title</Modal.Title>
         <Modal.Content>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-          omnis? Animi officia doloremque rem cum, deleniti commodi expedita
-          atque, modi ad aliquam dicta accusantium optio qui velit voluptates
-          consequatur labore!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+          quasi quos! Reprehenderit, cum! Mollitia quod maxime omnis molestiae
+          quisquam voluptates suscipit, fuga iste id eaque necessitatibus
+          ducimus dolores commodi delectus assumenda. Ut sequi corrupti in
+          officia consectetur adipisci magni nulla molestiae voluptates
+          voluptate omnis soluta quisquam temporibus, dolore quaerat dolores.
         </Modal.Content>
+        <Modal.Footer className="border-t">
+          <Button
+            color="red"
+            label="Close Modal"
+            onClick={() => updateArgs({ ...args, isOpen: false })}
+          ></Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

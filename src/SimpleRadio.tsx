@@ -23,17 +23,26 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
   return (
     <>
       {props.label && (
-        <label htmlFor={props.name} className={`block w-full text-sm font-medium text-gray-700 ${!props.helpText ? 'mb-2' : ''}`}>
+        <label
+          htmlFor={props.name}
+          className={`block w-full text-sm font-medium text-gray-700 ${
+            !props.helpText ? 'mb-2' : ''
+          }`}
+        >
           {props.label}
         </label>
       )}
-      {props.helpText && <p className="text-xs mb-2 leading-5 text-gray-600">{props.helpText}</p>}
+      {props.helpText && (
+        <p className="text-xs mb-2 leading-5 text-gray-600">{props.helpText}</p>
+      )}
       <div className="space-y-0">
         {props.options.map((option, optionIndex) => (
           <label
             key={optionIndex}
             htmlFor={`sr-${option.value}-${optionIndex}`}
-            className={`flex items-center py-2 px-4 rounded-md block w-full text-sm font-medium text-gray-700 ${option.value === selected ? 'bg-blue-100' : ''}`}
+            className={`flex items-center py-2 px-4 rounded-md block w-full text-sm font-medium text-gray-700 ${
+              option.value === selected ? 'bg-blue-100' : ''
+            }`}
           >
             <input
               id={`sr-${option.value}-${optionIndex}`}
@@ -52,7 +61,10 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
         ))}
       </div>
       {props.errors && (
-        <p className="mt-1.5 text-xs text-red-600" id={`${props.input?.id}-error`}>
+        <p
+          className="mt-1.5 text-xs text-red-600"
+          id={`${props.input?.id}-error`}
+        >
           {props.errors.join(', ')}
         </p>
       )}

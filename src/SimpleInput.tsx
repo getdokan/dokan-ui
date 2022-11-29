@@ -33,7 +33,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   const [length, setLength] = useState(0);
   const Icon = props.icon;
 
-  let validClasses = `${
+  const validClasses = `${
     props.icon && 'pl-10'
   } appearance-none block w-full pl-3 ${
     props.counter ? 'pr-20' : 'pr-3'
@@ -42,7 +42,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   } ${
     props.addOnRight && `rounded-r-none`
   } shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
-  let errorClasses = `${props.icon && 'pl-10'} block w-full ${
+  const errorClasses = `${props.icon && 'pl-10'} block w-full ${
     props.counter ? 'pr-24' : 'pr-10'
   } ${props.addOnLeft && `rounded-l-none`} ${
     props.addOnRight && `rounded-r-none`

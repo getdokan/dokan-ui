@@ -48,7 +48,8 @@
     }
   ],
   "dependencies": {
-    "cleave.js": "^1.6.0"
+    "cleave.js": "^1.6.0",
+    "tailwind-merge": "^1.8.0"
   },
   "devDependencies": {
     "@headlessui/react": "^1.6.6",
