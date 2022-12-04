@@ -5,8 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
-import Cleave from 'cleave.js/react';
-import { CleaveOptions } from 'cleave.js/options';
+import classNames from 'classnames';
 export interface SimpleInputProps {
   addOnLeft?: string;
   addOnRight?: string;
@@ -15,13 +14,13 @@ export interface SimpleInputProps {
   className?: string;
   icon?: any;
   label?: string;
+  disabled?: boolean;
   helpText?: string;
   errors?: string[];
   counter?: boolean;
   input: {
     [key: string]: any;
   };
-  maskRule?: CleaveOptions;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
@@ -51,14 +50,14 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     <>
       <label
         htmlFor={props.input.id}
-        className={'block text-sm font-medium text-gray-700'}
+        className={'block text-sm font-medium text-gray-700 mb-1'}
       >
         {props.label}
       </label>
       <div className="relative flex">
         {props.addOnLeft && (
           <>
-            <span className="mt-1 inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+            <span className="inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
               {props.addOnLeft}
             </span>
           </>
@@ -73,15 +72,17 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
             />
           </div>
         )}
-        <Cleave
+        <input
           {...props.input}
-          options={props.maskRule || {}}
+          disabled={props.disabled}
           value={props.value}
           id={props.input.id}
           defaultValue={props.defaultValue}
-          className={`${
-            props.errors?.length ? errorClasses : validClasses
-          } {} ${props.className}`}
+          className={classNames(
+            props.errors?.length ? errorClasses : validClasses,
+            props.className,
+            props.disabled && 'disabled'
+          )}
           onChange={(e) => {
             setLength(e.target.value.length);
             props.onChange && props.onChange(e);
@@ -106,13 +107,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {props.addOnRight && (
           <>
-            <span className="relative -z-10 mt-1 -ml-px inline-flex items-center rounded-r border border-l-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+            <span className="-ml-px relative inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
               {props.addOnRight}
             </span>
           </>
         )}
         {props.errors && (
-          <div className="pointer-events-none absolute top-4 right-0 flex items-center pr-3">
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon
               className="h-5 w-5 text-red-400 sm:h-4 sm:w-4"
               aria-hidden="true"
