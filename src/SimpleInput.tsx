@@ -2,15 +2,18 @@ import React, {
   ChangeEventHandler,
   FocusEventHandler,
   KeyboardEventHandler,
+  useEffect,
   useState,
 } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
+import { CleaveOptions } from 'cleave.js/options';
+
 export interface SimpleInputProps {
   addOnLeft?: string;
   addOnRight?: string;
-  value?: string;
-  defaultValue?: string;
+  value?: string | number;
+  defaultValue?: string | number;
   className?: string;
   icon?: any;
   label?: string;
@@ -21,6 +24,7 @@ export interface SimpleInputProps {
   input: {
     [key: string]: any;
   };
+  maskRule?: CleaveOptions;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
@@ -31,6 +35,12 @@ export interface SimpleInputProps {
 const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   const [length, setLength] = useState(0);
   const Icon = props.icon;
+
+  useEffect(() => {
+    if (props.counter) {
+      setLength((props.value ?? props.defaultValue)?.toString().length ?? 0);
+    }
+  }, [props.defaultValue, props.value]);
 
   const validClasses = `${
     props.icon && 'pl-10'
@@ -84,7 +94,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
             props.disabled && 'disabled'
           )}
           onChange={(e) => {
-            setLength(e.target.value.length);
+            if (props.counter) {
+              setLength(e.target.value.length);
+            }
             props.onChange && props.onChange(e);
           }}
           onKeyDown={props.onKeyDown}
