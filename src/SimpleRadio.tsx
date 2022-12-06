@@ -1,24 +1,30 @@
-import React, { ChangeEventHandler, FocusEventHandler, useState } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, useEffect, useState } from 'react';
 
 export interface SimpleRadioProps {
   name: string;
   label?: string;
   helpText?: string;
   options: Array<{
-    value: string;
+    value: string | number;
     label: string;
   }>;
-  defaultValue?: string;
+  defaultValue?: string | number;
+  value?: string | number;
   errors?: string[];
   input?: {
     [key: string]: any;
   };
+  selectedOptionClass?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
 }
 
 const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
-  const [selected, setSelected] = useState(props.defaultValue);
+  const [selected, setSelected] = useState<string | number | undefined>(undefined);
+
+  useEffect(() => {
+    setSelected(props.value ?? props.defaultValue);
+  }, [props.value, props.defaultValue]);
 
   return (
     <>
@@ -39,24 +45,24 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
         {props.options.map((option, optionIndex) => (
           <label
             key={optionIndex}
-            htmlFor={`sr-${option.value}-${optionIndex}`}
+            htmlFor={`${props.name}-${option.value}-${optionIndex}`}
             className={`flex items-center py-2 px-4 rounded-md block w-full text-sm font-medium text-gray-700 ${
-              option.value === selected ? 'bg-blue-100' : ''
+              option.value === selected && props.selectedOptionClass ? props.selectedOptionClass : ''
             }`}
           >
             <input
-              id={`sr-${option.value}-${optionIndex}`}
+              id={`${props.name}-${option.value}-${optionIndex}`}
               type="radio"
               name={props.name}
               value={option.value}
-              defaultChecked={option.value === selected}
+              checked={option.value === selected}
               className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
               onChange={(e) => {
                 setSelected(e.target.value);
                 props.onChange && props.onChange(e);
               }}
             />
-            <span className="ml-3">{option.label}</span>
+            {option.label && <span className="ml-3">{option.label}</span>}
           </label>
         ))}
       </div>

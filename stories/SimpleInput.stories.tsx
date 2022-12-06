@@ -18,6 +18,8 @@ export const SimpleRightAddon = Template.bind({});
 export const SimpleIcon = Template.bind({});
 export const SimpleError = Template.bind({});
 export const SimpleCounter = Template.bind({});
+export const SimpleCounterWithDefault = Template.bind({});
+export const SimpleCounterWithValue = Template.bind({});
 export const SimpleIconWithCounter = Template.bind({});
 export const SimpleErrorWithCounter = Template.bind({});
 
@@ -88,6 +90,26 @@ SimpleError.args = {
 
 SimpleCounter.args = {
   ...SimpleDefault.args,
+  counter: true,
+  input: {
+    ...SimpleDefault.args.input,
+    maxLength: 64,
+  },
+};
+
+SimpleCounterWithDefault.args = {
+  ...SimpleDefault.args,
+  defaultValue: 'example default value',
+  counter: true,
+  input: {
+    ...SimpleDefault.args.input,
+    maxLength: 64,
+  },
+};
+
+SimpleCounterWithValue.args = {
+  ...SimpleDefault.args,
+  defaultValue: 'example controlled value',
   counter: true,
   input: {
     ...SimpleDefault.args.input,

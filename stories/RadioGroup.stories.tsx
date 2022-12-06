@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import RadioGroup, { RadioGroupProps } from '../src/RadioGroup';
-import { Box, Settings, ShoppingBag, ShoppingCart, Truck } from 'react-feather';
+import { Box, Truck } from 'react-feather';
 
 const meta: Meta = {
   title: 'RadioGroup',
