@@ -21,6 +21,7 @@ export { default as MultipleTextInput } from './MultipleTextInput';
 export { default as SearchableSelect } from './SearchableSelect';
 export { default as SimpleAlert } from './SimpleAlert';
 export { default as SimpleCheckbox } from './SimpleCheckbox';
+export { default as SimpleCheckboxGroup } from './SimpleCheckboxGroup';
 export { default as SimpleHeader } from './SimpleHeader';
 export { default as SimpleInput } from './SimpleInput';
 export { default as SimpleRadio } from './SimpleRadio';
