@@ -55,11 +55,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   } ${
     props.addOnRight && `rounded-r-none`
   } shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
+
   const errorClasses = `${props.icon && 'pl-10'} block w-full ${
     props.counter ? 'pr-24' : 'pr-10'
-  } ${props.addOnLeft && `rounded-l-none`} ${
+  }  ${props.addOnLeft && `rounded-l-none`} ${
     props.addOnRight && `rounded-r-none`
-  } border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
+  } py-2 border border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
+
   return (
     <>
       <label
