@@ -28,12 +28,12 @@ const Template: Story<ModalProps> = (args) => {
       <Modal {...args} onClose={() => updateArgs({ ...args, isOpen: false })}>
         <Modal.Title className="border-b">Modal Title</Modal.Title>
         <Modal.Content>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
-          quasi quos! Reprehenderit, cum! Mollitia quod maxime omnis molestiae
-          quisquam voluptates suscipit, fuga iste id eaque necessitatibus
-          ducimus dolores commodi delectus assumenda. Ut sequi corrupti in
-          officia consectetur adipisci magni nulla molestiae voluptates
-          voluptate omnis soluta quisquam temporibus, dolore quaerat dolores.
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo
+          doloribus et quisquam laborum amet dolorem magnam ipsum neque
+          consectetur consequatur, ipsam optio deserunt accusamus voluptatem
+          reprehenderit possimus quo fugit impedit quas totam ullam dolore!
+          Maxime corporis quaerat eos. Exercitationem a, alias perspiciatis
+          facilis saepe in officiis aspernatur ducimus minima inventore!
         </Modal.Content>
         <Modal.Footer className="border-t">
           <Button

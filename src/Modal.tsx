@@ -25,7 +25,7 @@ const Modal = ({
           className="fixed inset-0 z-10 overflow-auto"
           onClose={onClose}
         >
-          <div className="min-h-screen px-4 text-center">
+          <div className="min-h-screen p-4 text-center flex">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -39,12 +39,12 @@ const Modal = ({
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
-            <span
+            {/* <span
               className="inline-block h-screen align-middle"
               aria-hidden="true"
             >
               &#8203;
-            </span>
+            </span> */}
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -56,7 +56,7 @@ const Modal = ({
             >
               <div
                 className={twMerge(
-                  'relative inline-block text-left w-full rounded transition-all transform bg-white shadow-xl',
+                  'relative inline-block text-left w-full rounded transition-all transform bg-white shadow-xl self-center',
                   className
                 )}
               >
