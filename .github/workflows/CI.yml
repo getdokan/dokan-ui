@@ -13,10 +13,9 @@ jobs:
         with:
           node-version: '16'
           registry-url: 'https://npm.pkg.github.com'
-      - name: Build 
-        run: rm -rf dist; yarn build
-      - name: Publish package on NPM 
+      - name: Build
+        run: yarn install && yarn build
+      - name: Publish package on NPM
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
