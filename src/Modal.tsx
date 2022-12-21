@@ -25,7 +25,7 @@ const Modal = ({
           className="fixed inset-0 z-10 overflow-auto"
           onClose={onClose}
         >
-          <div className="min-h-screen p-4 text-center flex">
+          <div className="min-h-screen p-4 text-center flex justify-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"

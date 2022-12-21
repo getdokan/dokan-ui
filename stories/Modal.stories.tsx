@@ -25,7 +25,11 @@ const Template: Story<ModalProps> = (args) => {
         label="Open Modal"
         onClick={() => updateArgs({ ...args, isOpen: true })}
       ></Button>
-      <Modal {...args} onClose={() => updateArgs({ ...args, isOpen: false })}>
+      <Modal
+        className="max-w-2xl"
+        {...args}
+        onClose={() => updateArgs({ ...args, isOpen: false })}
+      >
         <Modal.Title className="border-b">Modal Title</Modal.Title>
         <Modal.Content>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo
