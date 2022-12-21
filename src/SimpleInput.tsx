@@ -42,6 +42,10 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     }
   }, [props.defaultValue, props.value]);
 
+  const hasErrors = () => {
+    return props.errors && props.errors.length > 0;
+  };
+
   const validClasses = `${
     props.icon && 'pl-10'
   } appearance-none block w-full pl-3 ${
@@ -51,11 +55,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   } ${
     props.addOnRight && `rounded-r-none`
   } shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
+
   const errorClasses = `${props.icon && 'pl-10'} block w-full ${
     props.counter ? 'pr-24' : 'pr-10'
-  } ${props.addOnLeft && `rounded-l-none`} ${
+  }  ${props.addOnLeft && `rounded-l-none`} ${
     props.addOnRight && `rounded-r-none`
-  } border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
+  } py-2 border border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
+
   return (
     <>
       <label
@@ -76,7 +82,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <Icon
               className={`h-5 w-5 text-gray-400 ${
-                props.errors && 'text-red-400'
+                hasErrors() && 'text-red-400'
               }`}
               aria-hidden="true"
             />
@@ -89,7 +95,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           id={props.input.id}
           defaultValue={props.defaultValue}
           className={classNames(
-            props.errors?.length ? errorClasses : validClasses,
+            hasErrors() ? errorClasses : validClasses,
             props.className,
             props.disabled && 'disabled'
           )}
@@ -103,13 +109,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           onKeyPress={props.onKeyPress}
           onKeyUp={props.onKeyUp}
           onBlur={props.onBlur}
-          aria-invalid={props.errors ? 'true' : 'false'}
+          aria-invalid={hasErrors() ? 'true' : 'false'}
           aria-describedby={`${props.input.id}-error`}
         />
         {props.counter && (
           <div
             className={`absolute inset-y-0 right-0 flex items-center ${
-              props.errors?.length ? 'pr-8' : 'pr-3'
+              hasErrors() ? 'pr-8' : 'pr-3'
             }`}
           >
             <span className="border-l-2 pl-2 text-gray-400 sm:text-sm">
@@ -124,7 +130,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
             </span>
           </>
         )}
-        {props.errors && (
+        {hasErrors() && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon
               className="h-5 w-5 text-red-400 sm:h-4 sm:w-4"
@@ -134,9 +140,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {props.children}
       </div>
-      {props.errors && (
+      {hasErrors() && (
         <p className="text-xs text-red-600" id={`${props.input.id}-error`}>
-          {props.errors.join(', ')}
+          {props.errors?.join(', ')}
         </p>
       )}
       {props.helpText && (
