@@ -34,9 +34,10 @@ export type OnPlaceSelectedParamType = {
   zip: string;
   country: { long_name: string; short_name: string };
   address: string;
+  place: any;
 };
 
-type Props = {
+export type GooglePlaceAutocompleteProps = {
   label?: string;
   input?: {
     [key: string]: any;
@@ -48,7 +49,7 @@ type Props = {
   value?: string;
   onClear?: () => void;
   onFocus?: () => void;
-  apiKey: string | undefined;
+  apiKey: string;
 };
 
 const GooglePlaceAutocomplete = ({
@@ -62,7 +63,7 @@ const GooglePlaceAutocomplete = ({
   value,
   onClear,
   onFocus,
-}: Props) => {
+}: GooglePlaceAutocompleteProps) => {
   const autoCompleteRef = useRef<HTMLInputElement>(null);
 
   const handlePlaceSelect = () => {
@@ -97,6 +98,7 @@ const GooglePlaceAutocomplete = ({
       zip: zip ?? '',
       country: country ?? { long_name: '', short_name: '' },
       address: autoCompleteRef.current!.value,
+      place,
     });
   };
 

@@ -4,6 +4,7 @@
 
 @import 'components/button';
 @import 'components/tooltip';
+@import 'components/loader';
 
 .disabled {
   @apply bg-gray-100 cursor-not-allowed;
