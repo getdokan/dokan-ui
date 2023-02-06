@@ -17,19 +17,27 @@ export interface SimpleCheckboxGroupProps {
 }
 
 const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
-  const [checkedList, setCheckedList] = useState<Array<string | number>>(props.defaultValue ?? []);
+  const [checkedList, setCheckedList] = useState<Array<string | number>>(
+    props.defaultValue ?? []
+  );
 
   useEffect(() => props.onChange && props.onChange(checkedList), [checkedList]);
 
   return (
     <>
       {props.label && (
-        <label className={`block w-full text-sm font-medium text-gray-700 ${!props.helpText ? 'mb-2' : ''}`}>
+        <label
+          className={`block w-full text-sm font-medium text-gray-700 ${
+            !props.helpText ? 'mb-2' : ''
+          }`}
+        >
           {props.label}
         </label>
       )}
 
-      {props.helpText && <p className="text-xs mb-2 leading-5 text-gray-600">{props.helpText}</p>}
+      {props.helpText && (
+        <p className="text-xs mb-2 leading-5 text-gray-600">{props.helpText}</p>
+      )}
 
       <div className="space-y-0">
         {props.options.map((option, optionIndex) => (
@@ -48,7 +56,9 @@ const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
                 if (e.target.checked) {
                   setCheckedList((list) => [...list, option.value]);
                 } else {
-                  setCheckedList((list) => list.filter((val) => val !== option.value));
+                  setCheckedList((list) =>
+                    list.filter((val) => val !== option.value)
+                  );
                 }
               }}
             />
