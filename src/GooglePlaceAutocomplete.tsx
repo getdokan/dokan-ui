@@ -1,11 +1,33 @@
 import _ from 'lodash';
-import React, { useEffect, useRef, RefObject } from 'react';
+import React, { useEffect, useRef, RefObject, FC } from 'react';
 
-let autoComplete: {
-  setFields: (arg0: string[]) => void;
-  addListener: (arg0: string, arg1: () => void) => void;
-  getPlace: () => any;
+export type OnPlaceSelectedParamType = {
+  city: string;
+  state: string;
+  zip: string;
+  country: { long_name: string; short_name: string };
+  address: string;
+  place: google.maps.places.PlaceResult;
 };
+
+export type GooglePlaceAutocompleteProps = {
+  label?: string;
+  input?: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
+  className?: string;
+  errors?: string[];
+  onPlaceSelected: (data: OnPlaceSelectedParamType) => void;
+  countryRestriction?: string;
+  value?: string;
+  onClear?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  apiKey: string;
+};
+
+let autoComplete: google.maps.places.Autocomplete;
 
 const loadScript = (url: string, callback: () => void) => {
   // Don't load Google API script in every component mounts
@@ -28,31 +50,7 @@ const loadScript = (url: string, callback: () => void) => {
   document.getElementsByTagName('head')[0].appendChild(scriptEl);
 };
 
-export type OnPlaceSelectedParamType = {
-  city: string;
-  state: string;
-  zip: string;
-  country: { long_name: string; short_name: string };
-  address: string;
-  place: any;
-};
-
-export type GooglePlaceAutocompleteProps = {
-  label?: string;
-  input?: {
-    [key: string]: any;
-  };
-  className?: string;
-  errors?: string[];
-  onPlaceSelected: (data: OnPlaceSelectedParamType) => void;
-  countryRestriction?: string;
-  value?: string;
-  onClear?: () => void;
-  onFocus?: () => void;
-  apiKey: string;
-};
-
-const GooglePlaceAutocomplete = ({
+const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
   label,
   apiKey,
   input,
@@ -63,7 +61,8 @@ const GooglePlaceAutocomplete = ({
   value,
   onClear,
   onFocus,
-}: GooglePlaceAutocompleteProps) => {
+  onBlur,
+}) => {
   const autoCompleteRef = useRef<HTMLInputElement>(null);
 
   const handlePlaceSelect = () => {
@@ -97,7 +96,7 @@ const GooglePlaceAutocomplete = ({
       state: state ?? '',
       zip: zip ?? '',
       country: country ?? { long_name: '', short_name: '' },
-      address: autoCompleteRef.current!.value,
+      address: autoCompleteRef.current?.value ?? '',
       place,
     });
   };
@@ -110,7 +109,9 @@ const GooglePlaceAutocomplete = ({
     autoComplete = new maps.places.Autocomplete(
       autoCompleteRef.current as HTMLInputElement,
       {
-        componentRestrictions: { country: countryRestriction ?? '' },
+        ...(countryRestriction
+          ? { componentRestrictions: { country: countryRestriction } }
+          : {}),
       }
     );
 
@@ -151,6 +152,7 @@ const GooglePlaceAutocomplete = ({
           {...input}
           ref={autoCompleteRef}
           onFocus={onFocus}
+          onBlur={onBlur}
         />
         <div className="absolute top-2 right-2">
           <button
