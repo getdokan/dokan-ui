@@ -33,3 +33,5 @@ export { default as TrailingInput } from './TrailingInput';
 export { default as RadioGroup } from './RadioGroup';
 export { default as SimpleModal } from './SimpleModal';
 export { default as Tooltip } from './Tooltip';
+export { default as GooglePlaceAutocomplete } from './GooglePlaceAutocomplete';
+export { default as Loader } from './Loader';

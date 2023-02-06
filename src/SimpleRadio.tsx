@@ -1,4 +1,9 @@
-import React, { ChangeEventHandler, FocusEventHandler, useEffect, useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  FocusEventHandler,
+  useEffect,
+  useState,
+} from 'react';
 
 export interface SimpleRadioProps {
   name: string;
@@ -20,7 +25,8 @@ export interface SimpleRadioProps {
 }
 
 const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
-  const [selected, setSelected] = useState<string | number | undefined>(undefined);
+  const [selected, setSelected] =
+    useState<string | number | undefined>(undefined);
 
   useEffect(() => {
     setSelected(props.value ?? props.defaultValue);
@@ -47,7 +53,9 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
             key={optionIndex}
             htmlFor={`${props.name}-${option.value}-${optionIndex}`}
             className={`flex items-center py-2 px-4 rounded-md block w-full text-sm font-medium text-gray-700 ${
-              option.value === selected && props.selectedOptionClass ? props.selectedOptionClass : ''
+              option.value === selected && props.selectedOptionClass
+                ? props.selectedOptionClass
+                : ''
             }`}
           >
             <input
