@@ -154,7 +154,10 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <div className="absolute top-2 right-2">
+        <div
+          className="absolute right-2"
+          style={{ top: '50%', transform: 'translateY(-53%)' }}
+        >
           <button
             type="button"
             onClick={() => {
