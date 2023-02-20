@@ -16,7 +16,7 @@ const Template: Story<GooglePlaceAutocompleteProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  apiKey: '',
+  apiKey: 'AIzaSyDvqF2TFlH_iL33LMiDHvNpkAcpK0nW7_0',
 };
 
 export default meta;
