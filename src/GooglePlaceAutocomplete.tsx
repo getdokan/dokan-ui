@@ -8,6 +8,7 @@ export type OnPlaceSelectedParamType = {
   country: { long_name: string; short_name: string };
   address: string;
   place: google.maps.places.PlaceResult;
+  inputValue: string;
 };
 
 export type GooglePlaceAutocompleteProps = {
@@ -101,6 +102,7 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
       country: country ?? { long_name: '', short_name: '' },
       address: autoCompleteRef.current?.value ?? '',
       place,
+      inputValue,
     });
   };
 
