@@ -8,6 +8,7 @@ export type OnPlaceSelectedParamType = {
   country: { long_name: string; short_name: string };
   address: string;
   place: google.maps.places.PlaceResult;
+  inputValue: string;
 };
 
 export type GooglePlaceAutocompleteProps = {
@@ -101,6 +102,7 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
       country: country ?? { long_name: '', short_name: '' },
       address: autoCompleteRef.current?.value ?? '',
       place,
+      inputValue,
     });
   };
 
@@ -157,7 +159,7 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <div className="absolute top-2 right-2">
+        <div className="absolute right-2 top-1/2 -translate-y-1/2">
           <button
             type="button"
             onClick={() => {
