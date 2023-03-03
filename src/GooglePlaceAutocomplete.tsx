@@ -70,7 +70,7 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
     const place = autoComplete.getPlace();
 
     const inputValue = autoCompleteRef.current!.value;
-    autoCompleteRef.current!.value = place.name || inputValue;
+    autoCompleteRef.current!.value = place?.name || inputValue;
 
     // updateQuery(place.formatted_address);
     const address = _.get(place, 'address_components');
