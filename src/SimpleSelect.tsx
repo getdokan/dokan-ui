@@ -52,7 +52,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         {props.label}
       </label>
       <select
-        defaultValue={(props.value as string) || ''}
+        value={(props.value as string) || ''}
         onChange={props.onChange}
         id={`${slugify(props.label)}-simple-select`}
         name={`${slugify(props.label)}-simple-select`}
