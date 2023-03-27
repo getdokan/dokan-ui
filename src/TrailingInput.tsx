@@ -22,7 +22,10 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
   } block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-none rounded-l`;
   return (
     <>
-      <label htmlFor={props.input.id} className="block text-sm font-medium">
+      <label
+        htmlFor={props.input.id}
+        className="block text-sm font-medium text-gray-700 mb-1"
+      >
         {props.label}
       </label>
       <div className={`flex rounded shadow-sm ${props.className}`}>
