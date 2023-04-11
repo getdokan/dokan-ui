@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 export interface BoxProps {
   className?: string;
   shadow?: boolean;
+  children?: React.ReactNode;
 }
 
 const Box: FunctionComponent<BoxProps> = (props) => {
