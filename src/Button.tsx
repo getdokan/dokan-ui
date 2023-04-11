@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { FC, MouseEventHandler } from 'react';
 export interface ButtonProps {
+  children?: React.ReactNode;
   className?: string;
   loading?: boolean;
   disabled?: boolean;

@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 
 interface HeaderProps {
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
@@ -16,6 +17,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
 
 interface BodyProps {
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Body: FunctionComponent<BodyProps> = (props) => {
@@ -31,6 +33,7 @@ const Body: FunctionComponent<BodyProps> = (props) => {
 interface FooterProps {
   colorClass?: string;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Footer: FunctionComponent<FooterProps> = (props) => {
@@ -47,6 +50,7 @@ export interface CardProps {
   title?: string;
   subTitle?: string;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Card: FunctionComponent<CardProps> & {
