@@ -135,6 +135,7 @@ const SimpleModal = (props: SimpleModalProps) => {
 
 interface HeaderProps {
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
@@ -143,6 +144,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
 
 interface BodyProps {
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Body: FunctionComponent<BodyProps> = (props) => {
@@ -151,6 +153,7 @@ const Body: FunctionComponent<BodyProps> = (props) => {
 
 interface FooterProps {
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Footer: FunctionComponent<FooterProps> = (props) => {
