@@ -1,5 +1,5 @@
 {
-  "version": "0.2.23",
+  "version": "0.2.24",
   "license": "MIT",
   "name": "@getdokan/dokan-ui",
   "author": "weDevs",
@@ -37,7 +37,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-
   "size-limit": [
     {
       "path": "dist/dokan-ui.cjs.production.min.js",
