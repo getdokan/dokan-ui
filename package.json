@@ -1,7 +1,10 @@
 {
   "version": "0.2.23",
   "license": "MIT",
+  "name": "@getdokan/dokan-ui",
+  "author": "weDevs",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -34,9 +37,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@getdokan/dokan-ui",
-  "author": "weDevs",
-  "module": "dist/dokan-ui.esm.js",
+
   "size-limit": [
     {
       "path": "dist/dokan-ui.cjs.production.min.js",
