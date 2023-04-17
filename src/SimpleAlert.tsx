@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/solid';
 import React, { FC, MouseEventHandler } from 'react';
 export interface SimpleAlertProps {
+  children: React.ReactNode;
   className?: string;
   type: 'success' | 'danger' | 'warning' | 'info';
   color:
