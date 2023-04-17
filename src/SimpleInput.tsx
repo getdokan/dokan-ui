@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import { CleaveOptions } from 'cleave.js/options';
 
 export interface SimpleInputProps {
+  children?: React.ReactNode;
   addOnLeft?: string;
   addOnRight?: string;
   value?: string | number;
