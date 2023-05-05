@@ -36,3 +36,4 @@ export { default as Tooltip } from './Tooltip';
 export { default as GooglePlaceAutocomplete } from './GooglePlaceAutocomplete';
 export { default as Loader } from './Loader';
 export { default as MaskedInput } from './MaskedInput';
+export { default as ConfirmModal } from './ConfirmModal';

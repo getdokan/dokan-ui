@@ -1,7 +1,7 @@
 import { Button, Modal } from '.';
 import React, { useEffect, useState } from 'react';
 
-interface ConfirmModalProps {
+export interface ConfirmModalProps {
   title?: string;
   message?: string;
   isOpen: boolean;
@@ -9,6 +9,7 @@ interface ConfirmModalProps {
   onCancel?: () => void;
   okButtonLabel?: string;
   cancelButtonLabel?: string;
+  className?: string;
 }
 const ConfirmModal = (props: ConfirmModalProps) => {
   const [showModal, setShowModal] = useState(false);
