@@ -39,7 +39,6 @@ export const Default = Template.bind({});
 
 Default.args = {
   isOpen: true,
-  showXButton: true,
   onConfirm: () => {},
   onCancel: () => {},
 };
