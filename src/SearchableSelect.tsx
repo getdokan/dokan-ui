@@ -81,7 +81,7 @@ const SearchableSelect = <
         )}
         placeholder={
           <div className="text-sm text-gray-400">
-            {props.placeholder || 'Search...'}
+            {props.placeholder || 'Search'}
           </div>
         }
         theme={(theme) => ({
@@ -97,7 +97,7 @@ const SearchableSelect = <
             primary25: 'var(--primary-50)',
             neutral5: 'var(--gray-100)',
             neutral10: 'var(--gray-100)',
-            neutral20: 'var(--gray-200)',
+            neutral20: 'var(--gray-300)',
             neutral30: 'var(--gray-300)',
             neutral40: 'var(--gray-400)',
             neutral50: 'var(--gray-500)',

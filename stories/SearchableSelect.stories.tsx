@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import SearchableSelect from '../src/SearchableSelect';
+import SimpleInput from '../src/SimpleInput';
 
 const meta: Meta = {
   title: 'SearchableSelect',
@@ -9,7 +10,18 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <SearchableSelect {...args} />;
+const Template: Story = (args) => {
+  return (
+    <div className="flex gap-6">
+      <div>
+        <SimpleInput label="Countries" input={{}} />
+      </div>
+      <div>
+        <SearchableSelect {...args} />
+      </div>
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 export const Multiple = Template.bind({});
