@@ -1,86 +1,136 @@
-import React, { FunctionComponent } from 'react';
+import React, { HTMLAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-interface HeaderProps {
+type CardProps = HTMLAttributes<HTMLDivElement> & {
   className?: string;
-  children?: React.ReactNode;
-}
+  children: React.ReactNode;
+  clickable?: boolean;
+  onClick?: () => void;
+};
 
-const Header: FunctionComponent<HeaderProps> = (props) => {
+const Card = ({
+  className,
+  children,
+  clickable,
+  onClick,
+  ...rest
+}: CardProps) => {
   return (
-    <>
-      <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
-        {props.children}
-      </div>
-    </>
+    <div
+      className={twMerge(
+        'w-full rounded transition-all duration-300 border',
+        clickable && 'cursor-pointer hover:shadow-lg',
+        className
+      )}
+      onClick={() => clickable && onClick?.()}
+      {...rest}
+    >
+      {children}
+    </div>
   );
 };
 
-interface BodyProps {
+// Card Header
+type CardHeaderProps = {
   className?: string;
-  children?: React.ReactNode;
-}
+  children: React.ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
 
-const Body: FunctionComponent<BodyProps> = (props) => {
+const Header = ({ className, children, ...rest }: CardHeaderProps) => {
   return (
-    <>
-      <section className={props.className}>
-        <div className="px-4 py-4 sm:px-6">{props.children}</div>
-      </section>
-    </>
+    <div
+      className={twMerge(
+        'border-b px-6 py-4 first:rounded-t bg-gray-50',
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </div>
   );
 };
 
-interface FooterProps {
-  colorClass?: string;
+// Card Title
+type CardTitleProps = {
   className?: string;
-  children?: React.ReactNode;
-}
+  children: React.ReactNode;
+} & HTMLAttributes<HTMLHeadingElement>;
 
-const Footer: FunctionComponent<FooterProps> = (props) => {
+const Title = ({ className, children, ...rest }: CardTitleProps) => {
   return (
-    <>
-      <div className={`${props.colorClass || 'bg-gray-50'} px-4 py-4 sm:px-6`}>
-        {props.children}
-      </div>
-    </>
+    <h4 className={twMerge('text-base font-medium', className)} {...rest}>
+      {children}
+    </h4>
   );
 };
 
-export interface CardProps {
-  title?: string;
-  subTitle?: string;
+// Card Subtitle
+type CardSubtitleProps = {
   className?: string;
-  children?: React.ReactNode;
-}
+  children: React.ReactNode;
+} & HTMLAttributes<HTMLParagraphElement>;
 
-const Card: FunctionComponent<CardProps> & {
-  Header: FunctionComponent<HeaderProps>;
-} & {
-  Body: FunctionComponent<BodyProps>;
-} & {
-  Footer: FunctionComponent<FooterProps>;
-} = (props) => {
+const Subtitle = ({ className, children, ...rest }: CardSubtitleProps) => {
   return (
-    <>
-      <section className={props.className}>
-        <div className="bg-white shadow border rounded-sm">
-          {props.title && (
-            <div className="border-b border-gray-200 px-4 py-5 sm:px-11">
-              {props.title}
-              {props.subTitle && (
-                <p className="text-xs text-gray-500 mt-1">{props.subTitle}</p>
-              )}
-            </div>
-          )}
-          {props.children}
-        </div>
-      </section>
-    </>
+    <p className={twMerge('text-sm text-gray-500', className)} {...rest}>
+      {children}
+    </p>
   );
 };
 
-Card.Body = Body;
+// Card Text
+type CardTextProps = {
+  className?: string;
+  children: React.ReactNode;
+} & HTMLAttributes<HTMLParagraphElement>;
+
+const Text = ({ className, children, ...rest }: CardTextProps) => {
+  return (
+    <div className={twMerge('text-sm', className)} {...rest}>
+      {children}
+    </div>
+  );
+};
+
+// Card Body
+type CardBodyProps = {
+  className?: string;
+  children: React.ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
+
+const Body = ({ className, children, ...rest }: CardBodyProps) => {
+  return (
+    <div className={twMerge('p-6 first:rounded-t', className)} {...rest}>
+      {children}
+    </div>
+  );
+};
+
+// Card Footer
+type CardFooterProps = {
+  className?: string;
+  children: React.ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
+
+const Footer = ({ className, children, ...rest }: CardFooterProps) => {
+  return (
+    <div
+      className={twMerge(
+        'border-t px-6 py-4 last:rounded-b dark:border-gray-700',
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+};
+
 Card.Header = Header;
+Card.Title = Title;
+Card.Subtitle = Subtitle;
+Card.Text = Text;
+Card.Body = Body;
 Card.Footer = Footer;
 
 export default Card;
