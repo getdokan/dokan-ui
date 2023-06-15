@@ -63,6 +63,7 @@ SimpleRightAddon.args = {
 SimpleIcon.args = {
   icon: MailIcon,
   label: 'Email Address',
+  className: '',
   input: {
     placeholder: 'yourname@email.com',
     id: 'login-email',
