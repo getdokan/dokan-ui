@@ -68,7 +68,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     <>
       <label
         htmlFor={props.input.id}
-        className={'block text-sm font-medium text-gray-700 mb-1'}
+        className={
+          'block text-sm cursor-pointer font-medium text-gray-700 mb-1'
+        }
       >
         {props.label}
       </label>
