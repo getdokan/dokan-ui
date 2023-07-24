@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
-import classNames from 'classnames';
 import { CleaveOptions } from 'cleave.js/options';
+import { twMerge } from 'tailwind-merge';
 
 export interface SimpleInputProps {
   children?: React.ReactNode;
@@ -67,7 +67,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     <>
       <label
         htmlFor={props.input.id}
-        className={'block text-sm font-medium text-gray-700 mb-1'}
+        className={
+          'block text-sm cursor-pointer font-medium text-gray-700 mb-1'
+        }
       >
         {props.label}
       </label>
@@ -95,10 +97,11 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           value={props.value}
           id={props.input.id}
           defaultValue={props.defaultValue}
-          className={classNames(
+          className={twMerge(
             hasErrors() ? errorClasses : validClasses,
-            props.className,
-            props.disabled && 'disabled'
+            props.disabled && 'disabled',
+            props.icon && 'pl-10',
+            props.className
           )}
           onChange={(e) => {
             if (props.counter) {
