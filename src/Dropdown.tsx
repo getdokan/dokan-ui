@@ -1,72 +1,220 @@
-import React, { ReactNode } from 'react';
-import { useLayer } from 'react-laag';
-import { ReactElement, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+} from 'react';
+import {
+  Arrow,
+  ArrowProps,
+  LayerProps,
+  TriggerProps,
+  useLayer,
+} from 'react-laag';
 import { PlacementType } from 'react-laag/dist/PlacementType';
+import { Link } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 
-export interface DropdownProps {
-  children: ReactElement[];
-  className?: string;
-  placement?: PlacementType;
-}
+type DropdownContextType = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  renderLayer: (children: React.ReactNode) => React.ReactNode;
+  triggerProps: TriggerProps;
+  layerProps: LayerProps;
+  arrowProps: ArrowProps;
+  showArrow?: boolean;
+};
+
+const DropDownContext =
+  createContext<DropdownContextType | undefined>(undefined);
+
+export type DropdownProps =
+  | {
+      initialOpen?: boolean;
+      isOpen: boolean;
+      setIsOpen: (isOpen: boolean) => void;
+      className?: string;
+      placement?: PlacementType;
+      children: React.ReactNode;
+      showArrow?: boolean;
+    }
+  | {
+      initialOpen?: boolean;
+      isOpen?: never;
+      setIsOpen?: never;
+      className?: string;
+      placement?: PlacementType;
+      children: React.ReactNode;
+      showArrow?: boolean;
+    };
 
 const Dropdown = ({
-  children,
+  initialOpen = false,
+  isOpen: controlledOpen,
+  setIsOpen: setControlledOpen,
   className,
   placement = 'bottom-end',
+  showArrow = false,
+  children,
 }: DropdownProps) => {
-  const [isOpen, setOpen] = useState(false);
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
-  // helper function to close the menu
-  function close() {
-    setOpen(false);
-  }
+  const isOpen = controlledOpen ?? uncontrolledOpen;
+  const setIsOpen = setControlledOpen ?? setUncontrolledOpen;
 
-  const { renderLayer, triggerProps, layerProps } = useLayer({
+  const close = useCallback(() => setIsOpen(false), [setIsOpen]);
+
+  const { renderLayer, triggerProps, layerProps, arrowProps } = useLayer({
     isOpen,
     onOutsideClick: close, // close the menu when the user clicks outside
     onDisappear: close, // close the menu when the menu gets scrolled out of sight
     overflowContainer: true, // keep the menu positioned inside the container
     auto: true, // automatically find the best placement
     placement: placement, // we prefer to place the menu "top-end"
-    triggerOffset: 12, // keep some distance to the trigger
+    triggerOffset: 8, // keep some distance to the trigger
     containerOffset: 16, // give the menu some room to breath relative to the container
     arrowOffset: 16, // let the arrow have some room to breath also
   });
 
-  const trigger = children.find((el) => el.type === Trigger);
-  const list = children.find((el) => el.type === List);
+  useEffect(() => {
+    if (controlledOpen && !setControlledOpen) {
+      throw new Error('Must provide setIsOpen prop when using isOpen prop');
+    }
+  }, []);
 
-  // Again, we're using framer-motion for the transition effect
   return (
-    <div>
-      <button type="button" {...triggerProps} onClick={() => setOpen(!isOpen)}>
-        {trigger ? trigger.props.children : null}
-      </button>
-      {isOpen &&
-        renderLayer(
-          <div className={className} {...layerProps}>
-            {list ? list.props.children : null}
+    <DropDownContext.Provider
+      value={{
+        isOpen,
+        setIsOpen,
+        renderLayer,
+        triggerProps,
+        layerProps,
+        showArrow,
+        arrowProps,
+      }}
+    >
+      <div className={twMerge('relative inline-block', className)}>
+        {children}
+      </div>
+    </DropDownContext.Provider>
+  );
+};
+
+// Dropdown context
+const useDropdownContext = () => {
+  const context = useContext(DropDownContext);
+  if (context === undefined) {
+    throw new Error('Must be used in a Dropdown component');
+  }
+  return context;
+};
+
+// Dropdown Trigger
+type DropdownTriggerProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+const Trigger = ({ children, className }: DropdownTriggerProps) => {
+  const { isOpen, setIsOpen, triggerProps } = useDropdownContext();
+
+  return (
+    <>
+      <div
+        role={'button'}
+        {...triggerProps}
+        className={className}
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        {children}
+      </div>
+    </>
+  );
+};
+
+// Dropdown Content
+type DropdownContentProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+const Content = ({ className, children }: DropdownContentProps) => {
+  const { isOpen, renderLayer, layerProps, showArrow, arrowProps } =
+    useDropdownContext();
+
+  return (
+    <>
+      {renderLayer(
+        isOpen && (
+          <div
+            {...layerProps}
+            className={twMerge(
+              'relative z-20 rounded border bg-white shadow-lg',
+              className
+            )}
+          >
+            {children}
+            {showArrow && (
+              <Arrow
+                {...arrowProps}
+                borderWidth={1}
+                borderColor="var(--gray-200)"
+              />
+            )}
           </div>
-        )}
+        )
+      )}
+    </>
+  );
+};
+
+// Dropdown Link
+type DropdownLinkProps = {
+  children: React.ReactNode;
+  href: string;
+  method?: string;
+  className?: string;
+};
+
+const DropdownLink = ({ href, children, className }: DropdownLinkProps) => {
+  return (
+    <Link
+      to={href}
+      className={twMerge(
+        'flex w-full items-center px-4 py-2 text-left text-sm leading-5 text-gray-800 transition duration-150 ease-in-out first:rounded-t last:rounded-b hover:bg-gray-100 focus:outline-none',
+        className
+      )}
+    >
+      {children}
+    </Link>
+  );
+};
+
+type DropdownItemProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+const DropdownItem = ({ children, className }: DropdownItemProps) => {
+  const { setIsOpen } = useDropdownContext();
+  return (
+    <div
+      className={twMerge(
+        'flex w-full items-center px-4 py-2 text-left text-sm leading-5 text-gray-800 transition duration-150 ease-in-out first:rounded-t last:rounded-b hover:bg-gray-100 focus:outline-none',
+        className
+      )}
+      onClick={() => setIsOpen(false)}
+    >
+      {children}
     </div>
   );
 };
 
-interface TriggerProps {
-  children?: ReactNode;
-}
-const Trigger = ({ children }: TriggerProps) => {
-  return <>{children}</>;
-};
-
-interface ListProps {
-  children?: ReactNode;
-}
-const List = ({ children }: ListProps) => {
-  return <>{children}</>;
-};
-
 Dropdown.Trigger = Trigger;
-Dropdown.List = List;
+Dropdown.Content = Content;
+Dropdown.Link = DropdownLink;
+Dropdown.Item = DropdownItem;
 
 export default Dropdown;
