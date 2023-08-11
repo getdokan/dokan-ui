@@ -32,23 +32,22 @@ let autoComplete: google.maps.places.Autocomplete;
 
 const loadScript = (url: string, callback: () => void) => {
   // Don't load Google API script in every component mounts
-  if (window.google) {
+  if (window.google.maps.places) {
     callback();
     return;
   }
-
   const scriptEl = document.createElement('script');
   const initMapEl = document.createElement('script');
-
   initMapEl.type = 'text/javascript';
   initMapEl.textContent = 'function initMapPlaceholderFunc() {}';
-
   scriptEl.type = 'text/javascript';
-  scriptEl.onload = () => callback();
   scriptEl.src = url;
+  document.body.appendChild(initMapEl);
+  document.body.appendChild(scriptEl);
 
-  document.getElementsByTagName('head')[0].appendChild(initMapEl);
-  document.getElementsByTagName('head')[0].appendChild(scriptEl);
+  scriptEl.onload = () => callback();
+  // document.getElementsByTagName('head')[0].appendChild(initMapEl);
+  // document.getElementsByTagName('head')[0].appendChild(scriptEl);
 };
 
 const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
