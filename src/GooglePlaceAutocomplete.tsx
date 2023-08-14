@@ -32,7 +32,7 @@ let autoComplete: google.maps.places.Autocomplete;
 
 const loadScript = (url: string, callback: () => void) => {
   // Don't load Google API script in every component mounts
-  if (window.google.maps.places) {
+  if (window.google?.maps?.places) {
     callback();
     return;
   }
