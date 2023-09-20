@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useEffect, useRef, RefObject, FC } from 'react';
+import React, { useEffect, useRef, RefObject, FC, FocusEvent } from 'react';
 
 export type OnPlaceSelectedParamType = {
   city: string;
@@ -23,7 +23,7 @@ export type GooglePlaceAutocompleteProps = {
   countryRestriction?: string;
   value?: string;
   onClear?: () => void;
-  onFocus?: () => void;
+  onFocus?: (event?: FocusEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
   apiKey: string;
 };
