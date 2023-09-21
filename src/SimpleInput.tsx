@@ -17,7 +17,7 @@ export interface SimpleInputProps {
   defaultValue?: string | number;
   className?: string;
   icon?: any;
-  label?: string;
+  label?: React.ReactNode;
   disabled?: boolean;
   helpText?: string;
   errors?: string[];
@@ -65,21 +65,23 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
 
   return (
     <>
-      <label
-        htmlFor={props.input.id}
-        className={
-          'block text-sm cursor-pointer font-medium text-gray-700 mb-1'
-        }
-      >
-        {props.label}
-      </label>
+      {typeof props.label === 'string' ? (
+        <label
+          htmlFor={props.input.id}
+          className={
+            'block text-sm cursor-pointer font-medium text-gray-700 mb-1'
+          }
+        >
+          {props.label}
+        </label>
+      ) : (
+        props.label
+      )}
       <div className="relative flex">
         {props.addOnLeft && (
-          <>
-            <span className="inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
-              {props.addOnLeft}
-            </span>
-          </>
+          <span className="inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+            {props.addOnLeft}
+          </span>
         )}
         {props.icon && (
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -128,11 +130,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           </div>
         )}
         {props.addOnRight && (
-          <>
-            <span className="-ml-px relative inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
-              {props.addOnRight}
-            </span>
-          </>
+          <span className="-ml-px relative inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+            {props.addOnRight}
+          </span>
         )}
         {hasErrors() && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
