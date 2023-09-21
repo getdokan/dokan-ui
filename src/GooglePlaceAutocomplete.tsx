@@ -115,13 +115,14 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
   ) => {
     const { maps } = window.google;
     autoComplete = new maps.places.Autocomplete(
-      autoCompleteRef.current as HTMLInputElement,
-      {
-        ...(countryRestriction
-          ? { componentRestrictions: { country: countryRestriction } }
-          : {}),
-      }
+      autoCompleteRef.current as HTMLInputElement
     );
+
+    if (countryRestriction) {
+      autoComplete.setComponentRestrictions({
+        country: countryRestriction,
+      });
+    }
 
     autoComplete.addListener('place_changed', () => handlePlaceSelect());
   };
