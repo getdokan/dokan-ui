@@ -31,6 +31,7 @@ export interface SimpleInputProps {
   onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
   onKeyUp?: KeyboardEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
 }
 
 const SimpleInput: React.FC<SimpleInputProps> = (props) => {
@@ -115,6 +116,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           onKeyPress={props.onKeyPress}
           onKeyUp={props.onKeyUp}
           onBlur={props.onBlur}
+          onFocus={props.onFocus}
           aria-invalid={hasErrors() ? 'true' : 'false'}
           aria-describedby={`${props.input.id}-error`}
         />
