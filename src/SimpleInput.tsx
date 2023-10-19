@@ -95,6 +95,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           </div>
         )}
         <input
+          type="text"
           {...props.input}
           disabled={props.disabled}
           value={props.value}
