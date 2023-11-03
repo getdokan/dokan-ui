@@ -7,6 +7,9 @@ export interface ToggleSwitchProps {
   color?: string;
   label?: string | ReactElement;
   children?: ReactElement;
+  name?: string;
+  value?: string;
+  defaultChecked?: boolean;
 }
 
 const bgClasses: Record<string, string> = {
@@ -40,10 +43,16 @@ const ToggleSwitch = ({
   color = 'primary',
   children,
   label,
+  name,
+  value,
+  defaultChecked,
 }: ToggleSwitchProps) => {
   return (
     <div className="flex items-center">
       <Switch
+        defaultChecked={defaultChecked}
+        name={name}
+        value={value}
         checked={checked}
         onChange={onChange}
         style={{ width: '42px', minWidth: '42px' }}
