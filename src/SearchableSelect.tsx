@@ -22,6 +22,7 @@ export type SearchableSelectProps<
   errors?: string[];
   helpText?: string;
   disabled?: boolean;
+  ref?: any;
 };
 
 const SearchableSelect = <
@@ -29,8 +30,8 @@ const SearchableSelect = <
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>
 >(
-  props: SearchableSelectProps<Option, IsMulti, Group>
-) => {
+    props: SearchableSelectProps<Option, IsMulti, Group>
+  ) => {
   const id = props.id || Math.random().toString();
 
   const ValueContainer = ({
@@ -72,6 +73,7 @@ const SearchableSelect = <
         </label>
       )}
       <Select
+        ref={props.ref}
         {...props}
         isDisabled={props.disabled}
         className={classNames(
