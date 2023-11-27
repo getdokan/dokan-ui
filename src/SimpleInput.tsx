@@ -11,8 +11,8 @@ import { twMerge } from 'tailwind-merge';
 
 export interface SimpleInputProps {
   children?: React.ReactNode;
-  addOnLeft?: string;
-  addOnRight?: string;
+  addOnLeft?: React.ReactNode;
+  addOnRight?: React.ReactNode;
   value?: string | number;
   defaultValue?: string | number;
   className?: string;
