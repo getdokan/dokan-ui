@@ -3,8 +3,8 @@ import Cleave from 'cleave.js/react';
 import { CleaveOptions } from 'cleave.js/options';
 import 'cleave.js/dist/addons/cleave-phone.i18n.js';
 import classNames from 'classnames';
+import { HiExclamationCircle } from 'react-icons/hi';
 import { SimpleInputProps } from './SimpleInput';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
 
 export interface MaskedInputProps extends SimpleInputProps {
   maskRule: CleaveOptions;
@@ -75,7 +75,7 @@ const MaskedInput: React.FC<MaskedInputProps> = (props) => {
         )}
         {props.errors && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon
+            <HiExclamationCircle
               className="h-5 w-5 sm:h-4 sm:w-4 text-red-400"
               aria-hidden="true"
             />

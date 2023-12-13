@@ -1,4 +1,3 @@
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import React, {
   ChangeEventHandler,
@@ -6,6 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { HiExclamationCircle } from 'react-icons/hi';
 
 export interface MultipleTextInputProps {
   id?: string;
@@ -128,7 +128,7 @@ const MultipleTextInput = ({
         />
         {hasError && (
           <div className="absolute right-0 pe-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon
+            <HiExclamationCircle
               className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400"
               aria-hidden="true"
             />

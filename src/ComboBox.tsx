@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
+import { HiCheck, HiSelector } from 'react-icons/hi';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -42,11 +42,11 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
   const filteredItems =
     query === ''
       ? props.items
-      : props.items.filter((items: any) => {
-          return items[props.valueFrom]
+      : props.items.filter((items) =>
+          String(items[props.valueFrom])
             .toLowerCase()
-            .includes(query.toLowerCase());
-        });
+            .includes(query.toLowerCase())
+        );
 
   function removeItem(index: number) {
     selectedItems.splice(index, 1);
@@ -154,7 +154,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
         <Combobox.Button
           className={`absolute inset-y-0 right-0 flex items-center rounded-r px-2 focus:outline-none ${props.buttonClasses}`}
         >
-          <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <HiSelector className="h-5 w-5 text-gray-400" aria-hidden="true" />
         </Combobox.Button>
         {filteredItems.length > 0 && (
           <Combobox.Options
@@ -190,7 +190,7 @@ const ComboBox = <TItem,>(props: ComboBoxProps<TItem>) => {
                           active ? 'text-white' : 'text-primary-600'
                         )}
                       >
-                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        <HiCheck className="h-5 w-5" aria-hidden="true" />
                       </span>
                     )}
                   </>

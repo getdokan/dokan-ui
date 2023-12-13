@@ -1,11 +1,11 @@
-import {
-  CheckCircleIcon,
-  ExclamationIcon,
-  InformationCircleIcon,
-  XCircleIcon,
-  XIcon,
-} from '@heroicons/react/solid';
 import React, { FC, MouseEventHandler } from 'react';
+import {
+  HiCheckCircle,
+  HiExclamation,
+  HiInformationCircle,
+  HiX,
+  HiXCircle,
+} from 'react-icons/hi';
 export interface SimpleAlertProps {
   children?: React.ReactNode;
   className?: string;
@@ -131,25 +131,25 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
         <div className={`flex ${props.centered ? 'justify-center' : ''}`}>
           <div className="flex-shrink-0">
             {props.type == 'success' && (
-              <CheckCircleIcon
+              <HiCheckCircle
                 className={`h-5 w-5 ${textColors400[props.color]}`}
                 aria-hidden="true"
               />
             )}
             {props.type == 'warning' && (
-              <ExclamationIcon
+              <HiExclamation
                 className={`h-5 w-5 ${textColors400[props.color]}`}
                 aria-hidden="true"
               />
             )}
             {props.type == 'danger' && (
-              <XCircleIcon
+              <HiXCircle
                 className={`h-5 w-5 ${textColors400[props.color]}`}
                 aria-hidden="true"
               />
             )}
             {props.type == 'info' && (
-              <InformationCircleIcon
+              <HiInformationCircle
                 className={`h-5 w-5 ${textColors400[props.color]}`}
                 aria-hidden="true"
               />
@@ -175,7 +175,7 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
                             `}
                 >
                   <span className="sr-only">Dismiss</span>
-                  <XIcon className="h-5 w-5" aria-hidden="true" />
+                  <HiX className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>
             </div>

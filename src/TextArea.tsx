@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler } from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
+import { HiExclamationCircle } from 'react-icons/hi';
 
 export interface TextAreaProps {
   className?: string;
@@ -56,7 +56,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         ></textarea>
         {errors && (
           <div className="absolute bottom-1 right-1 pe-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon
+            <HiExclamationCircle
               className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400"
               aria-hidden="true"
             />

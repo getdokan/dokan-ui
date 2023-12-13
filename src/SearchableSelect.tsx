@@ -1,6 +1,6 @@
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import React from 'react';
+import { HiChevronDown } from 'react-icons/hi';
 import Select, {
   components,
   DropdownIndicatorProps,
@@ -30,8 +30,8 @@ const SearchableSelect = <
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>
 >(
-    props: SearchableSelectProps<Option, IsMulti, Group>
-  ) => {
+  props: SearchableSelectProps<Option, IsMulti, Group>
+) => {
   const id = props.id || Math.random().toString();
 
   const ValueContainer = ({
@@ -51,6 +51,7 @@ const SearchableSelect = <
     return <components.Input {...props} inputClassName="focus:ring-0" />;
   };
 
+  // eslint-disable-next-line no-empty-pattern
   const DropdownIndicator = ({}: DropdownIndicatorProps<
     Option,
     IsMulti,
@@ -58,7 +59,7 @@ const SearchableSelect = <
   >) => {
     return (
       <div className="px-2">
-        <ChevronDownIcon className="h-5 text-gray-400" />
+        <HiChevronDown className="h-5 text-gray-400" />
       </div>
     );
   };

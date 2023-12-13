@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
+import { HiExclamationCircle } from 'react-icons/hi';
 import { SimpleInputProps } from './SimpleInput';
 
 export interface TrailingInputProps extends SimpleInputProps {
@@ -50,7 +50,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           />
           {props.errors && (
             <div className="absolute top-3 right-0 pr-3 flex items-center pointer-events-none">
-              <ExclamationCircleIcon
+              <HiExclamationCircle
                 className="h-5 w-5 sm:h-4 sm:w-4 text-red-400"
                 aria-hidden="true"
               />

@@ -5,8 +5,8 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import { CleaveOptions } from 'cleave.js/options';
+import { HiExclamationCircle } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 
 export interface SimpleInputProps {
@@ -139,7 +139,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {hasErrors() && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon
+            <HiExclamationCircle
               className="h-5 w-5 text-red-400 sm:h-4 sm:w-4"
               aria-hidden="true"
             />

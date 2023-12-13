@@ -1,6 +1,6 @@
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import React from 'react';
+import { HiChevronDown } from 'react-icons/hi';
 import {
   GroupBase,
   components,
@@ -57,7 +57,7 @@ const TaggableSelect = <
   >) => {
     return (
       <div className="px-2">
-        <ChevronDownIcon className="h-5 text-gray-400" />
+        <HiChevronDown className="h-5 text-gray-400" />
       </div>
     );
   };
