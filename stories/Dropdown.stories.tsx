@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { FiChevronDown } from 'react-icons/fi';
 import Dropdown, { DropdownProps } from '../src/Dropdown';
-import { ChevronDown } from 'react-feather';
 
 const meta: Meta = {
   title: 'Dropdown',
@@ -20,7 +20,7 @@ const Template: Story<DropdownProps> = (args) => (
       <Dropdown.Trigger>
         <div className="flex items-center px-4 py-2 text-sm border text-gray-600 border-gray-200 rounded">
           <span>Action</span>
-          <ChevronDown size={16} className="ml-1 text-gray-600" />
+          <FiChevronDown size={16} className="ml-1 text-gray-600" />
         </div>
       </Dropdown.Trigger>
       <Dropdown.Content className="w-32">

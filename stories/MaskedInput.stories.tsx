@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { HiCreditCard, HiPhone } from 'react-icons/hi';
 import MaskedInput, { MaskedInputProps } from '../src/MaskedInput';
-import { CreditCardIcon, PhoneIcon } from '@heroicons/react/solid';
 
 const meta: Meta = {
   title: 'Masked Input',
@@ -218,7 +218,7 @@ MaskedRightAddon.args = {
 
 MaskedWithIcon.args = {
   label: 'Card',
-  icon: CreditCardIcon,
+  icon: HiCreditCard,
   maskRule: { creditCard: true },
   input: {
     id: 'card',
@@ -231,7 +231,7 @@ MaskedWithIcon.args = {
 
 MaskedError.args = {
   label: 'Phone',
-  icon: PhoneIcon,
+  icon: HiPhone,
   errors: ['Phone number field is required'],
   input: {
     id: 'phone',
