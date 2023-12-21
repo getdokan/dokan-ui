@@ -49,136 +49,136 @@ const Button: FC<ButtonProps> = (props) => {
   const Icon = props.icon;
 
   const linkColors = {
-    amber: `text-amber-500`,
-    blue: `text-blue-500`,
-    cyan: `text-cyan-500`,
-    emerald: `text-emerald-500`,
-    fuchsia: `text-fuchsia-500`,
-    green: `text-green-500`,
-    gray: `text-gray-500`,
-    indigo: `text-indigo-500`,
-    lime: `text-lime-500`,
-    orange: `text-orange-500`,
-    pink: `text-pink-500`,
-    purple: `text-purple-500`,
-    red: `text-red-500`,
-    rose: `text-rose-500`,
-    sky: `text-sky-500`,
-    teal: `text-teal-500`,
-    violet: `text-violet-500`,
-    yellow: `text-yellow-500`,
-    primary: `text-primary-500`,
-    secondary: `text-secondary-500`,
-    danger: `text-danger-500`,
-    white: `text-white-500`,
+    amber: `text-amber-600`,
+    blue: `text-blue-600`,
+    cyan: `text-cyan-600`,
+    emerald: `text-emerald-600`,
+    fuchsia: `text-fuchsia-600`,
+    green: `text-green-600`,
+    gray: `text-gray-600`,
+    indigo: `text-indigo-600`,
+    lime: `text-lime-600`,
+    orange: `text-orange-600`,
+    pink: `text-pink-600`,
+    purple: `text-purple-600`,
+    red: `text-red-600`,
+    rose: `text-rose-600`,
+    sky: `text-sky-600`,
+    teal: `text-teal-600`,
+    violet: `text-violet-600`,
+    yellow: `text-yellow-600`,
+    primary: `text-primary-600`,
+    secondary: `text-secondary-600`,
+    danger: `text-danger-600`,
+    white: `text-white-600`,
   };
   const colors = {
     amber: `${
       props.outlined
-        ? 'border border-amber-500 text-amber-500 hover:bg-amber-100'
-        : 'text-white bg-amber-500 hover:bg-amber-700'
-    } focus:ring-amber-500`,
+        ? 'border border-amber-600 text-amber-600 hover:bg-amber-100'
+        : 'text-white bg-amber-600 hover:bg-amber-700'
+    } focus:ring-amber-600`,
     blue: `${
       props.outlined
-        ? 'border border-blue-500 text-blue-500 hover:bg-blue-100'
-        : 'text-white bg-blue-500  hover:bg-blue-700'
-    } focus:ring-blue-500`,
+        ? 'border border-blue-600 text-blue-600 hover:bg-blue-100'
+        : 'text-white bg-blue-600  hover:bg-blue-700'
+    } focus:ring-blue-600`,
     cyan: `${
       props.outlined
-        ? 'border border-cyan-500 text-cyan-500 hover:bg-cyan-100'
-        : 'text-white bg-cyan-500 hover:bg-cyan-700'
-    } focus:ring-cyan-500`,
+        ? 'border border-cyan-600 text-cyan-600 hover:bg-cyan-100'
+        : 'text-white bg-cyan-600 hover:bg-cyan-700'
+    } focus:ring-cyan-600`,
     emerald: `${
       props.outlined
-        ? 'border border-emerald-500 text-emerald-500 hover:bg-emerald-100'
-        : 'text-white bg-emerald-500 hover:bg-emerald-700'
-    } focus:ring-emerald-500`,
+        ? 'border border-emerald-600 text-emerald-600 hover:bg-emerald-100'
+        : 'text-white bg-emerald-600 hover:bg-emerald-700'
+    } focus:ring-emerald-600`,
     fuchsia: `${
       props.outlined
-        ? 'border border-fuchsia-500 text-fuchsia-500 hover:bg-fuchsia-100'
-        : 'text-white bg-fuchsia-500 hover:bg-fuchsia-700'
-    } focus:ring-fuchsia-500`,
+        ? 'border border-fuchsia-600 text-fuchsia-600 hover:bg-fuchsia-100'
+        : 'text-white bg-fuchsia-600 hover:bg-fuchsia-700'
+    } focus:ring-fuchsia-600`,
     green: `${
       props.outlined
-        ? 'border border-green-500 text-green-500 hover:bg-green-100'
-        : 'text-white bg-green-500 hover:bg-green-700'
-    } focus:ring-green-500`,
+        ? 'border border-green-600 text-green-600 hover:bg-green-100'
+        : 'text-white bg-green-600 hover:bg-green-700'
+    } focus:ring-green-600`,
     gray: `${
       props.outlined
-        ? 'border border-gray-500 text-gray-500 hover:bg-gray-100'
-        : 'text-white bg-gray-500 hover:bg-gray-700'
-    } focus:ring-gray-500`,
+        ? 'border border-gray-600 text-gray-600 hover:bg-gray-100'
+        : 'text-white bg-gray-600 hover:bg-gray-700'
+    } focus:ring-gray-600`,
     indigo: `${
       props.outlined
-        ? 'border border-indigo-500 text-indigo-500 hover:bg-indigo-100'
-        : 'text-white bg-indigo-500 hover:bg-indigo-700'
-    } focus:ring-indigo-500`,
+        ? 'border border-indigo-600 text-indigo-600 hover:bg-indigo-100'
+        : 'text-white bg-indigo-600 hover:bg-indigo-700'
+    } focus:ring-indigo-600`,
     lime: `${
       props.outlined
-        ? 'border border-lime-500 text-lime-500 hover:bg-lime-100'
-        : 'text-white bg-lime-500 hover:bg-lime-700'
-    } focus:ring-lime-500`,
+        ? 'border border-lime-600 text-lime-600 hover:bg-lime-100'
+        : 'text-white bg-lime-600 hover:bg-lime-700'
+    } focus:ring-lime-600`,
     orange: `${
       props.outlined
-        ? 'border border-orange-500 text-orange-500 hover:bg-orange-100'
-        : 'text-white bg-orange-500 hover:bg-orange-700'
-    } focus:ring-orange-500`,
+        ? 'border border-orange-600 text-orange-600 hover:bg-orange-100'
+        : 'text-white bg-orange-600 hover:bg-orange-700'
+    } focus:ring-orange-600`,
     pink: `${
       props.outlined
-        ? 'border border-pink-500 text-pink-500 hover:bg-pink-100'
-        : 'text-white bg-pink-500 hover:bg-pink-700'
-    } focus:ring-pink-500`,
+        ? 'border border-pink-600 text-pink-600 hover:bg-pink-100'
+        : 'text-white bg-pink-600 hover:bg-pink-700'
+    } focus:ring-pink-600`,
     purple: `${
       props.outlined
-        ? 'border border-purple-500 text-purple-500 hover:bg-purple-100'
-        : 'text-white bg-purple-500 hover:bg-purple-700'
-    } focus:ring-purple-500`,
+        ? 'border border-purple-600 text-purple-600 hover:bg-purple-100'
+        : 'text-white bg-purple-600 hover:bg-purple-700'
+    } focus:ring-purple-600`,
     red: `${
       props.outlined
-        ? 'border border-red-500 text-red-500 hover:bg-red-100'
-        : 'text-white bg-red-500 hover:bg-red-700'
-    } focus:ring-red-500`,
+        ? 'border border-red-600 text-red-600 hover:bg-red-100'
+        : 'text-white bg-red-600 hover:bg-red-700'
+    } focus:ring-red-600`,
     rose: `${
       props.outlined
-        ? 'border border-rose-500 text-rose-500 hover:bg-rose-100'
-        : 'text-white bg-rose-500 hover:bg-rose-700'
-    } focus:ring-rose-500`,
+        ? 'border border-rose-600 text-rose-600 hover:bg-rose-100'
+        : 'text-white bg-rose-600 hover:bg-rose-700'
+    } focus:ring-rose-600`,
     sky: `${
       props.outlined
-        ? 'border border-sky-500 text-sky-500 hover:bg-sky-100'
-        : 'text-white bg-sky-500 hover:bg-sky-700'
-    } focus:ring-sky-500`,
+        ? 'border border-sky-600 text-sky-600 hover:bg-sky-100'
+        : 'text-white bg-sky-600 hover:bg-sky-700'
+    } focus:ring-sky-600`,
     teal: `${
       props.outlined
-        ? 'border border-teal-500 text-teal-500 hover:bg-teal-100'
-        : 'text-white bg-teal-500 hover:bg-teal-700'
-    } focus:ring-teal-500`,
+        ? 'border border-teal-600 text-teal-600 hover:bg-teal-100'
+        : 'text-white bg-teal-600 hover:bg-teal-700'
+    } focus:ring-teal-600`,
     violet: `${
       props.outlined
-        ? 'border border-violet-500 text-violet-500 hover:bg-violet-100'
-        : 'text-white bg-violet-500 hover:bg-violet-700'
-    } focus:ring-violet-500`,
+        ? 'border border-violet-600 text-violet-600 hover:bg-violet-100'
+        : 'text-white bg-violet-600 hover:bg-violet-700'
+    } focus:ring-violet-600`,
     yellow: `${
       props.outlined
-        ? 'border border-yellow-500 text-yellow-500 hover:bg-yellow-100'
-        : 'text-white bg-yellow-500 hover:bg-yellow-700'
-    } focus:ring-yellow-500`,
+        ? 'border border-yellow-600 text-yellow-600 hover:bg-yellow-100'
+        : 'text-white bg-yellow-600 hover:bg-yellow-700'
+    } focus:ring-yellow-600`,
     primary: `${
       props.outlined
-        ? 'border border-primary-500 text-primary-500 hover:bg-primary-100'
-        : 'text-white bg-primary-500 hover:bg-primary-700'
-    } focus:ring-primary-500`,
+        ? 'border border-primary-600 text-primary-600 hover:bg-primary-100'
+        : 'text-white bg-primary-600 hover:bg-primary-700'
+    } focus:ring-primary-600`,
     secondary: `${
       props.outlined
-        ? 'border border-secondary-500 text-secondary-500 hover:bg-secondary-100'
-        : 'text-gray-500 bg-secondary-500 hover:bg-secondary-700'
-    } focus:ring-secondary-500`,
+        ? 'border border-secondary-600 text-secondary-600 hover:bg-secondary-100'
+        : 'text-gray-600 bg-secondary-600 hover:bg-secondary-700'
+    } focus:ring-secondary-600`,
     danger: `${
       props.outlined
-        ? 'border border-danger-500 text-danger-500 hover:bg-danger-100'
-        : 'text-white bg-danger-500 hover:bg-danger-700'
-    } focus:ring-danger-500`,
-    white: `bg-transparent text-gray-500 hover:bg-gray-100`,
+        ? 'border border-danger-600 text-danger-600 hover:bg-danger-100'
+        : 'text-white bg-danger-600 hover:bg-danger-700'
+    } focus:ring-danger-600`,
+    white: `bg-transparent text-gray-600 hover:bg-gray-100`,
   };
 
   const sizes = {
