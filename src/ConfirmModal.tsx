@@ -1,5 +1,6 @@
-import { Button, Modal } from '.';
 import React, { useEffect, useState } from 'react';
+import Modal from './Modal';
+import Button from './Button';
 
 export interface ConfirmModalProps {
   title?: string;
