@@ -22,8 +22,9 @@ Default.args = {
   input: {
     id: 'desc',
   },
-  helpText: "",
+  helpText: '',
 };
+
 Error.args = {
   label: 'Description',
   errors: ['Something went wrong'],

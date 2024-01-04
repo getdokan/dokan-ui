@@ -1,4 +1,6 @@
 import React, { ChangeEventHandler } from 'react';
+import { twMerge } from 'tailwind-merge';
+import ErrorIcon from './ErrorIcon';
 
 interface Option {
   label: string;
@@ -41,13 +43,11 @@ const SimpleSelect = (props: SimpleSelectProps) => {
     return sluggable;
   }
 
-  const validClasses = `mt-1 block w-full ps-3 border border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 rounded`;
-  const errorClasses = `mt-1 block w-full ps-3 border border-red-300 focus:outline-none focus:ring-danger-500 focus:border-danger-500 text-red-300 rounded`;
   return (
     <>
       <label
         htmlFor={`${slugify(props.label)}-simple-select`}
-        className="block text-sm font-medium text-gray-700 hover:cursor-pointer"
+        className="cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block"
       >
         {props.label}
       </label>
@@ -56,9 +56,12 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         onChange={props.onChange}
         id={`${slugify(props.label)}-simple-select`}
         name={`${slugify(props.label)}-simple-select`}
-        className={`${props.errors ? errorClasses : validClasses} ${
-          props.className
-        }`}
+        className={twMerge(
+          'h-10 w-full rounded border-0 text-sm ring-1 ring-[#E9E9E9] ps-3 focus:outline-none focus:ring-primary-500',
+          props.errors &&
+            props.errors.length > 0 &&
+            'ring-red-500 focus:ring-red-500'
+        )}
         style={{ fontSize: '14px' }}
         disabled={props.disabled}
       >
@@ -104,15 +107,15 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         })}
       </select>
       {props.errors && (
-        <p
-          className="text-xs text-red-600"
-          id={`${slugify(props.label)}-simple-select-error`}
-        >
-          {props.errors.join(', ')}
+        <p className={'mt-1.5 flex items-center space-x-1.5'}>
+          <ErrorIcon />{' '}
+          <span className={'text-xs text-[#393939]'}>
+            {props?.errors?.join(', ')}
+          </span>
         </p>
       )}
       {props.helpText && (
-        <span className="text-xs text-gray-600">{props.helpText}</span>
+        <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>
       )}
     </>
   );
