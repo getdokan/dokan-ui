@@ -43,8 +43,6 @@ const SimpleSelect = (props: SimpleSelectProps) => {
     return sluggable;
   }
 
-  const validClasses = `mt-1 block w-full ps-3 border border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 rounded`;
-  const errorClasses = `mt-1 block w-full ps-3 border border-red-300 focus:outline-none focus:ring-danger-500 focus:border-danger-500 text-red-300 rounded`;
   return (
     <>
       <label
