@@ -10,13 +10,14 @@ import Select, {
   Props,
   ValueContainerProps,
 } from 'react-select';
+import ErrorIcon from './ErrorIcon';
 
 export type SearchableSelectProps<
   Option,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>
 > = Props<Option, IsMulti, Group> & {
-  label?: string;
+  label?: React.ReactNode;
   id?: string;
   className?: string;
   errors?: string[];
@@ -30,8 +31,8 @@ const SearchableSelect = <
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>
 >(
-    props: SearchableSelectProps<Option, IsMulti, Group>
-  ) => {
+  props: SearchableSelectProps<Option, IsMulti, Group>
+) => {
   const id = props.id || Math.random().toString();
 
   const ValueContainer = ({
@@ -67,10 +68,15 @@ const SearchableSelect = <
 
   return (
     <div className={'react-select'}>
-      {props.label && (
-        <label htmlFor={id} className="block text-sm font-medium">
+      {typeof props.label === 'string' ? (
+        <label
+          htmlFor={id}
+          className="inline-block mb-2 cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
           {props.label}
         </label>
+      ) : (
+        props.label
       )}
       <Select
         ref={props.ref}
@@ -90,10 +96,7 @@ const SearchableSelect = <
           ...theme,
           colors: {
             ...theme.colors,
-            primary:
-              props.errors && props.errors.length > 0
-                ? 'var(--danger-500)'
-                : 'var(--primary-500)',
+            primary: 'var(--primary-500)',
             primary75: 'var(--primary-200)',
             primary50: 'var(--primary-100)',
             primary25: 'var(--primary-50)',
@@ -119,10 +122,11 @@ const SearchableSelect = <
         styles={{
           control: (base) => ({
             ...base,
+            height: '40px',
             border:
               props.errors && props.errors.length > 0
                 ? '1px solid var(--danger-500)'
-                : base.border,
+                : '1px solid #E9E9E9',
             ':hover': {
               border:
                 props.errors && props.errors.length > 0
@@ -153,12 +157,15 @@ const SearchableSelect = <
         }}
       />
       {props.errors && props.errors.length > 0 && (
-        <p className="text-xs text-red-600" id={`${id}-error`}>
-          {props.errors.join(', ')}
+        <p className={'mt-1.5 flex items-center space-x-1.5'}>
+          <ErrorIcon />{' '}
+          <span className={'text-xs text-[#393939]'}>
+            {props.errors.join(', ')}
+          </span>
         </p>
       )}
       {props.helpText && (
-        <span className="text-xs text-gray-600">{props.helpText}</span>
+        <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>
       )}
     </div>
   );

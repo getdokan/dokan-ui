@@ -1,15 +1,22 @@
-import React, { ChangeEventHandler } from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
+import React, { ChangeEventHandler, TextareaHTMLAttributes } from 'react';
 import classNames from 'classnames';
+import ErrorIcon from './ErrorIcon';
 
 export interface TextAreaProps {
   className?: string;
-  label?: string;
+  label?: React.ReactNode;
   errors?: string[];
   value?: string;
-  input: {
-    [key: string]: any;
-  };
+  input: Omit<
+    TextareaHTMLAttributes<HTMLTextAreaElement>,
+    | 'onChange'
+    | 'value'
+    | 'className'
+    | 'disabled'
+    | 'value'
+    | 'aria-invalid'
+    | 'aria-describedby'
+  >;
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
   helpText?: string;
   disabled?: boolean;
@@ -25,50 +32,41 @@ const TextArea: React.FC<TextAreaProps> = ({
   helpText,
   disabled,
 }) => {
-  const validClasses =
-    'appearance-none block w-full px-3 py-2 border border-gray-300 rounded shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm';
-  const errorClasses =
-    'block w-full pe-10 border border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-danger-500 focus:border-danger-500 sm:text-sm rounded';
   return (
     <>
-      {label && (
+      {typeof label === 'string' ? (
         <label
           htmlFor={input.id}
-          className={'block text-sm font-medium text-gray-700'}
+          className={
+            'cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block'
+          }
         >
           {label}
         </label>
+      ) : (
+        label
       )}
-      <div className="relative">
-        <textarea
-          {...input}
-          id={input.id}
-          className={classNames(
-            errors?.length ? errorClasses : validClasses,
-            className,
-            disabled && 'disabled'
-          )}
-          onChange={onChange}
-          aria-invalid={errors ? 'true' : 'false'}
-          aria-describedby={`${input.id}-error`}
-          defaultValue={value}
-          disabled={disabled}
-        ></textarea>
-        {errors && (
-          <div className="absolute bottom-1 right-1 pe-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon
-              className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400"
-              aria-hidden="true"
-            />
-          </div>
+      <textarea
+        {...input}
+        className={classNames(
+          'w-full rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+          errors && errors.length > 0 && 'ring-red-500 focus:ring-red-500',
+          className,
+          disabled && 'disabled'
         )}
-      </div>
-      {errors && (
-        <p className="text-xs text-red-600" id={`${input.id}-error`}>
-          {errors.join(', ')}
+        onChange={onChange}
+        aria-invalid={errors ? 'true' : 'false'}
+        aria-describedby={`${input.id}-error`}
+        value={value}
+        disabled={disabled}
+      ></textarea>
+      {errors && errors.length > 0 && (
+        <p className={'mt-1.5 flex items-center space-x-1.5'}>
+          <ErrorIcon />{' '}
+          <span className={'text-xs text-[#393939]'}>{errors.join(', ')}</span>
         </p>
       )}
-      {helpText && <span className="text-xs text-gray-600">{helpText}</span>}
+      {helpText && <p className="mt-1.5 text-xs text-gray-500">{helpText}</p>}
     </>
   );
 };
