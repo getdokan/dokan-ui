@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import SearchableSelect from '../src/SearchableSelect';
-import SimpleInput from '../src/SimpleInput';
 
 const meta: Meta = {
   title: 'SearchableSelect',
@@ -12,22 +11,20 @@ export default meta;
 
 const Template: Story = (args) => {
   return (
-    <div className="flex gap-6">
-      <div>
-        <SimpleInput label="Countries" input={{}} />
-      </div>
+    <>
       <div>
         <SearchableSelect {...args} />
       </div>
-    </div>
+    </>
   );
 };
 
 export const Default = Template.bind({});
 export const Multiple = Template.bind({});
+export const Error = Template.bind({});
 
 Default.args = {
-  className: 'mt-2',
+  className: '',
   options: [
     { label: 'Bangladesh', value: 'BD' },
     { label: 'India', value: 'IN' },
@@ -38,12 +35,12 @@ Default.args = {
   onChange: (item) => {
     console.log(item);
   },
-  helpText: '',
+  helpText: 'This is a help text example',
   errors: [],
 };
 
 Multiple.args = {
-  className: 'mt-2',
+  className: '',
   options: [
     { label: 'Bangladesh', value: 'BD' },
     { label: 'India', value: 'IN' },
@@ -57,4 +54,21 @@ Multiple.args = {
   },
   helpText: '',
   errors: [],
+};
+
+Error.args = {
+  className: '',
+  options: [
+    { label: 'Bangladesh', value: 'BD' },
+    { label: 'India', value: 'IN' },
+    { label: 'Pakistan', value: 'PK' },
+    { label: 'Sri Lanka', value: 'SL' },
+  ],
+  label: 'Countries',
+  isMulti: true,
+  onChange: (items) => {
+    console.log(items);
+  },
+  helpText: '',
+  errors: ['this is error text'],
 };

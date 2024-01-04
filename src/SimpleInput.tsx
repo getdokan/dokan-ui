@@ -5,9 +5,9 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import { CleaveOptions } from 'cleave.js/options';
 import { twMerge } from 'tailwind-merge';
+import ErrorIcon from './ErrorIcon';
 
 export interface SimpleInputProps {
   children?: React.ReactNode;
@@ -48,29 +48,13 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     return props.errors && props.errors.length > 0;
   };
 
-  const validClasses = `${
-    props.icon && 'pl-10'
-  } appearance-none block w-full pl-3 ${
-    props.counter ? 'pr-20' : 'pr-3'
-  } py-2 border border-gray-300 rounded ${
-    props.addOnLeft && `rounded-l-none`
-  } ${
-    props.addOnRight && `rounded-r-none`
-  } shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`;
-
-  const errorClasses = `${props.icon && 'pl-10'} block w-full ${
-    props.counter ? 'pr-24' : 'pr-10'
-  }  ${props.addOnLeft && `rounded-l-none`} ${
-    props.addOnRight && `rounded-r-none`
-  } py-2 border border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
-
   return (
     <>
       {typeof props.label === 'string' ? (
         <label
           htmlFor={props.input.id}
           className={
-            'block text-sm cursor-pointer font-medium text-gray-700 mb-1'
+            'cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block'
           }
         >
           {props.label}
@@ -78,9 +62,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
       ) : (
         props.label
       )}
-      <div className="relative flex">
+      <div className="relative">
         {props.addOnLeft && (
-          <span className="inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+          <span className="inline-flex items-center bg-gray-50 px-3 text-gray-500 sm:text-sm rouned-bl absolute left-0 top-0 h-full rounded-bl rounded-tl">
             {props.addOnLeft}
           </span>
         )}
@@ -102,9 +86,11 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           id={props.input.id}
           defaultValue={props.defaultValue}
           className={twMerge(
-            hasErrors() ? errorClasses : validClasses,
+            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+            hasErrors() && 'ring-red-500 focus:ring-red-500',
             props.disabled && 'disabled',
-            props.icon && 'pl-10',
+            props.icon && 'pl-11',
+            props.addOnLeft && 'pl-11',
             props.className
           )}
           onChange={(e) => {
@@ -122,38 +108,29 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           aria-describedby={`${props.input.id}-error`}
         />
         {props.counter && (
-          <div
-            className={`absolute inset-y-0 right-0 flex items-center ${
-              hasErrors() ? 'pr-8' : 'pr-3'
-            }`}
-          >
+          <div className={`absolute inset-y-0 right-0 flex items-center pr-3`}>
             <span className="border-l-2 pl-2 text-gray-400 sm:text-sm">
               {length}/{props.input?.maxLength ?? '∞'}
             </span>
           </div>
         )}
         {props.addOnRight && (
-          <span className="-ml-px relative inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+          <span className="bg-gray-50 px-3 text-gray-500 absolute right-0 top-0 inline-flex h-full items-center rounded-br rounded-tr sm:text-sm">
             {props.addOnRight}
           </span>
-        )}
-        {hasErrors() && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon
-              className="h-5 w-5 text-red-400 sm:h-4 sm:w-4"
-              aria-hidden="true"
-            />
-          </div>
         )}
         {props.children}
       </div>
       {hasErrors() && (
-        <p className="text-xs text-red-600" id={`${props.input.id}-error`}>
-          {props.errors?.join(', ')}
+        <p className={'mt-1.5 flex items-center space-x-1.5'}>
+          <ErrorIcon />{' '}
+          <span className={'text-xs text-[#393939]'}>
+            {props?.errors?.join(', ')}
+          </span>
         </p>
       )}
       {props.helpText && (
-        <span className="text-xs text-gray-600">{props.helpText}</span>
+        <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>
       )}
     </>
   );

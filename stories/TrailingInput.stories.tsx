@@ -11,7 +11,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story<TrailingInputProps> = (args) => (
-  <TrailingInput className="mt-1" {...args} />
+  <TrailingInput {...args} />
 );
 
 export const TrailingInputDefault = Template.bind({});
