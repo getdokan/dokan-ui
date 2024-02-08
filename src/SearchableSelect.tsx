@@ -3,6 +3,7 @@ import React from 'react';
 import { HiChevronDown } from 'react-icons/hi';
 import Select, {
   components,
+  CSSObjectWithLabel,
   DropdownIndicatorProps,
   GroupBase,
   InputProps,
@@ -14,7 +15,7 @@ import Select, {
 export type SearchableSelectProps<
   Option,
   IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>
+  Group extends GroupBase<Option> = GroupBase<Option>,
 > = Props<Option, IsMulti, Group> & {
   label?: string;
   id?: string;
@@ -28,7 +29,7 @@ export type SearchableSelectProps<
 const SearchableSelect = <
   Option,
   IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>
+  Group extends GroupBase<Option> = GroupBase<Option>,
 >(
   props: SearchableSelectProps<Option, IsMulti, Group>
 ) => {
@@ -118,39 +119,44 @@ const SearchableSelect = <
           IndicatorSeparator,
         }}
         styles={{
-          control: (base) => ({
-            ...base,
-            border:
-              props.errors && props.errors.length > 0
-                ? '1px solid var(--danger-500)'
-                : base.border,
-            ':hover': {
+          control: (base) =>
+            ({
+              ...base,
               border:
                 props.errors && props.errors.length > 0
                   ? '1px solid var(--danger-500)'
                   : base.border,
-            },
-          }),
-          option: (base) => ({
-            ...base,
-            fontSize: '0.875rem',
-          }),
-          multiValue: (base) => ({
-            ...base,
-            background: 'var(--primary-50)',
-            borderRadius: '0.25rem',
-          }),
-          multiValueLabel: (base) => ({
-            ...base,
-            color: 'var(--primary-600)',
-          }),
-          multiValueRemove: (base) => ({
-            ...base,
-            color: 'var(--primary-600)',
-            ':hover': {
-              background: 'var(--primary-100)',
-            },
-          }),
+              ':hover': {
+                border:
+                  props.errors && props.errors.length > 0
+                    ? '1px solid var(--danger-500)'
+                    : base.border,
+              },
+            }) as CSSObjectWithLabel,
+          option: (base) =>
+            ({
+              ...base,
+              fontSize: '0.875rem',
+            }) as CSSObjectWithLabel,
+          multiValue: (base) =>
+            ({
+              ...base,
+              background: 'var(--primary-50)',
+              borderRadius: '0.25rem',
+            }) as CSSObjectWithLabel,
+          multiValueLabel: (base) =>
+            ({
+              ...base,
+              color: 'var(--primary-600)',
+            }) as CSSObjectWithLabel,
+          multiValueRemove: (base) =>
+            ({
+              ...base,
+              color: 'var(--primary-600)',
+              ':hover': {
+                background: 'var(--primary-100)',
+              },
+            }) as CSSObjectWithLabel,
         }}
       />
       {props.errors && props.errors.length > 0 && (
