@@ -6,6 +6,8 @@ import {
   HiX,
   HiXCircle,
 } from 'react-icons/hi';
+import { twMerge } from 'tailwind-merge';
+
 export interface SimpleAlertProps {
   children?: React.ReactNode;
   className?: string;
@@ -127,7 +129,12 @@ const dismissClasses = {
 const SimpleAlert: FC<SimpleAlertProps> = (props) => {
   return (
     <>
-      <div className={`rounded-md ${bgColors[props.color]} p-4`}>
+      <div
+        className={twMerge(
+          `rounded-md ${bgColors[props.color]} p-4`,
+          props.className
+        )}
+      >
         <div className={`flex ${props.centered ? 'justify-center' : ''}`}>
           <div className="flex-shrink-0">
             {props.type == 'success' && (

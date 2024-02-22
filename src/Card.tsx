@@ -115,10 +115,7 @@ type CardFooterProps = {
 const Footer = ({ className, children, ...rest }: CardFooterProps) => {
   return (
     <div
-      className={twMerge(
-        'border-t px-6 py-4 last:rounded-b dark:border-gray-700',
-        className
-      )}
+      className={twMerge('border-t px-6 py-4 last:rounded-b', className)}
       {...rest}
     >
       {children}
