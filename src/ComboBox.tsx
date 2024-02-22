@@ -11,7 +11,7 @@ export interface ComboBoxProps<TItem> {
   buttonClasses?: string;
   optionClasses?: string;
   optionsClasses?: string;
-  multiple?: false;
+  multiple?: boolean;
   vertical?: boolean;
   label?: string;
   valueFrom: keyof TItem;

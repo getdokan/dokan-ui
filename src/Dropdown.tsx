@@ -12,6 +12,7 @@ import {
   useLayer,
 } from 'react-laag';
 import { PlacementType } from 'react-laag/dist/PlacementType';
+import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 type DropdownContextType = {
@@ -24,9 +25,8 @@ type DropdownContextType = {
   showArrow?: boolean;
 };
 
-const DropDownContext = createContext<DropdownContextType | undefined>(
-  undefined
-);
+const DropDownContext =
+  createContext<DropdownContextType | undefined>(undefined);
 
 export type DropdownProps =
   | {
@@ -180,15 +180,15 @@ type DropdownLinkProps = {
 
 const DropdownLink = ({ href, children, className }: DropdownLinkProps) => {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className={twMerge(
         'flex w-full items-center px-4 py-2 text-left text-sm leading-5 text-gray-800 transition duration-150 ease-in-out first:rounded-t last:rounded-b hover:bg-gray-100 focus:outline-none',
         className
       )}
     >
       {children}
-    </a>
+    </Link>
   );
 };
 
