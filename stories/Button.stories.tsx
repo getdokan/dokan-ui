@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { FiChevronDown, FiDownload, FiMenu } from 'react-icons/fi';
 import Button, { ButtonProps } from '../src/Button';
-import { ArrowDown, ChevronDown, Download, Menu } from 'react-feather';
 const meta: Meta = {
   title: 'Button',
   component: Button,
@@ -105,7 +105,7 @@ Outlined.args = {
 Icon.args = {
   color: 'primary',
   label: 'Download',
-  icon: Download,
+  icon: FiDownload,
 };
 
 Disabled.args = {
@@ -120,7 +120,7 @@ Loading.args = {
 };
 
 Block.args = {
-  icon: Download,
+  icon: FiDownload,
   block: true,
   color: 'primary',
   label: 'Download',
@@ -130,9 +130,9 @@ WithChildren.args = {
   color: 'primary',
   children: (
     <p className="inline-flex items-center gap-2">
-      <Menu size={16} />
+      <FiMenu size={16} />
       <span className="text-sm">Button</span>
-      <ChevronDown size={16} />
+      <FiChevronDown size={16} />
     </p>
   ),
 };
