@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { HiEye, HiLockClosed } from 'react-icons/hi';
 import TrailingInput, { TrailingInputProps } from '../src/TrailingInput';
-import { EyeIcon, LockClosedIcon } from '@heroicons/react/solid';
 
 const meta: Meta = {
   title: 'Input',
@@ -20,7 +20,7 @@ export const TrailingInputText = Template.bind({});
 export const TrailingInputError = Template.bind({});
 
 TrailingInputDefault.args = {
-  btnIcon: EyeIcon,
+  btnIcon: HiEye,
   label: 'Password',
   input: {
     placeholder: '••••••••',
@@ -31,11 +31,10 @@ TrailingInputDefault.args = {
     required: true,
   },
   helpText: '',
-  errors: null,
 };
 
 TrailingInputIcon.args = {
-  icon: LockClosedIcon,
+  icon: HiLockClosed,
   ...TrailingInputDefault.args,
 };
 

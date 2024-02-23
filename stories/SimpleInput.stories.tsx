@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { HiMail } from 'react-icons/hi';
 import SimpleInput, { SimpleInputProps } from '../src/SimpleInput';
-import { MailIcon } from '@heroicons/react/solid';
 
 const meta: Meta = {
   title: 'Input',
@@ -63,7 +63,7 @@ SimpleRightAddon.args = {
 };
 
 SimpleIcon.args = {
-  icon: MailIcon,
+  icon: HiMail,
   label: 'Email Address',
   className: '',
   input: {

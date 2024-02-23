@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import React, { Fragment, ReactNode } from 'react';
+import { HiX } from 'react-icons/hi';
 
 export type DrawerProps = {
   direction?: 'ltr' | 'rtl';
@@ -71,7 +71,7 @@ const Drawer = ({
                     onClick={onClose}
                   >
                     <span className="sr-only">Close sidebar</span>
-                    <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                    <HiX className="h-6 w-6 text-white" aria-hidden="true" />
                   </button>
                 </div>
               </Transition.Child>

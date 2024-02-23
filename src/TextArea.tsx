@@ -13,7 +13,6 @@ export interface TextAreaProps {
     | 'value'
     | 'className'
     | 'disabled'
-    | 'value'
     | 'aria-invalid'
     | 'aria-describedby'
   >;

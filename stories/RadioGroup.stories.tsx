@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
+import { FiBox, FiTruck } from 'react-icons/fi';
 import RadioGroup, { RadioGroupProps } from '../src/RadioGroup';
-import { Box, Truck } from 'react-feather';
 
 const meta: Meta = {
   title: 'RadioGroup',
@@ -34,13 +34,13 @@ Default.args = {
       value: 'custom',
       description:
         'Manually calculate the shipping rates and ship depending on your needs.',
-      icon: <Box />,
+      icon: <FiBox />,
     },
     {
       label: 'Carrier Based Shipping',
       value: 'carrier',
       description: 'Send your delivery through third-part delivery provider.',
-      icon: <Truck />,
+      icon: <FiTruck />,
     },
   ],
 };

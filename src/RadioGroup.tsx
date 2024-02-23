@@ -1,6 +1,6 @@
-import { CheckCircleIcon } from '@heroicons/react/solid';
 import React, { useEffect, useState } from 'react';
-import { Circle } from 'react-feather';
+import { FiCircle } from 'react-icons/fi';
+import { HiCheckCircle } from 'react-icons/hi';
 
 interface Option {
   icon?: React.ReactElement;
@@ -89,10 +89,10 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
             </div>
             <section className="flex-none">
               {!isSelected(item.value) && (
-                <Circle className="h-5 w-5 text-gray-400"></Circle>
+                <FiCircle className="h-5 w-5 text-gray-400"></FiCircle>
               )}
               {isSelected(item.value) && (
-                <CheckCircleIcon className="h-5 w-5 text-primary-500" />
+                <HiCheckCircle className="h-5 w-5 text-primary-500" />
               )}
             </section>
           </section>
