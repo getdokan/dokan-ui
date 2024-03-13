@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { CleaveOptions } from 'cleave.js/options';
 import { twMerge } from 'tailwind-merge';
 import ErrorIcon from './ErrorIcon';
 
@@ -19,13 +18,12 @@ export interface SimpleInputProps {
   icon?: any;
   label?: React.ReactNode;
   disabled?: boolean;
-  helpText?: string;
+  helpText?: React.ReactNode;
   errors?: string[];
   counter?: boolean;
   input: {
     [key: string]: any;
   };
-  maskRule?: CleaveOptions;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
