@@ -1,5 +1,7 @@
 import React, { FC, MouseEventHandler } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { CgSpinner } from 'react-icons/cg';
+
 export interface ButtonProps {
   children?: React.ReactNode;
   className?: string;
@@ -70,6 +72,7 @@ const Button: FC<ButtonProps> = (props) => {
     danger: `text-danger-600`,
     white: `text-white-600`,
   };
+
   const colors = {
     amber: `${
       props.outlined
@@ -181,6 +184,12 @@ const Button: FC<ButtonProps> = (props) => {
     sm: 'px-4 py-1.5 text-xs',
   };
 
+  const spinnerSize = {
+    lg: 'h-5 w-5',
+    md: 'h-4 w-4',
+    sm: 'h-3 w-3',
+  };
+
   if (props.link) {
     return (
       <a
@@ -209,32 +218,17 @@ const Button: FC<ButtonProps> = (props) => {
         disabled={props.disabled || false}
         onClick={props.onClick as MouseEventHandler<HTMLButtonElement>}
         className={twMerge(
+          'inline-flex items-center gap-2 justify-center border rounded shadow-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-300',
           props.block ? 'w-full' : '',
           props.disabled ? 'opacity-50 cursor-not-allowed' : '',
-          'inline-flex gap-2 justify-center border rounded shadow-sm font-medium',
           colors[props.color],
           props.size ? sizes[props.size] : sizes['md'],
-          'focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-300',
           props.className || ''
         )}
       >
         {props.children || (
           <>
-            {props.loading && (
-              <svg
-                className="animate-spin h-5 w-5 text-white mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-            )}
+            {props.loading && <CgSpinner className={`animate-spin ${spinnerSize[props.size || 'md']}`} />}
             {props.icon && <Icon className="w-5 h-5" />}
             {props.label && (
               <span className={`${props.iconOnMobile ? 'hidden sm:inline-block' : ''}`}>{props.label}</span>
