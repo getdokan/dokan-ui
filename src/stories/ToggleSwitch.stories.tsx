@@ -1,6 +1,5 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
 import ToggleSwitch from '@/components/ToggleSwitch';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ToggleSwitch> = {
   title: 'ToggleSwitch',

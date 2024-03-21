@@ -1,6 +1,5 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
 import TaggableSelect from '@/components/TaggableSelect';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof TaggableSelect> = {
   title: 'TaggableSelect',
