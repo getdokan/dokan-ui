@@ -20,10 +20,10 @@ export const Blocks = (args: MaskedInputProps) => <MaskedInput {...args} />;
 export const Delimiter = (args: MaskedInputProps) => <MaskedInput {...args} />;
 export const Delimiters = (args: MaskedInputProps) => <MaskedInput {...args} />;
 export const Prefix = (args: MaskedInputProps) => <MaskedInput {...args} />;
-export const MaskedLeftAddon = (args: MaskedInputProps) => <MaskedInput {...args} />;
-export const MaskedRightAddon = (args: MaskedInputProps) => <MaskedInput {...args} />;
-export const MaskedWithIcon = (args: MaskedInputProps) => <MaskedInput {...args} />;
-export const MaskedError = (args: MaskedInputProps) => <MaskedInput {...args} />;
+export const LeftAddon = (args: MaskedInputProps) => <MaskedInput {...args} />;
+export const RightAddon = (args: MaskedInputProps) => <MaskedInput {...args} />;
+export const WithIcon = (args: MaskedInputProps) => <MaskedInput {...args} />;
+export const WithError = (args: MaskedInputProps) => <MaskedInput {...args} />;
 
 CreditCard.args = {
   label: 'Card',
@@ -182,8 +182,7 @@ Prefix.args = {
     uppercase: true,
   },
 };
-
-MaskedLeftAddon.args = {
+LeftAddon.args = {
   label: 'Left Addon',
   input: {
     id: 'maskedleftaddon',
@@ -198,7 +197,7 @@ MaskedLeftAddon.args = {
   addOnLeft: '$',
 };
 
-MaskedRightAddon.args = {
+RightAddon.args = {
   label: 'Right Addon',
   input: {
     id: 'maskedrightaddon',
@@ -213,7 +212,7 @@ MaskedRightAddon.args = {
   addOnRight: '$',
 };
 
-MaskedWithIcon.args = {
+WithIcon.args = {
   label: 'Card',
   icon: HiCreditCard,
   maskRule: { creditCard: true },
@@ -226,7 +225,7 @@ MaskedWithIcon.args = {
   },
 };
 
-MaskedError.args = {
+WithError.args = {
   label: 'Phone',
   icon: HiPhone,
   errors: ['Phone number field is required'],

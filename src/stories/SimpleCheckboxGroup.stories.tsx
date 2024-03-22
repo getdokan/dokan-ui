@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 const meta: Meta<typeof SimpleCheckboxGroup> = {
-  title: 'Checkbox',
+  title: 'SimpleCheckboxGroup',
   component: SimpleCheckboxGroup,
 };
 

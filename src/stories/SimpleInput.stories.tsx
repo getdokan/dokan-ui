@@ -3,24 +3,24 @@ import { Meta } from '@storybook/react';
 import { HiMail } from 'react-icons/hi';
 
 const meta: Meta<typeof SimpleInput> = {
-  title: 'Input',
+  title: 'SimpleInput',
   component: SimpleInput,
 };
 
 export default meta;
 
-export const SimpleDefault = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleLeftAddon = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleRightAddon = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleIcon = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleError = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleCounter = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleCounterWithDefault = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleCounterWithValue = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleIconWithCounter = (args: SimpleInputProps) => <SimpleInput {...args} />;
-export const SimpleErrorWithCounter = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const Default = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const LeftAddon = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const RightAddon = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const Icon = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const Error = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const Counter = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const CounterWithDefault = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const CounterWithValue = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const IconWithCounter = (args: SimpleInputProps) => <SimpleInput {...args} />;
+export const ErrorWithCounter = (args: SimpleInputProps) => <SimpleInput {...args} />;
 
-SimpleDefault.args = {
+Default.args = {
   label: 'Email Address',
   input: {
     id: 'login-email',
@@ -32,7 +32,7 @@ SimpleDefault.args = {
   },
 };
 
-SimpleLeftAddon.args = {
+LeftAddon.args = {
   addOnLeft: 'http://',
   label: 'Web Address',
   className: 'pl-[68px]',
@@ -45,7 +45,7 @@ SimpleLeftAddon.args = {
     required: true,
   },
 };
-SimpleRightAddon.args = {
+RightAddon.args = {
   addOnRight: '.dokan.cloud',
   className: 'pr-[110px]',
   label: 'Store Name',
@@ -59,7 +59,7 @@ SimpleRightAddon.args = {
   },
 };
 
-SimpleIcon.args = {
+Icon.args = {
   icon: HiMail,
   label: 'Email Address',
   className: '',
@@ -73,7 +73,7 @@ SimpleIcon.args = {
   },
 };
 
-SimpleError.args = {
+Error.args = {
   // icon: MailIcon,
   addOnLeft: '@',
   errors: ['Email address field is required'],
@@ -88,49 +88,49 @@ SimpleError.args = {
   },
 };
 
-SimpleCounter.args = {
-  ...SimpleDefault.args,
+Counter.args = {
+  ...Default.args,
   counter: true,
   input: {
-    ...SimpleDefault.args.input,
+    ...Default.args.input,
     maxLength: 64,
   },
 };
 
-SimpleCounterWithDefault.args = {
-  ...SimpleDefault.args,
+CounterWithDefault.args = {
+  ...Default.args,
   defaultValue: 'example default value',
   counter: true,
   input: {
-    ...SimpleDefault.args.input,
+    ...Default.args.input,
     maxLength: 64,
   },
 };
 
-SimpleCounterWithValue.args = {
-  ...SimpleDefault.args,
+CounterWithValue.args = {
+  ...Default.args,
   defaultValue: 'example controlled value',
   counter: true,
   input: {
-    ...SimpleDefault.args.input,
+    ...Default.args.input,
     maxLength: 64,
   },
 };
 
-SimpleIconWithCounter.args = {
-  ...SimpleIcon.args,
+IconWithCounter.args = {
+  ...Icon.args,
   counter: true,
   input: {
-    ...SimpleIcon.args.input,
+    ...Icon.args.input,
     maxLength: 64,
   },
 };
 
-SimpleErrorWithCounter.args = {
-  ...SimpleError.args,
+ErrorWithCounter.args = {
+  ...Error.args,
   counter: true,
   input: {
-    ...SimpleError.args.input,
+    ...Error.args.input,
     maxLength: 64,
   },
 };

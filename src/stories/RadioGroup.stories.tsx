@@ -41,38 +41,3 @@ export const Default: Story = {
     );
   },
 };
-
-// const Template: Story<RadioGroupProps> = (args) => {
-//   const [selected, setSelected] = useState('');
-//   return (
-//     <>
-//       <RadioGroup
-//         {...args}
-//         onChange={(selectedValue: string) => setSelected(selectedValue)}
-//       ></RadioGroup>
-//       <p className="text-gray-600 text-sm">Current Value: {selected}</p>
-//     </>
-//   );
-// };
-
-// export const Default = Template.bind({});
-
-// Default.args = {
-//   allowDeselect: true,
-//   className: 'w-80',
-//   options: [
-//     {
-//       label: 'Custom Shipping',
-//       value: 'custom',
-//       description:
-//         'Manually calculate the shipping rates and ship depending on your needs.',
-//       icon: <FiBox />,
-//     },
-//     {
-//       label: 'Carrier Based Shipping',
-//       value: 'carrier',
-//       description: 'Send your delivery through third-part delivery provider.',
-//       icon: <FiTruck />,
-//     },
-//   ],
-// };

@@ -22,7 +22,7 @@ export const Default: Story = {
   render: (args) => <TextArea {...args} />,
 };
 
-export const Error: Story = {
+export const WithError: Story = {
   args: {
     label: 'Description',
     errors: ['Something went wrong'],

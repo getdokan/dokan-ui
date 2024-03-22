@@ -10,7 +10,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const SimpleRadioGroup: Story = {
+export const Default: Story = {
   args: {
     name: 'tax-class-selection',
     options: [
@@ -22,7 +22,7 @@ export const SimpleRadioGroup: Story = {
   render: (args) => <SimpleRadio {...args} />,
 };
 
-export const SimpleRadioGroupWithLabel: Story = {
+export const WithLabel: Story = {
   args: {
     label: 'Assign another tax class',
     helpText: 'You should assign another class before deleting a class.',
@@ -36,7 +36,7 @@ export const SimpleRadioGroupWithLabel: Story = {
   render: (args) => <SimpleRadio {...args} />,
 };
 
-export const SimpleRadioGroupWithLabelAndSelectedBackground: Story = {
+export const WithLabelAndSelectedBackground: Story = {
   args: {
     label: 'Assign another tax class',
     helpText: 'You should assign another class before deleting a class.',
@@ -51,7 +51,7 @@ export const SimpleRadioGroupWithLabelAndSelectedBackground: Story = {
   render: (args) => <SimpleRadio {...args} />,
 };
 
-export const SimpleRadioGroupWithLabelAndDefault: Story = {
+export const WithLabelAndDefault: Story = {
   args: {
     label: 'Assign another tax class',
     helpText: 'You should assign another class before deleting a class.',
@@ -67,7 +67,7 @@ export const SimpleRadioGroupWithLabelAndDefault: Story = {
   render: (args) => <SimpleRadio {...args} />,
 };
 
-export const SimpleRadioGroupWithLabelAndValue: Story = {
+export const WithLabelAndValue: Story = {
   args: {
     label: 'Assign another tax class',
     helpText: 'You should assign another class before deleting a class.',
@@ -82,7 +82,7 @@ export const SimpleRadioGroupWithLabelAndValue: Story = {
   render: (args) => <SimpleRadio {...args} />,
 };
 
-export const SimpleRadioGroupWithLabelAndError: Story = {
+export const WithLabelAndError: Story = {
   args: {
     label: 'Assign another tax class',
     helpText: 'You should assign another class before deleting a class.',

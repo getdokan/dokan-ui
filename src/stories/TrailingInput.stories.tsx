@@ -11,7 +11,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const TrailingInputDefault: Story = {
+export const Default: Story = {
   args: {
     btnIcon: HiEye,
     label: 'Password',
@@ -28,10 +28,10 @@ export const TrailingInputDefault: Story = {
   render: (args) => <TrailingInput {...args} />,
 };
 
-export const TrailingInputIcon: Story = {
+export const WithIcon: Story = {
   args: {
     icon: HiLockClosed,
-    ...TrailingInputDefault.args,
+    ...Default.args,
   },
   render: (args) => <TrailingInput {...args} />,
 };
@@ -39,14 +39,14 @@ export const TrailingInputIcon: Story = {
 export const TrailingInputText: Story = {
   args: {
     btnLabel: 'See',
-    ...TrailingInputIcon.args,
+    ...WithIcon.args,
   },
   render: (args) => <TrailingInput {...args} />,
 };
 
-export const TrailingInputError: Story = {
+export const WithError: Story = {
   args: {
-    ...TrailingInputIcon.args,
+    ...WithIcon.args,
     errors: ['Password must be at least 8 characters.'],
   },
   render: (args) => <TrailingInput {...args} />,
