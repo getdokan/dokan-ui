@@ -5,9 +5,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,7 +19,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           cache: 'pnpm'
       - name: Build
-        run: pnpm install && pnpm build
+        run: yarn install && yarn build
       - name: Publish package on NPM
         run: npm publish
         env:
