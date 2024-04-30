@@ -1,6 +1,5 @@
 import TaggableSelect from '@/components/TaggableSelect';
 import { Meta, StoryObj } from '@storybook/react';
-import { SearchableSelect, SimpleInput } from '..';
 
 const meta: Meta<typeof TaggableSelect> = {
   title: 'TaggableSelect',
