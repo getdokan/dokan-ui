@@ -1,5 +1,5 @@
-import { classNames } from '@/utils';
 import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useId, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import ErrorIcon from './ErrorIcon';
 
 export interface SimpleInputProps {
@@ -38,9 +38,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     }
   }, [props.defaultValue, props.value]);
 
-  const hasErrors = () => {
-    return props.errors && props.errors.length > 0;
-  };
+  const hasErrors = props.errors && props.errors.length > 0;
 
   return (
     <>
@@ -64,7 +62,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {props.icon && (
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <Icon className={`h-5 w-5 text-gray-400 ${hasErrors() && 'text-red-400'}`} aria-hidden="true" />
+            <Icon className={`h-5 w-5 text-gray-400 ${hasErrors && 'text-red-400'}`} aria-hidden="true" />
           </div>
         )}
         <input
@@ -74,9 +72,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           value={props.value}
           id={props.input?.id ?? generatedId}
           defaultValue={props.defaultValue}
-          className={classNames(
+          className={twMerge(
             'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-2 focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
-            hasErrors() && 'ring-red-500 focus:ring-red-500',
+            hasErrors && 'ring-red-500 focus:ring-red-500',
             props.disabled && 'disabled',
             props.icon && 'pl-11',
             props.addOnLeft && 'pl-11',
@@ -93,7 +91,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           onKeyUp={props.onKeyUp}
           onBlur={props.onBlur}
           onFocus={props.onFocus}
-          aria-invalid={hasErrors() ? 'true' : 'false'}
+          aria-invalid={hasErrors ? 'true' : 'false'}
           aria-describedby={`${props.input?.id ?? generatedId}-error`}
         />
         {props.counter && (
@@ -110,7 +108,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {props.children}
       </div>
-      {hasErrors() && (
+      {hasErrors && (
         <p className={'mt-1.5 flex items-center space-x-1.5'}>
           <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props?.errors?.join(', ')}</span>
         </p>

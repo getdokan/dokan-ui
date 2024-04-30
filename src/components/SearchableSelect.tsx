@@ -31,6 +31,8 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
 ) => {
   const id = props.id || Math.random().toString();
 
+  const hasError = props.errors && props.errors.length > 0;
+
   const ValueContainer = ({ children, ...props }: ValueContainerProps<Option, IsMulti, Group>) => (
     <components.ValueContainer {...props} className="text-sm">
       {children}
@@ -101,6 +103,11 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           DropdownIndicator,
           IndicatorSeparator,
         }}
+        classNames={{
+          control: ({ isFocused }) => {
+            return hasError && isFocused ? '!ring-1 !ring-danger-500' : '';
+          },
+        }}
         styles={{
           control: (base) => ({
             ...base,
@@ -133,9 +140,9 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           }),
         }}
       />
-      {props.errors && props.errors.length > 0 && (
+      {hasError && (
         <p className={'mt-1.5 flex items-center space-x-1.5'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props.errors.join(', ')}</span>
+          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props.errors?.join(', ')}</span>
         </p>
       )}
       {props.helpText && <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>}
