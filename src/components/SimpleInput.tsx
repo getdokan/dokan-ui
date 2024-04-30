@@ -1,5 +1,5 @@
 import { classNames } from '@/utils';
-import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useState } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useId, useState } from 'react';
 import ErrorIcon from './ErrorIcon';
 
 export interface SimpleInputProps {
@@ -15,7 +15,7 @@ export interface SimpleInputProps {
   helpText?: React.ReactNode;
   errors?: string[];
   counter?: boolean;
-  input: {
+  input?: {
     [key: string]: any;
   };
   onChange?: ChangeEventHandler<HTMLInputElement>;
@@ -29,6 +29,8 @@ export interface SimpleInputProps {
 const SimpleInput: React.FC<SimpleInputProps> = (props) => {
   const [length, setLength] = useState(0);
   const Icon = props.icon;
+
+  const generatedId = useId();
 
   useEffect(() => {
     if (props.counter) {
@@ -44,7 +46,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     <>
       {typeof props.label === 'string' ? (
         <label
-          htmlFor={props.input.id}
+          htmlFor={props.input?.id ?? generatedId}
           className={
             'cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block'
           }
@@ -70,10 +72,10 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           {...props.input}
           disabled={props.disabled}
           value={props.value}
-          id={props.input.id}
+          id={props.input?.id ?? generatedId}
           defaultValue={props.defaultValue}
           className={classNames(
-            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-2 focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
             hasErrors() && 'ring-red-500 focus:ring-red-500',
             props.disabled && 'disabled',
             props.icon && 'pl-11',
@@ -92,7 +94,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           onBlur={props.onBlur}
           onFocus={props.onFocus}
           aria-invalid={hasErrors() ? 'true' : 'false'}
-          aria-describedby={`${props.input.id}-error`}
+          aria-describedby={`${props.input?.id ?? generatedId}-error`}
         />
         {props.counter && (
           <div className={`absolute inset-y-0 right-0 flex items-center pr-3`}>

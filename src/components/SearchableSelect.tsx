@@ -72,7 +72,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         ref={props.ref}
         {...props}
         isDisabled={props.disabled}
-        className={classNames('shadow-sm', props.className, props.disabled && 'border rounded')}
+        className={classNames(props.className, props.disabled && 'border rounded')}
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search'}</div>}
         theme={(theme) => ({
           ...theme,
@@ -84,8 +84,8 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
             primary25: 'var(--primary-50)',
             neutral5: 'var(--gray-100)',
             neutral10: 'var(--gray-100)',
-            neutral20: 'var(--gray-300)',
-            neutral30: 'var(--gray-300)',
+            neutral20: 'var(--gray-200)',
+            neutral30: 'var(--gray-200)',
             neutral40: 'var(--gray-400)',
             neutral50: 'var(--gray-500)',
             neutral60: 'var(--gray-600)',
@@ -104,11 +104,12 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         styles={{
           control: (base) => ({
             ...base,
-            height: '40px',
-            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : '1px solid #E9E9E9',
+            height: '41px',
+            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
               border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             },
+            borderRadius: '5px',
           }),
           option: (base) => ({
             ...base,
