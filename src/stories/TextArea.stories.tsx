@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: 'Description',
-    value: '',
+    defaultValue: '',
     input: {
       id: 'desc',
     },
@@ -25,10 +25,9 @@ export const Default: Story = {
 export const WithError: Story = {
   args: {
     label: 'Description',
-    errors: ['Something went wrong'],
+    errors: ['Description is required'],
     input: {
       id: 'desc',
-      placeholder: 'Lorem ipsum dolor sit amet',
     },
   },
   render: (args) => <TextArea {...args} />,

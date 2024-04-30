@@ -71,7 +71,7 @@ export const Error: Story = {
     label: 'Countries',
     isMulti: true,
     helpText: '',
-    errors: ['this is error text'],
+    errors: ['Country is required'],
   },
   render: (args) => {
     return (

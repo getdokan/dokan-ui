@@ -54,7 +54,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         id={`${slugify(props.label)}-simple-select`}
         name={`${slugify(props.label)}-simple-select`}
         className={classNames(
-          'h-10 w-full rounded border-0 text-sm ring-1 ring-[#E9E9E9] ps-3 focus:outline-none focus:ring-primary-500',
+          'h-10 w-full rounded border-0 text-sm ring-1 ring-[#E9E9E9] ps-3 focus:outline-none focus:ring-2 focus:ring-primary-500',
           props.errors && props.errors.length > 0 && 'ring-red-500 focus:ring-red-500'
         )}
         style={{ fontSize: '14px' }}

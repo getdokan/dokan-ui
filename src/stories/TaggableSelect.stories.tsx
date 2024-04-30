@@ -1,5 +1,6 @@
 import TaggableSelect from '@/components/TaggableSelect';
 import { Meta, StoryObj } from '@storybook/react';
+import { SearchableSelect, SimpleInput } from '..';
 
 const meta: Meta<typeof TaggableSelect> = {
   title: 'TaggableSelect',
@@ -28,5 +29,15 @@ export const Default: Story = {
     helpText: '',
     errors: [],
   },
-  render: (args) => <TaggableSelect {...args} />,
+  render: (args) => {
+    return (
+      <div className="grid grid-cols-3 gap-4">
+        <TaggableSelect {...args} />
+        <SearchableSelect label="Countries" options={args.options} />
+        <div>
+          <SimpleInput label="Countries" />
+        </div>
+      </div>
+    );
+  },
 };

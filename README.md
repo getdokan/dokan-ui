@@ -6,14 +6,19 @@
 </p>
 
 ### Installation:
-`yarn install`
+
+`pnpm install`
 
 ### Usage:
+
 ```ts
 import { Button, SimpleInput, TrailingInput, SimpleCheckbox } from 'dokan-ui';
 ```
+
 ### Watch files for changes:
-`yarn start`
+
+`pnpm start`
 
 ### Launch Storybook
-`yarn storybook`
+
+`pnpm storybook`

@@ -2,10 +2,11 @@ import React, { ChangeEventHandler, TextareaHTMLAttributes } from 'react';
 import { classNames } from '@/utils';
 import ErrorIcon from './ErrorIcon';
 
-export interface TextAreaProps {
+export type TextAreaProps = {
   className?: string;
   label?: React.ReactNode;
   errors?: string[];
+  defaultValue?: string;
   value?: string;
   input: Omit<
     TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -14,13 +15,14 @@ export interface TextAreaProps {
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
   helpText?: string;
   disabled?: boolean;
-}
+};
 
 const TextArea: React.FC<TextAreaProps> = ({
   input,
   label,
   className,
   errors,
+  defaultValue,
   value,
   onChange,
   helpText,
@@ -43,7 +45,7 @@ const TextArea: React.FC<TextAreaProps> = ({
       <textarea
         {...input}
         className={classNames(
-          'w-full rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+          'w-full rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] focus:ring-2 placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
           errors && errors.length > 0 && 'ring-red-500 focus:ring-red-500',
           className,
           disabled && 'disabled'
@@ -52,6 +54,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         aria-invalid={errors ? 'true' : 'false'}
         aria-describedby={`${input.id}-error`}
         value={value}
+        defaultValue={defaultValue}
         disabled={disabled}
       ></textarea>
       {errors && errors.length > 0 && (
