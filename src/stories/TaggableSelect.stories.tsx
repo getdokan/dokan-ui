@@ -29,15 +29,5 @@ export const Default: Story = {
     helpText: '',
     errors: [],
   },
-  render: (args) => {
-    return (
-      <div className="grid grid-cols-3 gap-4">
-        <TaggableSelect {...args} />
-        <SearchableSelect label="Countries" options={args.options} />
-        <div>
-          <SimpleInput label="Countries" />
-        </div>
-      </div>
-    );
-  },
+  render: (args) => <TaggableSelect {...args} />,
 };

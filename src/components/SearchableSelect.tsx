@@ -111,7 +111,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         styles={{
           control: (base) => ({
             ...base,
-            height: '41px',
+            height: '40px',
             border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
               border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
