@@ -10,6 +10,7 @@ export interface ToggleSwitchProps {
   name?: string;
   value?: string;
   defaultChecked?: boolean;
+  helpText?: string | ReactElement;
 }
 
 const bgClasses: Record<string, string> = {
@@ -46,27 +47,34 @@ const ToggleSwitch = ({
   name,
   value,
   defaultChecked,
+  helpText,
 }: ToggleSwitchProps) => {
   return (
-    <div className="flex items-center">
-      <Switch
-        defaultChecked={defaultChecked}
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        style={{ width: '42px', minWidth: '42px' }}
-        className={`${checked ? bgClasses[color] : 'bg-gray-200'} relative inline-flex items-center h-5 rounded-full`}
-      >
-        <span
-          style={{ height: '14px', width: '14px', minWidth: '14px' }}
-          className={`${
-            checked ? 'translate-x-6' : 'translate-x-1'
-          } inline-block transform transition ease-in-out duration-200 bg-white rounded-full`}
-        />
-      </Switch>
-      {children || (label && <p className="text-sm ms-2">{label}</p>)}
-    </div>
+    <>
+      <Switch.Group as="div" className="flex items-center">
+        <Switch
+          defaultChecked={defaultChecked}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={onChange}
+          style={{ width: '42px', minWidth: '42px' }}
+          className={`${checked ? bgClasses[color] : 'bg-gray-200'} relative inline-flex items-center h-5 rounded-full`}
+        >
+          <span
+            style={{ height: '14px', width: '14px', minWidth: '14px' }}
+            className={`${
+              checked ? 'translate-x-6' : 'translate-x-1'
+            } inline-block transform transition ease-in-out duration-200 bg-white rounded-full`}
+          />
+        </Switch>
+        {children ||
+          (label && (
+            <Switch.Label className="ms-2.5 cursor-pointer text-sm font-medium text-[#25252D]">{label}</Switch.Label>
+          ))}
+      </Switch.Group>
+      {helpText && <p className="mt-2.5 text-xs text-[#828282]">{helpText}</p>}
+    </>
   );
 };
 
