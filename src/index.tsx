@@ -35,3 +35,6 @@ export { default as GooglePlaceAutocomplete } from './components/GooglePlaceAuto
 export { default as Loader } from './components/Loader';
 export { default as MaskedInput } from './components/MaskedInput';
 export { default as ConfirmModal } from './components/ConfirmModal';
+
+// Types
+export type { OnPlaceSelectedParamType } from './components/GooglePlaceAutocomplete';

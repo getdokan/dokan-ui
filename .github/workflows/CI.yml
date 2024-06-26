@@ -11,14 +11,18 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: latest
+          run_install: false
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
       - name: Build
-        run: pnpm install && pnpm build
+        run: pnpm build
       - name: Publish package on NPM
         run: npm publish
         env:

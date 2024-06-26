@@ -2,10 +2,11 @@ import React, { ChangeEventHandler, TextareaHTMLAttributes } from 'react';
 import { classNames } from '@/utils';
 import ErrorIcon from './ErrorIcon';
 
-export interface TextAreaProps {
+export type TextAreaProps = {
   className?: string;
   label?: React.ReactNode;
   errors?: string[];
+  defaultValue?: string;
   value?: string;
   input: Omit<
     TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -14,13 +15,14 @@ export interface TextAreaProps {
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
   helpText?: string;
   disabled?: boolean;
-}
+};
 
 const TextArea: React.FC<TextAreaProps> = ({
   input,
   label,
   className,
   errors,
+  defaultValue,
   value,
   onChange,
   helpText,
@@ -53,6 +55,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         aria-invalid={errors ? 'true' : 'false'}
         aria-describedby={`${input.id}-error`}
         value={value}
+        defaultValue={defaultValue}
         disabled={disabled}
       ></textarea>
       {hasErrors && (

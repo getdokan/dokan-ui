@@ -18,3 +18,13 @@ export const Default: Story = {
   },
   render: (args) => <ToggleSwitch {...args} />,
 };
+
+export const WithHelpText: Story = {
+  args: {
+    checked: true,
+    label: ' Enable Shipping',
+    color: 'primary',
+    helpText: 'This will enable shipping for your store',
+  },
+  render: (args) => <ToggleSwitch {...args} />,
+};

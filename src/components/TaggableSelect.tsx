@@ -4,6 +4,7 @@ import { StateManagerProps } from 'node_modules/react-select/dist/declarations/s
 import { HiChevronDown } from 'react-icons/hi';
 import { components, DropdownIndicatorProps, GroupBase, InputProps, MultiValueRemoveProps } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import { twMerge } from 'tailwind-merge';
 
 type CreatableProps<Option, IsMulti extends boolean, Group extends GroupBase<Option>> = StateManagerProps<
   Option,
@@ -52,7 +53,13 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
   return (
     <div className="react-select">
       {props.label && (
-        <label htmlFor={id} className="block text-sm font-medium">
+        <label
+          htmlFor={id}
+          className={twMerge(
+            'inline-block cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
+            props.disabled && 'cursor-not-allowed opacity-70'
+          )}
+        >
           {props.label}
         </label>
       )}
@@ -60,12 +67,11 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         {...props}
         isDisabled={props.disabled}
         className={classNames(
-          'shadow-sm',
           props.className,
           props.disabled && 'border rounded',
           hasErrors && 'hasErrors'
         )}
-        placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search...'}</div>}
+        placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search'}</div>}
         components={{
           MultiValueRemove,
           Input,
@@ -76,9 +82,12 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
           control: (base) => ({
             ...base,
             border: hasErrors ? '1px solid var(--danger-500)' : base.border,
+            height: '40px',
+            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
               border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             },
+            borderRadius: '5px',
           }),
           option: (base) => ({
             ...base,
@@ -112,7 +121,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
             neutral5: 'var(--gray-100)',
             neutral10: 'var(--gray-100)',
             neutral20: 'var(--gray-200)',
-            neutral30: 'var(--gray-300)',
+            neutral30: 'var(--gray-200)',
             neutral40: 'var(--gray-400)',
             neutral50: 'var(--gray-500)',
             neutral60: 'var(--gray-600)',

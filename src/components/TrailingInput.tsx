@@ -1,5 +1,5 @@
 import { classNames } from '@/utils';
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useId } from 'react';
 import ErrorIcon from './ErrorIcon';
 import { SimpleInputProps } from './SimpleInput';
 
@@ -12,15 +12,17 @@ export interface TrailingInputProps extends SimpleInputProps {
 
 const TrailingInput: React.FC<TrailingInputProps> = (props) => {
   const Icon = props.icon;
+
   const BtnIcon = props.btnIcon;
 
   const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const generatedId = useId();
 
   return (
     <>
       {typeof props.label === 'string' ? (
         <label
-          htmlFor={props.input.id}
+          htmlFor={props.input?.id ?? generatedId}
           className={
             'cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block'
           }
@@ -38,7 +40,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
         )}
         <input
           {...props.input}
-          id={props.input.id}
+          id={props.input?.id ?? generatedId}
           className={classNames(
             'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
             hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
@@ -47,7 +49,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           )}
           onChange={props.onChange}
           aria-invalid={hasErrors ? 'true' : 'false'}
-          aria-describedby={`${props.input.id}-errors`}
+          aria-describedby={`${props.input?.id ?? generatedId}-errors`}
         />
         <button
           onClick={props.onBtnClick && props.onBtnClick}
