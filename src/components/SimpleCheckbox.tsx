@@ -26,6 +26,7 @@ const SimpleCheckbox: FC<SimpleCheckboxProps> = (props) => {
       }
     }
   }, [props.indeterminate]);
+
   return (
     <>
       <div className="flex items-center">

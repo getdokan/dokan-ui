@@ -56,6 +56,8 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
 
   const IndicatorSeparator = () => null;
 
+  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+
   return (
     <div className={'react-select'}>
       {typeof props.label === 'string' ? (
@@ -105,9 +107,9 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           control: (base) => ({
             ...base,
             height: '40px',
-            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : '1px solid #E9E9E9',
+            border: hasErrors ? '1px solid var(--danger-500)' : '1px solid #E9E9E9',
             ':hover': {
-              border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
+              border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             },
           }),
           option: (base) => ({
@@ -132,9 +134,9 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           }),
         }}
       />
-      {props.errors && props.errors.length > 0 && (
-        <p className={'mt-1.5 flex items-center space-x-1.5'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props.errors.join(', ')}</span>
+      {hasErrors && (
+        <p className={'mt-1.5 flex items-center space-x-1.5 hasErrors'}>
+          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props.errors?.join(', ')}</span>
         </p>
       )}
       {props.helpText && <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>}

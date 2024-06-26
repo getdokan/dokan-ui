@@ -21,6 +21,8 @@ const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
 
   useEffect(() => props.onChange && props.onChange(checkedList), [checkedList]);
 
+  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+
   return (
     <>
       {props.label && (
@@ -56,7 +58,7 @@ const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
         ))}
       </div>
 
-      {props.errors && <p className="mt-1.5 text-xs text-red-600">{props.errors.join(', ')}</p>}
+      {hasErrors && <p className="mt-1.5 text-xs text-red-600 hasErrors">{props.errors?.join(', ')}</p>}
     </>
   );
 };

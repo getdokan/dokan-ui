@@ -26,6 +26,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   helpText,
   disabled,
 }) => {
+  const hasErrors: boolean = Boolean(errors && errors.length > 0);
   return (
     <>
       {typeof label === 'string' ? (
@@ -44,7 +45,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         {...input}
         className={classNames(
           'w-full rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
-          errors && errors.length > 0 && 'ring-red-500 focus:ring-red-500',
+          hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
           className,
           disabled && 'disabled'
         )}
@@ -54,9 +55,9 @@ const TextArea: React.FC<TextAreaProps> = ({
         value={value}
         disabled={disabled}
       ></textarea>
-      {errors && errors.length > 0 && (
+      {hasErrors && (
         <p className={'mt-1.5 flex items-center space-x-1.5'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{errors.join(', ')}</span>
+          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{errors?.join(', ')}</span>
         </p>
       )}
       {helpText && <p className="mt-1.5 text-xs text-gray-500">{helpText}</p>}

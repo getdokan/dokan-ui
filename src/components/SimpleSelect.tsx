@@ -40,6 +40,8 @@ const SimpleSelect = (props: SimpleSelectProps) => {
     return sluggable;
   }
 
+  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+
   return (
     <>
       <label
@@ -55,7 +57,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         name={`${slugify(props.label)}-simple-select`}
         className={classNames(
           'h-10 w-full rounded border-0 text-sm ring-1 ring-[#E9E9E9] ps-3 focus:outline-none focus:ring-primary-500',
-          props.errors && props.errors.length > 0 && 'ring-red-500 focus:ring-red-500'
+          hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors'
         )}
         style={{ fontSize: '14px' }}
         disabled={props.disabled}
@@ -97,7 +99,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
           return null;
         })}
       </select>
-      {props.errors && (
+      {hasErrors && (
         <p className={'mt-1.5 flex items-center space-x-1.5'}>
           <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props?.errors?.join(', ')}</span>
         </p>

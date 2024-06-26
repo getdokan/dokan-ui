@@ -37,7 +37,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
     return <components.Input {...props} inputClassName="focus:ring-0" />;
   };
 
-  const DropdownIndicator = ({}: DropdownIndicatorProps<Option, IsMulti, Group>) => {
+  const DropdownIndicator = () => {
     return (
       <div className="px-2">
         <HiChevronDown className="h-5 text-gray-400" />
@@ -46,6 +46,8 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
   };
 
   const IndicatorSeparator = () => null;
+
+  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <div className="react-select">
@@ -57,7 +59,12 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
       <CreatableSelect
         {...props}
         isDisabled={props.disabled}
-        className={classNames('shadow-sm', props.className, props.disabled && 'border rounded')}
+        className={classNames(
+          'shadow-sm',
+          props.className,
+          props.disabled && 'border rounded',
+          hasErrors && 'hasErrors'
+        )}
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search...'}</div>}
         components={{
           MultiValueRemove,
@@ -68,9 +75,9 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         styles={{
           control: (base) => ({
             ...base,
-            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
+            border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
-              border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
+              border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             },
           }),
           option: (base) => ({
@@ -98,7 +105,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
           ...theme,
           colors: {
             ...theme.colors,
-            primary: props.errors && props.errors.length > 0 ? 'var(--danger-500)' : 'var(--primary-500)',
+            primary: hasErrors ? 'var(--danger-500)' : 'var(--primary-500)',
             primary75: 'var(--primary-200)',
             primary50: 'var(--primary-100)',
             primary25: 'var(--primary-50)',
@@ -116,7 +123,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         })}
       />
 
-      {props.errors && props.errors.length > 0 && <p className="text-xs text-red-600">{props.errors.join(', ')}</p>}
+      {hasErrors && <p className="text-xs text-red-600">{props.errors?.join(', ')}</p>}
       {props.helpText && <span className="text-xs text-gray-600">{props.helpText}</span>}
     </div>
   );
