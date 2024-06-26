@@ -1,5 +1,5 @@
+import { classNames } from '@/utils';
 import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useId, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
 import ErrorIcon from './ErrorIcon';
 
 export interface SimpleInputProps {

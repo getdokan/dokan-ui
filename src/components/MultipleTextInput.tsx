@@ -1,5 +1,5 @@
 import { classNames } from '@/utils';
-import { ChangeEventHandler, KeyboardEventHandler, useMemo, useState } from 'react';
+import { ChangeEventHandler, KeyboardEventHandler, useState } from 'react';
 import { HiExclamationCircle } from 'react-icons/hi';
 
 export interface MultipleTextInputProps {

@@ -2,7 +2,7 @@ import { classNames } from '@/utils';
 import { CreatableAdditionalProps } from 'node_modules/react-select/dist/declarations/src/useCreatable';
 import { StateManagerProps } from 'node_modules/react-select/dist/declarations/src/useStateManager';
 import { HiChevronDown } from 'react-icons/hi';
-import { components, DropdownIndicatorProps, GroupBase, InputProps, MultiValueRemoveProps } from 'react-select';
+import { components, GroupBase, InputProps, MultiValueRemoveProps } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { twMerge } from 'tailwind-merge';
 
