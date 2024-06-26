@@ -83,7 +83,6 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
             ...base,
             border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             height: '40px',
-            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
               border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             },
