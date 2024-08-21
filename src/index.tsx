@@ -10,7 +10,6 @@ export { default as Button } from './components/Button';
 export { default as Card } from './components/Card';
 export { default as Container } from './components/Container';
 export { default as Divider } from './components/Divider';
-export { default as DokanIcon } from './components/DokanIcon';
 export { default as Drawer } from './components/Drawer';
 export { default as Dropdown } from './components/Dropdown';
 export { default as FancyCheckbox } from './components/FancyCheckbox';
@@ -35,6 +34,10 @@ export { default as GooglePlaceAutocomplete } from './components/GooglePlaceAuto
 export { default as Loader } from './components/Loader';
 export { default as MaskedInput } from './components/MaskedInput';
 export { default as ConfirmModal } from './components/ConfirmModal';
+
+// Icons
+export { default as ErrorIcon } from './components/icons/ErrorIcon';
+export { default as DokanIcon } from './components/icons/DokanIcon';
 
 // Types
 export type { OnPlaceSelectedParamType } from './components/GooglePlaceAutocomplete';

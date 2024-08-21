@@ -1,6 +1,6 @@
 import { classNames } from '@/utils';
 import { ChangeEventHandler } from 'react';
-import ErrorIcon from './ErrorIcon';
+import ErrorIcon from './icons/ErrorIcon';
 
 interface Option {
   label: string;

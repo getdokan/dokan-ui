@@ -1,4 +1,4 @@
-import DokanIcon from '@/components/DokanIcon';
+import DokanIcon from '@/components/icons/DokanIcon';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta = {
