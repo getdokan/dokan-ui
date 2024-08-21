@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useId, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import ErrorIcon from './ErrorIcon';
+import ErrorIcon from './icons/ErrorIcon';
 
 export interface SimpleInputProps {
   children?: React.ReactNode;

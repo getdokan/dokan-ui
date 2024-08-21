@@ -10,7 +10,7 @@ import Select, {
   Props,
   ValueContainerProps,
 } from 'react-select';
-import ErrorIcon from './ErrorIcon';
+import ErrorIcon from './icons/ErrorIcon';
 
 export type SearchableSelectProps<
   Option,
