@@ -28,7 +28,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   helpText,
   disabled,
 }) => {
-  const hasErrors: boolean = Boolean(errors && errors.length > 0);
+  const hasErrors = Boolean(errors && errors.length > 0);
   return (
     <>
       {typeof label === 'string' ? (

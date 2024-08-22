@@ -25,7 +25,7 @@ export interface SimpleRadioProps {
 const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
   const [selected, setSelected] = useState<string | number | undefined>(undefined);
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   useEffect(() => {
     setSelected(props.value ?? props.defaultValue);

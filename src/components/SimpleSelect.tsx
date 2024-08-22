@@ -40,7 +40,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
     return sluggable;
   }
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <>

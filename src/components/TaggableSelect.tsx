@@ -48,7 +48,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
 
   const IndicatorSeparator = () => null;
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <div className="react-select">

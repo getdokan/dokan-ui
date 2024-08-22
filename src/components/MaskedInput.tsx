@@ -17,7 +17,7 @@ const MaskedInput: React.FC<MaskedInputProps> = (props) => {
 
   const errorClasses = `block w-full border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded`;
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <>

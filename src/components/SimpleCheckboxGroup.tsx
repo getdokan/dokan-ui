@@ -21,7 +21,7 @@ const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
 
   useEffect(() => props.onChange && props.onChange(checkedList), [checkedList]);
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <>

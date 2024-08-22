@@ -38,7 +38,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
     }
   }, [props.defaultValue, props.value]);
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <>

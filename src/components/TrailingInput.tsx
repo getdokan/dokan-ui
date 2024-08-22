@@ -15,7 +15,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
 
   const BtnIcon = props.btnIcon;
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
   const generatedId = useId();
 
   return (

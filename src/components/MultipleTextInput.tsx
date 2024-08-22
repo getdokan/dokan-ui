@@ -67,7 +67,7 @@ const MultipleTextInput = ({
     setValue(newValues);
   };
 
-  const hasErrors: boolean = Boolean(errors && errors.length > 0);
+  const hasErrors = Boolean(errors && errors.length > 0);
 
   const componentId = id || Math.random().toString();
   const validClasses =

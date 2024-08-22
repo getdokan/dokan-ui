@@ -30,7 +30,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
     props.onChange && props.onChange(selected ?? '');
   }, [selected]);
 
-  const hasErrors: boolean = Boolean(props.errors && props.errors.length > 0);
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <div className="flex flex-col">
