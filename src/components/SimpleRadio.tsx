@@ -1,4 +1,5 @@
 import React, { ChangeEventHandler, FocusEventHandler, useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export interface SimpleRadioProps {
   name: string;
@@ -14,6 +15,7 @@ export interface SimpleRadioProps {
   input?: {
     [key: string]: any;
   };
+  optionClass?: string;
   selectedOptionClass?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -44,9 +46,11 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
           <label
             key={optionIndex}
             htmlFor={`${props.name}-${option.value}-${optionIndex}`}
-            className={`flex items-center py-2 px-4 rounded-md w-full text-sm font-medium text-gray-700 ${
-              option.value === selected && props.selectedOptionClass ? props.selectedOptionClass : ''
-            }`}
+            className={twMerge(
+              `flex items-center py-2 px-4 rounded-md w-full text-sm font-medium text-gray-700`,
+              props.optionClass,
+              option.value === selected && props.selectedOptionClass
+            )}
           >
             <input
               id={`${props.name}-${option.value}-${optionIndex}`}

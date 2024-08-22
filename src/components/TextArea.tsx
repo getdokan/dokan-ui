@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, TextareaHTMLAttributes } from 'react';
 import { classNames } from '@/utils';
-import ErrorIcon from './ErrorIcon';
+import ErrorIcon from './icons/ErrorIcon';
 
 export type TextAreaProps = {
   className?: string;

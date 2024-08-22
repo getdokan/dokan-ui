@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import DokanIcon from './DokanIcon';
+import DokanIcon from './icons/DokanIcon';
 export interface SimpleHeaderProps {
   title?: string;
   subtitle?: string;

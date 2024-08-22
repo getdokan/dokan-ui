@@ -1,6 +1,6 @@
 import { classNames } from '@/utils';
 import React, { MouseEventHandler, useId } from 'react';
-import ErrorIcon from './ErrorIcon';
+import ErrorIcon from './icons/ErrorIcon';
 import { SimpleInputProps } from './SimpleInput';
 
 export interface TrailingInputProps extends SimpleInputProps {
