@@ -62,12 +62,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {props.icon && (
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <Icon
-              className={classNames(`h-5 w-5 text-gray-400`, {
-                'text-red-400': hasErrors,
-              })}
-              aria-hidden="true"
-            />
+            <Icon className={classNames(`h-5 w-5 text-gray-400`, hasErrors && 'text-red-400')} aria-hidden="true" />
           </div>
         )}
         <input
@@ -79,11 +74,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           defaultValue={props.defaultValue}
           className={classNames(
             'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
-            {
-              'ring-red-500 focus:ring-red-500 hasErrors': hasErrors,
-              disabled: props.disabled,
-              'pl-11': props.icon || props.addOnLeft,
-            },
+            hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
+            props.disabled && 'disabled',
+            (props.icon || props.addOnLeft) && 'pl-11',
             props.className
           )}
           onChange={(e) => {
