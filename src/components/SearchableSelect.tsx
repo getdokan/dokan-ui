@@ -58,6 +58,8 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
 
   const IndicatorSeparator = () => null;
 
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
+
   return (
     <div className={'react-select'}>
       {typeof props.label === 'string' ? (
@@ -114,7 +116,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
             height: '40px',
             border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
-              border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
+              border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             },
             borderRadius: '5px',
           }),
@@ -140,8 +142,8 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           }),
         }}
       />
-      {hasError && (
-        <p className={'mt-1.5 flex items-center space-x-1.5'}>
+      {hasErrors && (
+        <p className={'mt-1.5 flex items-center space-x-1.5 hasErrors'}>
           <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props.errors?.join(', ')}</span>
         </p>
       )}

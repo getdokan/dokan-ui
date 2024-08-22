@@ -30,6 +30,8 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
     props.onChange && props.onChange(selected ?? '');
   }, [selected]);
 
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
+
   return (
     <div className="flex flex-col">
       <section className="flex">
@@ -80,7 +82,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
           </section>
         ))}
       </section>
-      {props.errors && <p className="text-xs text-red-600">{props.errors.join(' | ')}</p>}
+      {hasErrors && <p className="text-xs text-red-600 hasErrors">{props.errors?.join(' | ')}</p>}
     </div>
   );
 };

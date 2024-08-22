@@ -1,5 +1,5 @@
 import { classNames } from '@/utils';
-import { ChangeEventHandler, KeyboardEventHandler, useMemo, useState } from 'react';
+import { ChangeEventHandler, KeyboardEventHandler, useState } from 'react';
 import { HiExclamationCircle } from 'react-icons/hi';
 
 export interface MultipleTextInputProps {
@@ -67,7 +67,7 @@ const MultipleTextInput = ({
     setValue(newValues);
   };
 
-  const hasError = useMemo(() => !!errors && errors.length > 0, [errors]);
+  const hasErrors = Boolean(errors && errors.length > 0);
 
   const componentId = id || Math.random().toString();
   const validClasses =
@@ -85,7 +85,7 @@ const MultipleTextInput = ({
       <div
         className={classNames(
           'flex items-center flex-wrap gap-1 w-full px-3 py-2 rounded shadow-sm relative',
-          hasError ? errorClasses : validClasses,
+          hasErrors ? errorClasses : validClasses,
           className
         )}
       >
@@ -114,14 +114,14 @@ const MultipleTextInput = ({
           className="flex-grow outline-none text-sm"
           placeholder={placeholder}
         />
-        {hasError && (
+        {hasErrors && (
           <div className="absolute right-0 pe-3 flex items-center pointer-events-none">
             <HiExclamationCircle className="h-5 w-5 sm:h-4 sm:w-4 text-danger-400" aria-hidden="true" />
           </div>
         )}
       </div>
-      {hasError && (
-        <p className="text-xs text-red-600" id={`${componentId}-errors`}>
+      {hasErrors && (
+        <p className="text-xs text-red-600 hasErrors" id={`${componentId}-errors`}>
           {errors?.join(', ')}
         </p>
       )}

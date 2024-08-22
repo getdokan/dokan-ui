@@ -15,6 +15,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
 
   const BtnIcon = props.btnIcon;
 
+  const hasErrors = Boolean(props.errors && props.errors.length > 0);
   const generatedId = useId();
 
   return (
@@ -41,13 +42,13 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           {...props.input}
           id={props.input?.id ?? generatedId}
           className={classNames(
-            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] focus:ring-2 placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
-            props.errors && props.errors.length > 0 && 'ring-red-500 focus:ring-red-500',
+            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+            hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
             props.icon && 'pl-10',
             props.className
           )}
           onChange={props.onChange}
-          aria-invalid={props.errors ? 'true' : 'false'}
+          aria-invalid={hasErrors ? 'true' : 'false'}
           aria-describedby={`${props.input?.id ?? generatedId}-errors`}
         />
         <button
@@ -59,7 +60,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           {props.btnLabel && <span>{props.btnLabel}</span>}
         </button>
       </div>
-      {props.errors && (
+      {hasErrors && (
         <p className={'mt-1.5 flex items-center space-x-1.5'}>
           <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props?.errors?.join(', ')}</span>
         </p>
