@@ -1,3 +1,4 @@
+import { classNames } from '@/utils';
 import React, { ChangeEventHandler, FocusEventHandler, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -58,7 +59,9 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
               name={props.name}
               value={option.value}
               checked={option.value === selected}
-              className={`h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 ${hasErrors && 'hasErrors'}`}
+              className={classNames(`h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500`, {
+                hasErrors: hasErrors,
+              })}
               onChange={(e) => {
                 setSelected(e.target.value);
                 props.onChange && props.onChange(e);

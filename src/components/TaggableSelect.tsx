@@ -67,9 +67,11 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         {...props}
         isDisabled={props.disabled}
         className={classNames(
-          props.className,
-          props.disabled && 'border rounded',
-          hasErrors && 'hasErrors'
+          {
+            hasErrors: hasErrors,
+            'border rounded': props.disabled,
+          },
+          props.className
         )}
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search'}</div>}
         components={{
