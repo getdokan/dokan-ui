@@ -1,9 +1,9 @@
-import { RadioGroup } from '@headlessui/react';
+import RadioGroup from '@/components/RadioGroup';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { FiBox, FiTruck } from 'react-icons/fi';
 
-const meta: Meta = {
+const meta: Meta<typeof RadioGroup> = {
   title: 'RadioGroup',
   component: RadioGroup,
 };
@@ -35,7 +35,7 @@ export const Default: Story = {
     const [selected, setSelected] = useState('');
     return (
       <>
-        <RadioGroup {...args} onChange={(selectedValue: string) => setSelected(selectedValue)}></RadioGroup>
+        <RadioGroup {...args} onChange={(selectedValue: string) => setSelected(selectedValue)} />
         <p className="text-gray-600 text-sm">Current Value: {selected}</p>
       </>
     );

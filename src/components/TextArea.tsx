@@ -1,6 +1,6 @@
-import React, { ChangeEventHandler, TextareaHTMLAttributes } from 'react';
 import { classNames } from '@/utils';
-import ErrorIcon from './icons/ErrorIcon';
+import React, { ChangeEventHandler, TextareaHTMLAttributes } from 'react';
+import ErrorMessage from './ErrorMessage';
 
 export type TextAreaProps = {
   className?: string;
@@ -58,11 +58,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         defaultValue={defaultValue}
         disabled={disabled}
       ></textarea>
-      {hasErrors && (
-        <p className={'mt-1.5 flex items-center space-x-1.5'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{errors?.join(', ')}</span>
-        </p>
-      )}
+      <ErrorMessage value={errors ?? []} />
       {helpText && <p className="mt-1.5 text-xs text-gray-500">{helpText}</p>}
     </>
   );

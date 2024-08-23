@@ -1,6 +1,6 @@
 import { classNames } from '@/utils';
 import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useId, useState } from 'react';
-import ErrorIcon from './icons/ErrorIcon';
+import ErrorMessage from './ErrorMessage';
 
 export interface SimpleInputProps {
   children?: React.ReactNode;
@@ -107,11 +107,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         {props.children}
       </div>
-      {hasErrors && (
-        <p className={'mt-1.5 flex items-center space-x-1.5'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props?.errors?.join(', ')}</span>
-        </p>
-      )}
+      <ErrorMessage value={props.errors ?? []} />
       {props.helpText && <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>}
     </>
   );

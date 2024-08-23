@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FiCircle } from 'react-icons/fi';
 import { HiCheckCircle } from 'react-icons/hi';
+import ErrorMessage from './ErrorMessage';
 
 interface Option {
   icon?: React.ReactElement;
@@ -29,8 +30,6 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   useEffect(() => {
     props.onChange && props.onChange(selected ?? '');
   }, [selected]);
-
-  const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <div className="flex flex-col">
@@ -82,7 +81,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
           </section>
         ))}
       </section>
-      {hasErrors && <p className="text-xs text-red-600 hasErrors">{props.errors?.join(' | ')}</p>}
+      <ErrorMessage value={props.errors ?? []} />
     </div>
   );
 };

@@ -1,9 +1,10 @@
-import 'cleave.js/dist/addons/cleave-phone.i18n.js';
 import { classNames } from '@/utils';
+import 'cleave.js/dist/addons/cleave-phone.i18n.js';
 import { CleaveOptions } from 'cleave.js/options';
 import Cleave from 'cleave.js/react';
 import React from 'react';
 import { HiExclamationCircle } from 'react-icons/hi';
+import ErrorMessage from './ErrorMessage';
 import { SimpleInputProps } from './SimpleInput';
 
 export interface MaskedInputProps extends SimpleInputProps {
@@ -74,11 +75,7 @@ const MaskedInput: React.FC<MaskedInputProps> = (props) => {
         )}
         {props.children}
       </div>
-      {hasErrors && (
-        <p className="text-xs text-red-600" id={props?.input?.id ? `${props.input.id}-error` : ''}>
-          {props.errors?.join(', ')}
-        </p>
-      )}
+      <ErrorMessage value={props.errors ?? []} />
       {props.helpText && <span className="text-xs text-gray-600">{props.helpText}</span>}
     </>
   );

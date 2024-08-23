@@ -1,6 +1,7 @@
 import { classNames } from '@/utils';
 import React, { ChangeEventHandler, FocusEventHandler, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import ErrorMessage from './ErrorMessage';
 
 export interface SimpleRadioProps {
   name: string;
@@ -72,11 +73,7 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
           </label>
         ))}
       </div>
-      {hasErrors && (
-        <p className="mt-1.5 text-xs text-red-600" id={`${props.input?.id}-error`}>
-          {props.errors?.join(', ')}
-        </p>
-      )}
+      <ErrorMessage value={props.errors ?? []} />
     </>
   );
 };

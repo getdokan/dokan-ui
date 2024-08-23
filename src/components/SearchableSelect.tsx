@@ -10,7 +10,7 @@ import Select, {
   Props,
   ValueContainerProps,
 } from 'react-select';
-import ErrorIcon from './icons/ErrorIcon';
+import ErrorMessage from './ErrorMessage';
 
 export type SearchableSelectProps<
   Option,
@@ -76,7 +76,13 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         ref={props.ref}
         {...props}
         isDisabled={props.disabled}
-        className={classNames(props.className, props.disabled && 'border rounded')}
+        className={classNames(
+          {
+            hasErrors: hasErrors,
+            'border rounded': props.disabled,
+          },
+          props.className
+        )}
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search'}</div>}
         theme={(theme) => ({
           ...theme,
@@ -142,11 +148,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           }),
         }}
       />
-      {hasErrors && (
-        <p className={'mt-1.5 flex items-center space-x-1.5 hasErrors'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props.errors?.join(', ')}</span>
-        </p>
-      )}
+      <ErrorMessage value={props.errors ?? []} />
       {props.helpText && <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>}
     </div>
   );

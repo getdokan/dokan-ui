@@ -34,6 +34,7 @@ export { default as GooglePlaceAutocomplete } from './components/GooglePlaceAuto
 export { default as Loader } from './components/Loader';
 export { default as MaskedInput } from './components/MaskedInput';
 export { default as ConfirmModal } from './components/ConfirmModal';
+export { default as ErrorMessage } from './components/ErrorMessage';
 
 // Icons
 export { default as ErrorIcon } from './components/icons/ErrorIcon';

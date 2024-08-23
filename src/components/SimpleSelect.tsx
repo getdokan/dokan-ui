@@ -1,6 +1,6 @@
 import { classNames } from '@/utils';
 import { ChangeEventHandler } from 'react';
-import ErrorIcon from './icons/ErrorIcon';
+import ErrorMessage from './ErrorMessage';
 
 interface Option {
   label: string;
@@ -99,11 +99,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
           return null;
         })}
       </select>
-      {hasErrors && (
-        <p className={'mt-1.5 flex items-center space-x-1.5'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props?.errors?.join(', ')}</span>
-        </p>
-      )}
+      <ErrorMessage value={props.errors ?? []} />
       {props.helpText && <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>}
     </>
   );
