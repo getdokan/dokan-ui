@@ -1,6 +1,6 @@
 import { classNames } from '@/utils';
 import React, { MouseEventHandler, useId } from 'react';
-import ErrorIcon from './icons/ErrorIcon';
+import ErrorMessage from './ErrorMessage';
 import { SimpleInputProps } from './SimpleInput';
 
 export interface TrailingInputProps extends SimpleInputProps {
@@ -60,11 +60,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           {props.btnLabel && <span>{props.btnLabel}</span>}
         </button>
       </div>
-      {hasErrors && (
-        <p className={'mt-1.5 flex items-center space-x-1.5'}>
-          <ErrorIcon /> <span className={'text-xs text-[#393939]'}>{props?.errors?.join(', ')}</span>
-        </p>
-      )}
+      <ErrorMessage value={props.errors ?? []} />
 
       {props.helpText && <p className="mt-1.5 text-xs text-gray-500">{props.helpText}</p>}
     </>

@@ -1,4 +1,6 @@
+import { classNames } from '@/utils';
 import React, { useEffect, useState } from 'react';
+import ErrorMessage from './ErrorMessage';
 import SimpleCheckbox from './SimpleCheckbox';
 
 export interface SimpleCheckboxGroupProps {
@@ -58,7 +60,12 @@ const SimpleCheckboxGroup: React.FC<SimpleCheckboxGroupProps> = (props) => {
         ))}
       </div>
 
-      {hasErrors && <p className="mt-1.5 text-xs text-red-600 hasErrors">{props.errors?.join(', ')}</p>}
+      <ErrorMessage
+        value={props.errors ?? []}
+        className={classNames({
+          hasErrors: hasErrors,
+        })}
+      />
     </>
   );
 };

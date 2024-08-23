@@ -5,6 +5,7 @@ import { HiChevronDown } from 'react-icons/hi';
 import { components, GroupBase, InputProps, MultiValueRemoveProps } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { twMerge } from 'tailwind-merge';
+import ErrorMessage from './ErrorMessage';
 
 type CreatableProps<Option, IsMulti extends boolean, Group extends GroupBase<Option>> = StateManagerProps<
   Option,
@@ -133,7 +134,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         })}
       />
 
-      {hasErrors && <p className="text-xs text-red-600">{props.errors?.join(', ')}</p>}
+      <ErrorMessage value={props.errors ?? []} />
       {props.helpText && <span className="text-xs text-gray-600">{props.helpText}</span>}
     </div>
   );

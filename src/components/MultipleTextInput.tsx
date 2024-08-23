@@ -1,6 +1,7 @@
 import { classNames } from '@/utils';
 import { ChangeEventHandler, KeyboardEventHandler, useState } from 'react';
 import { HiExclamationCircle } from 'react-icons/hi';
+import ErrorMessage from './ErrorMessage';
 
 export interface MultipleTextInputProps {
   id?: string;
@@ -73,7 +74,7 @@ const MultipleTextInput = ({
   const validClasses =
     'border border-gray-300 placeholder-gray-400 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500';
   const errorClasses =
-    'border border-red-300 text-red-900 placeholder-red-300 focus-within:ring-1 focus-within:ring-danger-500 focus-within:border-danger-500';
+    'border border-red-300 text-red-900 placeholder-red-300 focus-within:ring-1 focus-within:ring-danger-500 focus-within:border-danger-500 hasErrors';
 
   return (
     <>
@@ -120,11 +121,7 @@ const MultipleTextInput = ({
           </div>
         )}
       </div>
-      {hasErrors && (
-        <p className="text-xs text-red-600 hasErrors" id={`${componentId}-errors`}>
-          {errors?.join(', ')}
-        </p>
-      )}
+      <ErrorMessage value={errors ?? []} />
       {helpText && <span className="text-xs text-gray-600">{helpText}</span>}
     </>
   );
