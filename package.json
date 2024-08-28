@@ -78,6 +78,6 @@
     "url": "git://github.com/getdokan/dokan-ui.git"
   },
   "publishConfig": {
-    "@getdokan:registry": "https://npm.pkg.github.com"
+    "@getdokan:registry": "https://registry.npmjs.org"
   }
 }
