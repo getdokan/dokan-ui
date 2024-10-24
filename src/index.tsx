@@ -35,7 +35,8 @@ export { default as Loader } from './components/Loader';
 export { default as MaskedInput } from './components/MaskedInput';
 export { default as ConfirmModal } from './components/ConfirmModal';
 export { default as ErrorMessage } from './components/ErrorMessage';
-export { default as Toast } from './components/use-toast.tsx';
+export { default as useToast } from './components/use-toast.tsx';
+export { Toaster as DokanToaster } from 'react-hot-toast';
 
 // Icons
 export { default as ErrorIcon } from './components/icons/ErrorIcon';
