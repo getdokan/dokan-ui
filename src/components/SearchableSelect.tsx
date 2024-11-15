@@ -22,6 +22,7 @@ export type SearchableSelectProps<
   className?: string;
   errors?: string[];
   helpText?: string;
+  required?: boolean;
   disabled?: boolean;
   ref?: any;
 };
@@ -68,6 +69,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           className="inline-block mb-2 cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {props.label}
+          {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       ) : (
         props.label
@@ -119,7 +121,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         styles={{
           control: (base) => ({
             ...base,
-            height: '40px',
+            minHeight: '40px',
             border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
             ':hover': {
               border: hasErrors ? '1px solid var(--danger-500)' : base.border,

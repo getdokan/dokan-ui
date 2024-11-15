@@ -18,6 +18,7 @@ type CreatableProps<Option, IsMulti extends boolean, Group extends GroupBase<Opt
     className?: string;
     errors?: string[];
     helpText?: string;
+    required?: boolean;
     disabled?: boolean;
     placeholder?: string;
   };
@@ -62,6 +63,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
           )}
         >
           {props.label}
+          {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       )}
       <CreatableSelect
@@ -85,7 +87,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
           control: (base) => ({
             ...base,
             border: hasErrors ? '1px solid var(--danger-500)' : base.border,
-            height: '40px',
+            minHeight: '40px',
             ':hover': {
               border: hasErrors ? '1px solid var(--danger-500)' : base.border,
             },

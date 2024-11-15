@@ -2,7 +2,7 @@ import { classNames } from '@/utils';
 import 'cleave.js/dist/addons/cleave-phone.i18n.js';
 import { CleaveOptions } from 'cleave.js/options';
 import Cleave from 'cleave.js/react';
-import React from 'react';
+import React, { useId } from 'react';
 import { HiExclamationCircle } from 'react-icons/hi';
 import ErrorMessage from './ErrorMessage';
 import { SimpleInputProps } from './SimpleInput';
@@ -20,11 +20,14 @@ const MaskedInput: React.FC<MaskedInputProps> = (props) => {
 
   const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
+  const componentId = props.input?.id || useId();
+
   return (
     <>
       {props.label && (
-        <label htmlFor={props?.input?.id || false} className={'block text-sm font-medium text-gray-700 mb-1'}>
+        <label htmlFor={componentId} className={'block text-sm font-medium text-gray-700 mb-1'}>
           {props.label}
+          {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       )}
       <div className="relative flex">
@@ -42,7 +45,7 @@ const MaskedInput: React.FC<MaskedInputProps> = (props) => {
           {...props.input}
           options={props.maskRule || {}}
           value={props.value}
-          id={props?.input?.id || false}
+          id={componentId}
           defaultValue={props.defaultValue}
           className={classNames(
             hasErrors ? errorClasses : validClasses,
@@ -61,7 +64,7 @@ const MaskedInput: React.FC<MaskedInputProps> = (props) => {
           onKeyUp={props.onKeyUp}
           onBlur={props.onBlur}
           aria-invalid={hasErrors ? 'true' : 'false'}
-          aria-describedby={props?.input?.id && `${props.input.id}-error`}
+          aria-describedby={`${componentId}-error`}
         />
         {props.addOnRight && (
           <span className="-ml-px relative inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">

@@ -26,6 +26,7 @@ export const Default: Story = {
     onChange: (items: string[]) => {
       console.log(items);
     },
+    required: true,
   },
   render: (args) => {
     return (
@@ -54,6 +55,7 @@ export const Multiple: Story = {
       console.log(items);
     },
     isMulti: true,
+    required: true,
   },
   render: (args) => {
     return (
@@ -87,6 +89,7 @@ export const MultipleAndSearch: Story = {
         callback(results);
       });
     },
+    required: true,
   },
   render: (args) => {
     return (

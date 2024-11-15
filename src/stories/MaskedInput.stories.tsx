@@ -28,6 +28,7 @@ export const WithError = (args: MaskedInputProps) => <MaskedInput {...args} />;
 CreditCard.args = {
   label: 'Card',
   maskRule: { creditCard: true },
+  required: true,
   input: {
     id: 'card',
     name: 'card',
@@ -39,6 +40,7 @@ CreditCard.args = {
 
 PhoneNumber.args = {
   label: 'Phone',
+  required: true,
   input: {
     id: 'phone',
     name: 'phone',
@@ -52,6 +54,7 @@ PhoneNumber.args = {
 
 DateFormatting.args = {
   label: 'Date Formatting',
+  required: true,
   input: {
     id: 'date',
     name: 'date',
@@ -64,6 +67,7 @@ DateFormatting.args = {
 
 DateFormattingMonthDay.args = {
   label: 'Date Formatting (Month/Day)',
+  required: true,
   input: {
     id: 'date',
     name: 'date',
@@ -76,6 +80,7 @@ DateFormattingMonthDay.args = {
 
 TimeFormattingDefault.args = {
   label: 'Time',
+  required: true,
   input: {
     id: 'time',
     name: 'time',
@@ -91,6 +96,7 @@ TimeFormattingDefault.args = {
 
 TimeFormattingHourMiniute.args = {
   label: 'Time',
+  required: true,
   input: {
     id: 'time',
     name: 'time',
@@ -106,6 +112,7 @@ TimeFormattingHourMiniute.args = {
 
 Numeral.args = {
   label: 'Numeral',
+  required: true,
   input: {
     id: 'numeral',
     name: 'numeral',
@@ -121,6 +128,7 @@ Numeral.args = {
 
 Blocks.args = {
   label: 'Blocks',
+  required: true,
   input: {
     id: 'blocks',
     name: 'blocks',
@@ -136,6 +144,7 @@ Blocks.args = {
 
 Delimiter.args = {
   label: 'Delimiter',
+  required: true,
   input: {
     id: 'delimiter',
     name: 'delimiter',
@@ -152,6 +161,7 @@ Delimiter.args = {
 
 Delimiters.args = {
   label: 'Delimiters',
+  required: true,
   input: {
     id: 'delimiters',
     name: 'delimiters',
@@ -168,6 +178,7 @@ Delimiters.args = {
 
 Prefix.args = {
   label: 'Prefix',
+  required: true,
   input: {
     id: 'prefix',
     name: 'prefix',
@@ -184,6 +195,7 @@ Prefix.args = {
 };
 LeftAddon.args = {
   label: 'Left Addon',
+  required: true,
   input: {
     id: 'maskedleftaddon',
     name: 'maskedleftaddon',
@@ -199,6 +211,7 @@ LeftAddon.args = {
 
 RightAddon.args = {
   label: 'Right Addon',
+  required: true,
   input: {
     id: 'maskedrightaddon',
     name: 'maskedrightaddon',
@@ -216,6 +229,7 @@ WithIcon.args = {
   label: 'Card',
   icon: HiCreditCard,
   maskRule: { creditCard: true },
+  required: true,
   input: {
     id: 'card',
     name: 'card',
@@ -228,6 +242,7 @@ WithIcon.args = {
 WithError.args = {
   label: 'Phone',
   icon: HiPhone,
+  required: true,
   errors: ['Phone number field is required'],
   input: {
     id: 'phone',

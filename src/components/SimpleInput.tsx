@@ -1,5 +1,13 @@
 import { classNames } from '@/utils';
-import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useId, useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  FocusEventHandler,
+  InputHTMLAttributes,
+  KeyboardEventHandler,
+  useEffect,
+  useId,
+  useState,
+} from 'react';
 import ErrorMessage from './ErrorMessage';
 
 export interface SimpleInputProps {
@@ -11,13 +19,12 @@ export interface SimpleInputProps {
   className?: string;
   icon?: any;
   label?: React.ReactNode;
+  required?: boolean;
   disabled?: boolean;
   helpText?: React.ReactNode;
   errors?: string[];
   counter?: boolean;
-  input?: {
-    [key: string]: any;
-  };
+  input?: InputHTMLAttributes<HTMLInputElement> & { maxLength?: number };
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onKeyPress?: KeyboardEventHandler<HTMLInputElement>;
@@ -50,6 +57,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           }
         >
           {props.label}
+          {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       ) : (
         props.label
@@ -67,7 +75,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
         )}
         <input
           type="text"
-          {...props.input}
+          required={props.required}
           disabled={props.disabled}
           value={props.value}
           id={props.input?.id ?? generatedId}
@@ -92,6 +100,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           onFocus={props.onFocus}
           aria-invalid={hasErrors ? 'true' : 'false'}
           aria-describedby={`${props.input?.id ?? generatedId}-error`}
+          {...props.input}
         />
         {props.counter && (
           <div className={`absolute inset-y-0 right-0 flex items-center pr-3`}>

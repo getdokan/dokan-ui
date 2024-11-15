@@ -17,6 +17,7 @@ export interface SimpleSelectProps {
   defaultValue?: string | number;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   helpText?: string;
+  required?: boolean;
   disabled?: boolean;
 }
 
@@ -49,9 +50,11 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         className="cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block"
       >
         {props.label}
+        {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
       </label>
       <select
         value={(props.value as string) || ''}
+        required={props.required}
         onChange={props.onChange}
         id={`${slugify(props.label)}-simple-select`}
         name={`${slugify(props.label)}-simple-select`}

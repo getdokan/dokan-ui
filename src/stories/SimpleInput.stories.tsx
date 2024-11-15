@@ -28,8 +28,8 @@ Default.args = {
     type: 'email',
     autoComplete: 'off',
     placeholder: 'yourname@email.com',
-    required: true,
   },
+  required: true,
 };
 
 LeftAddon.args = {
@@ -42,8 +42,8 @@ LeftAddon.args = {
     type: 'text',
     autoComplete: 'off',
     placeholder: 'google.com',
-    required: true,
   },
+  required: true,
 };
 RightAddon.args = {
   addOnRight: '.dokan.cloud',
@@ -55,8 +55,8 @@ RightAddon.args = {
     type: 'text',
     autoComplete: 'off',
     placeholder: 'daraz',
-    required: true,
   },
+  required: true,
 };
 
 Icon.args = {
@@ -69,8 +69,8 @@ Icon.args = {
     name: 'email',
     type: 'email',
     autoComplete: 'off',
-    required: true,
   },
+  required: true,
 };
 
 Error.args = {
@@ -84,8 +84,8 @@ Error.args = {
     name: 'email',
     type: 'email',
     autoComplete: 'off',
-    required: true,
   },
+  required: true,
 };
 
 Counter.args = {
