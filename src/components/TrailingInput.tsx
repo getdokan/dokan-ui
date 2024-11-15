@@ -28,6 +28,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           }
         >
           {props.label}
+          {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       ) : (
         props.label
@@ -39,7 +40,8 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           </div>
         )}
         <input
-          {...props.input}
+          required={props.required}
+          disabled={props.disabled}
           id={props.input?.id ?? generatedId}
           className={classNames(
             'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
@@ -47,9 +49,17 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
             props.icon && 'pl-10',
             props.className
           )}
+          value={props.value}
+          defaultValue={props.defaultValue}
           onChange={props.onChange}
+          onKeyDown={props.onKeyDown}
+          onKeyPress={props.onKeyPress}
+          onKeyUp={props.onKeyUp}
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
           aria-invalid={hasErrors ? 'true' : 'false'}
-          aria-describedby={`${props.input?.id ?? generatedId}-errors`}
+          aria-describedby={`${props.input?.id ?? generatedId}-error`}
+          {...props.input}
         />
         <button
           onClick={props.onBtnClick && props.onBtnClick}

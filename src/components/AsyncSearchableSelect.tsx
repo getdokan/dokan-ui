@@ -14,6 +14,7 @@ export type AsyncSearchableSelectProps<
   className?: string;
   errors?: string[];
   helpText?: string;
+  required?: boolean;
   disabled?: boolean;
 };
 
@@ -66,6 +67,7 @@ const AsyncSearchableSelect = <
       {props.label && (
         <label htmlFor={id} className="block text-sm font-medium">
           {props.label}
+          {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       )}
       <AsyncSelect

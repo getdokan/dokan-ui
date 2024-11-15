@@ -18,6 +18,7 @@ export const Default: Story = {
       id: 'desc',
     },
     helpText: '',
+    required: true,
   },
   render: (args) => <TextArea {...args} />,
 };
@@ -29,6 +30,7 @@ export const WithError: Story = {
     input: {
       id: 'desc',
     },
+    required: true,
   },
   render: (args) => <TextArea {...args} />,
 };

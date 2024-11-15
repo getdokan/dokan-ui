@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: 'Fruits',
+    required: true,
     options: [
       { value: 1, label: 'Apple' },
       { value: 2, label: 'Orange' },
@@ -26,6 +27,7 @@ export const WithError: Story = {
   args: {
     errors: ['The fruits field is required'],
     label: 'Fruits',
+    required: true,
     options: [
       { value: 1, label: 'Apple' },
       { value: 2, label: 'Orange' },

@@ -20,6 +20,7 @@ export const Default: Story = {
       { label: 'Sri Lanka', value: 'SL' },
     ],
     label: 'Countries',
+    required: true,
     placeholder: 'Search...',
     isMulti: true,
     onChange: (items) => {
