@@ -6,6 +6,7 @@ import { FiBox, FiTruck } from 'react-icons/fi';
 const meta: Meta<typeof RadioGroup> = {
   title: 'RadioGroup',
   component: RadioGroup,
+  tags: ['autodocs'],
 };
 
 export default meta;

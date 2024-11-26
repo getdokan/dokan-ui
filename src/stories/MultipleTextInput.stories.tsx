@@ -6,6 +6,7 @@ import { useArgs } from '@storybook/preview-api';
 const meta: Meta<typeof MultipleTextInput> = {
   title: 'MultipleTextInput',
   component: MultipleTextInput,
+  tags: ['autodocs'],
 };
 
 export default meta;

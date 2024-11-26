@@ -7,6 +7,7 @@ const meta: Meta<typeof FancyCheckbox> = {
   argTypes: {
     onChange: { control: false },
   },
+  tags: ['autodocs'],
 };
 
 export default meta;

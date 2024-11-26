@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta = {
   title: 'Icon',
   component: GoogleIcon,
+  tags: ['autodocs'],
 };
 
 export default meta;

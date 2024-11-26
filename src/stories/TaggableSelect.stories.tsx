@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof TaggableSelect> = {
   title: 'TaggableSelect',
   component: TaggableSelect,
+  tags: ['autodocs'],
 };
 
 export default meta;

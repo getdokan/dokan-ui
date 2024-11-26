@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof TextArea> = {
   title: 'TextArea',
   component: TextArea,
+  tags: ['autodocs'],
 };
 
 export default meta;

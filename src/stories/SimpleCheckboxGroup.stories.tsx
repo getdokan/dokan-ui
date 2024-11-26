@@ -5,6 +5,7 @@ import { useState } from 'react';
 const meta: Meta<typeof SimpleCheckboxGroup> = {
   title: 'SimpleCheckboxGroup',
   component: SimpleCheckboxGroup,
+  tags: ['autodocs'],
 };
 
 export default meta;

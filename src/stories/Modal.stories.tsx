@@ -6,6 +6,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Modal> = {
   title: 'Modal',
   component: Modal,
+  tags: ['autodocs'],
   decorators: [(Story) => <div className="h-96 flex items-center justify-center">{<Story />}</div>],
 };
 
