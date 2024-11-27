@@ -6,6 +6,7 @@ import { useArgs } from '@storybook/preview-api';
 const meta: Meta<typeof Drawer> = {
   title: 'Drawer',
   component: Drawer,
+  tags: ['autodocs'],
   decorators: [(Story) => <div className="h-96 flex items-center justify-center">{<Story />}</div>],
 };
 

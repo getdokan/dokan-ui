@@ -4,6 +4,7 @@ import Box from '../components/Box';
 const meta: Meta = {
   title: 'Box',
   component: Box,
+  tags: ['autodocs'],
 };
 
 export default meta;

@@ -12,6 +12,7 @@ const meta: Meta = {
       defaultValue: false,
     },
   },
+  tags: ['autodocs'],
 };
 
 export default meta;

@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta = {
   title: 'Loader',
   component: Loader,
+  tags: ['autodocs'],
 };
 
 type Story = StoryObj<typeof meta>;

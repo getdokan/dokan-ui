@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof SimpleAlert> = {
   title: 'Alert',
   component: SimpleAlert,
+  tags: ['autodocs'],
 };
 
 export default meta;

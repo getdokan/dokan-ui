@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta = {
   title: 'Container',
   component: Container,
+  tags: ['autodocs'],
 };
 
 export default meta;

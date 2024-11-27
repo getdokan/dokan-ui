@@ -5,6 +5,7 @@ import { FiChevronDown } from 'react-icons/fi';
 const meta: Meta = {
   title: 'Dropdown',
   component: Dropdown,
+  tags: ['autodocs'],
   argTypes: {
     placement: {
       control: {

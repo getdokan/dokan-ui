@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof ToggleSwitch> = {
   title: 'ToggleSwitch',
   component: ToggleSwitch,
+  tags: ['autodocs'],
 };
 
 export default meta;

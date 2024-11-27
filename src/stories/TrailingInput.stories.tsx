@@ -5,6 +5,7 @@ import { HiEye, HiLockClosed } from 'react-icons/hi';
 const meta: Meta<typeof TrailingInput> = {
   title: 'Input',
   component: TrailingInput,
+  tags: ['autodocs'],
 };
 
 export default meta;

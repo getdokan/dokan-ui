@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof SimpleCheckbox> = {
   title: 'SimpleCheckbox',
   component: SimpleCheckbox,
+  tags: ['autodocs'],
 };
 
 export default meta;

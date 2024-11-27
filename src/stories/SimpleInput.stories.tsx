@@ -5,6 +5,7 @@ import { HiMail } from 'react-icons/hi';
 const meta: Meta<typeof SimpleInput> = {
   title: 'SimpleInput',
   component: SimpleInput,
+  tags: ['autodocs'],
 };
 
 export default meta;

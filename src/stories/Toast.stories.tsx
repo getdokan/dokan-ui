@@ -8,56 +8,62 @@ import ToastBody from '@/components/toast-body.tsx';
 const meta: Meta<typeof ToastBody> = {
   title: 'Toast',
   component: ToastBody,
+  tags: ['autodocs'],
 };
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-
 export const Default: Story = {
   args: {
     title: 'Show Success',
-    type: 'success'
-  }
-  ,
+    type: 'success',
+  },
   render: () => {
     const toast = useToast();
     return (
       <Fragment>
         <Toaster />
-        <Button onClick={() => {
-          toast({
-            title: 'Show Success',
-            type: 'success'
-          })
-        }} color={'indigo'}>Show</Button>
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Show Success',
+              type: 'success',
+            });
+          }}
+          color={'indigo'}
+        >
+          Show
+        </Button>
       </Fragment>
-
-    )
+    );
   },
 };
 
 export const Error: Story = {
   args: {
     title: 'Show Error',
-    type: 'error'
-  }
-  ,
+    type: 'error',
+  },
   render: () => {
     const toast = useToast();
     return (
       <Fragment>
         <Toaster />
-        <Button onClick={() => {
-          toast({
-            title: 'Show Error',
-            type: 'error'
-          })
-        }} color={'indigo'}>Show</Button>
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Show Error',
+              type: 'error',
+            });
+          }}
+          color={'indigo'}
+        >
+          Show
+        </Button>
       </Fragment>
-
-    )
+    );
   },
 };
 
@@ -65,23 +71,26 @@ export const Description: Story = {
   args: {
     title: 'Show Error',
     type: 'error',
-    subtitle: 'This is a descirpiton'
-  }
-  ,
+    subtitle: 'This is a descirpiton',
+  },
   render: () => {
     const toast = useToast();
     return (
       <Fragment>
         <Toaster />
-        <Button onClick={() => {
-          toast({
-            title: 'Show Description',
-            type: 'success',
-            subtitle: 'This is a descirpiton'
-          })
-        }} color={'indigo'}>Show</Button>
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Show Description',
+              type: 'success',
+              subtitle: 'This is a descirpiton',
+            });
+          }}
+          color={'indigo'}
+        >
+          Show
+        </Button>
       </Fragment>
-
-    )
+    );
   },
 };
