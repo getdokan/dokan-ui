@@ -1,58 +1,33 @@
-import { classNames } from '@/utils';
-import React, { useState } from 'react';
-import { TriggerProps, useLayer } from 'react-laag';
-
-export type TooltipTriggerProps = {
-  onMouseOver: () => void;
-  onMouseLeave: () => void;
-} & TriggerProps;
-
-export type Direction = 'top' | 'bottom' | 'left' | 'right';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import { twMerge } from 'tailwind-merge';
 
 export type TooltipProps = {
+  direction?: 'top' | 'right' | 'bottom' | 'left';
+  children: React.ReactNode;
   content: React.ReactNode;
-  children: (props: TooltipTriggerProps) => React.ReactNode;
-  className?: string;
-  direction?: Direction;
+  contentClass?: string;
 };
 
-const Tooltip = ({ content, children, className, direction = 'top' }: TooltipProps) => {
-  const [isOpen, setOpen] = useState(false);
-
-  // helper function to close the menu
-  const open = () => {
-    setOpen(true);
-  };
-
-  const close = () => {
-    setOpen(false);
-  };
-
-  const { renderLayer, triggerProps, layerProps } = useLayer({
-    isOpen,
-    placement: `${direction}-center`,
-    triggerOffset: 14, // small gap between wrapped cont
-  });
-
-  const toolTipTriggerProps = () => ({
-    onMouseOver: () => open(),
-    onMouseLeave: () => close(),
-    ...triggerProps,
-  });
-
+export default function Tooltip({ direction = 'top', children, content, contentClass }: TooltipProps) {
   return (
-    <>
-      {children(toolTipTriggerProps())}
-
-      {renderLayer(
-        isOpen && (
-          <div {...layerProps} className={classNames('tooltip', `tooltip-${direction}`, className)}>
+    <TooltipPrimitive.Provider delayDuration={0}>
+      <TooltipPrimitive.Root>
+        <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
+        <TooltipPrimitive.Portal>
+          <TooltipPrimitive.Content
+            sideOffset={5}
+            className={twMerge(
+              'text-dark-50 z-50 select-none rounded-[4px] bg-black px-2 py-1.5 text-xs leading-none text-white will-change-[transform,opacity] data-[state=delayed-open]:data-[side=bottom]:animate-slide-up-fade data-[state=delayed-open]:data-[side=left]:animate-slide-right-fade data-[state=delayed-open]:data-[side=right]:animate-slide-left-fade data-[state=delayed-open]:data-[side=top]:animate-slide-down-fade',
+              contentClass
+            )}
+            side={direction}
+            align="center"
+          >
             {content}
-          </div>
-        )
-      )}
-    </>
+            <TooltipPrimitive.Arrow className="fill-black" />
+          </TooltipPrimitive.Content>
+        </TooltipPrimitive.Portal>
+      </TooltipPrimitive.Root>
+    </TooltipPrimitive.Provider>
   );
-};
-
-export default Tooltip;
+}
