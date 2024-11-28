@@ -26,10 +26,11 @@
     "react-dom": ">=18"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-select": "^5.8.0",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@headlessui/react": "^1.7.18",
