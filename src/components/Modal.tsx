@@ -1,20 +1,21 @@
 import { classNames } from '@/utils';
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, DialogBackdrop, Transition } from '@headlessui/react';
 import React, { Fragment, HTMLAttributes } from 'react';
 
 export type ModalProps = {
   children: React.ReactNode;
   className?: string;
+  backdropClassName?: string;
   isOpen: boolean;
   showXButton?: boolean;
   onClose: () => void;
 } & HTMLAttributes<HTMLDivElement>;
 
-const Modal = ({ children, showXButton = true, className, isOpen, onClose }: ModalProps) => {
+const Modal = ({ children, showXButton = true, className, isOpen, onClose, backdropClassName }: ModalProps) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-auto" onClose={onClose}>
+        <Dialog  as="div" className="fixed inset-0 z-10 overflow-auto" onClose={onClose}>
           <div className="min-h-screen p-4 text-center flex justify-center">
             <Transition.Child
               as={Fragment}
@@ -25,7 +26,11 @@ const Modal = ({ children, showXButton = true, className, isOpen, onClose }: Mod
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+              <DialogBackdrop className={
+                classNames(
+                  'fixed inset-0 bg-black bg-opacity-75 transition-opacity backdrop-blur-sm',
+                  backdropClassName )
+              } />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}

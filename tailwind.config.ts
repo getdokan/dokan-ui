@@ -1,8 +1,15 @@
 import type { Config } from 'tailwindcss';
 import { extendedThemeColorsUsingVariables, themeColors } from './src/utils';
+import {
+  scopedPreflightStyles,
+  isolateInsideOfContainer,
+} from 'tailwindcss-scoped-preflight';
+
+const rootClass = '.dokan-layout'; //We will use this class to scope the styles.
 
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  important: rootClass,
   theme: {
     extend: {
       colors: extendedThemeColorsUsingVariables,
@@ -45,5 +52,10 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@mertasan/tailwindcss-variables')],
+  plugins: [
+    scopedPreflightStyles( {
+      isolationStrategy: isolateInsideOfContainer( rootClass, {} ),
+    } ),
+    require('@tailwindcss/forms'),
+    require('@mertasan/tailwindcss-variables')],
 } satisfies Config;
