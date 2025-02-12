@@ -14,6 +14,7 @@
     "node": ">=18"
   },
   "scripts": {
+    "prepare": "npm run build",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
