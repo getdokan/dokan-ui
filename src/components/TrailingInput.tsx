@@ -44,7 +44,7 @@ const TrailingInput: React.FC<TrailingInputProps> = (props) => {
           disabled={props.disabled}
           id={props.input?.id ?? generatedId}
           className={classNames(
-            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 focus:ring-2 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
             hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
             props.icon && 'pl-10',
             props.className
