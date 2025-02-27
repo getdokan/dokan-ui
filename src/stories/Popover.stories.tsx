@@ -1,4 +1,4 @@
-import Popover from '@/components/popover';
+import Popover from '@/components/Popover';
 import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 import { FiChevronDown } from 'react-icons/fi';

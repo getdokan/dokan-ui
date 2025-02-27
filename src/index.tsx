@@ -38,6 +38,7 @@ export { default as ErrorMessage } from './components/ErrorMessage';
 export { default as useToast } from './components/use-toast.tsx';
 export { Toaster as DokanToaster } from 'react-hot-toast';
 export { default as AsyncSearchableSelect } from './components/AsyncSearchableSelect';
+export { default as Popover } from './components/Popover';
 
 // Icons
 export { default as ErrorIcon } from './components/icons/ErrorIcon';
