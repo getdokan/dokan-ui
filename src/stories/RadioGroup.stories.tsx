@@ -37,7 +37,7 @@ export const Default: Story = {
     return (
       <>
         <RadioGroup {...args} onChange={(selectedValue: string) => setSelected(selectedValue)} />
-        <p className="text-gray-600 text-sm">Current Value: {selected}</p>
+        <p className="text-gray-600 text-sm mt-2">Current Value: {selected}</p>
       </>
     );
   },

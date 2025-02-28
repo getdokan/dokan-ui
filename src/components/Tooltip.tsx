@@ -17,7 +17,7 @@ export default function Tooltip({ direction = 'top', children, content, contentC
           <TooltipPrimitive.Content
             sideOffset={5}
             className={twMerge(
-              'text-dark-50 z-50 select-none rounded-[4px] bg-black px-2 py-1.5 text-xs leading-none text-white will-change-[transform,opacity] data-[state=delayed-open]:data-[side=bottom]:animate-slide-up-fade data-[state=delayed-open]:data-[side=left]:animate-slide-right-fade data-[state=delayed-open]:data-[side=right]:animate-slide-left-fade data-[state=delayed-open]:data-[side=top]:animate-slide-down-fade',
+              'text-gray-50 z-50 select-none rounded-[4px] bg-black px-2 py-1.5 text-xs leading-none text-white will-change-[transform,opacity] data-[state=delayed-open]:data-[side=bottom]:animate-slide-up-fade data-[state=delayed-open]:data-[side=left]:animate-slide-right-fade data-[state=delayed-open]:data-[side=right]:animate-slide-left-fade data-[state=delayed-open]:data-[side=top]:animate-slide-down-fade',
               contentClass
             )}
             side={direction}

@@ -33,9 +33,10 @@ const TextArea: React.FC<TextAreaProps> = ({
       {typeof label === 'string' ? (
         <label
           htmlFor={input.id}
-          className={
-            'cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block'
-          }
+          className={classNames(
+            'cursor-pointer text-sm font-medium leading-[21px] text-gray-900  mb-2 inline-block',
+            disabled && 'cursor-not-allowed opacity-50'
+          )}
         >
           {label}
           {required && <span className={'ms-0.5 text-danger-500'}>*</span>}
@@ -46,7 +47,7 @@ const TextArea: React.FC<TextAreaProps> = ({
       <textarea
         required={required}
         className={classNames(
-          'w-full rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+          'w-full rounded border-0 px-4 py-2.5 text-sm leading-5 text-gray-800 ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-600 disabled:cursor-not-allowed disabled:opacity-50',
           hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
           className,
           disabled && 'disabled'

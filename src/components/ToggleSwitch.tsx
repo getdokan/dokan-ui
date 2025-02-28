@@ -70,10 +70,10 @@ const ToggleSwitch = ({
         </Switch>
         {children ||
           (label && (
-            <Switch.Label className="ms-2.5 cursor-pointer text-sm font-medium text-[#25252D]">{label}</Switch.Label>
+            <Switch.Label className="ms-2.5 cursor-pointer text-sm font-medium text-gray-900">{label}</Switch.Label>
           ))}
       </Switch.Group>
-      {helpText && <p className="mt-2.5 text-xs text-[#828282]">{helpText}</p>}
+      {helpText && <p className="mt-2.5 text-xs text-gray-400">{helpText}</p>}
     </>
   );
 };

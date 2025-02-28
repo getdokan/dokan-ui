@@ -38,6 +38,12 @@ export { default as ErrorMessage } from './components/ErrorMessage';
 export { default as useToast } from './components/use-toast.tsx';
 export { Toaster as DokanToaster } from 'react-hot-toast';
 export { default as AsyncSearchableSelect } from './components/AsyncSearchableSelect';
+export { default as Popover } from './components/Popover';
+export { default as FormInput } from './components/FormInput';
+export { default as FormTextarea } from './components/FormTextarea';
+export { default as FormSelect } from './components/FormSelect';
+export { default as FormLabel } from './components/FormLabel';
+export { default as Select } from './components/Select';
 
 // Icons
 export { default as ErrorIcon } from './components/icons/ErrorIcon';
