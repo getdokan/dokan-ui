@@ -21,6 +21,9 @@ export interface SimpleSelectProps {
   disabled?: boolean;
 }
 
+/**
+ * @deprecated use `SearchableSelect` component instead
+ */
 const SimpleSelect = (props: SimpleSelectProps) => {
   function slugify(sluggable: string) {
     sluggable = sluggable.replace(/^\s+|\s+$/g, ''); // trim
@@ -47,7 +50,10 @@ const SimpleSelect = (props: SimpleSelectProps) => {
     <>
       <label
         htmlFor={`${slugify(props.label)}-simple-select`}
-        className="cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block"
+        className={classNames(
+          'cursor-pointer text-sm font-medium leading-[21px] text-gray-900  mb-2 inline-block',
+          props.disabled && 'cursor-not-allowed opacity-50'
+        )}
       >
         {props.label}
         {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
@@ -59,7 +65,7 @@ const SimpleSelect = (props: SimpleSelectProps) => {
         id={`${slugify(props.label)}-simple-select`}
         name={`${slugify(props.label)}-simple-select`}
         className={classNames(
-          'h-10 w-full rounded border-0 text-sm ring-1 focus:ring-2 ring-[#E9E9E9] ps-3 focus:outline-none focus:ring-primary-500',
+          'h-10 w-full rounded border-0 text-sm ring-1 focus:ring-2 ring-gray-200 ps-3 focus:outline-none focus:ring-primary-500',
           hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors'
         )}
         style={{ fontSize: '14px' }}

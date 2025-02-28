@@ -66,7 +66,10 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
       {typeof props.label === 'string' ? (
         <label
           htmlFor={id}
-          className="inline-block mb-2 cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className={classNames(
+            'inline-block mb-2 cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
+            props.disabled && 'cursor-not-allowed opacity-50'
+          )}
         >
           {props.label}
           {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}

@@ -33,7 +33,7 @@ export type DropdownProps =
 
 /**
  *
- * @deprecated use Popover component instead
+ * @deprecated use `Popover` component instead
  */
 
 const Dropdown = ({
