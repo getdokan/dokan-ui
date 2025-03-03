@@ -1,5 +1,5 @@
-import { Switch } from '@headlessui/react';
-import { ReactElement } from 'react';
+import * as Switch from '@radix-ui/react-switch';
+import { ReactElement, useId } from 'react';
 
 export interface ToggleSwitchProps {
   checked: boolean;
@@ -11,6 +11,9 @@ export interface ToggleSwitchProps {
   value?: string;
   defaultChecked?: boolean;
   helpText?: string | ReactElement;
+  disabled?: boolean;
+  id?: string;
+  required?: boolean;
 }
 
 const bgClasses: Record<string, string> = {
@@ -48,32 +51,50 @@ const ToggleSwitch = ({
   value,
   defaultChecked,
   helpText,
+  disabled = false,
+  id: providedId,
+  required,
 }: ToggleSwitchProps) => {
+  // Generate a unique ID if none provided
+  const generatedId = useId();
+  const id = providedId || `toggle-${generatedId}`;
+
   return (
     <>
-      <Switch.Group as="div" className="flex items-center">
-        <Switch
+      <div className="flex items-center">
+        <Switch.Root
+          id={id}
           defaultChecked={defaultChecked}
           name={name}
           value={value}
           checked={checked}
-          onChange={onChange}
-          style={{ width: '42px', minWidth: '42px' }}
-          className={`${checked ? bgClasses[color] : 'bg-gray-200'} relative inline-flex items-center h-5 rounded-full`}
+          onCheckedChange={onChange}
+          disabled={disabled}
+          className={`${checked ? bgClasses[color] : 'bg-gray-200'} ${
+            disabled ? 'opacity-50 cursor-not-allowed' : ''
+          } relative inline-flex items-center h-5 w-10 rounded-full outline-none`}
+          required={required}
         >
-          <span
-            style={{ height: '14px', width: '14px', minWidth: '14px' }}
+          <Switch.Thumb
             className={`${
               checked ? 'translate-x-6' : 'translate-x-1'
-            } inline-block transform transition ease-in-out duration-200 bg-white rounded-full`}
+            } block h-3.5 w-3.5 rounded-full bg-white transition-transform duration-200 ease-in-out`}
           />
-        </Switch>
+        </Switch.Root>
         {children ||
           (label && (
-            <Switch.Label className="ms-2.5 cursor-pointer text-sm font-medium text-gray-900">{label}</Switch.Label>
+            <label
+              htmlFor={id}
+              className={`ms-2.5 text-sm font-medium text-gray-900 ${
+                disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+              }`}
+            >
+              {label}
+              {required && <span className={'ms-0.5 text-danger-500'}>*</span>}
+            </label>
           ))}
-      </Switch.Group>
-      {helpText && <p className="mt-2.5 text-xs text-gray-400">{helpText}</p>}
+      </div>
+      {helpText && <p className={`mt-2.5 text-xs text-gray-400 ${disabled ? 'opacity-50' : ''}`}>{helpText}</p>}
     </>
   );
 };
