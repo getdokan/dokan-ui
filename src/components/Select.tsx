@@ -145,7 +145,15 @@ Select.Trigger = SelectTrigger;
 Select.Content = SelectContent;
 Select.Label = SelectLabel;
 Select.Item = SelectItem;
+Select.ItemIndicator = SelectPrimitive.ItemIndicator;
+Select.ItemText = SelectPrimitive.ItemText;
 Select.Separator = SelectSeparator;
+Select.Portal = SelectPrimitive.Portal;
+Select.ScrollUpButton = SelectPrimitive.ScrollUpButton;
+Select.ScrollDownButton = SelectPrimitive.ScrollDownButton;
+Select.Viewport = SelectPrimitive.Viewport;
+Select.Icon = SelectPrimitive.Icon;
+Select.Arrow = SelectPrimitive.Arrow;
 
 Select.displayName = SelectPrimitive.Select.displayName;
 
