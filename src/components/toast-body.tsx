@@ -37,21 +37,21 @@ const ToastBody: FC<ToastBodyProps> = (props) => {
                 {props.type == 'info' && <HiInformationCircle className="h-10 w-10" />}
               </div>
               <div className={`ms-3 flex-1 ${!props.subtitle && 'mt-3'}`}>
-                <p className={`text-sm font-medium text-dark-500`}>
+                <p className={`text-sm font-medium text-gray-500`}>
                   {props.type == 'success' && (props.title || 'Success')}
                   {props.type == 'error' && (props.title || 'Error')}
                   {props.type == 'warning' && (props.title || 'Warning')}
                   {props.type == 'info' && (props.title || 'Info')}
                 </p>
-                <p className="mt-1 text-sm text-dark-500">{props.subtitle}</p>
+                <p className="mt-1 text-sm text-gray-500">{props.subtitle}</p>
               </div>
             </div>
           </div>
           {props.showCloseButton && (
-            <div className="flex border-l border-dark-200">
+            <div className="flex border-l border-gray-200">
               <button
                 onClick={() => setShowToast(false)}
-                className={`flex w-full items-center justify-center rounded-none rounded-r-lg border border-transparent p-4 text-sm font-medium text-dark-500`}
+                className={`flex w-full items-center justify-center rounded-none rounded-r-lg border border-transparent p-4 text-sm font-medium text-gray-500`}
               >
                 Close
               </button>

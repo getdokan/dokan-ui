@@ -86,10 +86,10 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         styles={{
           control: (base) => ({
             ...base,
-            border: hasErrors ? '1px solid var(--danger-500)' : base.border,
+            border: hasErrors ? '1px solid var(--colors-danger-500)' : base.border,
             minHeight: '40px',
             ':hover': {
-              border: hasErrors ? '1px solid var(--danger-500)' : base.border,
+              border: hasErrors ? '1px solid var(--colors-danger-500)' : base.border,
             },
             borderRadius: '5px',
           }),
@@ -99,18 +99,18 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
           }),
           multiValue: (base) => ({
             ...base,
-            background: 'var(--primary-50)',
+            background: 'var(--colors-primary-50)',
             borderRadius: '0.25rem',
           }),
           multiValueLabel: (base) => ({
             ...base,
-            color: 'var(--primary-600)',
+            color: 'var(--colors-primary-600)',
           }),
           multiValueRemove: (base) => ({
             ...base,
-            color: 'var(--primary-600)',
+            color: 'var(--colors-primary-600)',
             ':hover': {
-              background: 'var(--primary-100)',
+              background: 'var(--colors-primary-100)',
             },
           }),
         }}
@@ -118,20 +118,20 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
           ...theme,
           colors: {
             ...theme.colors,
-            primary: hasErrors ? 'var(--danger-500)' : 'var(--primary-500)',
-            primary75: 'var(--primary-200)',
-            primary50: 'var(--primary-100)',
-            primary25: 'var(--primary-50)',
-            neutral5: 'var(--gray-100)',
-            neutral10: 'var(--gray-100)',
-            neutral20: 'var(--gray-200)',
-            neutral30: 'var(--gray-200)',
-            neutral40: 'var(--gray-400)',
-            neutral50: 'var(--gray-500)',
-            neutral60: 'var(--gray-600)',
-            neutral70: 'var(--gray-700)',
-            neutral80: 'var(--gray-800)',
-            neutral90: 'var(--gray-900)',
+            primary: hasErrors ? 'var(--colors-danger-500)' : 'var(--colors-primary-500)',
+            primary75: 'var(--colors-primary-200)',
+            primary50: 'var(--colors-primary-100)',
+            primary25: 'var(--colors-primary-50)',
+            neutral5: 'var(--colors-gray-100)',
+            neutral10: 'var(--colors-gray-100)',
+            neutral20: 'var(--colors-gray-200)',
+            neutral30: 'var(--colors-gray-200)',
+            neutral40: 'var(--colors-gray-400)',
+            neutral50: 'var(--colors-gray-500)',
+            neutral60: 'var(--colors-gray-600)',
+            neutral70: 'var(--colors-gray-700)',
+            neutral80: 'var(--colors-gray-800)',
+            neutral90: 'var(--colors-gray-900)',
           },
         })}
       />

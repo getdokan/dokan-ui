@@ -31,6 +31,11 @@ export type DropdownProps =
       children: React.ReactNode;
     };
 
+/**
+ *
+ * @deprecated use `Popover` component instead
+ */
+
 const Dropdown = ({
   initialOpen = false,
   isOpen: controlledOpen,

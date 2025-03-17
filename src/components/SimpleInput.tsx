@@ -52,9 +52,10 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
       {typeof props.label === 'string' ? (
         <label
           htmlFor={props.input?.id ?? generatedId}
-          className={
-            'cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 inline-block'
-          }
+          className={classNames(
+            'cursor-pointer text-sm font-medium leading-[21px] text-gray-900  mb-2 inline-block',
+            props.disabled && 'cursor-not-allowed opacity-50'
+          )}
         >
           {props.label}
           {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
@@ -81,7 +82,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           id={props.input?.id ?? generatedId}
           defaultValue={props.defaultValue}
           className={classNames(
-            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-[#575757] ring-1 ring-[#E9E9E9] placeholder:text-[#828282] focus:ring-primary-600 disabled:cursor-not-allowed disabled:text-[#A5A5AA] disabled:placeholder:text-[#A5A5AA]',
+            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-gray-800 ring-1 focus:ring-2 ring-gray-200 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:opacity-50',
             hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
             props.disabled && 'disabled',
             (props.icon || props.addOnLeft) && 'pl-11',

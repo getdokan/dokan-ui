@@ -66,7 +66,10 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
       {typeof props.label === 'string' ? (
         <label
           htmlFor={id}
-          className="inline-block mb-2 cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className={classNames(
+            'inline-block mb-2 cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
+            props.disabled && 'cursor-not-allowed opacity-50'
+          )}
         >
           {props.label}
           {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
@@ -90,20 +93,20 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           ...theme,
           colors: {
             ...theme.colors,
-            primary: 'var(--primary-500)',
-            primary75: 'var(--primary-200)',
-            primary50: 'var(--primary-100)',
-            primary25: 'var(--primary-50)',
-            neutral5: 'var(--gray-100)',
-            neutral10: 'var(--gray-100)',
-            neutral20: 'var(--gray-200)',
-            neutral30: 'var(--gray-200)',
-            neutral40: 'var(--gray-400)',
-            neutral50: 'var(--gray-500)',
-            neutral60: 'var(--gray-600)',
-            neutral70: 'var(--gray-700)',
-            neutral80: 'var(--gray-800)',
-            neutral90: 'var(--gray-900)',
+            primary: 'var(--colors-primary-500)',
+            primary75: 'var(--colors-primary-200)',
+            primary50: 'var(--colors-primary-100)',
+            primary25: 'var(--colors-primary-50)',
+            neutral5: 'var(--colors-gray-100)',
+            neutral10: 'var(--colors-gray-100)',
+            neutral20: 'var(--colors-gray-200)',
+            neutral30: 'var(--colors-gray-200)',
+            neutral40: 'var(--colors-gray-400)',
+            neutral50: 'var(--colors-gray-500)',
+            neutral60: 'var(--colors-gray-600)',
+            neutral70: 'var(--colors-gray-700)',
+            neutral80: 'var(--colors-gray-800)',
+            neutral90: 'var(--colors-gray-900)',
           },
         })}
         components={{
@@ -122,9 +125,9 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           control: (base) => ({
             ...base,
             minHeight: '40px',
-            border: props.errors && props.errors.length > 0 ? '1px solid var(--danger-500)' : base.border,
+            border: props.errors && props.errors.length > 0 ? '1px solid var(--colors-danger-500)' : base.border,
             ':hover': {
-              border: hasErrors ? '1px solid var(--danger-500)' : base.border,
+              border: hasErrors ? '1px solid var(--colors-danger-500)' : base.border,
             },
             borderRadius: '5px',
           }),
@@ -134,18 +137,18 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           }),
           multiValue: (base) => ({
             ...base,
-            background: 'var(--primary-50)',
+            background: 'var(--colors-primary-50)',
             borderRadius: '0.25rem',
           }),
           multiValueLabel: (base) => ({
             ...base,
-            color: 'var(--primary-600)',
+            color: 'var(--colors-primary-600)',
           }),
           multiValueRemove: (base) => ({
             ...base,
-            color: 'var(--primary-600)',
+            color: 'var(--colors-primary-600)',
             ':hover': {
-              background: 'var(--primary-100)',
+              background: 'var(--colors-primary-100)',
             },
           }),
         }}

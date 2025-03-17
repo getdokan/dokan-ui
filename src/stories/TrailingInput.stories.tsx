@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { HiEye, HiLockClosed } from 'react-icons/hi';
 
 const meta: Meta<typeof TrailingInput> = {
-  title: 'Input',
+  title: 'Trailing Input',
   component: TrailingInput,
   tags: ['autodocs'],
 };
