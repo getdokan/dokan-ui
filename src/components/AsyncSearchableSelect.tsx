@@ -1,8 +1,10 @@
 import { CgSpinner } from 'react-icons/cg';
-import { FiChevronDown, FiX } from 'react-icons/fi';
-import { ClearIndicatorProps, GroupBase, InputProps, ValueContainerProps, components } from 'react-select';
+import { FiChevronDown } from 'react-icons/fi';
+import { GroupBase } from 'react-select';
 import AsyncSelect, { AsyncProps } from 'react-select/async';
 import { twMerge } from 'tailwind-merge';
+import ErrorMessage from './ErrorMessage';
+import { classNames } from '@/utils';
 
 export type AsyncSearchableSelectProps<
   Option,
@@ -27,16 +29,6 @@ const AsyncSearchableSelect = <
 ) => {
   const id = props.id || Math.random().toString();
 
-  const ValueContainer = ({ children, ...props }: ValueContainerProps<Option, IsMulti, Group>) => (
-    <components.ValueContainer {...props} className="text-sm">
-      {children}
-    </components.ValueContainer>
-  );
-
-  const Input = (props: InputProps<Option, IsMulti, Group>) => {
-    return <components.Input {...props} inputClassName="focus:ring-0" />;
-  };
-
   const DropdownIndicator = () => (
     <div className="px-2">
       <FiChevronDown className="h-5 text-gray-400" />
@@ -49,36 +41,31 @@ const AsyncSearchableSelect = <
 
   const IndicatorSeparator = () => null;
 
-  const ClearIndicator = (props: ClearIndicatorProps<Option, IsMulti, Group>) => {
-    return (
-      <components.ClearIndicator
-        {...props}
-        getStyles={() => ({
-          padding: '0',
-        })}
-      >
-        <FiX className="text-gray-400" />
-      </components.ClearIndicator>
-    );
-  };
+  const hasError = Boolean(props.errors && props.errors.length > 0);
 
   return (
     <div className={'react-select'}>
       {props.label && (
-        <label htmlFor={id} className="block text-sm font-medium">
+        <label
+          htmlFor={id}
+          className={classNames(
+            'mb-2 inline-block cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
+            props.disabled && 'cursor-not-allowed opacity-50'
+          )}
+        >
           {props.label}
           {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       )}
       <AsyncSelect
         isDisabled={props.disabled}
-        className={twMerge('shadow-sm', props.className, props.disabled && 'rounded border')}
+        className={twMerge('shadow-sm', props.className, props.disabled && 'rounded border', hasError && 'hasErrors')}
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search...'}</div>}
         theme={(theme) => ({
           ...theme,
           colors: {
             ...theme.colors,
-            primary: props.errors && props.errors.length > 0 ? 'var(--colors-danger-500)' : 'var(--colors-primary-500)',
+            primary: 'var(--colors-primary-500)',
             primary75: 'var(--colors-primary-200)',
             primary50: 'var(--colors-primary-100)',
             primary25: 'var(--colors-primary-50)',
@@ -94,21 +81,35 @@ const AsyncSearchableSelect = <
             neutral90: 'var(--colors-gray-900)',
           },
         })}
+        classNames={{
+          control: ({ isFocused }) => {
+            if (hasError && isFocused) {
+              return '!border-2 !border-danger-500';
+            }
+
+            if (isFocused) {
+              return '!border-2 !border-primary-500';
+            }
+
+            if (hasError) {
+              return '!border !border-danger-500';
+            }
+
+            return '!border-gray-200';
+          },
+        }}
         components={{
-          ValueContainer,
-          Input,
           DropdownIndicator,
           IndicatorSeparator,
           LoadingIndicator,
-          ClearIndicator,
         }}
         styles={{
           control: (base) => ({
             ...base,
-            border: props.errors && props.errors.length > 0 ? '1px solid var(--colors-danger-500)' : base.border,
-            ':hover': {
-              border: props.errors && props.errors.length > 0 ? '1px solid var(--colors-danger-500)' : base.border,
-            },
+            minHeight: '40px',
+            boxShadow: 'none',
+            borderRadius: '5px',
+            fontSize: '14px',
           }),
           option: (base) => ({
             ...base,
@@ -130,14 +131,27 @@ const AsyncSearchableSelect = <
               background: 'var(--colors-primary-100)',
             },
           }),
+          loadingMessage: (base) => ({
+            ...base,
+            fontSize: '0.875rem',
+            color: 'var(--colors-gray-800)',
+          }),
+          menuPortal: (base) => ({
+            ...base,
+            zIndex: 9999,
+          }),
+          noOptionsMessage: (base) => ({
+            ...base,
+            fontSize: '0.875rem',
+            color: 'var(--colors-gray-800)',
+          }),
         }}
+        menuPortalTarget={document.body}
+        menuPosition="absolute"
         {...props}
       />
-      {props.errors && props.errors.length > 0 && (
-        <p className="text-xs text-red-600" id={`${id}-error`}>
-          {props.errors.join(', ')}
-        </p>
-      )}
+      {props.errors && props.errors.length > 0 && <ErrorMessage value={props.errors} />}
+
       {props.helpText && <span className="text-xs text-gray-600">{props.helpText}</span>}
     </div>
   );
