@@ -4,6 +4,7 @@ import { GroupBase } from 'react-select';
 import AsyncSelect, { AsyncProps } from 'react-select/async';
 import { twMerge } from 'tailwind-merge';
 import ErrorMessage from './ErrorMessage';
+import { classNames } from '@/utils';
 
 export type AsyncSearchableSelectProps<
   Option,
@@ -45,14 +46,20 @@ const AsyncSearchableSelect = <
   return (
     <div className={'react-select'}>
       {props.label && (
-        <label htmlFor={id} className="block text-sm font-medium">
+        <label
+          htmlFor={id}
+          className={classNames(
+            'mb-2 inline-block cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
+            props.disabled && 'cursor-not-allowed opacity-50'
+          )}
+        >
           {props.label}
           {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
         </label>
       )}
       <AsyncSelect
         isDisabled={props.disabled}
-        className={twMerge('shadow-sm', props.className, props.disabled && 'rounded border')}
+        className={twMerge('shadow-sm', props.className, props.disabled && 'rounded border', hasError && 'hasErrors')}
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search...'}</div>}
         theme={(theme) => ({
           ...theme,
@@ -139,6 +146,8 @@ const AsyncSearchableSelect = <
             color: 'var(--colors-gray-800)',
           }),
         }}
+        menuPortalTarget={document.body}
+        menuPosition="absolute"
         {...props}
       />
       {props.errors && props.errors.length > 0 && <ErrorMessage value={props.errors} />}
