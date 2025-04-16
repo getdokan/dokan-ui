@@ -1,4 +1,4 @@
-import Select, { GroupBase, Props } from 'react-select';
+import Select, { GroupBase, MenuPosition, Props } from 'react-select';
 import ErrorMessage from './ErrorMessage';
 import { classNames } from '@/utils';
 import { FiChevronDown } from 'react-icons/fi';
@@ -16,6 +16,8 @@ export type SearchableSelectProps<
   required?: boolean;
   disabled?: boolean;
   ref?: any;
+  menuPortalTarget?: HTMLElement | null;
+  menuPosition?: MenuPosition;
 };
 
 const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(
@@ -53,8 +55,8 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
       )}
       <Select
         {...props}
-        menuPortalTarget={document.body}
-        menuPosition="absolute"
+        menuPortalTarget={props.menuPortalTarget}
+        menuPosition={props.menuPosition}
         isDisabled={props.disabled}
         className={classNames(
           {

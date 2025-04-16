@@ -1,6 +1,6 @@
 import { CgSpinner } from 'react-icons/cg';
 import { FiChevronDown } from 'react-icons/fi';
-import { GroupBase } from 'react-select';
+import { GroupBase, MenuPosition } from 'react-select';
 import AsyncSelect, { AsyncProps } from 'react-select/async';
 import { twMerge } from 'tailwind-merge';
 import ErrorMessage from './ErrorMessage';
@@ -18,6 +18,8 @@ export type AsyncSearchableSelectProps<
   helpText?: string;
   required?: boolean;
   disabled?: boolean;
+  menuPortalTarget?: HTMLElement | null;
+  menuPosition?: MenuPosition;
 };
 
 const AsyncSearchableSelect = <
@@ -146,8 +148,8 @@ const AsyncSearchableSelect = <
             color: 'var(--colors-gray-800)',
           }),
         }}
-        menuPortalTarget={document.body}
-        menuPosition="absolute"
+        menuPortalTarget={props.menuPortalTarget}
+        menuPosition={props.menuPosition}
         {...props}
       />
       {props.errors && props.errors.length > 0 && <ErrorMessage value={props.errors} />}
