@@ -14,9 +14,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "prepare": "vite build",
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --config vite.config.ts",
+    "build": "tsc --project tsconfig.build.json && vite --config vite.config.ts build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
