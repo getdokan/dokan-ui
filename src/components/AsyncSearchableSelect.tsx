@@ -60,6 +60,7 @@ const AsyncSearchableSelect = <
         </label>
       )}
       <AsyncSelect
+        inputId={id}
         isDisabled={props.disabled}
         className={twMerge('shadow-sm', props.className, props.disabled && 'rounded border', hasError && 'hasErrors')}
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search...'}</div>}

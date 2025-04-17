@@ -24,6 +24,8 @@ export const Default: Story = {
     required: true,
     helpText: 'This is a help text example',
     errors: [],
+    menuPortalTarget: document.body,
+    MenuPortal: 'fixed',
   },
   render: (args) => {
     return (
@@ -50,6 +52,8 @@ export const Multiple: Story = {
     isMulti: true,
     helpText: '',
     errors: [],
+    menuPortalTarget: document.body,
+    MenuPortal: 'fixed',
   },
   render: (args) => {
     return (
@@ -76,6 +80,8 @@ export const Error: Story = {
     isMulti: true,
     helpText: '',
     errors: ['Country is required'],
+    menuPortalTarget: document.body,
+    MenuPortal: 'fixed',
   },
   render: (args) => {
     return (
