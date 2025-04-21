@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pac-container {
+  @apply shadow-md border-t-0;
+
+  .pac-item {
+    @apply px-4 py-1;
+
+    .pac-icon-marker {
+      @apply hidden;
+    }
+  }
+
+  &:after {
+    @apply hidden;
+  }
+}
+
+.react-select {
+  input:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
