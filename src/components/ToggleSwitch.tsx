@@ -61,7 +61,7 @@ const ToggleSwitch = ({
 
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center relative">
         <Switch.Root
           id={id}
           defaultChecked={defaultChecked}
