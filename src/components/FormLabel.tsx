@@ -9,7 +9,7 @@ const FormLabel = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>,
     <LabelPrimitive.Root
       ref={ref}
       className={classNames(
-        'cursor-pointer select-none text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
+        'cursor-pointer text-sm font-medium leading-[21px] text-gray-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
         className
       )}
       {...props}

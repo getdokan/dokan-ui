@@ -55,6 +55,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
       )}
       <Select
         {...props}
+        id={undefined}
         inputId={id}
         menuPortalTarget={props.menuPortalTarget}
         menuPosition={props.menuPosition}
