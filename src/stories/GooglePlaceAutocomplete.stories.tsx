@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     apiKey: 'AIzaSyDvqF2TFlH_iL33LMiDHvNpkAcpK0nW7_0',
+    label: 'Address',
   },
   render: (args) => {
     return <GooglePlaceAutocomplete {...args} />;
