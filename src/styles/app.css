@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pac-container {
+  @apply shadow-md border-t-0;
+}
+
+.pac-container .pac-item {
+  @apply px-4 py-1;
+}
+
+.pac-container:after {
+  @apply hidden;
+}
+
+.react-select input:focus {
+  @apply !border-none !outline-none !shadow-none;
+}
