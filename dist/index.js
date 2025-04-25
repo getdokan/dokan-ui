@@ -10819,10 +10819,16 @@ const JF = (l) => /* @__PURE__ */ y.jsx(y.Fragment, { children: /* @__PURE__ */ 
       leave: "ease-in duration-200",
       leaveFrom: "opacity-100",
       leaveTo: "opacity-0",
-      children: /* @__PURE__ */ y.jsx(Hx, { className: Rl(
-        "fixed inset-0 bg-black bg-opacity-75 transition-opacity backdrop-blur-sm",
-        o
-      ) })
+      children: /* @__PURE__ */ y.jsx(
+        Hx,
+        {
+          onClick: r,
+          className: Rl(
+            "fixed inset-0 bg-black bg-opacity-75 transition-opacity backdrop-blur-sm",
+            o
+          )
+        }
+      )
     }
   ),
   /* @__PURE__ */ y.jsx(

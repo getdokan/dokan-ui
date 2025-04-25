@@ -15,7 +15,7 @@ const Modal = ({ children, showXButton = true, className, isOpen, onClose, backd
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog  as="div" className="fixed inset-0 z-10 overflow-auto" onClose={onClose}>
+        <Dialog as="div" className="fixed inset-0 z-10 overflow-auto" onClose={onClose}>
           <div className="min-h-screen p-4 text-center flex justify-center">
             <Transition.Child
               as={Fragment}
@@ -26,11 +26,13 @@ const Modal = ({ children, showXButton = true, className, isOpen, onClose, backd
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <DialogBackdrop className={
-                classNames(
+              <DialogBackdrop
+                onClick={onClose}
+                className={classNames(
                   'fixed inset-0 bg-black bg-opacity-75 transition-opacity backdrop-blur-sm',
-                  backdropClassName )
-              } />
+                  backdropClassName
+                )}
+              />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
