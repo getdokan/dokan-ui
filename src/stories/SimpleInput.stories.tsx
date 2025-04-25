@@ -36,7 +36,6 @@ Default.args = {
 LeftAddon.args = {
   addOnLeft: 'http://',
   label: 'Web Address',
-  className: 'pl-[68px]',
   input: {
     id: 'login-web',
     name: 'web',
@@ -48,7 +47,6 @@ LeftAddon.args = {
 };
 RightAddon.args = {
   addOnRight: '.dokan.cloud',
-  className: 'pr-[110px]',
   label: 'Store Name',
   input: {
     id: 'login-storename',
