@@ -15780,7 +15780,7 @@ const qF = (l) => {
               value: r.value,
               checked: r.value === n,
               className: Rl(
-                "h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500",
+                "h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500",
                 t && "hasErrors"
               ),
               onChange: (d) => {
