@@ -63,9 +63,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
       ) : (
         props.label
       )}
-      <div className="relative">
+      <div className="relative flex">
         {props.addOnLeft && (
-          <span className="inline-flex items-center bg-gray-50 px-3 text-gray-500 sm:text-sm rouned-bl absolute left-0 top-0 h-full rounded-bl rounded-tl">
+          <span className="inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
             {props.addOnLeft}
           </span>
         )}
@@ -82,10 +82,12 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           id={props.input?.id ?? generatedId}
           defaultValue={props.defaultValue}
           className={classNames(
-            'w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-gray-800 ring-1 focus:ring-2 ring-gray-200 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:opacity-50',
+            'w-full h-10 rounded border px-4 py-2.5 text-sm leading-5 text-gray-800 focus:ring-2 border-gray-300 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:opacity-50',
             hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
             props.disabled && 'disabled',
-            (props.icon || props.addOnLeft) && 'pl-11',
+            props.icon && 'pl-11',
+            props.addOnRight && 'rounded-r-none',
+            props.addOnLeft && 'rounded-l-none',
             props.className
           )}
           onChange={(e) => {
@@ -111,7 +113,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           </div>
         )}
         {props.addOnRight && (
-          <span className="bg-gray-50 px-3 text-gray-500 absolute right-0 top-0 inline-flex h-full items-center rounded-br rounded-tr sm:text-sm">
+          <span className="inline-flex items-center rounded-r border-l-0 border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
             {props.addOnRight}
           </span>
         )}
