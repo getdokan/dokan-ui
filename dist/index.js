@@ -15702,8 +15702,8 @@ const qF = (l) => {
         ]
       }
     ) : l.label,
-    /* @__PURE__ */ y.jsxs("div", { className: "relative", children: [
-      l.addOnLeft && /* @__PURE__ */ y.jsx("span", { className: "inline-flex items-center bg-gray-50 px-3 text-gray-500 sm:text-sm rouned-bl absolute left-0 top-0 h-full rounded-bl rounded-tl", children: l.addOnLeft }),
+    /* @__PURE__ */ y.jsxs("div", { className: "relative flex", children: [
+      l.addOnLeft && /* @__PURE__ */ y.jsx("span", { className: "inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm", children: l.addOnLeft }),
       l.icon && /* @__PURE__ */ y.jsx("div", { className: "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3", children: /* @__PURE__ */ y.jsx(t, { className: Rl("h-5 w-5 text-gray-400", o && "text-red-400"), "aria-hidden": "true" }) }),
       /* @__PURE__ */ y.jsx(
         "input",
@@ -15715,10 +15715,12 @@ const qF = (l) => {
           id: ((s = l.input) == null ? void 0 : s.id) ?? r,
           defaultValue: l.defaultValue,
           className: Rl(
-            "w-full h-10 rounded border-0 px-4 py-2.5 text-sm leading-5 text-gray-800 ring-1 focus:ring-2 ring-gray-200 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:opacity-50",
+            "w-full h-10 rounded border px-4 py-2.5 text-sm leading-5 text-gray-800 focus:ring-2 border-gray-300 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:opacity-50",
             o && "ring-red-500 focus:ring-red-500 hasErrors",
             l.disabled && "disabled",
-            (l.icon || l.addOnLeft) && "pl-11",
+            l.icon && "pl-11",
+            l.addOnRight && "rounded-r-none",
+            l.addOnLeft && "rounded-l-none",
             l.className
           ),
           onChange: (p) => {
@@ -15739,7 +15741,7 @@ const qF = (l) => {
         "/",
         ((f = l.input) == null ? void 0 : f.maxLength) ?? "∞"
       ] }) }),
-      l.addOnRight && /* @__PURE__ */ y.jsx("span", { className: "bg-gray-50 px-3 text-gray-500 absolute right-0 top-0 inline-flex h-full items-center rounded-br rounded-tr sm:text-sm", children: l.addOnRight }),
+      l.addOnRight && /* @__PURE__ */ y.jsx("span", { className: "inline-flex items-center rounded-r border-l-0 border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm", children: l.addOnRight }),
       l.children
     ] }),
     /* @__PURE__ */ y.jsx(qu, { value: l.errors ?? [] }),
