@@ -61,7 +61,7 @@ const SimpleRadio: React.FC<SimpleRadioProps> = (props) => {
               value={option.value}
               checked={option.value === selected}
               className={classNames(
-                `h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500`,
+                `h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500`,
                 hasErrors && 'hasErrors'
               )}
               onChange={(e) => {
