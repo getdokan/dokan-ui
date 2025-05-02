@@ -1,16 +1,7 @@
-import { classNames } from '@/utils';
-import React from 'react';
-import { HiChevronDown } from 'react-icons/hi';
-import Select, {
-  components,
-  DropdownIndicatorProps,
-  GroupBase,
-  InputProps,
-  OptionProps,
-  Props,
-  ValueContainerProps,
-} from 'react-select';
+import Select, { GroupBase, MenuPosition, Props } from 'react-select';
 import ErrorMessage from './ErrorMessage';
+import { classNames } from '@/utils';
+import { FiChevronDown } from 'react-icons/fi';
 
 export type SearchableSelectProps<
   Option,
@@ -25,6 +16,8 @@ export type SearchableSelectProps<
   required?: boolean;
   disabled?: boolean;
   ref?: any;
+  menuPortalTarget?: HTMLElement | null;
+  menuPosition?: MenuPosition;
 };
 
 const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(
@@ -34,30 +27,13 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
 
   const hasError = props.errors && props.errors.length > 0;
 
-  const ValueContainer = ({ children, ...props }: ValueContainerProps<Option, IsMulti, Group>) => (
-    <components.ValueContainer {...props} className="text-sm">
-      {children}
-    </components.ValueContainer>
-  );
-
-  const Option = (props: OptionProps<Option, IsMulti, Group>) => {
-    return <components.Option {...props} />;
-  };
-
-  const Input = (props: InputProps<Option, IsMulti, Group>) => {
-    return <components.Input {...props} inputClassName="focus:ring-0" />;
-  };
-
-  // eslint-disable-next-line no-empty-pattern
-  const DropdownIndicator = ({}: DropdownIndicatorProps<Option, IsMulti, Group>) => {
-    return (
-      <div className="px-2">
-        <HiChevronDown className="h-5 text-gray-400" />
-      </div>
-    );
-  };
-
   const IndicatorSeparator = () => null;
+
+  const DropdownIndicator = () => (
+    <div className="px-2">
+      <FiChevronDown className="h-5 text-gray-400" />
+    </div>
+  );
 
   const hasErrors = Boolean(props.errors && props.errors.length > 0);
 
@@ -67,7 +43,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         <label
           htmlFor={id}
           className={classNames(
-            'inline-block mb-2 cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
+            'mb-2 inline-block cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
             props.disabled && 'cursor-not-allowed opacity-50'
           )}
         >
@@ -78,13 +54,16 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         props.label
       )}
       <Select
-        ref={props.ref}
         {...props}
+        id={undefined}
+        inputId={id}
+        menuPortalTarget={props.menuPortalTarget}
+        menuPosition={props.menuPosition}
         isDisabled={props.disabled}
         className={classNames(
           {
             hasErrors: hasErrors,
-            'border rounded': props.disabled,
+            'rounded border': props.disabled,
           },
           props.className
         )}
@@ -110,27 +89,36 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           },
         })}
         components={{
-          ValueContainer,
-          Option,
-          Input,
-          DropdownIndicator,
           IndicatorSeparator,
+          DropdownIndicator,
         }}
         classNames={{
           control: ({ isFocused }) => {
-            return hasError && isFocused ? '!ring-1 !ring-danger-500' : '';
+            if (hasError && isFocused) {
+              return '!border-2 !border-danger-500';
+            }
+
+            if (isFocused) {
+              return '!border-2 !border-primary-500';
+            }
+
+            if (hasError) {
+              return '!border !border-danger-500';
+            }
+
+            return '!border-gray-200';
           },
         }}
         styles={{
-          control: (base) => ({
-            ...base,
-            minHeight: '40px',
-            border: props.errors && props.errors.length > 0 ? '1px solid var(--colors-danger-500)' : base.border,
-            ':hover': {
-              border: hasErrors ? '1px solid var(--colors-danger-500)' : base.border,
-            },
-            borderRadius: '5px',
-          }),
+          control: (base) => {
+            return {
+              ...base,
+              minHeight: '40px',
+              boxShadow: 'none',
+              borderRadius: '5px',
+              fontSize: '14px',
+            };
+          },
           option: (base) => ({
             ...base,
             fontSize: '0.875rem',
@@ -150,6 +138,10 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
             ':hover': {
               background: 'var(--colors-primary-100)',
             },
+          }),
+          menuPortal: (base) => ({
+            ...base,
+            zIndex: 9999,
           }),
         }}
       />

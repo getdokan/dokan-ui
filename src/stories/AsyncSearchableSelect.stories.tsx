@@ -28,6 +28,8 @@ export const Default: Story = {
       console.log(items);
     },
     required: true,
+    menuPortalTarget: document.body,
+    MenuPortal: 'fixed',
   },
   render: (args) => {
     return (
@@ -57,6 +59,8 @@ export const Multiple: Story = {
     },
     isMulti: true,
     required: true,
+    menuPortalTarget: document.body,
+    MenuPortal: 'fixed',
   },
   render: (args) => {
     return (
@@ -91,6 +95,8 @@ export const MultipleAndSearch: Story = {
       });
     },
     required: true,
+    menuPortalTarget: document.body,
+    MenuPortal: 'fixed',
   },
   render: (args) => {
     return (

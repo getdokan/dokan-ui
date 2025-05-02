@@ -63,14 +63,19 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
       ) : (
         props.label
       )}
-      <div className="relative flex">
+      <div
+        className={classNames(
+          'flex h-10 items-center rounded ring-1 ring-[#E9E9E9] focus-within:ring-2 focus-within:ring-primary-500',
+          hasErrors && 'hasErrors ring-2 ring-red-500 focus:ring-red-500'
+        )}
+      >
         {props.addOnLeft && (
-          <span className="inline-flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+          <span className="inline-flex h-full items-center rounded-bl rounded-tl bg-[#EAEAEA] px-3 text-sm text-[#4F4F4F]">
             {props.addOnLeft}
           </span>
         )}
         {props.icon && (
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <div className="inline-flex h-full items-center rounded-bl rounded-tl px-3 text-sm">
             <Icon className={classNames(`h-5 w-5 text-gray-400`, hasErrors && 'text-red-400')} aria-hidden="true" />
           </div>
         )}
@@ -82,12 +87,9 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           id={props.input?.id ?? generatedId}
           defaultValue={props.defaultValue}
           className={classNames(
-            'w-full h-10 rounded border px-4 py-2.5 text-sm leading-5 text-gray-800 focus:ring-2 border-gray-300 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:opacity-50',
-            hasErrors && 'ring-red-500 focus:ring-red-500 hasErrors',
+            'h-full w-full rounded border-transparent p-2 text-sm text-[#575757] placeholder:text-[#828282] focus:border-transparent focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50',
             props.disabled && 'disabled',
-            props.icon && 'pl-11',
-            props.addOnRight && 'rounded-r-none',
-            props.addOnLeft && 'rounded-l-none',
+            props.icon && 'pl-0',
             props.className
           )}
           onChange={(e) => {
@@ -106,14 +108,14 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
           {...props.input}
         />
         {props.counter && (
-          <div className={`absolute inset-y-0 right-0 flex items-center pr-3`}>
-            <span className="border-l-2 pl-2 text-gray-400 sm:text-sm">
+          <div className={`inline-flex h-full items-center rounded-br rounded-tr text-sm text-[#4F4F4F]`}>
+            <span className="border-l-2 px-3">
               {length}/{props.input?.maxLength ?? '∞'}
             </span>
           </div>
         )}
         {props.addOnRight && (
-          <span className="inline-flex items-center rounded-r border-l-0 border border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+          <span className="inline-flex h-full items-center rounded-br rounded-tr bg-[#EAEAEA] px-3 text-sm text-[#4F4F4F]">
             {props.addOnRight}
           </span>
         )}

@@ -2,7 +2,7 @@ import { classNames } from '@/utils';
 import { CreatableAdditionalProps } from 'node_modules/react-select/dist/declarations/src/useCreatable';
 import { StateManagerProps } from 'node_modules/react-select/dist/declarations/src/useStateManager';
 import { HiChevronDown } from 'react-icons/hi';
-import { components, GroupBase, InputProps, MultiValueRemoveProps } from 'react-select';
+import { components, GroupBase, MultiValueRemoveProps } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { twMerge } from 'tailwind-merge';
 import ErrorMessage from './ErrorMessage';
@@ -36,10 +36,6 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
     );
   };
 
-  const Input = (props: InputProps<Option, IsMulti, Group>) => {
-    return <components.Input {...props} inputClassName="focus:ring-0" />;
-  };
-
   const DropdownIndicator = () => {
     return (
       <div className="px-2">
@@ -68,6 +64,9 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
       )}
       <CreatableSelect
         {...props}
+        inputId={id}
+        menuPortalTarget={document.body}
+        menuPosition="absolute"
         isDisabled={props.disabled}
         className={classNames(
           {
@@ -79,19 +78,33 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search'}</div>}
         components={{
           MultiValueRemove,
-          Input,
           DropdownIndicator,
           IndicatorSeparator,
+        }}
+        classNames={{
+          control: ({ isFocused }) => {
+            if (hasErrors && isFocused) {
+              return '!border-2 !border-danger-500';
+            }
+
+            if (isFocused) {
+              return '!border-2 !border-primary-500';
+            }
+
+            if (hasErrors) {
+              return '!border !border-danger-500';
+            }
+
+            return '!border-gray-200';
+          },
         }}
         styles={{
           control: (base) => ({
             ...base,
-            border: hasErrors ? '1px solid var(--colors-danger-500)' : base.border,
             minHeight: '40px',
-            ':hover': {
-              border: hasErrors ? '1px solid var(--colors-danger-500)' : base.border,
-            },
+            boxShadow: 'none',
             borderRadius: '5px',
+            fontSize: '14px',
           }),
           option: (base) => ({
             ...base,
@@ -113,12 +126,21 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
               background: 'var(--colors-primary-100)',
             },
           }),
+          menuPortal: (base) => ({
+            ...base,
+            zIndex: 9999,
+          }),
+          noOptionsMessage: (base) => ({
+            ...base,
+            fontSize: '0.875rem',
+            color: 'var(--colors-gray-800)',
+          }),
         }}
         theme={(theme) => ({
           ...theme,
           colors: {
             ...theme.colors,
-            primary: hasErrors ? 'var(--colors-danger-500)' : 'var(--colors-primary-500)',
+            primary: 'var(--colors-primary-500)',
             primary75: 'var(--colors-primary-200)',
             primary50: 'var(--colors-primary-100)',
             primary25: 'var(--colors-primary-50)',
