@@ -45,3 +45,4 @@ export { default as Select } from './components/Select';
 export { default as ErrorIcon } from './components/icons/ErrorIcon';
 export { default as DokanIcon } from './components/icons/DokanIcon';
 export type { OnPlaceSelectedParamType } from './components/GooglePlaceAutocomplete';
+export type { SingleValue, OnChangeValue, MultiValue } from 'react-select';

@@ -13,7 +13,7 @@ export type OnPlaceSelectedParamType = {
     inputValue: string;
 };
 export type GooglePlaceAutocompleteProps = {
-    label?: string;
+    label?: React.ReactNode;
     input?: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
     className?: string;
     errors?: string[];
@@ -24,6 +24,8 @@ export type GooglePlaceAutocompleteProps = {
     onFocus?: (event?: FocusEvent<HTMLInputElement>) => void;
     onBlur?: () => void;
     apiKey: string;
+    showClear: boolean;
+    disabled?: boolean;
 };
 declare const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps>;
 export default GooglePlaceAutocomplete;
