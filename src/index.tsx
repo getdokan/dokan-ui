@@ -51,4 +51,4 @@ export { default as DokanIcon } from './components/icons/DokanIcon';
 
 // Types
 export type { OnPlaceSelectedParamType } from './components/GooglePlaceAutocomplete';
-export type { SingleValue, OnChangeValue, MultiValue } from 'react-select';
+export type { SingleValue, OnChangeValue, MultiValue, ActionMeta } from 'react-select';
