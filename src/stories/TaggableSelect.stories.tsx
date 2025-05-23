@@ -24,11 +24,7 @@ export const Default: Story = {
     required: true,
     placeholder: 'Search...',
     isMulti: true,
-    onChange: (items) => {
-      console.log(items);
-    },
     helpText: '',
     errors: [],
   },
-  render: (args) => <TaggableSelect {...args} />,
 };

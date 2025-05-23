@@ -1,4 +1,5 @@
-import FancyCheckbox from '@/components/FancyCheckbox';
+import FancyCheckbox, { FancyCheckboxProps } from '@/components/FancyCheckbox';
+import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof FancyCheckbox> = {
@@ -37,7 +38,9 @@ export const Fancy: Story = {
       },
     ],
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<FancyCheckboxProps>();
+
     return <FancyCheckbox {...args} />;
   },
 };

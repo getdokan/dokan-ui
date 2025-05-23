@@ -21,7 +21,6 @@ export const Default: Story = {
     helpText: '',
     required: true,
   },
-  render: (args) => <TextArea {...args} />,
 };
 
 export const WithError: Story = {
@@ -33,5 +32,4 @@ export const WithError: Story = {
     },
     required: true,
   },
-  render: (args) => <TextArea {...args} />,
 };

@@ -18,8 +18,8 @@ export const Default: Story = {
     label: 'Enable Shipping',
     color: 'primary',
   },
-  render: (args) => {
-    const [_, updateArgs] = useArgs();
+  render: () => {
+    const [args, updateArgs] = useArgs<ToggleSwitchProps>();
 
     return (
       <ToggleSwitch
@@ -42,8 +42,8 @@ export const WithHelpText: Story = {
     color: 'primary',
     helpText: 'This will enable shipping for your store',
   },
-  render: (args) => {
-    const [_, updateArgs] = useArgs();
+  render: () => {
+    const [args, updateArgs] = useArgs<ToggleSwitchProps>();
 
     return (
       <ToggleSwitch
@@ -66,8 +66,8 @@ export const WithDisabled: Story = {
     color: 'primary',
     disabled: true,
   } as ToggleSwitchProps,
-  render: (args) => {
-    const [_, updateArgs] = useArgs();
+  render: () => {
+    const [args, updateArgs] = useArgs<ToggleSwitchProps>();
 
     return (
       <ToggleSwitch

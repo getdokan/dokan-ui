@@ -1,4 +1,5 @@
-import RadioGroup from '@/components/RadioGroup';
+import RadioGroup, { RadioGroupProps } from '@/components/RadioGroup';
+import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { FiBox, FiTruck } from 'react-icons/fi';
@@ -32,7 +33,8 @@ export const Default: Story = {
       },
     ],
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<RadioGroupProps>();
     const [selected, setSelected] = useState('');
     return (
       <>

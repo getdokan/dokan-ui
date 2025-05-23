@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import Modal from '@/components/Modal';
+import Modal, { ModalProps } from '@/components/Modal';
 import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -21,8 +21,8 @@ export const Default: Story = {
     onClose: () => {},
   },
 
-  render: (args) => {
-    const [_, updateArgs] = useArgs();
+  render: () => {
+    const [args, updateArgs] = useArgs<ModalProps>();
     return (
       <>
         <Button color="primary" label="Open Modal" onClick={() => updateArgs({ ...args, isOpen: true })}></Button>
