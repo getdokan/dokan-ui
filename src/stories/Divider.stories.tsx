@@ -15,5 +15,5 @@ export const Default: Story = {
   args: {
     label: 'Or continue with',
   },
-  render: (args) => <Divider {...args} />,
+  // render: (args) => <Divider {...args} />,
 };

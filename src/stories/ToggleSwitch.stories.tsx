@@ -1,4 +1,4 @@
-import ToggleSwitch from '@/components/ToggleSwitch';
+import ToggleSwitch, { ToggleSwitchProps } from '@/components/ToggleSwitch';
 import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -65,7 +65,7 @@ export const WithDisabled: Story = {
     label: 'Enable Shipping',
     color: 'primary',
     disabled: true,
-  },
+  } as ToggleSwitchProps,
   render: (args) => {
     const [_, updateArgs] = useArgs();
 
