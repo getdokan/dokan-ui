@@ -11,7 +11,6 @@ export { default as Card } from './components/Card';
 export { default as Container } from './components/Container';
 export { default as Divider } from './components/Divider';
 export { default as Drawer } from './components/Drawer';
-export { default as Dropdown } from './components/Dropdown';
 export { default as FancyCheckbox } from './components/FancyCheckbox';
 export { default as GoogleIcon } from './components/GoogleIcon';
 export { default as Modal } from './components/Modal';
