@@ -1,6 +1,165 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* @config '../../tailwind.config.ts'; */
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@theme {
+  /* Primary */
+  --color-primary-50: #efeaff;
+  --color-primary-100: #cebefc;
+  --color-primary-200: #bfacf9;
+  --color-primary-300: #ab92f6;
+  --color-primary-400: #997af3;
+  --color-primary-500: #8460ef;
+  --color-primary-600: #7047eb;
+  --color-primary-700: #5b32da;
+  --color-primary-800: #461aca;
+  --color-primary-900: #370eb1;
+  /* Danger */
+  --color-danger-50: #f8e3e6;
+  --color-danger-100: #f0c5c9;
+  --color-danger-200: #e2a1a9;
+  --color-danger-300: #e68f99;
+  --color-danger-400: #de6f7a;
+  --color-danger-500: #e64b5f;
+  --color-danger-600: #cd414c;
+  --color-danger-700: #b92f37;
+  --color-danger-800: #9f2225;
+  --color-danger-900: #7f191c;
+  /* Gray */
+  --color-gray-50: #f8f9f8;
+  --color-gray-100: #f1f1f4;
+  --color-gray-200: #e9e9e9;
+  --color-gray-300: #d3d3d3;
+  --color-gray-400: #a5a5aa;
+  --color-gray-500: #828282;
+  --color-gray-600: #5b5b60;
+  --color-gray-700: #575757;
+  --color-gray-800: #393939;
+  --color-gray-900: #25252d;
+  /* Yellow */
+  --color-yellow-50: #faedcd;
+  --color-yellow-100: #f7e5b6;
+  --color-yellow-200: #f3dca3;
+  --color-yellow-300: #f1d690;
+  --color-yellow-400: #edcd7e;
+  --color-yellow-500: #ebc569;
+  --color-yellow-600: #efbb40;
+  --color-yellow-700: #e4b54c;
+  --color-yellow-800: #dba940;
+  --color-yellow-900: #d29e37;
+  /* Green */
+  --color-green-50: #e8f5f3;
+  --color-green-100: #d4fbef;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #88e2c5;
+  --color-green-400: #22c55e;
+  --color-green-500: #35b535;
+  --color-green-600: #00bc8b;
+  --color-green-700: #008864;
+  --color-green-800: #00563f;
+  --color-green-900: #013220;
+  /* Red */
+  --color-red-50: #f8e3e6;
+  --color-red-100: #f0c5c9;
+  --color-red-200: #e2a1a9;
+  --color-red-300: #e68f99;
+  --color-red-400: #de6f7a;
+  --color-red-500: #e64b5f;
+  --color-red-600: #cd414c;
+  --color-red-700: #b92f37;
+  --color-red-800: #9f2225;
+  --color-red-900: #7f191c;
+  /* Blue */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #2947bf;
+  --color-blue-900: #1e3a8a;
+  /* Pink */
+  --color-pink-50: #fdf2f8;
+  --color-pink-100: #fce7f3;
+  --color-pink-200: #fbcfe8;
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #eca6c0;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+  --color-pink-700: #be185d;
+  --color-pink-800: #9d174d;
+  --color-pink-900: #831843;
+  --radius-default: 5px;
+
+  --animate-slide-up-fade: slide-up-fade 0.3s ease-in-out;
+  --animate-slide-right-fade: slide-right-fade 0.3s ease-in-out;
+  --animate-slide-down-fade: slide-down-fade 0.3s ease-in-out;
+  --animate-slide-left-fade: slide-left-fade 0.3s ease-in-out;
+
+  @keyframes slide-up-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-right-fade {
+    0% {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-down-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-left-fade {
+    0% {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
 
 .pac-container {
   @apply shadow-md border-t-0;
@@ -15,5 +174,5 @@
 }
 
 .react-select input:focus {
-  @apply !border-none !outline-none !shadow-none;
+  @apply border-none! outline-hidden! shadow-none!;
 }

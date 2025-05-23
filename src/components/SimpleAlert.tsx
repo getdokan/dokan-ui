@@ -125,7 +125,7 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
     <>
       <div className={classNames(`rounded-md ${bgColors[props.color]} p-4`, props.className)}>
         <div className={`flex ${props.centered ? 'justify-center' : ''}`}>
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             {props.type == 'success' && (
               <HiCheckCircle className={`h-5 w-5 ${textColors400[props.color]}`} aria-hidden="true" />
             )}
