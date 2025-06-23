@@ -66,7 +66,7 @@ const SimpleInput: React.FC<SimpleInputProps> = (props) => {
       <div
         className={classNames(
           'flex h-10 items-center rounded ring-1 ring-[#E9E9E9] focus-within:ring-2 focus-within:ring-primary-500',
-          hasErrors && 'hasErrors ring-red-500 focus:ring-red-500'
+          hasErrors && 'hasErrors ring-red-500 focus-within::ring-red-500'
         )}
       >
         {props.addOnLeft && (
