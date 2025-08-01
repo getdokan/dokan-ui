@@ -3,7 +3,7 @@ import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 import { FiChevronDown } from 'react-icons/fi';
 
-const meta: Meta = {
+const meta: Meta<any> = {
   title: 'Popover',
   component: Popover,
   tags: ['autodocs'],
@@ -40,7 +40,7 @@ const meta: Meta = {
     },
   },
   decorators: [
-    (Story) => (
+    (Story: React.ComponentType) => (
       <div className="h-96 flex items-center justify-center">
         <Story />
       </div>
@@ -53,7 +53,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const [_, updateArgs] = useArgs();
 
     const handleOpenChange = (open: boolean) => {

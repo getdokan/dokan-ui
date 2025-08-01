@@ -1,7 +1,7 @@
 import SearchableSelect from '@/components/SearchableSelect';
 import { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta = {
+const meta: Meta<typeof SearchableSelect> = {
   title: 'SearchableSelect',
   component: SearchableSelect,
   tags: ['autodocs'],
@@ -27,7 +27,7 @@ export const Default: Story = {
     menuPortalTarget: document.body,
     MenuPortal: 'fixed',
   },
-  render: (args) => {
+  render: (args: React.ComponentProps<typeof SearchableSelect>) => {
     return (
       <>
         <div>
@@ -55,7 +55,7 @@ export const Multiple: Story = {
     menuPortalTarget: document.body,
     MenuPortal: 'fixed',
   },
-  render: (args) => {
+  render: (args: React.ComponentProps<typeof SearchableSelect>) => {
     return (
       <>
         <div>
@@ -83,7 +83,7 @@ export const Error: Story = {
     menuPortalTarget: document.body,
     MenuPortal: 'fixed',
   },
-  render: (args) => {
+  render: (args: React.ComponentProps<typeof SearchableSelect>) => {
     return (
       <>
         <div>

@@ -60,6 +60,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         menuPortalTarget={props.menuPortalTarget}
         menuPosition={props.menuPosition}
         isDisabled={props.disabled}
+        menuIsOpen={true}
         className={classNames(
           {
             hasErrors: hasErrors,
