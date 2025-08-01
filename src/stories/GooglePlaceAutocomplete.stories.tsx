@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    apiKey: 'AIzaSyDvqF2TFlH_iL33LMiDHvNpkAcpK0nW7_0',
+    apiKey: '',
     label: 'Address',
   },
   render: () => {
@@ -25,7 +25,7 @@ export const Default: Story = {
 
 export const Error: Story = {
   args: {
-    apiKey: 'AIzaSyDvqF2TFlH_iL33LMiDHvNpkAcpK0nW7_0',
+    apiKey: '',
     errors: ['Address is required'],
     label: 'Address',
   },
