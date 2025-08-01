@@ -1,12 +1,17 @@
 import Popover from '@/components/Popover';
 import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
+import { PopoverProps, PopoverContentProps } from '@radix-ui/react-popover';
 
+interface PopoverStoryArgs extends PopoverProps {
+  align?: PopoverContentProps['align'];
+  side?: PopoverContentProps['side'];
+  sideOffset?: PopoverContentProps['sideOffset'];
+  alignOffset?: PopoverContentProps['alignOffset'];
+}
 
-
-const meta: Meta<typeof Popover> = {
+const meta: Meta<PopoverStoryArgs> = {
   title: 'Popover',
   component: Popover,
   tags: ['autodocs'],
@@ -58,8 +63,8 @@ type Story = StoryObj<typeof meta>;
 
 
 export const Default: Story = {
-  render: () => {
-    const [args, updateArgs] = useArgs();
+  render: (args: PopoverStoryArgs) => {
+    const [_, updateArgs] = useArgs();
 
     const handleOpenChange = (open: boolean) => {
       updateArgs({ open });
