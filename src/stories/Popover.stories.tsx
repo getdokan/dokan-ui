@@ -1,9 +1,12 @@
 import Popover from '@/components/Popover';
 import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
+import { ComponentProps } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 
-const meta: Meta<any> = {
+
+
+const meta: Meta<typeof Popover> = {
   title: 'Popover',
   component: Popover,
   tags: ['autodocs'],
@@ -52,9 +55,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+
+
 export const Default: Story = {
-  render: (args: any) => {
-    const [_, updateArgs] = useArgs();
+  render: () => {
+    const [args, updateArgs] = useArgs();
 
     const handleOpenChange = (open: boolean) => {
       updateArgs({ open });
