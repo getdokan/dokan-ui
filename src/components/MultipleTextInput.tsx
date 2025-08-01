@@ -112,7 +112,7 @@ const MultipleTextInput = ({
           value={inputValue}
           onKeyDown={handleKeyDown}
           onChange={handleInputChange}
-          className="flex-grow outline-none border-none text-sm shadow-none ring-0"
+          className="grow outline-none border-none text-sm shadow-none ring-0"
           placeholder={placeholder}
         />
         {hasErrors && (

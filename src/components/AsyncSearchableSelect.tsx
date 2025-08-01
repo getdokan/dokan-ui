@@ -87,18 +87,18 @@ const AsyncSearchableSelect = <
         classNames={{
           control: ({ isFocused }) => {
             if (hasError && isFocused) {
-              return '!border-2 !border-danger-500';
+              return 'border-2! border-danger-500!';
             }
 
             if (isFocused) {
-              return '!border-2 !border-primary-500';
+              return 'border-2! border-primary-500!';
             }
 
             if (hasError) {
-              return '!border !border-danger-500';
+              return 'border! border-danger-500!';
             }
 
-            return '!border-gray-200';
+            return 'border-gray-200!';
           },
         }}
         components={{

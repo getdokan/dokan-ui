@@ -1,4 +1,5 @@
-import SimpleAlert from '@/components/SimpleAlert';
+import SimpleAlert, { SimpleAlertProps } from '@/components/SimpleAlert';
+import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof SimpleAlert> = {
@@ -17,7 +18,9 @@ export const Default: Story = {
     type: 'success',
     color: 'green',
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<SimpleAlertProps>();
+
     return <SimpleAlert {...args} />;
   },
 };
@@ -28,7 +31,8 @@ export const WithDescription: Story = {
     type: 'info',
     color: 'yellow',
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<SimpleAlertProps>();
     return (
       <SimpleAlert {...args}>
         <div className="text-sm mt-1">We are not able to process your request now. You can learn more about this.</div>

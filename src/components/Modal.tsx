@@ -25,7 +25,7 @@ const Modal = ({ children, showXButton = true, className, isOpen, onClose }: Mod
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+              <div className="fixed inset-0 bg-black/25" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}

@@ -114,7 +114,7 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
     });
   };
 
-  const handleScriptLoad = (autoCompleteRef: RefObject<HTMLInputElement>, countryRestriction?: string) => {
+  const handleScriptLoad = (autoCompleteRef: RefObject<HTMLInputElement | null>, countryRestriction?: string) => {
     const { maps } = window.google;
     autoComplete = new maps.places.Autocomplete(autoCompleteRef.current as HTMLInputElement);
 
@@ -135,6 +135,7 @@ const GooglePlaceAutocomplete: FC<GooglePlaceAutocompleteProps> = ({
 
   useEffect(() => {
     const googleURL = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&language=en&callback=initMapPlaceholderFunc`;
+
     loadScript(googleURL, () => handleScriptLoad(autoCompleteRef, countryRestriction));
   }, [countryRestriction]);
 

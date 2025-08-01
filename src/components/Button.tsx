@@ -240,6 +240,4 @@ const Button: FC<ButtonProps> = (props) => {
   );
 };
 
-Button.propTypes = {};
-
 export default Button;

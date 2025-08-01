@@ -21,7 +21,6 @@ export const Default: Story = {
       { value: 3, label: 'Banana' },
     ],
   },
-  render: (args) => <SimpleSelect {...args} />,
 };
 
 export const WithError: Story = {
@@ -35,5 +34,4 @@ export const WithError: Story = {
       { value: 3, label: 'Banana' },
     ],
   },
-  render: (args) => <SimpleSelect {...args} />,
 };

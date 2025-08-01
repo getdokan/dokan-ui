@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import Drawer from '@/components/Drawer';
+import Drawer, { DrawerProps } from '@/components/Drawer';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 
@@ -21,8 +21,8 @@ export const Default: Story = {
     onClose: () => {},
   },
 
-  render: (args) => {
-    const [_, updateArgs] = useArgs();
+  render: () => {
+    const [args, updateArgs] = useArgs<DrawerProps>();
     return (
       <>
         <Button color="primary" label="Open Drawer" onClick={() => updateArgs({ isOpen: true })}></Button>

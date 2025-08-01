@@ -1,4 +1,5 @@
-import SimpleCheckbox from '@/components/SimpleCheckbox';
+import SimpleCheckbox, { SimpleCheckboxProps } from '@/components/SimpleCheckbox';
+import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof SimpleCheckbox> = {
@@ -20,7 +21,10 @@ export const Default: Story = {
       type: 'checkbox',
     },
   },
-  render: (args) => <SimpleCheckbox {...args} />,
+  render: () => {
+    const [args] = useArgs<SimpleCheckboxProps>();
+    return <SimpleCheckbox {...args} />;
+  },
 };
 
 export const Disabled: Story = {
@@ -34,5 +38,8 @@ export const Disabled: Story = {
     disabled: true,
     checked: true,
   },
-  render: (args) => <SimpleCheckbox {...args} />,
+  render: () => {
+    const [args] = useArgs<SimpleCheckboxProps>();
+    return <SimpleCheckbox {...args} />;
+  },
 };

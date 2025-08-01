@@ -1,6 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* @config '../../tailwind.config.ts'; */
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  [role='option'] {
+    cursor: pointer;
+  }
+}
+
+@theme {
+  /* Primary */
+  --color-primary-50: #efeaff;
+  --color-primary-100: #cebefc;
+  --color-primary-200: #bfacf9;
+  --color-primary-300: #ab92f6;
+  --color-primary-400: #997af3;
+  --color-primary-500: #8460ef;
+  --color-primary-600: #7047eb;
+  --color-primary-700: #5b32da;
+  --color-primary-800: #461aca;
+  --color-primary-900: #370eb1;
+  
+  /* Danger */
+  --color-danger-50: #f8e3e6;
+  --color-danger-100: #f0c5c9;
+  --color-danger-200: #e2a1a9;
+  --color-danger-300: #e68f99;
+  --color-danger-400: #de6f7a;
+  --color-danger-500: #e64b5f;
+  --color-danger-600: #cd414c;
+  --color-danger-700: #b92f37;
+  --color-danger-800: #9f2225;
+  --color-danger-900: #7f191c;
+  
+  --radius-default: 5px;
+
+  --animate-slide-up-fade: slide-up-fade 0.3s ease-in-out;
+  --animate-slide-right-fade: slide-right-fade 0.3s ease-in-out;
+  --animate-slide-down-fade: slide-down-fade 0.3s ease-in-out;
+  --animate-slide-left-fade: slide-left-fade 0.3s ease-in-out;
+
+  @keyframes slide-up-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-right-fade {
+    0% {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-down-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-left-fade {
+    0% {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
 
 .pac-container {
   @apply shadow-md border-t-0;
@@ -15,5 +119,5 @@
 }
 
 .react-select input:focus {
-  @apply !border-none !outline-none !shadow-none;
+  @apply border-none! outline-hidden! shadow-none!;
 }

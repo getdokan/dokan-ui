@@ -20,7 +20,6 @@ export const Default: Story = {
       { label: 'Zero Rate', value: 'zero' },
     ],
   },
-  render: (args) => <SimpleRadio {...args} />,
 };
 
 export const WithLabel: Story = {
@@ -34,7 +33,6 @@ export const WithLabel: Story = {
       { label: 'Zero Rate', value: 'zero' },
     ],
   },
-  render: (args) => <SimpleRadio {...args} />,
 };
 
 export const WithLabelAndSelectedBackground: Story = {
@@ -49,7 +47,6 @@ export const WithLabelAndSelectedBackground: Story = {
     ],
     selectedOptionClass: 'bg-blue-100',
   },
-  render: (args) => <SimpleRadio {...args} />,
 };
 
 export const WithLabelAndDefault: Story = {
@@ -64,8 +61,6 @@ export const WithLabelAndDefault: Story = {
     ],
     defaultValue: 'zero',
   },
-
-  render: (args) => <SimpleRadio {...args} />,
 };
 
 export const WithLabelAndValue: Story = {
@@ -80,7 +75,6 @@ export const WithLabelAndValue: Story = {
     ],
     value: 'reduced',
   },
-  render: (args) => <SimpleRadio {...args} />,
 };
 
 export const WithLabelAndError: Story = {
@@ -95,5 +89,4 @@ export const WithLabelAndError: Story = {
     ],
     errors: ['You must choose one from the above list.'],
   },
-  render: (args) => <SimpleRadio {...args} />,
 };

@@ -1,4 +1,5 @@
-import GooglePlaceAutocomplete from '@/components/GooglePlaceAutocomplete';
+import GooglePlaceAutocomplete, { GooglePlaceAutocompleteProps } from '@/components/GooglePlaceAutocomplete';
+import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof GooglePlaceAutocomplete> = {
@@ -15,7 +16,9 @@ export const Default: Story = {
     apiKey: '',
     label: 'Address',
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<GooglePlaceAutocompleteProps>();
+
     return <GooglePlaceAutocomplete {...args} />;
   },
 };
@@ -26,7 +29,9 @@ export const Error: Story = {
     errors: ['Address is required'],
     label: 'Address',
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<GooglePlaceAutocompleteProps>();
+
     return <GooglePlaceAutocomplete {...args} />;
   },
 };

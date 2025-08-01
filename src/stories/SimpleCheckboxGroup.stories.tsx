@@ -1,4 +1,5 @@
-import SimpleCheckboxGroup from '@/components/SimpleCheckboxGroup';
+import SimpleCheckboxGroup, { SimpleCheckboxGroupProps } from '@/components/SimpleCheckboxGroup';
+import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
@@ -22,7 +23,8 @@ export const Default: Story = {
     ],
     defaultValue: ['reduced'],
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<SimpleCheckboxGroupProps>();
     const [selected, setSelected] = useState<Array<string | number>>([]);
 
     return (
@@ -45,7 +47,8 @@ export const WithLabel: Story = {
       { label: 'Zero Rate', value: 'zero' },
     ],
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<SimpleCheckboxGroupProps>();
     const [selected, setSelected] = useState<Array<string | number>>([]);
 
     return (
@@ -69,7 +72,8 @@ export const WithLabelAndError: Story = {
     ],
     errors: ['You must choose at least one from the above list.'],
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs<SimpleCheckboxGroupProps>();
     const [selected, setSelected] = useState<Array<string | number>>([]);
 
     return (
