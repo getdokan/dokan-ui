@@ -30,7 +30,7 @@ interface ModalComponent extends React.NamedExoticComponent<ModalProps> {
 }
 
 const Modal = memo<ModalProps>(
-  ({ children, showXButton = true, className, isOpen, onClose, closeOnOutsideClick = true }) => {
+  ({ children, showXButton = true, className, isOpen, onClose, closeOnOutsideClick = true, ...rest }) => {
     const handleOpenChange = useCallback(
       (open: boolean) => {
         if (!open) {
@@ -70,7 +70,7 @@ const Modal = memo<ModalProps>(
       <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
         <Dialog.Portal>
           <Dialog.Overlay className={overlayClasses} />
-          <Dialog.Content className={contentClasses} onInteractOutside={handleInteractOutside}>
+          <Dialog.Content className={contentClasses} onInteractOutside={handleInteractOutside} {...rest}>
             {children}
             {showXButton && (
               <Dialog.Close className={closeButtonClasses} aria-label="Close" title="Close">
