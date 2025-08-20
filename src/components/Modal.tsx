@@ -8,6 +8,7 @@ export type ModalProps = {
   isOpen: boolean;
   showXButton?: boolean;
   onClose: () => void;
+  closeOnOutsideClick?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 export type TitleProps = {
@@ -28,43 +29,56 @@ interface ModalComponent extends React.NamedExoticComponent<ModalProps> {
   Footer: React.NamedExoticComponent<FooterProps>;
 }
 
-const Modal = memo<ModalProps>(({ children, showXButton = true, className, isOpen, onClose }) => {
-  const handleOpenChange = useCallback(
-    (open: boolean) => {
-      if (!open) onClose();
-    },
-    [onClose]
-  );
+const Modal = memo<ModalProps>(
+  ({ children, showXButton = true, className, isOpen, onClose, closeOnOutsideClick = true }) => {
+    const handleOpenChange = useCallback(
+      (open: boolean) => {
+        if (!open) {
+          onClose();
+        }
+      },
+      [onClose]
+    );
 
-  // Pre-calculate classes for better performance - using existing animations
-  const overlayClasses =
-    'fixed inset-0 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
+    const handleInteractOutside = useCallback(
+      (e: Event) => {
+        if (!closeOnOutsideClick) {
+          e.preventDefault();
+        }
+      },
+      [closeOnOutsideClick]
+    );
 
-  const contentClasses = classNames(
-    'fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-lg',
-    'rounded bg-white shadow-xl focus:outline-none',
-    'transform -translate-x-1/2 -translate-y-1/2',
-    'will-change-[transform,opacity]',
-    'data-[state=open]:animate-slide-up-fade',
-    'data-[state=closed]:animate-slide-down-fade-out',
-    className
-  );
+    // Pre-calculate classes for better performance - using existing animations
+    const overlayClasses =
+      'fixed inset-0 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
 
-  const closeButtonClasses =
-    'absolute right-2 top-2 rounded p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 focus:outline-none';
+    const contentClasses = classNames(
+      'fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-lg',
+      'rounded bg-white shadow-xl focus:outline-none',
+      'transform -translate-x-1/2 -translate-y-1/2',
+      'will-change-[transform,opacity]',
+      'data-[state=open]:animate-slide-up-fade',
+      'data-[state=closed]:animate-slide-down-fade-out',
+      className
+    );
 
-  return (
-    <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
-      <Dialog.Portal>
-        <Dialog.Overlay className={overlayClasses} />
-        <Dialog.Content className={contentClasses}>
-          {children}
-          {showXButton && <Dialog.Close className={closeButtonClasses}>&#10005;</Dialog.Close>}
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
-  );
-});
+    const closeButtonClasses =
+      'absolute right-2 top-2 rounded p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 focus:outline-none';
+
+    return (
+      <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
+        <Dialog.Portal>
+          <Dialog.Overlay className={overlayClasses} />
+          <Dialog.Content className={contentClasses} onInteractOutside={handleInteractOutside}>
+            {children}
+            {showXButton && <Dialog.Close className={closeButtonClasses}>&#10005;</Dialog.Close>}
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
+    );
+  }
+);
 
 Modal.displayName = 'Modal';
 

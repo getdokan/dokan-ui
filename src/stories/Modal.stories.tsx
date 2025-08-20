@@ -19,6 +19,7 @@ export const Default: Story = {
     isOpen: true,
     showXButton: true,
     onClose: () => {},
+    closeOnOutsideClick: true,
   },
 
   render: () => {
@@ -26,7 +27,11 @@ export const Default: Story = {
     return (
       <>
         <Button color="primary" label="Open Modal" onClick={() => updateArgs({ ...args, isOpen: true })}></Button>
-        <Modal className="max-w-2xl" {...args} onClose={() => updateArgs({ ...args, isOpen: false })}>
+        <Modal
+          className="max-w-2xl"
+          {...args}
+          onClose={() => updateArgs({ ...args, isOpen: false, closeOnOutsideClick: true })}
+        >
           <Modal.Title className="border-b">Modal Title</Modal.Title>
           <Modal.Content>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo doloribus et quisquam laborum amet
