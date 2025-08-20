@@ -72,7 +72,11 @@ const Modal = memo<ModalProps>(
           <Dialog.Overlay className={overlayClasses} />
           <Dialog.Content className={contentClasses} onInteractOutside={handleInteractOutside}>
             {children}
-            {showXButton && <Dialog.Close className={closeButtonClasses}>&#10005;</Dialog.Close>}
+            {showXButton && (
+              <Dialog.Close className={closeButtonClasses} aria-label="Close" title="Close">
+                &#10005;
+              </Dialog.Close>
+            )}
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
@@ -98,9 +102,9 @@ const Content = memo<ContentProps>(({ children, className, ...rest }) => {
   const contentClasses = classNames('p-4', className);
 
   return (
-    <Dialog.Description className={contentClasses} {...rest}>
+    <div className={contentClasses} {...rest}>
       {children}
-    </Dialog.Description>
+    </div>
   );
 });
 
