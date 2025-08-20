@@ -36,17 +36,17 @@ const Modal = memo<ModalProps>(({ children, showXButton = true, className, isOpe
     [onClose]
   );
 
-  // Pre-calculate classes for better performance
+  // Pre-calculate classes for better performance - using existing animations
   const overlayClasses =
-    'fixed inset-0 bg-black/25 transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] data-[state=open]:opacity-100 data-[state=closed]:opacity-0 data-[state=open]:delay-0 data-[state=closed]:delay-100';
+    'fixed inset-0 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
 
   const contentClasses = classNames(
     'fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-lg',
     'rounded bg-white shadow-xl focus:outline-none',
     'transform -translate-x-1/2 -translate-y-1/2',
-    'transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]',
-    'data-[state=open]:opacity-100 data-[state=open]:scale-100 data-[state=open]:delay-75',
-    'data-[state=closed]:opacity-0 data-[state=closed]:scale-98 data-[state=closed]:delay-0',
+    'will-change-[transform,opacity]',
+    'data-[state=open]:animate-slide-up-fade',
+    'data-[state=closed]:animate-slide-down-fade-out',
     className
   );
 

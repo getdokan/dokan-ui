@@ -41,7 +41,7 @@
   --color-primary-700: #5b32da;
   --color-primary-800: #461aca;
   --color-primary-900: #370eb1;
-  
+
   /* Danger */
   --color-danger-50: #f8e3e6;
   --color-danger-100: #f0c5c9;
@@ -53,13 +53,16 @@
   --color-danger-700: #b92f37;
   --color-danger-800: #9f2225;
   --color-danger-900: #7f191c;
-  
+
   --radius-default: 5px;
 
   --animate-slide-up-fade: slide-up-fade 0.3s ease-in-out;
   --animate-slide-right-fade: slide-right-fade 0.3s ease-in-out;
   --animate-slide-down-fade: slide-down-fade 0.3s ease-in-out;
   --animate-slide-left-fade: slide-left-fade 0.3s ease-in-out;
+
+  /* Exit animations */
+  --animate-slide-down-fade-out: slide-down-fade-out 0.2s ease-in;
 
   @keyframes slide-up-fade {
     0% {
@@ -102,6 +105,18 @@
     100% {
       opacity: 1;
       transform: translateX(0);
+    }
+  }
+
+  /* Exit animations */
+  @keyframes slide-down-fade-out {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-2px);
     }
   }
 }
