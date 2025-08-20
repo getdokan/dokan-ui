@@ -1,6 +1,6 @@
 import { classNames } from '@/utils';
-import { Dialog, Transition } from '@headlessui/react';
-import React, { Fragment, HTMLAttributes } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+import React, { HTMLAttributes } from 'react';
 
 export type ModalProps = {
   children: React.ReactNode;
@@ -12,60 +12,30 @@ export type ModalProps = {
 
 const Modal = ({ children, showXButton = true, className, isOpen, onClose }: ModalProps) => {
   return (
-    <>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-auto" onClose={onClose}>
-          <div className="min-h-screen p-4 text-center flex justify-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-black/25" />
-            </Transition.Child>
-
-            {/* This element is to trick the browser into centering the modal contents. */}
-            {/* <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span> */}
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <div
-                className={classNames(
-                  'relative inline-block text-left w-full rounded transition-all transform bg-white shadow-xl self-center',
-                  className
-                )}
-              >
-                {children}
-                {showXButton && (
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="absolute right-2 top-2 rounded-primary p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 outline-none focus:outline-none"
-                  >
-                    &#10005;
-                  </button>
-                )}
-              </div>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+    <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 bg-black/25 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        <Dialog.Content
+          className={classNames(
+            'fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] rounded bg-white shadow-xl',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out',
+            'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+            'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+            'data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]',
+            'data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
+            'w-full max-w-lg duration-200',
+            className
+          )}
+        >
+          {children}
+          {showXButton && (
+            <Dialog.Close className="absolute right-2 top-2 rounded-primary p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 outline-none focus:outline-none">
+              &#10005;
+            </Dialog.Close>
+          )}
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 
@@ -75,9 +45,9 @@ export type TitleProps = {
 
 const Title: React.FunctionComponent<TitleProps> = ({ children, className, ...rest }) => {
   return (
-    <div className={classNames('p-4 font-semibold', className)} {...rest}>
+    <Dialog.Title className={classNames('p-4 font-semibold', className)} {...rest}>
       {children}
-    </div>
+    </Dialog.Title>
   );
 };
 
@@ -87,9 +57,9 @@ export type ContentProps = {
 
 const Content: React.FunctionComponent<ContentProps> = ({ children, className, ...rest }) => {
   return (
-    <div className={classNames('p-4', className)} {...rest}>
+    <Dialog.Description className={classNames('p-4', className)} {...rest}>
       {children}
-    </div>
+    </Dialog.Description>
   );
 };
 
