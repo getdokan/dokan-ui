@@ -51,7 +51,7 @@ const Modal = memo<ModalProps>(
 
     // Pre-calculate classes for better performance - using existing animations
     const overlayClasses =
-      'fixed inset-0 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
+      'fixed z-10 inset-0 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
 
     const contentClasses = classNames(
       'fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-lg',
