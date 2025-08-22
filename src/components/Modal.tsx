@@ -78,7 +78,7 @@ const ModalRoot: React.FC<ModalProps> = ({
 
 ModalRoot.displayName = 'Modal';
 
-// ----------- Subcomponents -----------
+// ----------- Sub components -----------
 
 // Title
 const Title: React.FC<TitleProps> = ({ children, className, ...rest }) => {
