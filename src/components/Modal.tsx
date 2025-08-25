@@ -7,7 +7,6 @@ export type ModalProps = Omit<React.ComponentPropsWithoutRef<typeof Dialog.Conte
   isOpen: boolean;
   onClose: () => void;
   showXButton?: boolean;
-  closeOnOutsideClick?: boolean;
 };
 
 export type TitleProps = React.ComponentPropsWithoutRef<typeof Dialog.Title>;
@@ -21,27 +20,12 @@ interface ModalComponent extends React.FC<ModalProps> {
 }
 
 // ----------- Root Modal -----------
-const ModalRoot: React.FC<ModalProps> = ({
-  children,
-  className,
-  isOpen,
-  onClose,
-  showXButton = true,
-  closeOnOutsideClick = true,
-  ...rest
-}) => {
+const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose, showXButton = true, ...rest }) => {
   const handleOpenChange = useCallback(
     (open: boolean) => {
       if (!open) onClose();
     },
     [onClose]
-  );
-
-  const handleInteractOutside = useCallback(
-    (e: Event) => {
-      if (!closeOnOutsideClick) e.preventDefault();
-    },
-    [closeOnOutsideClick]
   );
 
   // ----------- Classes -----------
@@ -63,7 +47,7 @@ const ModalRoot: React.FC<ModalProps> = ({
     <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className={overlayClasses} />
-        <Dialog.Content className={contentClasses} onInteractOutside={handleInteractOutside} {...rest}>
+        <Dialog.Content className={contentClasses} {...rest}>
           {children}
           {showXButton && (
             <Dialog.Close className={closeButtonClasses} aria-label="Close" title="Close">
