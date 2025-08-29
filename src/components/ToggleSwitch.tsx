@@ -1,5 +1,6 @@
 import * as Switch from '@radix-ui/react-switch';
 import { ReactElement, useId } from 'react';
+import clsx from 'clsx';
 
 export interface ToggleSwitchProps {
   checked: boolean;
@@ -14,6 +15,7 @@ export interface ToggleSwitchProps {
   disabled?: boolean;
   id?: string;
   required?: boolean;
+  isRTL?: boolean;
 }
 
 const bgClasses: Record<string, string> = {
@@ -54,6 +56,7 @@ const ToggleSwitch = ({
   disabled = false,
   id: providedId,
   required,
+  isRTL = false,
 }: ToggleSwitchProps) => {
   // Generate a unique ID if none provided
   const generatedId = useId();
@@ -76,9 +79,12 @@ const ToggleSwitch = ({
           required={required}
         >
           <Switch.Thumb
-            className={`${
-              checked ? 'translate-x-6' : 'translate-x-1'
-            } block h-3.5 w-3.5 rounded-full bg-white transition-transform duration-200 ease-in-out`}
+            className={clsx('block h-3.5 w-3.5 rounded-full bg-white transition-transform duration-200 ease-in-out', {
+              '-translate-x-6': isRTL && checked,
+              '-translate-x-1': isRTL && !checked,
+              'translate-x-6': !isRTL && checked,
+              'translate-x-1': !isRTL && !checked,
+            })}
           />
         </Switch.Root>
         {children ||
