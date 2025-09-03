@@ -1,7 +1,8 @@
-import Select, { GroupBase, MenuPosition, Props } from 'react-select';
+import Select, { GroupBase, MenuPosition, Props, components } from 'react-select';
 import ErrorMessage from './ErrorMessage';
 import { classNames } from '@/utils';
 import { FiChevronDown } from 'react-icons/fi';
+import { twMerge } from 'tailwind-merge';
 
 export type SearchableSelectProps<
   Option,
@@ -15,9 +16,9 @@ export type SearchableSelectProps<
   helpText?: string;
   required?: boolean;
   disabled?: boolean;
-  ref?: any;
   menuPortalTarget?: HTMLElement | null;
   menuPosition?: MenuPosition;
+  components?: typeof components;
 };
 
 const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(
@@ -91,58 +92,93 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
         components={{
           IndicatorSeparator,
           DropdownIndicator,
+          ...(props?.components ? props.components : {}),
         }}
         classNames={{
-          control: ({ isFocused }) => {
-            if (hasError && isFocused) {
-              return '!border-2 !border-danger-500';
+          ...(props?.classNames ? props.classNames : {}),
+          control: (currentProps) => {
+            const userControl = props.classNames?.control as any;
+            const userControlStyles = typeof userControl === 'function' ? userControl({ ...currentProps, hasError }) : '';
+
+            if (hasError && currentProps.isFocused) {
+              return twMerge( '!border !ring-danger-500 !ring-1', userControlStyles );
             }
 
-            if (isFocused) {
-              return '!border-2 !border-primary-500';
+            if (currentProps.isFocused) {
+              return twMerge( '!border !ring-primary-500 !ring-1', userControlStyles );
             }
 
             if (hasError) {
-              return '!border !border-danger-500';
+              return twMerge( '!border !ring-danger-500 !ring-1', userControlStyles );
             }
 
-            return '!border-gray-200';
+            return twMerge( '!border-gray-200', userControlStyles );
           },
         }}
         styles={{
-          control: (base) => {
+          // Pass through any container-level custom styles if provided
+          ...(props?.styles ? (props.styles as any) : {}),
+          control: (base, state) => {
+            const userControl = props.styles?.control as any;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
             return {
               ...base,
               minHeight: '40px',
               boxShadow: 'none',
               borderRadius: '5px',
               fontSize: '14px',
+              ...userControlStyles,
             };
           },
-          option: (base) => ({
-            ...base,
-            fontSize: '0.875rem',
-          }),
-          multiValue: (base) => ({
-            ...base,
-            background: 'var(--colors-primary-50)',
-            borderRadius: '0.25rem',
-          }),
-          multiValueLabel: (base) => ({
-            ...base,
-            color: 'var(--colors-primary-600)',
-          }),
-          multiValueRemove: (base) => ({
-            ...base,
-            color: 'var(--colors-primary-600)',
-            ':hover': {
-              background: 'var(--colors-primary-100)',
-            },
-          }),
-          menuPortal: (base) => ({
-            ...base,
-            zIndex: 9999,
-          }),
+          option: (base, state) => {
+            const userOption = props.styles?.option as any;
+            const userOptionStyles = typeof userOption === 'function' ? userOption(base, state) : {};
+            return {
+              ...base,
+              fontSize: '0.875rem',
+              ...userOptionStyles,
+            };
+          },
+          multiValue: (base, state) => {
+            const userMultiValue = props.styles?.multiValue as any;
+            const userMultiValueStyles = typeof userMultiValue === 'function' ? userMultiValue(base, state) : {};
+            return {
+              ...base,
+              background: 'var(--colors-primary-50)',
+              borderRadius: '0.25rem',
+              ...userMultiValueStyles,
+            };
+          },
+          multiValueLabel: (base, state) => {
+            const userMultiValueLabel = props.styles?.multiValueLabel as any;
+            const userMultiValueLabelStyles = typeof userMultiValueLabel === 'function' ? userMultiValueLabel(base, state) : {};
+            return {
+              ...base,
+              color: 'var(--colors-primary-600)',
+              ...userMultiValueLabelStyles,
+            };
+          },
+          multiValueRemove: (base, state) => {
+            const userMultiValueRemove = props.styles?.multiValueRemove as any;
+            const userMultiValueRemoveStyles = typeof userMultiValueRemove === 'function' ? userMultiValueRemove(base, state) : {};
+            return {
+              ...base,
+              color: 'var(--colors-primary-600)',
+              ':hover': {
+                background: 'var(--colors-primary-100)',
+              },
+              ...userMultiValueRemoveStyles,
+            };
+          },
+          menuPortal: (base, state) => {
+            const userMenuPortal = props.styles?.menuPortal as any;
+            const userMenuPortalStyles = typeof userMenuPortal === 'function' ? userMenuPortal(base, state) : {};
+            return {
+              ...base,
+              zIndex: 9999,
+              ...userMenuPortalStyles,
+            };
+          }
         }}
       />
       <ErrorMessage value={props.errors ?? []} />

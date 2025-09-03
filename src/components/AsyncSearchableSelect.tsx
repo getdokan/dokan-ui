@@ -61,6 +61,7 @@ const AsyncSearchableSelect = <
         </label>
       )}
       <AsyncSelect
+        {...props}
         inputId={id}
         isDisabled={props.disabled}
         className={twMerge('shadow-sm', props.className, props.disabled && 'rounded border', hasError && 'hasErrors')}
@@ -108,8 +109,8 @@ const AsyncSearchableSelect = <
         }}
         menuPortalTarget={props.menuPortalTarget}
         menuPosition={props.menuPosition}
-        {...props}
         styles={{
+          ...(props?.styles ? (props.styles as any) : {}),
           control: (base, state) => {
             const userControl = props.styles?.control;
             const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
@@ -247,9 +248,6 @@ const AsyncSearchableSelect = <
               ...userControlStyles
             }
           },
-
-          // Custom styles for the container
-          ...( props?.styles?.container ? props.styles.container : {} )
         }}
         components={{
           DropdownIndicator,
