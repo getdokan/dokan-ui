@@ -44,6 +44,7 @@ export { default as FormTextarea } from './components/FormTextarea';
 export { default as FormSelect } from './components/FormSelect';
 export { default as FormLabel } from './components/FormLabel';
 export { default as Select } from './components/Select';
+export * as ReactSelect from 'react-select';
 
 // Icons
 export { default as ErrorIcon } from './components/icons/ErrorIcon';

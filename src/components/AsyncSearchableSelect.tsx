@@ -1,6 +1,6 @@
 import { CgSpinner } from 'react-icons/cg';
 import { FiChevronDown } from 'react-icons/fi';
-import { GroupBase, MenuPosition } from 'react-select';
+import { GroupBase, MenuPosition, components } from 'react-select';
 import AsyncSelect, { AsyncProps } from 'react-select/async';
 import { twMerge } from 'tailwind-merge';
 import ErrorMessage from './ErrorMessage';
@@ -20,6 +20,7 @@ export type AsyncSearchableSelectProps<
   disabled?: boolean;
   menuPortalTarget?: HTMLElement | null;
   menuPosition?: MenuPosition;
+  components?: typeof components;
 };
 
 const AsyncSearchableSelect = <
@@ -85,73 +86,178 @@ const AsyncSearchableSelect = <
           },
         })}
         classNames={{
-          control: ({ isFocused }) => {
-            if (hasError && isFocused) {
-              return '!border-2 !border-danger-500';
+          ...( props?.classNames ? props.classNames : {} ),
+          control: (currentProps) => {
+            const userControl = props.classNames?.control;
+            // @ts-ignore
+            const userControlStyles = typeof userControl === 'function' ? userControl({ ...currentProps, hasError: hasError }) : '';
+            if (hasError && currentProps.isFocused) {
+              return twMerge( '!border !ring-danger-500 !ring-1', userControlStyles );
             }
 
-            if (isFocused) {
-              return '!border-2 !border-primary-500';
+            if (currentProps.isFocused) {
+              return twMerge( '!border !ring-primary-500 !ring-1', userControlStyles );
             }
 
             if (hasError) {
-              return '!border !border-danger-500';
+              return twMerge( '!border !ring-danger-500 !ring-1', userControlStyles );
             }
 
-            return '!border-gray-200';
+            return twMerge( '!border-gray-200', userControlStyles );
           },
+        }}
+        menuPortalTarget={props.menuPortalTarget}
+        menuPosition={props.menuPosition}
+        {...props}
+        styles={{
+          control: (base, state) => {
+            const userControl = props.styles?.control;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+            return {
+              ...base,
+              minHeight: '40px',
+              boxShadow: 'none',
+              borderRadius: '5px',
+              fontSize: '14px',
+              // Merge user-provided control styles (object or function result)
+              ...userControlStyles,
+            };
+          },
+          option: (base, state) => {
+            const userControl = props.styles?.option;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+            return {
+              ...base,
+              fontSize: '0.875rem',
+              // Merge user-provided control styles (object or function result)
+              ...userControlStyles,
+            }
+          },
+          multiValue: (base, state) => {
+            const userControl = props.styles?.multiValue;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+            return {
+              ...base,
+              background: 'var(--colors-primary-50)',
+              borderRadius: '0.25rem',
+              // Custom styles for the multi-value
+              ...userControlStyles
+            }
+          },
+          multiValueLabel: (base, state) => {
+            const userControl = props.styles?.multiValueLabel;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+            return {
+              ...base,
+              color: 'var(--colors-primary-600)',
+              // Custom styles for the multi-value label
+              ...userControlStyles
+            }
+          },
+          multiValueRemove: (base, state) => {
+            const userControl = props.styles?.multiValueRemove;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              color: 'var(--colors-primary-600)',
+              ':hover': {
+                background: 'var(--colors-primary-100)',
+              },
+              // Custom styles for the multi-value remove button
+              ...userControlStyles
+            }
+          },
+          loadingMessage: (base, state) => {
+            const userControl = props.styles?.loadingMessage;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              fontSize: '0.875rem',
+              color: 'var(--colors-gray-800)',
+              // Custom styles for the loading message
+              ...userControlStyles
+            }
+          },
+          menuPortal: (base, state) => {
+            const userControl = props.styles?.menuPortal;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+            ...base,
+            zIndex: 9999,
+            // Custom styles for the menu portal
+            ...userControlStyles
+          }
+          },
+          noOptionsMessage: (base, state) => {
+            const userControl = props.styles?.noOptionsMessage;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              fontSize: '0.875rem',
+              color: 'var(--colors-gray-800)',
+              ...userControlStyles
+            }
+          },
+          input: (base, state) => {
+            const userControl = props.styles?.input;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              ...userControlStyles
+            }
+          },
+          placeholder: (base, state) => {
+            const userControl = props.styles?.placeholder;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              ...userControlStyles
+            }
+          },
+          singleValue: (base, state) => {
+            const userControl = props.styles?.singleValue;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              ...userControlStyles
+            }
+          },
+          valueContainer: (base, state) => {
+            const userControl = props.styles?.valueContainer;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              ...userControlStyles
+            }
+          },
+          menuList: (base, state) => {
+            const userControl = props.styles?.menuList;
+            const userControlStyles = typeof userControl === 'function' ? userControl(base, state) : {};
+
+            return {
+              ...base,
+              ...userControlStyles
+            }
+          },
+
+          // Custom styles for the container
+          ...( props?.styles?.container ? props.styles.container : {} )
         }}
         components={{
           DropdownIndicator,
           IndicatorSeparator,
           LoadingIndicator,
+          // Custom components
+          ...( props?.components ? props.components : {} ),
         }}
-        styles={{
-          control: (base) => ({
-            ...base,
-            minHeight: '40px',
-            boxShadow: 'none',
-            borderRadius: '5px',
-            fontSize: '14px',
-          }),
-          option: (base) => ({
-            ...base,
-            fontSize: '0.875rem',
-          }),
-          multiValue: (base) => ({
-            ...base,
-            background: 'var(--colors-primary-50)',
-            borderRadius: '0.25rem',
-          }),
-          multiValueLabel: (base) => ({
-            ...base,
-            color: 'var(--colors-primary-600)',
-          }),
-          multiValueRemove: (base) => ({
-            ...base,
-            color: 'var(--colors-primary-600)',
-            ':hover': {
-              background: 'var(--colors-primary-100)',
-            },
-          }),
-          loadingMessage: (base) => ({
-            ...base,
-            fontSize: '0.875rem',
-            color: 'var(--colors-gray-800)',
-          }),
-          menuPortal: (base) => ({
-            ...base,
-            zIndex: 9999,
-          }),
-          noOptionsMessage: (base) => ({
-            ...base,
-            fontSize: '0.875rem',
-            color: 'var(--colors-gray-800)',
-          }),
-        }}
-        menuPortalTarget={props.menuPortalTarget}
-        menuPosition={props.menuPosition}
-        {...props}
       />
       {props.errors && props.errors.length > 0 && <ErrorMessage value={props.errors} />}
 
