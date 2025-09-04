@@ -1,110 +1,104 @@
+import * as Dialog from '@radix-ui/react-dialog';
+import React, { useCallback, memo } from 'react';
 import { classNames } from '@/utils';
-import { Dialog, Transition } from '@headlessui/react';
-import React, { Fragment, HTMLAttributes } from 'react';
 
-export type ModalProps = {
-  children: React.ReactNode;
-  className?: string;
+// ----------- Types -----------
+export type ModalProps = Omit<React.ComponentPropsWithoutRef<typeof Dialog.Content>, 'onOpenChange'> & {
   isOpen: boolean;
-  showXButton?: boolean;
   onClose: () => void;
-} & HTMLAttributes<HTMLDivElement>;
+  showXButton?: boolean;
+};
 
-const Modal = ({ children, showXButton = true, className, isOpen, onClose }: ModalProps) => {
+export type TitleProps = React.ComponentPropsWithoutRef<typeof Dialog.Title>;
+export type ContentProps = React.HTMLAttributes<HTMLDivElement>;
+export type FooterProps = React.HTMLAttributes<HTMLDivElement>;
+
+interface ModalComponent extends React.FC<ModalProps> {
+  Title: React.FC<TitleProps>;
+  Content: React.FC<ContentProps>;
+  Footer: React.FC<FooterProps>;
+}
+
+// ----------- Root Modal -----------
+const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose, showXButton = true, ...rest }) => {
+  const handleOpenChange = useCallback(
+    (open: boolean) => {
+      if (!open) onClose();
+    },
+    [onClose]
+  );
+
+  // ----------- Classes -----------
+  const overlayClasses =
+    'fixed inset-0 z-10 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
+
+  const contentClasses = classNames(
+    'fixed left-1/2 top-1/2 z-20 w-[90vw] max-w-lg max-h-[85vh]',
+    'rounded bg-white shadow-xl focus:outline-none',
+    'transform -translate-x-1/2 -translate-y-1/2 will-change-[transform,opacity]',
+    'data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out',
+    className
+  );
+
+  const closeButtonClasses =
+    'absolute right-2 top-2 rounded p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 focus:outline-none';
+
   return (
-    <>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-auto" onClose={onClose}>
-          <div className="min-h-screen p-4 text-center flex justify-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-black/25" />
-            </Transition.Child>
-
-            {/* This element is to trick the browser into centering the modal contents. */}
-            {/* <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span> */}
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <div
-                className={classNames(
-                  'relative inline-block text-left w-full rounded transition-all transform bg-white shadow-xl self-center',
-                  className
-                )}
-              >
-                {children}
-                {showXButton && (
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="absolute right-2 top-2 rounded-primary p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 outline-none focus:outline-none"
-                  >
-                    &#10005;
-                  </button>
-                )}
-              </div>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+    <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className={overlayClasses} />
+        <Dialog.Content className={contentClasses} {...rest}>
+          {children}
+          {showXButton && (
+            <Dialog.Close className={closeButtonClasses} aria-label="Close" title="Close">
+              &#10005;
+            </Dialog.Close>
+          )}
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 
-export type TitleProps = {
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+ModalRoot.displayName = 'Modal';
 
-const Title: React.FunctionComponent<TitleProps> = ({ children, className, ...rest }) => {
+// ----------- Sub components -----------
+
+// Title
+const Title: React.FC<TitleProps> = ({ children, className, ...rest }) => {
+  const titleClasses = classNames('p-4 font-semibold', className);
   return (
-    <div className={classNames('p-4 font-semibold', className)} {...rest}>
+    <Dialog.Title className={titleClasses} {...rest}>
+      {children}
+    </Dialog.Title>
+  );
+};
+Title.displayName = 'Modal.Title';
+
+// Content
+const Content: React.FC<ContentProps> = ({ children, className, ...rest }) => {
+  const contentClasses = classNames('p-4', className);
+  return (
+    <div className={contentClasses} {...rest}>
       {children}
     </div>
   );
 };
+Content.displayName = 'Modal.Content';
 
-export type ContentProps = {
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
-
-const Content: React.FunctionComponent<ContentProps> = ({ children, className, ...rest }) => {
+// Footer
+const Footer: React.FC<FooterProps> = ({ children, className, ...rest }) => {
+  const footerClasses = classNames('p-4 flex justify-end gap-2', className);
   return (
-    <div className={classNames('p-4', className)} {...rest}>
+    <div className={footerClasses} {...rest}>
       {children}
     </div>
   );
 };
+Footer.displayName = 'Modal.Footer';
 
-export type FooterProps = {
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
-
-const Footer: React.FunctionComponent<FooterProps> = ({ children, className, ...rest }) => {
-  return (
-    <div className={classNames('p-4', className)} {...rest}>
-      {children}
-    </div>
-  );
-};
-
+// ----------- Compound Assignment -----------
+const Modal = memo(ModalRoot) as unknown as ModalComponent;
 Modal.Title = Title;
 Modal.Content = Content;
 Modal.Footer = Footer;
