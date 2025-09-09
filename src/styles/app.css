@@ -63,6 +63,8 @@
 
   /* Exit animations */
   --animate-slide-down-fade-out: slide-down-fade-out 0.2s ease-in;
+  /* Drawer animations */
+  --animate-slide-in-from-right: slide-in-from-right 0.3s ease-in;
 
   @keyframes slide-up-fade {
     0% {
@@ -121,6 +123,15 @@
       opacity: 0;
       transform: translateY(-2px);
       scale: 0.95;
+    }
+  }
+  /* Drawer animations */
+  @keyframes slide-in-from-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 }

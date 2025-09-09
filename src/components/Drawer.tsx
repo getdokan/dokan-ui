@@ -1,6 +1,6 @@
 import { classNames } from '@/utils';
-import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, ReactNode } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { ReactNode, useCallback } from 'react';
 import { HiX } from 'react-icons/hi';
 
 export type DrawerProps = {
@@ -11,60 +11,41 @@ export type DrawerProps = {
 };
 
 const Drawer = ({ direction = 'ltr', isOpen, onClose, children }: DrawerProps) => {
+  const handleOpenChange = useCallback(
+    (open: boolean) => {
+      if (!open) onClose();
+    },
+    [onClose]
+  );
+
   return (
-    <Transition.Root show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-40" onClose={onClose}>
-        <Transition.Child
-          as={Fragment}
-          enter="transition-opacity ease-linear duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity ease-linear duration-300"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
-        </Transition.Child>
+    <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 bg-gray-600/75 transition-opacity ease-linear duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 " />
 
         <div className={classNames('fixed inset-0 flex z-40', direction === 'ltr' ? 'justify-end' : 'justify-start')}>
-          <Transition.Child
-            as={Fragment}
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom={direction === 'ltr' ? 'translate-x-full' : '-translate-x-full'}
-            enterTo="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leaveFrom="translate-x-0"
-            leaveTo={direction === 'ltr' ? 'translate-x-full' : '-translate-x-full'}
+          <Dialog.Content
+            className={classNames(
+              'relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white',
+              'transform',
+              direction === 'ltr'
+                ? 'data-[state=open]:animate-slide-in-from-right data-[state=closed]:animate-slide-out-to-right'
+                : 'data-[state=open]:animate-slide-in-from-left data-[state=closed]:animate-slide-out-to-left'
+            )}
           >
-            <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-in-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in-out duration-300"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <div className={`absolute pt-2 top-0 ${direction === 'ltr' ? '-left-12' : '-right-12'}`}>
-                  <button
-                    type="button"
-                    className="ms-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                    onClick={onClose}
-                  >
-                    <span className="sr-only">Close sidebar</span>
-                    <HiX className="h-6 w-6 text-white" aria-hidden="true" />
-                  </button>
-                </div>
-              </Transition.Child>
-              <div className="mt-5 flex-1 h-full overflow-y-auto" dir={direction}>
-                {children}
-              </div>
-            </Dialog.Panel>
-          </Transition.Child>
+            <div className={`absolute pt-2 top-0 ${direction === 'ltr' ? '-left-12' : '-right-12'}`}>
+              <Dialog.Close className="ms-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-opacity ease-in-out duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+                <span className="sr-only">Close sidebar</span>
+                <HiX className="h-6 w-6 text-white" aria-hidden="true" />
+              </Dialog.Close>
+            </div>
+            <div className="mt-5 flex-1 h-full overflow-y-auto" dir={direction}>
+              {children}
+            </div>
+          </Dialog.Content>
         </div>
-      </Dialog>
-    </Transition.Root>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 
