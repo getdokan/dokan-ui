@@ -40,7 +40,7 @@ export const Default: Story = {
           className="max-w-2xl"
           {...args}
           // 👇 storybook preview: show how onInteractOutside works
-          onInteractOutside={(event) => {
+          onInteractOutside={(event: React.MouseEvent<HTMLDivElement>) => {
             console.log('Outside interaction triggered:', event);
             // Example: prevent closing when clicked outside
             event.preventDefault();
