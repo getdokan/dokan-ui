@@ -1,16 +1,19 @@
 import { classNames } from '@/utils';
 import { Drawer as VaulDrawer } from 'vaul';
-import { ReactNode } from 'react';
-import CloseIcon from './icons/CloseIcon';
+import { ReactNode, ComponentProps } from 'react';
+import { CloseIcon } from '@/components/icons/CloseIcon';
 
-export type DrawerProps = {
+export type DrawerProps = Omit<
+  ComponentProps<typeof VaulDrawer.Root>,
+  'open' | 'onOpenChange' | 'children' | 'direction' | 'fadeFromIndex'
+> & {
   direction?: 'ltr' | 'rtl';
   isOpen: boolean;
   children: ReactNode;
   setIsOpen: (open: boolean) => void;
 };
 
-const Drawer = ({ direction = 'ltr', isOpen, setIsOpen, children, ...rest }: DrawerProps) => {
+export const Drawer = ({ direction = 'ltr', isOpen, setIsOpen, children, ...rest }: DrawerProps) => {
   // Close button
   const closeButton = (
     <VaulDrawer.Close className="flex pt-5 px-2">
