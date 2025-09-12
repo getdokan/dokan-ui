@@ -12,5 +12,6 @@ export type FormSelectProps = {
     placeholder?: string;
     disabled?: boolean;
     isError?: boolean;
+    portalTarget?: HTMLElement;
 };
 export default function FormSelect(props: FormSelectProps): import("react/jsx-runtime").JSX.Element;

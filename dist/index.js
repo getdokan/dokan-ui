@@ -22815,7 +22815,7 @@ function Y_(l) {
             ]
           }
         ),
-        /* @__PURE__ */ y.jsx(e9, { children: /* @__PURE__ */ y.jsxs(
+        /* @__PURE__ */ y.jsx(e9, { container: (l == null ? void 0 : l.portalTarget) || document.body, children: /* @__PURE__ */ y.jsxs(
           g0,
           {
             className: wl(

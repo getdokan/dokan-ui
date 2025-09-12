@@ -13,6 +13,7 @@ export type FormSelectProps = {
   placeholder?: string;
   disabled?: boolean;
   isError?: boolean;
+  portalTarget?: HTMLElement;
 };
 
 export default function FormSelect(props: FormSelectProps) {
@@ -41,7 +42,7 @@ export default function FormSelect(props: FormSelectProps) {
         </Select.Icon>
       </Select.Trigger>
 
-      <Select.Portal>
+      <Select.Portal container={props?.portalTarget || document.body}>
         <Select.Content
           className={classNames(
             'z-50 max-h-60 w-[--radix-select-trigger-width] overflow-hidden rounded bg-white shadow-[0_6px_20px_0_rgba(0,0,0,0.08)] ring-1 ring-[#E9E9E9] focus:outline-none',
