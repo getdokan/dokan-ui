@@ -68,20 +68,20 @@ const AsyncSearchableSelect = <
           ...theme,
           colors: {
             ...theme.colors,
-            primary: 'var(--colors-primary-500)',
-            primary75: 'var(--colors-primary-200)',
-            primary50: 'var(--colors-primary-100)',
-            primary25: 'var(--colors-primary-50)',
-            neutral5: 'var(--colors-gray-100)',
-            neutral10: 'var(--colors-gray-100)',
-            neutral20: 'var(--colors-gray-200)',
-            neutral30: 'var(--colors-gray-300)',
-            neutral40: 'var(--colors-gray-400)',
-            neutral50: 'var(--colors-gray-500)',
-            neutral60: 'var(--colors-gray-600)',
-            neutral70: 'var(--colors-gray-700)',
-            neutral80: 'var(--colors-gray-800)',
-            neutral90: 'var(--colors-gray-900)',
+            primary: 'var(--color-primary-500)',
+            primary75: 'var(--color-primary-200)',
+            primary50: 'var(--color-primary-100)',
+            primary25: 'var(--color-primary-50)',
+            neutral5: 'var(--color-gray-100)',
+            neutral10: 'var(--color-gray-100)',
+            neutral20: 'var(--color-gray-200)',
+            neutral30: 'var(--color-gray-300)',
+            neutral40: 'var(--color-gray-400)',
+            neutral50: 'var(--color-gray-500)',
+            neutral60: 'var(--color-gray-600)',
+            neutral70: 'var(--color-gray-700)',
+            neutral80: 'var(--color-gray-800)',
+            neutral90: 'var(--color-gray-900)',
           },
         })}
         classNames={{
@@ -120,24 +120,24 @@ const AsyncSearchableSelect = <
           }),
           multiValue: (base) => ({
             ...base,
-            background: 'var(--colors-primary-50)',
+            background: 'var(--color-primary-50)',
             borderRadius: '0.25rem',
           }),
           multiValueLabel: (base) => ({
             ...base,
-            color: 'var(--colors-primary-600)',
+            color: 'var(--color-primary-600)',
           }),
           multiValueRemove: (base) => ({
             ...base,
-            color: 'var(--colors-primary-600)',
+            color: 'var(--color-primary-600)',
             ':hover': {
-              background: 'var(--colors-primary-100)',
+              background: 'var(--color-primary-100)',
             },
           }),
           loadingMessage: (base) => ({
             ...base,
             fontSize: '0.875rem',
-            color: 'var(--colors-gray-800)',
+            color: 'var(--color-gray-800)',
           }),
           menuPortal: (base) => ({
             ...base,
@@ -146,7 +146,7 @@ const AsyncSearchableSelect = <
           noOptionsMessage: (base) => ({
             ...base,
             fontSize: '0.875rem',
-            color: 'var(--colors-gray-800)',
+            color: 'var(--color-gray-800)',
           }),
         }}
         menuPortalTarget={props.menuPortalTarget}
