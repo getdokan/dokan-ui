@@ -63,9 +63,10 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
         </label>
       )}
       <CreatableSelect
+        menuIsOpen
         {...props}
         inputId={id}
-        menuPortalTarget={document.body}
+        // menuPortalTarget={document.body}
         menuPosition="absolute"
         isDisabled={props.disabled}
         className={classNames(
