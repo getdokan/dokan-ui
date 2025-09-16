@@ -10,10 +10,11 @@ export type DrawerProps = Omit<
   direction?: 'ltr' | 'rtl';
   isOpen: boolean;
   children: ReactNode;
-  setIsOpen: (open: boolean) => void;
+  onClose: () => void;
+  className?: string;
 };
 
-export const Drawer = ({ direction = 'ltr', isOpen, setIsOpen, children, ...rest }: DrawerProps) => {
+export const Drawer = ({ direction = 'ltr', isOpen, children, onClose, className, ...rest }: DrawerProps) => {
   // Close button
   const closeButton = (
     <VaulDrawer.Close className="flex pt-5 px-2">
@@ -34,7 +35,7 @@ export const Drawer = ({ direction = 'ltr', isOpen, setIsOpen, children, ...rest
     <VaulDrawer.Root
       key={direction}
       open={isOpen}
-      onOpenChange={setIsOpen}
+      onOpenChange={() => onClose()}
       direction={direction === 'ltr' ? 'right' : 'left'}
       {...rest}
     >
@@ -44,7 +45,8 @@ export const Drawer = ({ direction = 'ltr', isOpen, setIsOpen, children, ...rest
         <VaulDrawer.Content
           className={classNames(
             'fixed top-0 h-full flex z-40 max-w-sm w-full outline-none',
-            direction === 'ltr' ? 'right-0' : 'left-0'
+            direction === 'ltr' ? 'right-0' : 'left-0',
+            className
           )}
         >
           {renderContent()}

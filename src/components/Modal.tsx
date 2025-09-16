@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import React, { useCallback, memo } from 'react';
+import React, { memo } from 'react';
 import { classNames } from '@/utils';
 
 // ----------- Types -----------
@@ -7,6 +7,7 @@ export type ModalProps = Omit<React.ComponentPropsWithoutRef<typeof Dialog.Conte
   isOpen: boolean;
   onClose: () => void;
   showXButton?: boolean;
+  className?: string;
 };
 
 export type TitleProps = React.ComponentPropsWithoutRef<typeof Dialog.Title>;
@@ -21,13 +22,6 @@ interface ModalComponent extends React.FC<ModalProps> {
 
 // ----------- Root Modal -----------
 const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose, showXButton = true, ...rest }) => {
-  const handleOpenChange = useCallback(
-    (open: boolean) => {
-      if (!open) onClose();
-    },
-    [onClose]
-  );
-
   // ----------- Classes -----------
   const overlayClasses =
     'fixed inset-0 z-10 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
@@ -44,7 +38,7 @@ const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose,
     'absolute right-2 top-2 rounded p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 focus:outline-none';
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
+    <Dialog.Root open={isOpen} onOpenChange={() => onClose()}>
       <Dialog.Portal>
         <Dialog.Overlay className={overlayClasses} />
         <Dialog.Content className={contentClasses} {...rest}>
