@@ -18,7 +18,7 @@ export const Default: Story = {
   args: {
     isOpen: true,
     direction: 'ltr',
-    onClose: () => {},
+    setIsOpen: () => {},
   },
 
   render: () => {
@@ -26,7 +26,7 @@ export const Default: Story = {
     return (
       <>
         <Button color="primary" label="Open Drawer" onClick={() => updateArgs({ isOpen: true })}></Button>
-        <Drawer {...args} onClose={() => updateArgs({ isOpen: false })}>
+        <Drawer {...args} setIsOpen={() => updateArgs({ isOpen: false })}>
           <div className="px-6">Drawer Content</div>
         </Drawer>
       </>

@@ -38,7 +38,12 @@ const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose,
     'absolute right-2 top-2 rounded p-1.5 transition-colors duration-150 text-sm text-gray-500 hover:text-gray-700 focus:outline-none';
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={() => onClose()}>
+    <Dialog.Root
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
+    >
       <Dialog.Portal>
         <Dialog.Overlay className={overlayClasses} />
         <Dialog.Content className={contentClasses} {...rest}>
