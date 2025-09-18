@@ -56,13 +56,17 @@
 
   --radius-default: 5px;
 
+  /* General animations */
   --animate-slide-up-fade: slide-up-fade 0.3s ease-in-out;
   --animate-slide-right-fade: slide-right-fade 0.3s ease-in-out;
   --animate-slide-down-fade: slide-down-fade 0.3s ease-in-out;
   --animate-slide-left-fade: slide-left-fade 0.3s ease-in-out;
 
-  /* Exit animations */
-  --animate-slide-down-fade-out: slide-down-fade-out 0.2s ease-in;
+  /* Modal animations */
+  --animate-modal-overlay-enter: modal-overlay-enter 0.2s ease-out;
+  --animate-modal-overlay-exit: modal-overlay-exit 0.15s ease-in;
+  --animate-modal-enter: modal-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-modal-exit: modal-exit 0.2s cubic-bezier(0.4, 0, 1, 1);
 
   @keyframes slide-up-fade {
     0% {
@@ -110,17 +114,45 @@
     }
   }
 
-  /* Exit animations */
-  @keyframes slide-down-fade-out {
+  /* Modal-specific keyframes */
+  @keyframes modal-overlay-enter {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-overlay-exit {
     0% {
       opacity: 1;
-      transform: translateY(0);
-      scale: 1;
     }
     100% {
       opacity: 0;
-      transform: translateY(-2px);
-      scale: 0.95;
+    }
+  }
+
+  /* Standard modal animation keyframes */
+  @keyframes modal-enter {
+    0% {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes modal-exit {
+    0% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
     }
   }
 }
