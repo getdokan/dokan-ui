@@ -24,13 +24,13 @@ interface ModalComponent extends React.FC<ModalProps> {
 const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose, showXButton = true, ...rest }) => {
   // ----------- Classes -----------
   const overlayClasses =
-    'fixed inset-0 z-10 bg-black/25 data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out';
+    'fixed inset-0 z-10 backdrop-blur-[1px] bg-black/25 data-[state=open]:animate-modal-overlay-enter data-[state=closed]:animate-modal-overlay-exit';
 
   const contentClasses = classNames(
     'fixed left-1/2 top-1/2 z-20 w-[90vw] max-w-lg max-h-[85vh] overflow-y-auto',
     'rounded bg-white shadow-xl focus:outline-none',
     'transform -translate-x-1/2 -translate-y-1/2 will-change-[transform,opacity]',
-    'data-[state=open]:animate-slide-up-fade data-[state=closed]:animate-slide-down-fade-out',
+    'data-[state=open]:animate-modal-enter data-[state=closed]:animate-modal-exit',
     className
   );
 
