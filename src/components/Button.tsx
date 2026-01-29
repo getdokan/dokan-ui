@@ -12,7 +12,7 @@ export interface ButtonProps {
   underline?: boolean;
   underlineOnHover?: boolean;
   href?: string;
-  target?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
   icon?: any;
   size?: 'lg' | 'md' | 'sm';
   color:
