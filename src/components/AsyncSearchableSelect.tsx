@@ -1,3 +1,4 @@
+import React from 'react';
 import { CgSpinner } from 'react-icons/cg';
 import { FiChevronDown } from 'react-icons/fi';
 import { GroupBase, MenuPosition } from 'react-select';
@@ -20,6 +21,7 @@ export type AsyncSearchableSelectProps<
   disabled?: boolean;
   menuPortalTarget?: HTMLElement | null;
   menuPosition?: MenuPosition;
+  action?: React.ReactNode;
 };
 
 const AsyncSearchableSelect = <
@@ -48,16 +50,19 @@ const AsyncSearchableSelect = <
   return (
     <div className={'react-select'}>
       {props.label && (
-        <label
-          htmlFor={id}
-          className={classNames(
-            'mb-2 inline-block cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
-            props.disabled && 'cursor-not-allowed opacity-50'
-          )}
-        >
-          {props.label}
-          {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
-        </label>
+        <div className="mb-2 flex items-center justify-between">
+          <label
+            htmlFor={id}
+            className={classNames(
+              'cursor-pointer text-sm font-medium leading-[21px] text-gray-900',
+              props.disabled && 'cursor-not-allowed opacity-50'
+            )}
+          >
+            {props.label}
+            {props.required && <span className={'ms-0.5 text-danger-500'}>*</span>}
+          </label>
+          {props.action && <div>{props.action}</div>}
+        </div>
       )}
       <AsyncSelect
         inputId={id}
