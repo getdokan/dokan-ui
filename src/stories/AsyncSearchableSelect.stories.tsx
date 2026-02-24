@@ -108,3 +108,39 @@ export const MultipleAndSearch: Story = {
     );
   },
 };
+
+export const WithAction: Story = {
+  args: {
+    className: '',
+    defaultOptions: [
+      { label: 'Bangladesh', value: 'BD' },
+      { label: 'India', value: 'IN' },
+      { label: 'Pakistan', value: 'PK' },
+      { label: 'Sri Lanka', value: 'SL' },
+    ],
+    label: 'Countries',
+    helpText: 'This is a help text example',
+    errors: [],
+    required: true,
+    menuPortalTarget: document.body,
+    MenuPortal: 'fixed',
+  },
+  render: (args) => {
+    return (
+      <div>
+        <AsyncSearchableSelect
+          {...args}
+          action={
+            <button
+              type="button"
+              onClick={() => alert('Action clicked!')}
+              className="text-xs text-primary-500 hover:underline"
+            >
+              + Add New
+            </button>
+          }
+        />
+      </div>
+    );
+  },
+};
