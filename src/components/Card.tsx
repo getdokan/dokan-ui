@@ -60,7 +60,7 @@ type CardSubtitleProps = {
 
 const Subtitle = ({ className, children, ...rest }: CardSubtitleProps) => {
   return (
-    <p className={classNames('text-sm text-[#464654] leading5', className)} {...rest}>
+    <p className={classNames('text-sm text-[#464654] leading-5', className)} {...rest}>
       {children}
     </p>
   );
