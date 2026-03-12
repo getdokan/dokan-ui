@@ -4,6 +4,7 @@
 
 import './styles/app.css';
 
+export { default as AppTab } from './components/AppTab';
 export { default as Badge } from './components/Badge';
 export { default as Box } from './components/Box';
 export { default as Button } from './components/Button';
@@ -49,5 +50,6 @@ export { default as ErrorIcon } from './components/icons/ErrorIcon';
 export { default as DokanIcon } from './components/icons/DokanIcon';
 
 // Types
+export type { AppTabProps, TabItem, AppTabVariant, AppTabSize } from './components/AppTab';
 export type { OnPlaceSelectedParamType } from './components/GooglePlaceAutocomplete';
 export type { SingleValue, OnChangeValue, MultiValue, ActionMeta } from 'react-select';
