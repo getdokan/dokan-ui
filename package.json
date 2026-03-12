@@ -1,7 +1,7 @@
 {
   "name": "@getdokan/dokan-ui",
   "author": "weDevs",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
