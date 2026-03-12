@@ -71,7 +71,14 @@ const AppTab = ({
     }, [updateIndicator, items]);
 
     useEffect(() => {
-        const observer = new ResizeObserver(() => updateIndicator());
+        if (typeof window === 'undefined') return;
+
+        if (typeof ResizeObserver === 'undefined') {
+            window.addEventListener('resize', updateIndicator);
+            return () => window.removeEventListener('resize', updateIndicator);
+        }
+
+        const observer = new ResizeObserver(updateIndicator);
         if (containerRef.current) observer.observe(containerRef.current);
         return () => observer.disconnect();
     }, [updateIndicator]);
