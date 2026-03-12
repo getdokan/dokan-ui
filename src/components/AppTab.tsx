@@ -36,8 +36,9 @@ const AppTab = ({
     ...rest
 }: AppTabProps) => {
     const isControlled = controlledValue !== undefined;
+    const firstEnabled = items.find((item) => !item.disabled)?.value ?? '';
     const [internalValue, setInternalValue] = useState(
-        defaultValue ?? items[0]?.value ?? ''
+        defaultValue ?? firstEnabled
     );
     const activeValue = isControlled ? controlledValue : internalValue;
 
@@ -51,7 +52,10 @@ const AppTab = ({
     const updateIndicator = useCallback(() => {
         const activeTab = tabRefs.current.get(activeValue);
         const container = containerRef.current;
-        if (!activeTab || !container) return;
+        if (!activeTab || !container) {
+            setIndicatorStyle({});
+            return;
+        }
 
         const containerRect = container.getBoundingClientRect();
         const tabRect = activeTab.getBoundingClientRect();
