@@ -32,7 +32,7 @@ type CardHeaderProps = {
 
 const Header = ({ className, children, ...rest }: CardHeaderProps) => {
   return (
-    <div className={classNames('border-b p-5 first:rounded-t bg-[#F7F7F8] border-b-[#F1F1F3]', className)} {...rest}>
+    <div className={classNames('border-b p-5 first:rounded-t-xl bg-[#F7F7F8] border-b-[#F1F1F3]', className)} {...rest}>
       {children}
     </div>
   );
