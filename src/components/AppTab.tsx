@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
+import React, { HTMLAttributes, KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react';
 import { classNames } from '@/utils';
 
 export type TabItem = {
@@ -19,6 +19,8 @@ export type AppTabProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
     size?: AppTabSize;
     className?: string;
     fullWidth?: boolean;
+    /** Id prefix used to generate aria-controls/id pairs. Defaults to a React-generated id. */
+    tabId?: string;
 };
 
 const AppTab = ({
@@ -30,6 +32,7 @@ const AppTab = ({
     size = 'md',
     className,
     fullWidth = false,
+    tabId: tabIdProp,
     ...rest
 }: AppTabProps) => {
     const isControlled = controlledValue !== undefined;
@@ -37,6 +40,9 @@ const AppTab = ({
         defaultValue ?? items[0]?.value ?? ''
     );
     const activeValue = isControlled ? controlledValue : internalValue;
+
+    const generatedId = useId();
+    const tabId = tabIdProp ?? generatedId;
 
     const containerRef = useRef<HTMLDivElement>(null);
     const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
@@ -81,6 +87,30 @@ const AppTab = ({
         }
     };
 
+    const enabledItems = items.filter((item) => !item.disabled);
+
+    const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, currentValue: string) => {
+        const currentIndex = enabledItems.findIndex((item) => item.value === currentValue);
+        let nextIndex: number | null = null;
+
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            nextIndex = (currentIndex + 1) % enabledItems.length;
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            nextIndex = (currentIndex - 1 + enabledItems.length) % enabledItems.length;
+        } else if (e.key === 'Home') {
+            nextIndex = 0;
+        } else if (e.key === 'End') {
+            nextIndex = enabledItems.length - 1;
+        }
+
+        if (nextIndex !== null) {
+            e.preventDefault();
+            const nextValue = enabledItems[nextIndex].value;
+            tabRefs.current.get(nextValue)?.focus();
+            handleTabClick(nextValue);
+        }
+    };
+
     const sizeClasses = {
         sm: 'px-3 py-1.5 text-xs',
         md: 'px-4 py-2 text-sm',
@@ -121,11 +151,15 @@ const AppTab = ({
                     <button
                         key={item.value}
                         ref={setTabRef(item.value)}
+                        id={`${tabId}-tab-${item.value}`}
                         role="tab"
                         type="button"
                         aria-selected={isActive}
+                        aria-controls={`${tabId}-panel-${item.value}`}
+                        tabIndex={isActive ? 0 : -1}
                         disabled={item.disabled}
                         onClick={() => handleTabClick(item.value)}
+                        onKeyDown={(e) => handleKeyDown(e, item.value)}
                         className={classNames(
                             'relative z-[1] cursor-pointer whitespace-nowrap font-medium leading-5 transition-colors duration-200 select-none',
                             sizeClasses[size],
