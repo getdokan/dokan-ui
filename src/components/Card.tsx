@@ -12,7 +12,7 @@ const Card = ({ className, children, clickable, onClick, ...rest }: CardProps) =
   return (
     <div
       className={classNames(
-        'w-full rounded transition-all duration-300 border',
+        'w-full rounded-xl transition-all duration-300  bg-white shadow-[0_1px_2px_-1px_rgba(0,0,0,0.10),0_1px_3px_0_rgba(0,0,0,0.10)]',
         clickable && 'cursor-pointer hover:shadow-lg',
         className
       )}
@@ -32,7 +32,7 @@ type CardHeaderProps = {
 
 const Header = ({ className, children, ...rest }: CardHeaderProps) => {
   return (
-    <div className={classNames('border-b px-6 py-4 first:rounded-t bg-gray-50', className)} {...rest}>
+    <div className={classNames('border-b p-5 first:rounded-t bg-[#F7F7F8] border-b-[#F1F1F3]', className)} {...rest}>
       {children}
     </div>
   );
@@ -46,7 +46,7 @@ type CardTitleProps = {
 
 const Title = ({ className, children, ...rest }: CardTitleProps) => {
   return (
-    <h4 className={classNames('text-base font-medium', className)} {...rest}>
+    <h4 className={classNames('text-base leading-7 mb-1 font-bold text-[#24242B]', className)} {...rest}>
       {children}
     </h4>
   );
@@ -60,7 +60,7 @@ type CardSubtitleProps = {
 
 const Subtitle = ({ className, children, ...rest }: CardSubtitleProps) => {
   return (
-    <p className={classNames('text-sm text-gray-500', className)} {...rest}>
+    <p className={classNames('text-sm text-[#464654] leading5', className)} {...rest}>
       {children}
     </p>
   );
@@ -88,7 +88,7 @@ type CardBodyProps = {
 
 const Body = ({ className, children, ...rest }: CardBodyProps) => {
   return (
-    <div className={classNames('p-6 first:rounded-t', className)} {...rest}>
+    <div className={classNames('p-5 first:rounded-t', className)} {...rest}>
       {children}
     </div>
   );
