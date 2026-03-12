@@ -32,7 +32,7 @@ type CardHeaderProps = {
 
 const Header = ({ className, children, ...rest }: CardHeaderProps) => {
   return (
-    <div className={classNames('border-b p-5 first:rounded-t bg-[#F7F7F8] border-b-[#F1F1F3]', className)} {...rest}>
+    <div className={classNames('border-b p-5 first:rounded-t-xl bg-[#F7F7F8] border-b-[#F1F1F3]', className)} {...rest}>
       {children}
     </div>
   );
@@ -60,7 +60,7 @@ type CardSubtitleProps = {
 
 const Subtitle = ({ className, children, ...rest }: CardSubtitleProps) => {
   return (
-    <p className={classNames('text-sm text-[#464654] leading5', className)} {...rest}>
+    <p className={classNames('text-sm text-[#464654] leading-5', className)} {...rest}>
       {children}
     </p>
   );
