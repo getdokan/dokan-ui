@@ -6,6 +6,7 @@ import { components, GroupBase, MultiValueRemoveProps } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { twMerge } from 'tailwind-merge';
 import ErrorMessage from './ErrorMessage';
+import { useDokanUILabels } from './DokanUIProvider';
 
 type CreatableProps<Option, IsMulti extends boolean, Group extends GroupBase<Option>> = StateManagerProps<
   Option,
@@ -26,6 +27,7 @@ type CreatableProps<Option, IsMulti extends boolean, Group extends GroupBase<Opt
 const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(
   props: CreatableProps<Option, IsMulti, Group>
 ) => {
+  const labels = useDokanUILabels();
   const id = props.id || Math.random().toString();
 
   const MultiValueRemove = (props: MultiValueRemoveProps<Option, IsMulti, Group>) => {
@@ -74,7 +76,7 @@ const TaggableSelect = <Option, IsMulti extends boolean = false, Group extends G
           },
           props.className
         )}
-        placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search'}</div>}
+        placeholder={<div className="text-sm text-gray-400">{props.placeholder || labels.search}</div>}
         components={{
           MultiValueRemove,
           DropdownIndicator,

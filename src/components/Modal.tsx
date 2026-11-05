@@ -1,12 +1,14 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import React, { memo } from 'react';
 import { classNames } from '@/utils';
+import { useDokanUILabels } from './DokanUIProvider';
 
 // ----------- Types -----------
 export type ModalProps = Omit<React.ComponentPropsWithoutRef<typeof Dialog.Content>, 'onOpenChange'> & {
   isOpen: boolean;
   onClose: () => void;
   showXButton?: boolean;
+  closeLabel?: string;
   className?: string;
 };
 
@@ -21,7 +23,18 @@ interface ModalComponent extends React.FC<ModalProps> {
 }
 
 // ----------- Root Modal -----------
-const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose, showXButton = true, ...rest }) => {
+const ModalRoot: React.FC<ModalProps> = ({
+  children,
+  className,
+  isOpen,
+  onClose,
+  showXButton = true,
+  closeLabel,
+  ...rest
+}) => {
+  const labels = useDokanUILabels();
+  const xButtonLabel = closeLabel ?? labels.close;
+
   // ----------- Classes -----------
   const overlayClasses =
     'fixed inset-0 z-10 backdrop-blur-[1px] bg-black/25 data-[state=open]:animate-modal-overlay-enter data-[state=closed]:animate-modal-overlay-exit';
@@ -49,7 +62,7 @@ const ModalRoot: React.FC<ModalProps> = ({ children, className, isOpen, onClose,
         <Dialog.Content className={contentClasses} {...rest}>
           {children}
           {showXButton && (
-            <Dialog.Close className={closeButtonClasses} aria-label="Close" title="Close">
+            <Dialog.Close className={closeButtonClasses} aria-label={xButtonLabel} title={xButtonLabel}>
               &#10005;
             </Dialog.Close>
           )}

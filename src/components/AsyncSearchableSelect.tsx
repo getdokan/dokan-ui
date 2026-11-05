@@ -6,6 +6,7 @@ import AsyncSelect, { AsyncProps } from 'react-select/async';
 import { twMerge } from 'tailwind-merge';
 import ErrorMessage from './ErrorMessage';
 import { classNames } from '@/utils';
+import { useDokanUILabels } from './DokanUIProvider';
 
 export type AsyncSearchableSelectProps<
   Option,
@@ -31,6 +32,7 @@ const AsyncSearchableSelect = <
 >(
   props: AsyncSearchableSelectProps<Option, IsMulti, Group>
 ) => {
+  const labels = useDokanUILabels();
   const id = props.id || Math.random().toString();
 
   const DropdownIndicator = () => (
@@ -68,7 +70,7 @@ const AsyncSearchableSelect = <
         inputId={id}
         isDisabled={props.disabled}
         className={twMerge('shadow-sm', props.className, props.disabled && 'rounded border', hasError && 'hasErrors')}
-        placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search...'}</div>}
+        placeholder={<div className="text-sm text-gray-400">{props.placeholder || `${labels.search}...`}</div>}
         theme={(theme) => ({
           ...theme,
           colors: {

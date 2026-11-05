@@ -1,6 +1,7 @@
 import { classNames } from '@/utils';
 import React, { FC, MouseEventHandler } from 'react';
 import { HiCheckCircle, HiExclamation, HiInformationCircle, HiX, HiXCircle } from 'react-icons/hi';
+import { useDokanUILabels } from './DokanUIProvider';
 
 export interface SimpleAlertProps {
   children?: React.ReactNode;
@@ -121,6 +122,8 @@ const dismissClasses = {
 };
 
 const SimpleAlert: FC<SimpleAlertProps> = (props) => {
+  const labels = useDokanUILabels();
+
   return (
     <>
       <div className={classNames(`rounded-md ${bgColors[props.color]} p-4`, props.className)}>
@@ -156,7 +159,7 @@ const SimpleAlert: FC<SimpleAlertProps> = (props) => {
                                 ${dismissClasses[props.color]}
                             `}
                 >
-                  <span className="sr-only">Dismiss</span>
+                  <span className="sr-only">{labels.dismiss}</span>
                   <HiX className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>

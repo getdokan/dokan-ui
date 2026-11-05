@@ -11,6 +11,7 @@ export { default as Button } from './components/Button';
 export { default as Card } from './components/Card';
 export { default as Container } from './components/Container';
 export { default as Divider } from './components/Divider';
+export { default as DokanUIProvider } from './components/DokanUIProvider';
 export { default as Drawer } from './components/Drawer';
 export { default as FancyCheckbox } from './components/FancyCheckbox';
 export { default as GoogleIcon } from './components/GoogleIcon';
@@ -51,5 +52,6 @@ export { default as DokanIcon } from './components/icons/DokanIcon';
 
 // Types
 export type { AppTabProps, TabItem, AppTabVariant, AppTabSize } from './components/AppTab';
+export type { DokanUILabels, DokanUIProviderProps } from './components/DokanUIProvider';
 export type { OnPlaceSelectedParamType } from './components/GooglePlaceAutocomplete';
 export type { SingleValue, OnChangeValue, MultiValue, ActionMeta } from 'react-select';

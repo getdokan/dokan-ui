@@ -2,6 +2,7 @@ import { classNames } from '@/utils';
 import { Drawer as VaulDrawer } from 'vaul';
 import { ReactNode, ComponentProps } from 'react';
 import { CloseIcon } from '@/components/icons/CloseIcon';
+import { useDokanUILabels } from './DokanUIProvider';
 
 export type DrawerProps = Omit<
   ComponentProps<typeof VaulDrawer.Root>,
@@ -11,14 +12,25 @@ export type DrawerProps = Omit<
   isOpen: boolean;
   children: ReactNode;
   setIsOpen: (open: boolean) => void;
+  closeLabel?: string;
   className?: string;
 };
 
-export const Drawer = ({ direction = 'ltr', isOpen, setIsOpen, children, className, ...rest }: DrawerProps) => {
+export const Drawer = ({
+  direction = 'ltr',
+  isOpen,
+  setIsOpen,
+  children,
+  className,
+  closeLabel,
+  ...rest
+}: DrawerProps) => {
+  const labels = useDokanUILabels();
+
   // Close button
   const closeButton = (
     <VaulDrawer.Close className="flex pt-5 px-2">
-      <span className="sr-only">Close sidebar</span>
+      <span className="sr-only">{closeLabel ?? labels.closeSidebar}</span>
       <CloseIcon color="white" />
     </VaulDrawer.Close>
   );

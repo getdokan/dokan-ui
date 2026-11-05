@@ -1,4 +1,5 @@
 import { ChangeEventHandler, FC } from 'react';
+import { useDokanUILabels } from './DokanUIProvider';
 
 export interface FancyCheckboxProps {
   inputs: Array<{
@@ -10,10 +11,12 @@ export interface FancyCheckboxProps {
 }
 
 const FancyCheckbox: FC<FancyCheckboxProps> = (props) => {
+  const labels = useDokanUILabels();
+
   return (
     <>
       <fieldset className="space-y-5">
-        <legend className="sr-only">List</legend>
+        <legend className="sr-only">{labels.list}</legend>
         {props.inputs.map((input) => (
           <div className="relative flex items-start" key={input.id}>
             <div className="flex items-center h-5">

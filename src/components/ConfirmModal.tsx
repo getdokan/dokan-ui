@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import type { ComponentProps } from 'react';
 import Modal from './Modal';
 import Button from './Button';
+import { useDokanUILabels } from './DokanUIProvider';
 
 interface ConfirmModalProps {
   title?: string;
@@ -16,6 +17,7 @@ interface ConfirmModalProps {
   isConfirmButtonLoading?: boolean;
 }
 const ConfirmModal = (props: ConfirmModalProps) => {
+  const labels = useDokanUILabels();
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const ConfirmModal = (props: ConfirmModalProps) => {
       >
         <Modal.Title>
           <div className="">
-            <h3 className="text-lg text-gray-900">{props.title || 'Please Confirm'}</h3>
+            <h3 className="text-lg text-gray-900">{props.title || labels.confirmTitle}</h3>
           </div>
         </Modal.Title>
         <Modal.Content className="pb-0 pt-0">
@@ -49,7 +51,7 @@ const ConfirmModal = (props: ConfirmModalProps) => {
         <Modal.Footer>
           <div className="flex justify-end space-x-4">
             <Button color="white" type="button" onClick={props.onCancel || (() => setShowModal(false))}>
-              {props.cancelButtonLabel || 'No'}
+              {props.cancelButtonLabel || labels.no}
             </Button>
             <Button
               disabled={props?.isConfirmButtonLoading ?? false}
@@ -57,7 +59,7 @@ const ConfirmModal = (props: ConfirmModalProps) => {
               color={props.okButtonColor || 'primary'}
               type="button"
               onClick={props.onConfirm}
-              label={props.okButtonLabel || 'Yes'}
+              label={props.okButtonLabel || labels.yes}
             />
           </div>
         </Modal.Footer>

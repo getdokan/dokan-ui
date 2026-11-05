@@ -1,6 +1,7 @@
 import Select, { GroupBase, MenuPosition, Props } from 'react-select';
 import ErrorMessage from './ErrorMessage';
 import { classNames } from '@/utils';
+import { useDokanUILabels } from './DokanUIProvider';
 import { FiChevronDown } from 'react-icons/fi';
 
 export type SearchableSelectProps<
@@ -23,6 +24,7 @@ export type SearchableSelectProps<
 const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(
   props: SearchableSelectProps<Option, IsMulti, Group>
 ) => {
+  const labels = useDokanUILabels();
   const id = props.id || Math.random().toString();
 
   const hasError = props.errors && props.errors.length > 0;
@@ -67,7 +69,7 @@ const SearchableSelect = <Option, IsMulti extends boolean = false, Group extends
           },
           props.className
         )}
-        placeholder={<div className="text-sm text-gray-400">{props.placeholder || 'Search'}</div>}
+        placeholder={<div className="text-sm text-gray-400">{props.placeholder || labels.search}</div>}
         theme={(theme) => ({
           ...theme,
           colors: {
